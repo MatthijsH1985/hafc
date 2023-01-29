@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+body {
+  background: #FFF;
+  &:after {
+    content: "";
+    height: 400px;
+    --tw-bg-opacity: 1;
+    background-color: rgba(0,0,0);
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+  }
+}
+

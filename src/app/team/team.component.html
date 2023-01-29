@@ -1,0 +1,90 @@
+<h1 class="text-5xl">Team</h1>
+<div *ngIf="keepers">
+  <h2>Keepers</h2>
+    <div *ngFor="let keeper of keepers">
+      <a class="player tappable" (click)="onViewPlayer(keeper)">
+        <div class="player-image-container">
+          <img [src]="keeper?.better_featured_image?.source_url" *ngIf="keeper?.better_featured_image?.source_url; else showPlaceholder" />
+          <ng-template #showPlaceholder>
+            <div class="player-image-placeholder">
+              Foto volgt
+            </div>
+          </ng-template>
+        </div>
+        <div class="player-name-container">
+          <h3>
+            <span class="player-first-name">{{ keeper?.acf?.voornaam }}</span> <span class="player-last-name">{{ keeper.acf.achternaam }}</span>
+          </h3>
+          <div class="player-number player-number-small">
+            {{ keeper.acf.rugnummer }}
+          </div>
+        </div>
+      </a>
+</div>
+<div *ngIf="verdedigers">
+  <h2>Verdedigers</h2>
+    <div *ngFor="let verdediger of verdedigers">
+      <a class="player tappable" (click)="onViewPlayer(verdediger)">
+        <div class="player-image-container">
+          <img [src]="verdediger?.better_featured_image?.source_url" *ngIf="verdediger?.better_featured_image?.source_url; else showPlaceholder" />
+          <ng-template #showPlaceholder>
+            <div class="player-image-placeholder">
+              Foto volgt
+            </div>
+          </ng-template>
+        </div>
+        <div class="player-name-container">
+          <h3>
+            <span class="player-first-name">{{ verdediger.acf.voornaam }}</span> <span class="player-last-name">{{ verdediger.acf.achternaam }}</span>
+          </h3>
+          <div class="player-number player-number-small">
+            {{ verdediger.acf.rugnummer }}
+          </div>
+        </div>
+      </a>
+</div>
+<div *ngIf="middenvelders">
+  <h2>Middenvelders</h2>
+    <div *ngFor="let middenvelder of middenvelders">
+      <a class="player tappable" (click)="onViewPlayer(middenvelder)">
+        <div class="player-image-container">
+          <img [src]="middenvelder.better_featured_image?.source_url" *ngIf="middenvelder.better_featured_image?.source_url; else showPlaceholder" />
+          <ng-template #showPlaceholder>
+            <div class="player-image-placeholder">
+              Foto volgt
+            </div>
+          </ng-template>
+        </div>
+        <div class="player-name-container">
+          <h3>
+            <span class="player-first-name">{{ middenvelder.acf.voornaam }}</span> <span class="player-last-name">{{ middenvelder.acf.achternaam }}</span>
+          </h3>
+          <div class="player-number player-number-small">
+            {{ middenvelder.acf.rugnummer }}
+          </div>
+        </div>
+      </a>
+</div>
+<div *ngIf="aanvallers">
+  <h2>Aanvallers</h2>
+    <div *ngFor="let aanvaller of aanvallers">
+      <a class="player tappable" (click)="onViewPlayer(aanvaller)">
+        <div class="player-image-container">
+          <img [src]="aanvaller.better_featured_image?.source_url" *ngIf="aanvaller.better_featured_image?.source_url; else showPlaceholder" />
+          <ng-template #showPlaceholder>
+            <div class="player-image-placeholder">
+              Foto volgt
+            </div>
+          </ng-template>
+        </div>
+        <div class="player-name-container">
+          <h3>
+            <span class="player-first-name">{{ aanvaller.acf.voornaam }}</span> <span class="player-last-name">{{ aanvaller.acf.achternaam }}</span>
+          </h3>
+          <div class="player-number player-number-small">
+            {{ aanvaller.acf.rugnummer }}
+          </div>
+        </div>
+      </a>
+</div>
+
