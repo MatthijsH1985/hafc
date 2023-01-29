@@ -1,6 +1,5 @@
-import {AfterViewInit, Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
 import SwiperCore, {Pagination, Navigation, SwiperOptions} from "swiper";
-import {SwiperComponent} from "swiper/angular";
 import Swiper from "swiper";
 SwiperCore.use([Pagination, Navigation]);
 
@@ -11,7 +10,7 @@ SwiperCore.use([Pagination, Navigation]);
   encapsulation: ViewEncapsulation.None
 })
 
-export class NieuwssliderComponent implements AfterViewInit {
+export class NieuwssliderComponent {
   swiperConfig: SwiperOptions = {
     slidesPerView: 1,
     spaceBetween: 30,
@@ -23,10 +22,5 @@ export class NieuwssliderComponent implements AfterViewInit {
 
   constructor(private swiper: Swiper) {
   }
-
-  ngAfterViewInit(): void {
-
-  }
-
 
 }

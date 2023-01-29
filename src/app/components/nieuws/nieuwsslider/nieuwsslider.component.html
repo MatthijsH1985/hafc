@@ -1,0 +1,10 @@
+<swiper [config]="swiperConfig">
+  <ng-template swiperSlide *ngFor="let headline of headlines; let i = index">
+    <div class="relative container xl:h-[650px] md:h-[500px]">
+      <img [src]="headline.better_featured_image.source_url" class="object-cover object-top" />
+      <div class="absolute z-20 bottom-10 p-10">
+        <h1 [innerHTML]="headline.title.rendered" class="text-white text-4xl"></h1>
+      </div>
+    </div>
+  </ng-template>
+</swiper>
