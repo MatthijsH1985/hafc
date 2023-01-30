@@ -3,11 +3,14 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Open+Sans:ital,wght@0,300;0,400;0,700;1,400&display=swap');
+
 body {
   background: #FFF;
   &:after {
     content: "";
-    height: 400px;
+    height: 450px;
     --tw-bg-opacity: 1;
     background-color: rgba(0,0,0);
     position: absolute;
@@ -17,3 +20,49 @@ body {
   }
 }
 
+.button {
+  overflow: hidden;
+  padding: .5rem,;
+  display: block;
+  position: relative;
+  --tw-text-opacity: 1;
+  color: rgba(255,255,255,var(--tw-text-opacity));
+  &:before {
+    content: "";
+    z-index: -1;
+    border-right: 1.25rem solid transparent;
+    border-bottom: 5rem solid #fff;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: -1.5rem;
+    --tw-translate-x: 0;
+    --tw-translate-y: 0;
+    --tw-rotate: 0;
+    --tw-skew-x: 0;
+    --tw-skew-y: 0;
+    --tw-scale-x: 1;
+    --tw-scale-y: 1;
+    transform: translate3d(var(--tw-translate-x),var(--tw-translate-y),0) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+    --tw-translate-x: -100%;
+    transition-property: transform;
+    transition-timing-function: cubic-bezier(.4,0,.2,1);
+    transition-duration: .15s;
+    transition-timing-function: cubic-bezier(0,0,.2,1);
+    transition-duration: .2s;
+  }
+  &:hover {
+    --tw-text-opacity: 1;
+    color: rgba(0,0,0,var(--tw-text-opacity));
+    &:before {
+      --tw-translate-x: 0px
+    }
+  }
+}
+
+.news-container {
+  p {
+    @apply mb-4 leading-[2]
+  }
+}

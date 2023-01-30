@@ -4,22 +4,20 @@ import {PostsService} from "../../services/posts.service";
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-homepage',
-  templateUrl: './homepage.component.html',
-  styleUrls: ['./homepage.component.scss']
+  selector: 'app-nieuwsarchief',
+  templateUrl: './nieuwsarchief.component.html',
+  styleUrls: ['./nieuwsarchief.component.scss']
 })
-export class HomepageComponent {
+export class NieuwsarchiefComponent implements OnInit {
   posts: any = [];
+  headlines: any;
   postPage = 1;
   loading = true;
-  headlines: any = [];
   postsSub: Subscription | undefined;
-
   constructor(private postsService: PostsService, private router: Router) {}
 
   ngOnInit() {
     this.getPosts(false, '')
-
   }
 
   getPosts(isFirstLoad: any, event: any): void {
@@ -28,10 +26,11 @@ export class HomepageComponent {
         // @ts-ignore
         this.posts.push(data[i]);
       }
-      this.headlines = this.posts.slice(0,3);
 
       if (isFirstLoad) {
         event.target.complete();
+      } else {
+        this.createHeadlines(this.posts);
       }
       this.loading = false;
       this.postPage++;
@@ -39,6 +38,14 @@ export class HomepageComponent {
     }, error => {
       console.log(error);
     });
+  }
+
+  createHeadlines(posts: any): void {
+    this.headlines = posts.slice(0,3);
+  }
+
+  getMorePosts(event: any) {
+    this.getPosts(true, event);
   }
 
   openPost(post: any): void {

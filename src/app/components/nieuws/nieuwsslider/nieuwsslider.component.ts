@@ -13,10 +13,19 @@ SwiperCore.use([Pagination, Navigation]);
 export class NieuwssliderComponent {
   swiperConfig: SwiperOptions = {
     slidesPerView: 1,
-    spaceBetween: 30,
-    freeMode: true,
+    effect: 'creative',
     observer: true,
-    observeParents: true
+    observeParents: true,
+    creativeEffect: {
+      prev: {
+        shadow: true,
+        translate: ['-120%', 0, -500]
+      },
+      next: {
+        shadow: true,
+        translate: ['120%', 0, -500]
+      }
+    }
   }
   @Input('headlines') headlines: any;
 

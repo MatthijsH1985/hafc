@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-tour-of-heroes": {
+    "hafc": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular-tour-of-heroes/browser",
+            "outputPath": "dist/hafc/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -42,8 +42,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "128kb",
+                  "maximumError": "256kb"
                 }
               ],
               "fileReplacements": [
@@ -69,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "angular-tour-of-heroes:build:production"
+              "browserTarget": "hafc:build:production"
             },
             "development": {
-              "browserTarget": "angular-tour-of-heroes:build:development"
+              "browserTarget": "hafc:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -80,7 +80,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-tour-of-heroes:build"
+            "browserTarget": "hafc:build"
           }
         },
         "test": {
@@ -104,7 +104,7 @@
         "server": {
           "builder": "@angular-devkit/build-angular:server",
           "options": {
-            "outputPath": "dist/angular-tour-of-heroes/server",
+            "outputPath": "dist/hafc/server",
             "main": "server.ts",
             "tsConfig": "tsconfig.server.json",
             "inlineStyleLanguage": "scss"
@@ -132,12 +132,12 @@
           "builder": "@nguniversal/builders:ssr-dev-server",
           "configurations": {
             "development": {
-              "browserTarget": "angular-tour-of-heroes:build:development",
-              "serverTarget": "angular-tour-of-heroes:server:development"
+              "browserTarget": "hafc:build:development",
+              "serverTarget": "hafc:server:development"
             },
             "production": {
-              "browserTarget": "angular-tour-of-heroes:build:production",
-              "serverTarget": "angular-tour-of-heroes:server:production"
+              "browserTarget": "hafc:build:production",
+              "serverTarget": "hafc:server:production"
             }
           },
           "defaultConfiguration": "development"
@@ -151,12 +151,12 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular-tour-of-heroes:build:production",
-              "serverTarget": "angular-tour-of-heroes:server:production"
+              "browserTarget": "hafc:build:production",
+              "serverTarget": "hafc:server:production"
             },
             "development": {
-              "browserTarget": "angular-tour-of-heroes:build:development",
-              "serverTarget": "angular-tour-of-heroes:server:development"
+              "browserTarget": "hafc:build:development",
+              "serverTarget": "hafc:server:development"
             }
           },
           "defaultConfiguration": "production"

@@ -7,11 +7,11 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve": "serve -s dist/angular-tour-of-heroes -l 3000",
-    "dev:ssr": "ng run angular-tour-of-heroes:serve-ssr",
-    "serve:ssr": "node dist/angular-tour-of-heroes/server/main.js",
-    "build:ssr": "ng build && ng run angular-tour-of-heroes:server",
-    "prerender": "ng run angular-tour-of-heroes:prerender"
+    "serve": "serve -s dist/hafc -l 3000",
+    "dev:ssr": "ng run hafc:serve-ssr",
+    "serve:ssr": "node dist/hafc/server/main.js",
+    "build:ssr": "ng build && ng run hafc:server",
+    "prerender": "ng run hafc:prerender"
   },
   "private": true,
   "dependencies": {

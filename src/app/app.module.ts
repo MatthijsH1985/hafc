@@ -4,8 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {SwiperComponent, SwiperModule} from "swiper/angular";
-import {NieuwsComponent} from "./nieuws/nieuws.component";
-import {NieuwssliderComponent} from "./nieuws/nieuwsslider/nieuwsslider.component";
+import {NieuwssliderComponent} from "./components/nieuws/nieuwsslider/nieuwsslider.component";
 import {PostsService} from "./services/posts.service";
 import {HttpClientModule} from "@angular/common/http";
 import {ConfigService} from "./services/config.service";
@@ -20,22 +19,30 @@ import {GenerateLogoUrlPipe} from "./shared/generate-logo-url/generate-logo-url.
 import {registerLocaleData} from '@angular/common';
 import localeNl from '@angular/common/locales/nl';
 import {HomepageComponent} from "./pages/homepage/homepage.component";
-import {NieuwslijstComponent} from "./nieuws/nieuwslijst/nieuwslijst.component";
+import {NieuwslijstComponent} from "./components/nieuws/nieuwslijst/nieuwslijst.component";
 import Swiper from "swiper";
+import {NieuwsberichtComponent} from "./pages/nieuwsbericht/nieuwsbericht.component";
+import {HeaderComponent} from "./components/header/header.component";
+import {NieuwsarchiefComponent} from "./pages/nieuwsarchief/nieuwsarchief.component";
+import {VolgendeWedstrijdComponent} from "./wedstrijden/volgende-wedstrijd/volgende-wedstrijd.component";
 
 registerLocaleData(localeNl);
 
 @NgModule({
   declarations: [
     AppComponent,
-    NieuwsComponent,
-    NieuwssliderComponent,
     TeamComponent,
     StandComponent,
     WedstrijdenComponent,
     GenerateLogoUrlPipe,
     HomepageComponent,
-    NieuwslijstComponent
+    NieuwslijstComponent,
+    NieuwsberichtComponent,
+    NieuwssliderComponent,
+    HeaderComponent,
+    HeaderComponent,
+    NieuwsarchiefComponent,
+    VolgendeWedstrijdComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

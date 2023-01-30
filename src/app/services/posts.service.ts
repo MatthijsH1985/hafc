@@ -18,10 +18,10 @@ export class PostsService {
 
   getPosts(page = 1, category = [3]): Observable<Config[]> {
     // @ts-ignore
-    return this.http.get<Config[]>(this.configService.config.apiEndpoint + '/posts?page='+ page + '&categories=' + category + '', this.httpOptions);
+    return this.http.get<Config[]>(this.configService.config.apiEndpoint + '/posts?page='+ page + '&per_page=12&categories=' + category + '', this.httpOptions);
   }
 
-  getPost(postId: number): Observable<Config[]> {
+  getPost(postId: string | null): Observable<Config[]> {
     // @ts-ignore
     return this.http.get<Config[]>(this.configService.config.apiEndpoint + '/posts/'+ postId + '', this.httpOptions);
   }
