@@ -31,6 +31,10 @@ import {LoadingIndicatorComponent} from "./shared/loading-indicator/loading-indi
 import {CommentsComponent} from "./components/comments/comments.component";
 import {CommentsService} from "./services/comments.service";
 import {FooterComponent} from "./components/footer/footer.component";
+import {AccountComponent} from "./pages/account/account.component";
+import {LoginFormComponent} from "./components/login-form/login-form.component";
+import {RegistrationFormComponent} from "./components/registration-form/registration-form.component";
+import {ReactiveFormsModule} from "@angular/forms";
 
 registerLocaleData(localeNl);
 
@@ -52,14 +56,18 @@ registerLocaleData(localeNl);
     ModalCommentComponent,
     LoadingIndicatorComponent,
     CommentsComponent,
-    FooterComponent
+    FooterComponent,
+    AccountComponent,
+    LoginFormComponent,
+    RegistrationFormComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    BrowserModule.withServerTransition({appId: 'serverApp'}),
     SwiperModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule
   ],
   providers: [{
     provide: LOCALE_ID,

@@ -6,6 +6,7 @@ import {WedstrijdenComponent} from "./pages/wedstrijden/wedstrijden.component";
 import {HomepageComponent} from "./pages/homepage/homepage.component";
 import {NieuwsberichtComponent} from "./pages/nieuwsbericht/nieuwsbericht.component";
 import {NieuwsarchiefComponent} from "./pages/nieuwsarchief/nieuwsarchief.component";
+import {AccountComponent} from "./pages/account/account.component";
 
 const routes: Routes = [
 
@@ -39,6 +40,10 @@ const routes: Routes = [
     component: NieuwsarchiefComponent,
     path: 'nieuwsarchief'
   },
+  {
+    component: AccountComponent,
+    path: 'account'
+  }
 ];
 
 @NgModule({
