@@ -1,14 +1,16 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {ConfigService} from './config.service';
+import {ConfigService} from '../config.service';
 import {Observable} from 'rxjs';
-import {Config} from '../model/config';
+import {Config} from '../../model/config';
 
 @Injectable({
-  providedIn: 'any'
+  providedIn: 'root'
 })
 
-export class UserService {
+export class AuthService {
+
+  isLoggedIn: boolean = false;
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -18,6 +20,14 @@ export class UserService {
 
   constructor(
     private http: HttpClient, private configService: ConfigService) {
+  }
+
+  getToken(): any {
+    return localStorage.getItem('token');
+  }
+
+  setToken(token: string): void {
+    localStorage.setItem('token', token);
   }
 
   createUser(user: any): Observable<Config[]> {

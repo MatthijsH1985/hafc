@@ -7,6 +7,8 @@ import {HomepageComponent} from "./pages/homepage/homepage.component";
 import {NieuwsberichtComponent} from "./pages/nieuwsbericht/nieuwsbericht.component";
 import {NieuwsarchiefComponent} from "./pages/nieuwsarchief/nieuwsarchief.component";
 import {AccountComponent} from "./pages/account/account.component";
+import {AccountDetailsComponent} from "./pages/account/account-details/account-details.component";
+import {AuthGuard} from "./services/auth/auth.guard";
 
 const routes: Routes = [
 
@@ -43,6 +45,11 @@ const routes: Routes = [
   {
     component: AccountComponent,
     path: 'account'
+  },
+  {
+    component: AccountDetailsComponent,
+    path: 'account/details',
+    canActivate: [AuthGuard]
   }
 ];
 

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {UserService} from "../../services/user-service";
+import {AuthService} from "../../services/auth/auth-service";
 
 @Component({
   selector: 'app-login-form',
@@ -9,10 +9,10 @@ import {UserService} from "../../services/user-service";
 })
 export class LoginFormComponent {
   loginForm: FormGroup;
-  constructor(private userService: UserService) {
+  constructor(private authService: AuthService) {
     this.loginForm = new FormGroup({
-      userName: new FormControl('Matthijs', Validators.required),
-      password: new FormControl('Pauper54321!', Validators.required)
+      userName: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required)
     });
   }
 
@@ -21,9 +21,9 @@ export class LoginFormComponent {
       username: loginFormData.value.userName,
       password: loginFormData.value.password
     });
-    this.userService.loginUser(formData).subscribe({
+    this.authService.loginUser(formData).subscribe({
       next: token => {
-        localStorage.setItem('token', token.token);
+        this.authService.setToken(token.token);
       },
       error: error => {
         console.log(error);
@@ -34,7 +34,7 @@ export class LoginFormComponent {
   onValidate() {
     const token = localStorage.getItem('token');
     console.log(token);
-    this.userService.validateToken(token).subscribe({
+    this.authService.validateToken(token).subscribe({
       next: user => {
         console.log(user);
       },
@@ -43,5 +43,4 @@ export class LoginFormComponent {
       }
     })
   }
-
 }

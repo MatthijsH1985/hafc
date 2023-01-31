@@ -35,6 +35,7 @@ import {AccountComponent} from "./pages/account/account.component";
 import {LoginFormComponent} from "./components/login-form/login-form.component";
 import {RegistrationFormComponent} from "./components/registration-form/registration-form.component";
 import {ReactiveFormsModule} from "@angular/forms";
+import {AccountDetailsComponent} from "./pages/account/account-details/account-details.component";
 
 registerLocaleData(localeNl);
 
@@ -59,7 +60,8 @@ registerLocaleData(localeNl);
     FooterComponent,
     AccountComponent,
     LoginFormComponent,
-    RegistrationFormComponent
+    RegistrationFormComponent,
+    AccountDetailsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'serverApp'}),
