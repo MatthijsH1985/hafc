@@ -1,0 +1,12 @@
+.overlay {
+  @apply h-0 w-full bottom-0 transition-all;
+  &.show-overlay {
+    @apply h-full;
+  }
+}
+.modal-comment {
+  @apply h-0 px-10 transition-all;
+  &.active {
+    @apply h-[80vh] p-10
+  }
+}

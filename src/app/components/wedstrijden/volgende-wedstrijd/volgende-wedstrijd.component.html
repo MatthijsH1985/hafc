@@ -1,0 +1,18 @@
+<div [ngClass]="['matches next-match']" *ngIf="nextMatch.localteam_id" >
+  <a class="" (click)="onOpenMatch(nextMatch.id)">
+    <div class="flex items-center justify-center flex-wrap">
+      <div class="w-[100px]">
+        <img [src]="nextMatch.localteam_id | generateLogoUrl" />
+      </div>
+      <div class="match-divider mx-8">
+        <h3 class="w-full text-xl font-bold">Next match</h3>
+        <div class="text-base">{{ validDateFormat(nextMatch.time.starting_at.date_time) | date: 'EEEE'}}</div>
+        <div class="text-base">{{ validDateFormat(nextMatch.time.starting_at.date_time) | date: 'd MMMM'}}</div>
+        <div class="text-base">{{ validDateFormat(nextMatch.time.starting_at.date_time) | date: 'HH:mm' }}</div>
+      </div>
+      <div class="w-[100px]">
+        <img [src]="nextMatch.visitorteam_id | generateLogoUrl" />
+      </div>
+    </div>
+  </a>
+</div>

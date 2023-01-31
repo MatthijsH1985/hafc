@@ -16,38 +16,38 @@
     </div>
   </div>
   <div class="o-table-body">
-    <div class="o-table-row" *ngFor="let club of ranking; let i = index;">
-      <div class="o-table-cell rank-position">
+    <div class="o-table-row" *ngFor="let club of ranking; let i = index;" [ngClass]="{'font-bold bg-gray-100': club.team_name === 'Heracles Almelo'}">
+      <div class="o-table-cell rank-position p-2">
         {{ club?.position }}
       </div>
-      <div class="o-table-cell rank-logo">
-        <img [src]="[club?.team_id | generateLogoUrl]"  />
+      <div class="o-table-cell rank-logo py-2">
+        <img [src]="[club?.team_id | generateLogoUrl]" class="w-8" />
       </div>
-      <div class="o-table-cell rank-clubname">
+      <div class="o-table-cell rank-clubname py-2">
         {{ club?.team_name }}
       </div>
-      <div class="o-table-cell left-auto">
+      <div class="o-table-cell left-auto py-2">
         {{ club?.overall.games_played }}
       </div>
-      <div class="o-table-cell">
+      <div class="o-table-cell py-2">
         {{ club?.overall.won }}
       </div>
-      <div class="o-table-cell">
+      <div class="o-table-cell py-2">
         {{ club?.overall.draw }}
       </div>
-      <div class="o-table-cell">
+      <div class="o-table-cell py-2">
         {{ club?.overall.lost }}
       </div>
-      <div class="o-table-cell">
+      <div class="o-table-cell py-2">
         {{ club?.overall.goals_scored }}
       </div>
-      <div class="o-table-cell">
+      <div class="o-table-cell py-2">
         {{ club?.overall.goals_against }}
       </div>
-      <div class="o-table-cell">
+      <div class="o-table-cell py-2">
         {{ club?.total.goal_difference }}
       </div>
-      <div class="o-table-cell">
+      <div class="o-table-cell py-2">
         {{ club?.points }}
       </div>
     </div>

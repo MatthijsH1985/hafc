@@ -1,0 +1,27 @@
+.o-table {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+  line-height: 1.5;
+  .o-table-header {
+    display: table-header-group;
+    width: 100%;
+    .o-table-cell {
+      font-weight: bold;
+    }
+  }
+  .o-table-body {
+    display: table-row-group;
+    width: 100%;
+  }
+  .o-table-row {
+    display: table-row;
+    .o-table-cell {
+      display: table-cell;
+      vertical-align: middle;
+      &.valign-top {
+        vertical-align: top;
+      }
+    }
+  }
+}

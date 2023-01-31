@@ -1,0 +1,16 @@
+<h3 class="text-4xl text-white px-8 pt-8">Reacties</h3>
+<ul class="pt-8">
+  <li *ngFor="let comment of comments" class="p-8">
+    <div class="author-name">
+      <h3 class="text-xl text-white font-bold">{{ comment.author_name }}</h3>
+    </div>
+    <div class="comment-content">
+      <p [innerHTML]="comment.content.rendered"></p>
+      <div class="text-sm ">
+        <h4>
+          <span class="date">{{ validDateFormat(comment.date) | date: 'EEEE, d MMMM, y' }}</span> <span class="time">{{ validDateFormat(comment.date) | date: 'HH:mm' }}</span>
+        </h4>
+      </div>
+    </div>
+  </li>
+</ul>

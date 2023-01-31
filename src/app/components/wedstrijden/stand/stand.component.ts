@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
-import {StandingsService} from "../../services/standings.service";
+import {StandingsService} from "../../../services/standings.service";
 
 @Component({
   selector: 'app-stand',
