@@ -1,25 +1,4 @@
-.slider{
-  position:fixed;
-  width:100%;
-  height:5px;
-  overflow-x: hidden;
-  bottom: 0;
-  left:0;
-}
 
-.line{
-  position:absolute;
-  opacity: 0.4;
-  background: var(--ion-color-primary);
-  width: 150%;
-  height: 5px;
-}
-
-.subline{
-  position:absolute;
-  background: var(--ion-color-primary-shade);;
-  height:5px;
-}
 .inc{
   animation: increase 2s infinite;
 }

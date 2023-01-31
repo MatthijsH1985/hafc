@@ -9,10 +9,11 @@ module.exports = {
         'sans': ['Lato', 'Avenir', 'Verdana']
       },
       fontSize: {
-        sm: '0.8rem',
-        base: '1.2rem',
+        sm: '0.8rem'
       }
     },
   },
-  plugins: []
+  plugins: [
+    require("tailwindcss-animate"),
+  ],
 }

@@ -8,11 +8,11 @@ import {NieuwssliderComponent} from "./components/nieuws/nieuwsslider/nieuwsslid
 import {PostsService} from "./services/posts.service";
 import {HttpClientModule} from "@angular/common/http";
 import {ConfigService} from "./services/config.service";
-import {TeamComponent} from "./team/team.component";
+import {TeamComponent} from "./pages/team/team.component";
 import {PlayersService} from "./services/players.service";
 import {TeamService} from "./services/team.service";
-import {StandComponent} from "./wedstrijden/stand/stand.component";
-import {WedstrijdenComponent} from "./wedstrijden/wedstrijden.component";
+import {StandComponent} from "./components/wedstrijden/stand/stand.component";
+import {WedstrijdenComponent} from "./pages/wedstrijden/wedstrijden.component";
 import {FixturesService} from "./services/fixtures.service";
 import {StandingsService} from "./services/standings.service";
 import {GenerateLogoUrlPipe} from "./shared/generate-logo-url/generate-logo-url.pipe";
@@ -24,7 +24,13 @@ import Swiper from "swiper";
 import {NieuwsberichtComponent} from "./pages/nieuwsbericht/nieuwsbericht.component";
 import {HeaderComponent} from "./components/header/header.component";
 import {NieuwsarchiefComponent} from "./pages/nieuwsarchief/nieuwsarchief.component";
-import {VolgendeWedstrijdComponent} from "./wedstrijden/volgende-wedstrijd/volgende-wedstrijd.component";
+import {VolgendeWedstrijdComponent} from "./components/wedstrijden/volgende-wedstrijd/volgende-wedstrijd.component";
+import {ModalCommentComponent} from "./components/modal-comment/modal-comment.component";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {LoadingIndicatorComponent} from "./shared/loading-indicator/loading-indicator.component";
+import {CommentsComponent} from "./components/comments/comments.component";
+import {CommentsService} from "./services/comments.service";
+import {FooterComponent} from "./components/footer/footer.component";
 
 registerLocaleData(localeNl);
 
@@ -42,19 +48,24 @@ registerLocaleData(localeNl);
     HeaderComponent,
     HeaderComponent,
     NieuwsarchiefComponent,
-    VolgendeWedstrijdComponent
+    VolgendeWedstrijdComponent,
+    ModalCommentComponent,
+    LoadingIndicatorComponent,
+    CommentsComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     SwiperModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [{
     provide: LOCALE_ID,
     useValue: 'nl',
   },
-    PostsService, ConfigService, PlayersService, TeamService, FixturesService, StandingsService, Swiper],
+    PostsService, ConfigService, CommentsService, PlayersService, TeamService, FixturesService, StandingsService, Swiper],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

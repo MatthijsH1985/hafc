@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {PlayersService} from "../services/players.service";
-import {TeamService} from "../services/team.service";
+import {PlayersService} from "../../services/players.service";
+import {TeamService} from "../../services/team.service";
 import {Router} from "@angular/router";
 
 @Component({

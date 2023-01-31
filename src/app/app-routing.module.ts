@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {TeamComponent} from "./team/team.component";
-import {StandComponent} from "./wedstrijden/stand/stand.component";
-import {WedstrijdenComponent} from "./wedstrijden/wedstrijden.component";
+import {TeamComponent} from "./pages/team/team.component";
+import {StandComponent} from "./components/wedstrijden/stand/stand.component";
+import {WedstrijdenComponent} from "./pages/wedstrijden/wedstrijden.component";
 import {HomepageComponent} from "./pages/homepage/homepage.component";
 import {NieuwsberichtComponent} from "./pages/nieuwsbericht/nieuwsbericht.component";
 import {NieuwsarchiefComponent} from "./pages/nieuwsarchief/nieuwsarchief.component";
@@ -11,11 +11,17 @@ const routes: Routes = [
 
   {
     component: HomepageComponent,
-    path: ''
+    path: '',
+    data: {
+      animation: 'Homepage'
+    }
   },
   {
     component: NieuwsberichtComponent,
-    path: 'nieuws/:id/:title'
+    path: 'nieuws/:id/:title',
+    data: {
+      animation: 'Nieuwsbericht'
+    }
   },
   {
     component: TeamComponent,

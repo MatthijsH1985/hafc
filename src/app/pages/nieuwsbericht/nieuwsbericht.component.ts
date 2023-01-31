@@ -1,39 +1,52 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 import {PostsService} from "../../services/posts.service";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-nieuwsbericht',
   templateUrl: './nieuwsbericht.component.html',
   styleUrls: ['./nieuwsbericht.component.scss']
 })
-export class NieuwsberichtComponent {
+export class NieuwsberichtComponent implements OnInit {
   currentPostSub: Subscription | undefined;
-  postId: string | null = this.activatedRoute.snapshot.paramMap.get('id')
+  postId: any = this.activatedRoute.snapshot.paramMap.get('id')
   post: any;
   name: string = '';
   message: string = '';
-  loading: boolean = true
+  loading: boolean = true;
   currentRoute: any;
+  modalCommentsOpen: boolean = false;
 
   constructor(private activatedRoute: ActivatedRoute,
               private postService: PostsService,
-              private route: Router) {
+              private route: Router,
+              private titleService: Title) {
   }
 
   ngOnInit() {
     this.loading = true;
     this.currentRoute = this.route.url;
-    console.log(this.currentRoute);
     this.currentPostSub = this.postService.getPost(this.postId).subscribe({
-      next: value => {
-        this.post = value;
+      next: post => {
+        this.post = post;
+        this.loading = false;
+        this.titleService.setTitle(this.post.title.rendered);
       },
-      error: value => {
-        console.log(value);
+      error: error => {
+        console.log(error);
       }
     })
+  }
+
+  onModalClose() {
+    console.log(this.modalCommentsOpen);
+    this.modalCommentsOpen = false;
+  }
+
+  onOpenCommentModal() {
+    this.modalCommentsOpen = true;
   }
 
 }

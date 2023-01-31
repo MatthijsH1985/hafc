@@ -1,5 +1,6 @@
-<div class="container ml-auto mr-auto relative z-20">
-  <div class="flex flex-col items-center justify-center">
+
+<div class="container xl:w-[1280px] ml-auto mr-auto relative z-20 flex p-8">
+  <div class="flex flex-col items-center justify-center w-1/2">
     <a class="" *ngFor="let match of teamFixtures" (click)="onOpenMatchReport(match.id)">
       <div class="flex">
         <div class="club-logo">
@@ -17,5 +18,7 @@
       </div>
     </a>
   </div>
+  <div class="p-8 top-0 sticky bg-white w-1/2">
+    <app-stand></app-stand>
+  </div>
 </div>
-<app-stand></app-stand>

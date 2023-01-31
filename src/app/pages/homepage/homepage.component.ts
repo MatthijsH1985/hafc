@@ -2,24 +2,25 @@ import {Component, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
 import {PostsService} from "../../services/posts.service";
 import {Router} from "@angular/router";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.scss']
 })
-export class HomepageComponent {
+export class HomepageComponent implements OnInit {
   posts: any = [];
   postPage = 1;
   loading = true;
   headlines: any = [];
   postsSub: Subscription | undefined;
 
-  constructor(private postsService: PostsService, private router: Router) {}
+  constructor(private postsService: PostsService, private router: Router, private titleService: Title) {}
 
   ngOnInit() {
-    this.getPosts(false, '')
-
+    this.getPosts(false, '');
+    this.titleService.setTitle('HAFC - Wij zijn Heracles!');
   }
 
   getPosts(isFirstLoad: any, event: any): void {

@@ -22,7 +22,7 @@ body {
 
 .button {
   overflow: hidden;
-  padding: .5rem,;
+  padding: .5rem;
   display: block;
   position: relative;
   --tw-text-opacity: 1;
@@ -59,10 +59,25 @@ body {
       --tw-translate-x: 0px
     }
   }
+  &.button-black {
+    color: rgba(0,0,0,var(--tw-text-opacity));
+    &:before {
+      border-bottom: 5rem solid #000;
+    }
+    &:hover {
+      color: rgba(255,255,255,var(--tw-text-opacity));
+    }
+  }
 }
 
 .news-container {
   p {
     @apply mb-4 leading-[2]
+  }
+}
+
+.comment-content {
+  * {
+    @apply text-white leading-6
   }
 }

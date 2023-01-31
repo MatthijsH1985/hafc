@@ -1,57 +1,57 @@
-<app-header></app-header>
 <div class="relative z-20">
-  <h1 class="text-5xl">Team</h1>
-  <div class="container ml-auto mr-auto">
+  <div class="container xl:w-[1280px] ml-auto mr-auto relative z-10">
+    <img src="assets/elftalfoto.jpg" class="block m-auto" />
+  </div>
+  <div class="container xl:w-[1280px] ml-auto mr-auto">
     <div *ngIf="keepers">
       <h2>Keepers</h2>
-      <div class="grid grid-cols-2">
-        <div *ngFor="let keeper of keepers">
-          <a class="player tappable" (click)="onViewPlayer(keeper)">
-            <div class="player-image-container">
+      <div class="flex gap-8 content-center">
+        <div *ngFor="let keeper of keepers" class="flex content-center items-center justify-center">
+          <a class="flex flex-col" [routerLink]="">
+            <div class="">
               <img [src]="keeper?.better_featured_image?.source_url"
                    *ngIf="keeper?.better_featured_image?.source_url; else showPlaceholder"/>
               <ng-template #showPlaceholder>
-                <div class="player-image-placeholder">
+                <div class="">
                   Foto volgt
                 </div>
               </ng-template>
             </div>
-            <div class="player-name-container">
-              <h3>
-                <span class="player-first-name">{{ keeper?.acf?.voornaam }}</span> <span
-                class="player-last-name">{{ keeper.acf.achternaam }}</span>
-              </h3>
-              <div class="player-number player-number-small">
+            <div class="text-center">
+              <div class="bg-black w-[80%] ml-auto mr-auto text-white text-5xl">
                 {{ keeper.acf.rugnummer }}
               </div>
+              <h3 class="p-5">
+                <span class="mr-2">{{ keeper?.acf?.voornaam }}</span>
+                <span class="">{{ keeper.acf.achternaam }}</span>
+              </h3>
             </div>
           </a>
         </div>
       </div>
     </div>
-
     <div *ngIf="verdedigers">
       <h2>Verdedigers</h2>
-      <div class="grid grid-cols-2">
+      <div class="grid grid-cols-4 content-center flex justify-center">
         <div *ngFor="let verdediger of verdedigers">
-          <a class="player tappable" (click)="onViewPlayer(verdediger)">
-            <div class="player-image-container">
+          <a class="" (click)="onViewPlayer(verdediger)">
+            <div class="">
               <img [src]="verdediger?.better_featured_image?.source_url"
                    *ngIf="verdediger?.better_featured_image?.source_url; else showPlaceholder"/>
               <ng-template #showPlaceholder>
-                <div class="player-image-placeholder">
+                <div class="">
                   Foto volgt
                 </div>
               </ng-template>
             </div>
-            <div class="player-name-container">
-              <h3>
-                <span class="player-first-name">{{ verdediger.acf.voornaam }}</span> <span
-                class="player-last-name">{{ verdediger.acf.achternaam }}</span>
-              </h3>
-              <div class="player-number player-number-small">
+            <div class="text-center">
+              <div class="bg-black w-[80%] ml-auto mr-auto text-white text-5xl">
                 {{ verdediger.acf.rugnummer }}
               </div>
+              <h3 class="p-5">
+                <span class="mr-2">{{ verdediger?.acf?.voornaam }}</span>
+                <span class="">{{ verdediger.acf.achternaam }}</span>
+              </h3>
             </div>
           </a>
         </div>
@@ -59,26 +59,26 @@
     </div>
     <div *ngIf="middenvelders">
       <h2>Middenvelders</h2>
-      <div class="grid grid-cols-2">
+      <div class="grid grid-cols-4">
         <div *ngFor="let middenvelder of middenvelders">
-          <a class="player tappable" (click)="onViewPlayer(middenvelder)">
-            <div class="player-image-container">
+          <a class="" (click)="onViewPlayer(middenvelder)">
+            <div class="text-center">
               <img [src]="middenvelder.better_featured_image?.source_url"
                    *ngIf="middenvelder.better_featured_image?.source_url; else showPlaceholder"/>
               <ng-template #showPlaceholder>
-                <div class="player-image-placeholder">
+                <div class="">
                   Foto volgt
                 </div>
               </ng-template>
             </div>
-            <div class="player-name-container">
-              <h3>
-                <span class="player-first-name">{{ middenvelder.acf.voornaam }}</span> <span
-                class="player-last-name">{{ middenvelder.acf.achternaam }}</span>
-              </h3>
-              <div class="player-number player-number-small">
+            <div class="text-center">
+              <div class="bg-black w-[80%] ml-auto mr-auto text-white text-5xl">
                 {{ middenvelder.acf.rugnummer }}
               </div>
+              <h3 class="p-5">
+                <span class="mr-2">{{ middenvelder?.acf?.voornaam }}</span>
+                <span class="">{{ middenvelder.acf.achternaam }}</span>
+              </h3>
             </div>
           </a>
         </div>
@@ -86,26 +86,26 @@
     </div>
     <div *ngIf="aanvallers">
       <h2>Aanvallers</h2>
-      <div class="grid grid-cols-2">
+      <div class="grid grid-cols-4">
         <div *ngFor="let aanvaller of aanvallers">
-          <a class="player tappable" (click)="onViewPlayer(aanvaller)">
-            <div class="player-image-container">
+          <a class="" (click)="onViewPlayer(aanvaller)">
+            <div class="">
               <img [src]="aanvaller.better_featured_image?.source_url"
                    *ngIf="aanvaller.better_featured_image?.source_url; else showPlaceholder"/>
               <ng-template #showPlaceholder>
-                <div class="player-image-placeholder">
+                <div class="">
                   Foto volgt
                 </div>
               </ng-template>
             </div>
-            <div class="player-name-container">
-              <h3>
-                <span class="player-first-name">{{ aanvaller.acf.voornaam }}</span> <span
-                class="player-last-name">{{ aanvaller.acf.achternaam }}</span>
-              </h3>
-              <div class="player-number player-number-small">
+            <div class="text-center">
+              <div class="bg-black w-[80%] ml-auto mr-auto text-white text-5xl">
                 {{ aanvaller.acf.rugnummer }}
               </div>
+              <h3 class="p-5">
+                <span class="mr-2">{{ aanvaller?.acf?.voornaam }}</span>
+                <span class="">{{ aanvaller.acf.achternaam }}</span>
+              </h3>
             </div>
           </a>
         </div>

@@ -22,8 +22,8 @@ export class CommentsService {
     this.storageReady.next(true);
   };
 
-  getComments(post = null, page = 1, order = 'desc'): Observable<Config[]> {
-    return this.http.get<Config[]>(this.configService.config.apiEndpoint + '/comments?post='+ post + '&page='+ page + '&order='+ order + '', this.httpOptions);
+  getComments(post:any, page = 1, order = 'desc'): Observable<Config[]> {
+    return this.http.get<Config[]>(this.configService.config.apiEndpoint + '/comments?post='+ post + '&per_page=100&page='+ page + '&order='+ order + '', this.httpOptions);
   }
 
   postComment(comment: any): Observable<Config[]> {

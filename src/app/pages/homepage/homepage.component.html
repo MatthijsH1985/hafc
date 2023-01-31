@@ -1,13 +1,18 @@
-<app-header></app-header>
-<div class="container relative z-10 ml-auto mr-auto">
-  <div class="xl:h-[650px] md:h-[500px] bg-black">
-    <app-nieuwsslider [headlines]="headlines"></app-nieuwsslider>
+<div class="flex flex-col min-h-screen">
+  <div class="container max-w-[1280px] relative z-10 ml-auto mr-auto">
+    <div class="xl:h-[650px] md:h-[500px] bg-black">
+      <app-nieuwsslider [headlines]="headlines"></app-nieuwsslider>
+    </div>
+    <div class="my-8 p-8 text-center bg-gray-100 -mt-16 relative z-10 w-[600px] ml-auto mr-auto">
+      <app-volgende-wedstrijd></app-volgende-wedstrijd>
+    </div>
+    <div class="mt-8">
+      <app-nieuwslijst [posts]="posts"></app-nieuwslijst>
+    </div>
   </div>
-  <div class="my-8 p-8 text-center bg-gray-100">
-    <h3 class="text-3xl">Upcoming</h3>
-    <app-volgende-wedstrijd></app-volgende-wedstrijd>
-  </div>
-  <div class="mt-8">
-    <app-nieuwslijst [posts]="posts"></app-nieuwslijst>
+  <div class="mt-auto">
+    <app-footer></app-footer>
   </div>
 </div>
+
+
