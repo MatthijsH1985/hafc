@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {SwiperComponent, SwiperModule} from "swiper/angular";
+import { SwiperModule} from "swiper/angular";
 import {NieuwssliderComponent} from "./components/nieuws/nieuwsslider/nieuwsslider.component";
 import {PostsService} from "./services/posts.service";
 import {HttpClientModule} from "@angular/common/http";
@@ -36,6 +36,11 @@ import {LoginFormComponent} from "./components/login-form/login-form.component";
 import {RegistrationFormComponent} from "./components/registration-form/registration-form.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import {AccountDetailsComponent} from "./pages/account/account-details/account-details.component";
+import {LoginComponent} from "./pages/account/login/login.component";
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import {LogoutComponent} from "./pages/account/logout/logout.component";
+import {SpelerComponent} from "./pages/team/speler/speler.component";
+import {RoundNumberPipe} from "./shared/round-number/round-number.pipe";
 
 registerLocaleData(localeNl);
 
@@ -43,9 +48,11 @@ registerLocaleData(localeNl);
   declarations: [
     AppComponent,
     TeamComponent,
+    SpelerComponent,
     StandComponent,
     WedstrijdenComponent,
     GenerateLogoUrlPipe,
+    RoundNumberPipe,
     HomepageComponent,
     NieuwslijstComponent,
     NieuwsberichtComponent,
@@ -61,7 +68,9 @@ registerLocaleData(localeNl);
     AccountComponent,
     LoginFormComponent,
     RegistrationFormComponent,
-    AccountDetailsComponent
+    AccountDetailsComponent,
+    LoginComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'serverApp'}),
@@ -69,7 +78,8 @@ registerLocaleData(localeNl);
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FontAwesomeModule
   ],
   providers: [{
     provide: LOCALE_ID,

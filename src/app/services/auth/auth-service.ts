@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {ConfigService} from '../config.service';
-import {Observable} from 'rxjs';
+import {Observable, from, of, BehaviorSubject} from 'rxjs';
 import {Config} from '../../model/config';
 
 @Injectable({
@@ -10,24 +10,33 @@ import {Config} from '../../model/config';
 
 export class AuthService {
 
-  isLoggedIn: boolean = false;
-
+  // @ts-ignore
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type':  'application/json'
+      'Content-Type':  'application/json',
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
     })
   };
 
+  // @ts-ignore
+  $loggedIn: BehaviorSubject<boolean>;
+
   constructor(
     private http: HttpClient, private configService: ConfigService) {
+    this.$loggedIn = new BehaviorSubject<boolean>(false);
+  }
+
+  getUser(): any {
+    return localStorage.getItem('user');
   }
 
   getToken(): any {
-    return localStorage.getItem('token');
+    // @ts-ignore
+    return JSON.parse(localStorage.getItem('user'));
   }
 
-  setToken(token: string): void {
-    localStorage.setItem('token', token);
+  setUser(user: string) {
+    localStorage.setItem('user', user);
   }
 
   createUser(user: any): Observable<Config[]> {
@@ -36,6 +45,10 @@ export class AuthService {
 
   loginUser(user: any): Observable<any> {
     return this.http.post<Config[]>(this.configService.config.authEndPoint + '/token', user, this.httpOptions);
+  }
+
+  getAccountDetails(): Observable<any> {
+    return this.http.get(this.configService.config.apiEndpoint + '/users/me', this.httpOptions);
   }
 
   validateToken(token: any) {
@@ -47,4 +60,31 @@ export class AuthService {
     return this.http.post<Config[]>(this.configService.config.authEndPoint + '/token/validate', token, httpOptions);
   }
 
+  // @ts-ignore
+  getLoggedInUser(): any {
+    // @ts-ignore
+    const user = JSON.parse(localStorage.getItem('user'));
+    return user;
+  }
+
+  logOut(): void {
+    localStorage.removeItem('user');
+    this.setLoginStatus(false);
+  }
+
+  // @ts-ignore
+  isAuthenticated(): boolean {
+    if (this.getLoggedInUser()) {
+      this.$loggedIn.next(true);
+    } else {
+      this.$loggedIn.next(false);
+    }
+  }
+
+  getLoginStatus(): Observable<boolean> {
+    return this.$loggedIn.asObservable();
+  }
+  setLoginStatus(loggedIn: boolean): void {
+    this.$loggedIn.next(loggedIn);
+  }
 }

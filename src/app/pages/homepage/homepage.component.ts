@@ -3,6 +3,7 @@ import {Subscription} from "rxjs";
 import {PostsService} from "../../services/posts.service";
 import {Router} from "@angular/router";
 import {Title} from "@angular/platform-browser";
+import {ViewportScroller} from "@angular/common";
 
 @Component({
   selector: 'app-homepage',
@@ -16,11 +17,16 @@ export class HomepageComponent implements OnInit {
   headlines: any = [];
   postsSub: Subscription | undefined;
 
-  constructor(private postsService: PostsService, private router: Router, private titleService: Title) {}
+  constructor(private postsService: PostsService,
+              private router: Router,
+              private titleService: Title,
+              private viewportScroller: ViewportScroller) {
+  }
 
   ngOnInit() {
     this.getPosts(false, '');
     this.titleService.setTitle('HAFC - Wij zijn Heracles!');
+    this.viewportScroller.scrollToPosition([0, 0]);
   }
 
   getPosts(isFirstLoad: any, event: any): void {

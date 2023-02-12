@@ -19,4 +19,7 @@
       Wachtwoord vergeten
     </a>
   </div>
+  <div *ngIf="showError" class="mt-5 p-3 bg-red-200 text-red-700 rounded-md">
+    <p>Dit gebruikersnaam en/of wachtwoord wordt niet herkend</p>
+  </div>
 </form>

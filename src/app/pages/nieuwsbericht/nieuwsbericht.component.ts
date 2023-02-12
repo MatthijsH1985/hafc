@@ -3,6 +3,7 @@ import {Subscription} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 import {PostsService} from "../../services/posts.service";
 import {Title} from "@angular/platform-browser";
+import {ViewportScroller} from "@angular/common";
 
 @Component({
   selector: 'app-nieuwsbericht',
@@ -14,7 +15,6 @@ export class NieuwsberichtComponent implements OnInit {
   postId: any = this.activatedRoute.snapshot.paramMap.get('id')
   post: any;
   name: string = '';
-  message: string = '';
   loading: boolean = true;
   currentRoute: any;
   modalCommentsOpen: boolean = false;
@@ -22,7 +22,8 @@ export class NieuwsberichtComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute,
               private postService: PostsService,
               private route: Router,
-              private titleService: Title) {
+              private titleService: Title,
+              private viewportScroller: ViewportScroller) {
   }
 
   ngOnInit() {
@@ -33,6 +34,7 @@ export class NieuwsberichtComponent implements OnInit {
         this.post = post;
         this.loading = false;
         this.titleService.setTitle(this.post.title.rendered);
+        this.viewportScroller.scrollToPosition([0, 0]);
       },
       error: error => {
         console.log(error);
@@ -41,7 +43,6 @@ export class NieuwsberichtComponent implements OnInit {
   }
 
   onModalClose() {
-    console.log(this.modalCommentsOpen);
     this.modalCommentsOpen = false;
   }
 

@@ -9,6 +9,9 @@ import {NieuwsarchiefComponent} from "./pages/nieuwsarchief/nieuwsarchief.compon
 import {AccountComponent} from "./pages/account/account.component";
 import {AccountDetailsComponent} from "./pages/account/account-details/account-details.component";
 import {AuthGuard} from "./services/auth/auth.guard";
+import {LoginComponent} from "./pages/account/login/login.component";
+import {LogoutComponent} from "./pages/account/logout/logout.component";
+import {SpelerComponent} from "./pages/team/speler/speler.component";
 
 const routes: Routes = [
 
@@ -31,6 +34,10 @@ const routes: Routes = [
     path: 'team'
   },
   {
+    component: SpelerComponent,
+    path: 'team/:id/:naam'
+  },
+  {
     component: StandComponent,
     path: 'stand'
   },
@@ -45,6 +52,14 @@ const routes: Routes = [
   {
     component: AccountComponent,
     path: 'account'
+  },
+  {
+    component: LoginComponent,
+    path: 'account/login'
+  },
+  {
+    component: LogoutComponent,
+    path: 'account/logout'
   },
   {
     component: AccountDetailsComponent,

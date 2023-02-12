@@ -30,6 +30,7 @@ export class NieuwssliderComponent {
   @Input('headlines') headlines: any;
 
   constructor(private swiper: Swiper) {
+
   }
 
 }

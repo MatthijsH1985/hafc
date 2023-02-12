@@ -24,8 +24,16 @@
     <div class="flex-1 text-right uppercase text-white">
       <nav>
         <ul class="flex space-x-4 uppercase text-white justify-end">
-          <li>
-            <a class="button" routerLink="/account">Account</a>
+          <li *ngIf="!loggedIn">
+            <a class="button" routerLink="/account">Inloggen</a>
+          </li>
+          <li *ngIf="loggedIn">
+            <a class="button" routerLink="/account/details">
+              <fa-icon [icon]="faUser"></fa-icon> {{ user.user_nicename }}
+            </a>
+          </li>
+          <li *ngIf="loggedIn">
+            <a class="button" routerLink="/account/logout" title="Uitloggen">Uitloggen</a>
           </li>
         </ul>
       </nav>

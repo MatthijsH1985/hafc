@@ -1,7 +1,29 @@
 <div class="fixed z-10 bg-black opacity-80 w-full h-full bottom-0 overlay" [ngClass]="{'show-overlay': modalStatus === true}"></div>
 <div class="xl:w-[1000px] fixed bg-white z-20 bg-white fixed bottom-0 w-full modal-comment left-1/2 transform -translate-x-1/2" [ngClass]="{'active': modalStatus === true}">
-  <div class="flex">
+  <div class="flex flex-col">
     <h3 class="text-4xl">Reactie plaatsen</h3> <button class="ml-auto text-4xl" (click)="onCloseModal()">X</button>
-
+    <form [formGroup]="commentForm" (ngSubmit)="onPostComment(commentForm)">
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
+          Je naam
+        </label>
+        <input formControlName="name"  class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" />
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
+          Je e-mailadres
+        </label>
+        <input formControlName="email"  class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" />
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="comment">
+          Je bericht
+        </label>
+        <textarea formControlName="comment"  class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="comment"></textarea>
+      </div>
+      <div class="flex items-center justify-between">
+        <button type="submit" class="button button-black">Reactie plaatsen</button>
+      </div>
+    </form>
   </div>
 </div>

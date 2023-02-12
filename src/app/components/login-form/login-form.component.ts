@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../services/auth/auth-service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login-form',
@@ -9,7 +10,8 @@ import {AuthService} from "../../services/auth/auth-service";
 })
 export class LoginFormComponent {
   loginForm: FormGroup;
-  constructor(private authService: AuthService) {
+  showError: boolean = false;
+  constructor(private authService: AuthService, private router: Router) {
     this.loginForm = new FormGroup({
       userName: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required)
@@ -22,24 +24,13 @@ export class LoginFormComponent {
       password: loginFormData.value.password
     });
     this.authService.loginUser(formData).subscribe({
-      next: token => {
-        this.authService.setToken(token.token);
+      next: loginResponse => {
+        this.authService.setUser(JSON.stringify(loginResponse));
+        this.authService.setLoginStatus(true);
+        this.router.navigateByUrl('account/details');
       },
       error: error => {
-        console.log(error);
-      }
-    })
-  }
-
-  onValidate() {
-    const token = localStorage.getItem('token');
-    console.log(token);
-    this.authService.validateToken(token).subscribe({
-      next: user => {
-        console.log(user);
-      },
-      error: error => {
-        console.log(error);
+        this.showError = true;
       }
     })
   }

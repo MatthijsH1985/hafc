@@ -7,7 +7,7 @@
       <h2>Keepers</h2>
       <div class="flex gap-8 content-center">
         <div *ngFor="let keeper of keepers" class="flex content-center items-center justify-center">
-          <a class="flex flex-col" [routerLink]="">
+          <a class="flex flex-col" [routerLink]="[keeper.id, keeper.slug]">
             <div class="">
               <img [src]="keeper?.better_featured_image?.source_url"
                    *ngIf="keeper?.better_featured_image?.source_url; else showPlaceholder"/>
@@ -34,7 +34,7 @@
       <h2>Verdedigers</h2>
       <div class="grid grid-cols-4 content-center flex justify-center">
         <div *ngFor="let verdediger of verdedigers">
-          <a class="" (click)="onViewPlayer(verdediger)">
+          <a class="" [routerLink]="[verdediger.id, verdediger.slug]">
             <div class="">
               <img [src]="verdediger?.better_featured_image?.source_url"
                    *ngIf="verdediger?.better_featured_image?.source_url; else showPlaceholder"/>
@@ -61,7 +61,7 @@
       <h2>Middenvelders</h2>
       <div class="grid grid-cols-4">
         <div *ngFor="let middenvelder of middenvelders">
-          <a class="" (click)="onViewPlayer(middenvelder)">
+          <a class="" [routerLink]="[middenvelder.id, middenvelder.slug]">
             <div class="text-center">
               <img [src]="middenvelder.better_featured_image?.source_url"
                    *ngIf="middenvelder.better_featured_image?.source_url; else showPlaceholder"/>
@@ -88,7 +88,7 @@
       <h2>Aanvallers</h2>
       <div class="grid grid-cols-4">
         <div *ngFor="let aanvaller of aanvallers">
-          <a class="" (click)="onViewPlayer(aanvaller)">
+          <a class="" [routerLink]="[aanvaller.id, aanvaller.slug]">
             <div class="">
               <img [src]="aanvaller.better_featured_image?.source_url"
                    *ngIf="aanvaller.better_featured_image?.source_url; else showPlaceholder"/>

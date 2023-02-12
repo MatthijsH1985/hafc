@@ -4,6 +4,17 @@ module.exports = {
     "./src/**/*.{html,scss,ts}",
   ],
   theme: {
+    colors: {
+      white: '#FFF',
+      black: '#000',
+      blue: {
+        500: '#009ee2'
+      },
+      gray: {
+        100: '#e5e5e5',
+        800: '#222222'
+      }
+    },
     extend: {
       fontFamily: {
         'sans': ['Lato', 'Avenir', 'Verdana']

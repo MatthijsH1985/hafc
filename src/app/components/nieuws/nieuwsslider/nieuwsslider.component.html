@@ -1,10 +1,11 @@
 <swiper [config]="swiperConfig">
   <ng-template swiperSlide *ngFor="let headline of headlines; let i = index">
-    <a class="relative container xl:w-[1280px] flex items-center ml-auto mr-auto xl:h-[700px] md:h-[500px] block bg-white" [routerLink]="['nieuws', headline.id, headline.slug]">
+    <div class="relative container xl:w-[1280px] flex items-center ml-auto mr-auto xl:h-[700px] md:h-[500px] block bg-white">
       <img [src]="headline.better_featured_image.source_url" class="object-cover object-top" />
       <div class="absolute z-20 left-8">
-        <h1 [innerHTML]="headline.title.rendered" class="text-white text-5xl"></h1>
+        <h1 [innerHTML]="headline.title.rendered" class="text-white text-4xl max-w-5xl"></h1>
+        <a class="text-white font-xl border border-white inline-block p-3 mt-5 button" [routerLink]="['nieuws', headline.id, headline.slug]">{{ headline.comments_count }} reacties</a>
       </div>
-    </a>
+    </div>
   </ng-template>
 </swiper>
