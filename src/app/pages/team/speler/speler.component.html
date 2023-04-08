@@ -1,10 +1,10 @@
 <app-loading-indicator *ngIf="loading"></app-loading-indicator>
 <div class="flex flex-col min-h-screen">
   <div *ngIf="player?.id;">
-    <div class="relative z-10 container w-full md:w-[600px] mr-auto ml-auto">
-      <div class="flex">
+    <div class="relative z-10 container w-full md:w-[1200px] mr-auto ml-auto">
+      <div class="flex mb-16">
         <img [src]="player?.better_featured_image.source_url" class="object-cover object-top block w-[380px] animate-in animate-in slide-in-from-bottom-10 fade-in-25 fill-mode-forwards" />
-        <div class="flex items-end" *ngIf="playerStats?.rating">
+        <div class="flex items-end" >
           <div class="bg-blue-500 p-8 self-end text-7xl text-white">
             {{ player?.acf.rugnummer }}
           </div>
@@ -16,12 +16,15 @@
       </div>
       <div>
         <div class="" *ngIf="!loading">
-          <div class="p-5 bg-black text-white text-3xl md:text-6xl">
-            {{ playerStats?.rating | roundNumber }}
-          </div>
           <div class="content-page">
             <div class="player-content-container">
-              <div class="player-info-container">
+              <div class="player-info-container grid grid-cols-2 gap-x-4">
+                <div class="player-field">
+                  <label>Gemiddelde beoordeling</label>
+                  <div class="field-value" *ngIf="playerStats?.rating">
+                    {{ playerStats?.rating | roundNumber }}
+                  </div>
+                </div>
                 <div class="player-field">
                   <label>Geboortedatum</label>
                   <div class="field-value">{{ playerInfo?.birthdate }}</div>
@@ -47,7 +50,7 @@
                   <div class="field-value">{{ playerInfo?.birthplace }}</div>
                 </div>
               </div>
-              <div class="player-data-container">
+              <div class="player-data-container grid grid-cols-2 gap-4">
                 <div class="player-field">
                   <label>Aantal wedstrijden</label>
                   <div class="field-value">{{ playerStats?.appearences }}</div>

@@ -4,7 +4,6 @@
   </div>
   <div class="container xl:w-[1280px] ml-auto mr-auto">
     <div *ngIf="keepers">
-      <h2>Keepers</h2>
       <div class="flex gap-8 content-center">
         <div *ngFor="let keeper of keepers" class="flex content-center items-center justify-center">
           <a class="flex flex-col" [routerLink]="[keeper.id, keeper.slug]">
@@ -31,7 +30,6 @@
       </div>
     </div>
     <div *ngIf="verdedigers">
-      <h2>Verdedigers</h2>
       <div class="grid grid-cols-4 content-center flex justify-center">
         <div *ngFor="let verdediger of verdedigers">
           <a class="" [routerLink]="[verdediger.id, verdediger.slug]">
@@ -58,7 +56,6 @@
       </div>
     </div>
     <div *ngIf="middenvelders">
-      <h2>Middenvelders</h2>
       <div class="grid grid-cols-4">
         <div *ngFor="let middenvelder of middenvelders">
           <a class="" [routerLink]="[middenvelder.id, middenvelder.slug]">
@@ -85,7 +82,6 @@
       </div>
     </div>
     <div *ngIf="aanvallers">
-      <h2>Aanvallers</h2>
       <div class="grid grid-cols-4">
         <div *ngFor="let aanvaller of aanvallers">
           <a class="" [routerLink]="[aanvaller.id, aanvaller.slug]">
