@@ -1,25 +1,14 @@
 
-<form class="rounded px-8 pt-6 pb-8 mb-4" [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm)">
+<form class="rounded px-8 pt-6 pb-8 mb-4" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
   <div class="mb-4">
-    <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-      Gebruikersnaam
-    </label>
-    <input formControlName="userName" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Gebruikersnaam">
+    <label class="block text-gray-700 text-md font-bold mb-2" for="email">E-mailadres</label>
+    <input type="email" class="border border-gray-800 rounded-md w-full" formControlName="email" id="email" />
   </div>
-  <div class="mb-6">
-    <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
-      Wachtwoord
-    </label>
-    <input formControlName="password"  class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************">
-    <p class="text-red-500 text-xs italic">Voer een geldig wachtwoord in</p>
+  <div class="mb-4">
+    <label class="block text-gray-700 text-md font-bold mb-2" for="password">Wachtwoord</label>
+    <input type="password" class="w-full rounded-md border border-gray-800" formControlName="password" id="password">
   </div>
   <div class="flex items-center justify-between">
-    <button type="submit" class="button button-black">Inloggen</button>
-    <a class="inline-block align-baseline font-bold text-sm text-gray-500 hover:text-black hover:underline" href="#">
-      Wachtwoord vergeten
-    </a>
-  </div>
-  <div *ngIf="showError" class="mt-5 p-3 bg-red-200 text-red-700 rounded-md">
-    <p>Dit gebruikersnaam en/of wachtwoord wordt niet herkend</p>
+    <button class="button button-black" type="submit" [disabled]="!loginForm.valid">Log In</button>
   </div>
 </form>

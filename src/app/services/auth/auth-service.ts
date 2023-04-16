@@ -1,90 +1,81 @@
-import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {ConfigService} from '../config.service';
-import {Observable, from, of, BehaviorSubject} from 'rxjs';
-import {Config} from '../../model/config';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import {Observable, tap} from 'rxjs';
+import { environment } from '../../../environments/environment';
+
+interface LoginResponse {
+  token: string;
+}
 
 @Injectable({
   providedIn: 'root'
 })
-
 export class AuthService {
+  private apiUrl = environment.apiUrl;
+  private loginUrl = environment.loginUrl;
+  private readonly JWT_TOKEN = 'JWT_TOKEN';
+  private readonly USERNAME = 'USERNAME';
+  private readonly USER_EMAIL = 'USER_EMAIL'
 
-  // @ts-ignore
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type':  'application/json',
-      'Authorization': `Bearer ${localStorage.getItem('token')}`
-    })
-  };
+  constructor(private http: HttpClient) { }
 
-  // @ts-ignore
-  $loggedIn: BehaviorSubject<boolean>;
-
-  constructor(
-    private http: HttpClient, private configService: ConfigService) {
-    this.$loggedIn = new BehaviorSubject<boolean>(false);
+  login(email: string, password: string): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}` + `${this.loginUrl}`, { username: email, password: password })
+      .pipe(
+        tap(response => {
+          const token = response.token;
+          const username = response.user_nicename;
+          const user_email = response.user_email;
+          this.storeToken(token);
+          this.storeUsername(username);
+          this.storeUserEmail(user_email);
+        })
+      );
   }
 
-  getUser(): any {
-    return localStorage.getItem('user');
-  }
-
-  getToken(): any {
-    // @ts-ignore
-    return JSON.parse(localStorage.getItem('user'));
-  }
-
-  setUser(user: string) {
-    localStorage.setItem('user', user);
-  }
-
-  createUser(user: any): Observable<Config[]> {
-    return this.http.post<Config[]>(this.configService.config.authEndPoint + '/createuser', user, this.httpOptions);
-  }
-
-  loginUser(user: any): Observable<any> {
-    return this.http.post<Config[]>(this.configService.config.authEndPoint + '/token', user, this.httpOptions);
-  }
-
-  getAccountDetails(): Observable<any> {
-    return this.http.get(this.configService.config.apiEndpoint + '/users/me', this.httpOptions);
-  }
-
-  validateToken(token: any) {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Authorization':  'Bearer ' + token
-      })
-    };
-    return this.http.post<Config[]>(this.configService.config.authEndPoint + '/token/validate', token, httpOptions);
-  }
-
-  // @ts-ignore
-  getLoggedInUser(): any {
-    // @ts-ignore
-    const user = JSON.parse(localStorage.getItem('user'));
-    return user;
+  isLoggedIn(): boolean {
+    return !!this.getToken();
   }
 
   logOut(): void {
-    localStorage.removeItem('user');
-    this.setLoginStatus(false);
+    this.removeToken();
+    this.removeUsername();
+    this.removeUserEmail();
   }
 
-  // @ts-ignore
-  isAuthenticated(): boolean {
-    if (this.getLoggedInUser()) {
-      this.$loggedIn.next(true);
-    } else {
-      this.$loggedIn.next(false);
-    }
+  getUserName(): string | null {
+    return localStorage.getItem(this.USERNAME);
   }
 
-  getLoginStatus(): Observable<boolean> {
-    return this.$loggedIn.asObservable();
+  getUserEmail() {
+    return localStorage.getItem(this.USER_EMAIL);
   }
-  setLoginStatus(loggedIn: boolean): void {
-    this.$loggedIn.next(loggedIn);
+
+  private storeToken(token: string): void {
+    localStorage.setItem(this.JWT_TOKEN, token);
+  }
+
+  private storeUsername(username: string): void {
+    localStorage.setItem(this.USERNAME, username);
+  }
+
+  private storeUserEmail(userEmail: string): void {
+    localStorage.setItem(this.USER_EMAIL, userEmail);
+  }
+
+  private getToken(): string | null {
+    return localStorage.getItem(this.JWT_TOKEN);
+  }
+
+  private removeToken(): void {
+    localStorage.removeItem(this.JWT_TOKEN);
+  }
+
+  private removeUsername(): void {
+    localStorage.removeItem(this.USERNAME);
+  }
+
+  private removeUserEmail(): void {
+    localStorage.removeItem(this.USER_EMAIL);
   }
 }

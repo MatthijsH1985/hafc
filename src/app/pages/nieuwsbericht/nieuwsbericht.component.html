@@ -1,12 +1,12 @@
 <app-loading-indicator *ngIf="loading"></app-loading-indicator>
-<div class="flex flex-col min-h-screen">
+<div class="flex flex-col min-h-screen relative z-10">
   <div *ngIf="post?.id;">
-    <div class="container xl:w-[1100px] relative z-10 ml-auto mr-auto">
+    <div class="container xl:w-[1200px] relative z-10 ml-auto mr-auto">
       <div class="relative container xl:h-[450px] md:h-[500px] align-center">
         <img [src]="post?.better_featured_image.source_url" class="object-cover object-top w-full h-full animate-in animate-in slide-in-from-bottom-10 fade-in-25 fill-mode-forwards" />
       </div>
     </div>
-    <div class="flex container xl:w-[1100px] ml-auto mr-auto p-8">
+    <div class="flex container xl:w-[1200px] ml-auto mr-auto p-8">
       <div class="flex space-x-4 flex-1 items-center space-x-4 ">
         <a routerLink="">Home</a> <a routerLink="#">Nieuws</a> <span [innerHTML]="post?.title.rendered"></span>
       </div>
@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="flex flex-row bg-gray-100 p-12">
-      <div class="container xl:w-[1280px] flex ml-auto mr-auto items-center">
+      <div class="container xl:w-[1200px] flex ml-auto mr-auto items-center">
         <div class="p-8 news-container m-auto w-[800px]">
           <h1 [innerHTML]="post?.title.rendered" class="text-5xl mb-4 leading-[1.25]"></h1>
           <div [innerHTML]="post?.content.rendered" class="leading-8 text-base leading-[1.5]"></div>

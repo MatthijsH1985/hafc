@@ -7,4 +7,12 @@ import {Component, Input} from '@angular/core';
 })
 export class NieuwslijstComponent {
   @Input('posts') posts: any;
+  @Input('compact') compact: boolean = false;
+  validDateFormat(dateString: any) {
+    if(dateString) {
+      const newDate = new Date(dateString);
+      return newDate.toISOString();
+    }
+    return null;
+  }
 }

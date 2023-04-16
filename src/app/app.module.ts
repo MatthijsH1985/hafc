@@ -34,13 +34,13 @@ import {FooterComponent} from "./components/footer/footer.component";
 import {AccountComponent} from "./pages/account/account.component";
 import {LoginFormComponent} from "./components/login-form/login-form.component";
 import {RegistrationFormComponent} from "./components/registration-form/registration-form.component";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AccountDetailsComponent} from "./pages/account/account-details/account-details.component";
-import {LoginComponent} from "./pages/account/login/login.component";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {LogoutComponent} from "./pages/account/logout/logout.component";
 import {SpelerComponent} from "./pages/team/speler/speler.component";
 import {RoundNumberPipe} from "./shared/round-number/round-number.pipe";
+import {LoginComponent} from "./pages/account/login/login.component";
 
 registerLocaleData(localeNl);
 
@@ -66,11 +66,11 @@ registerLocaleData(localeNl);
     CommentsComponent,
     FooterComponent,
     AccountComponent,
-    LoginFormComponent,
     RegistrationFormComponent,
     AccountDetailsComponent,
-    LoginComponent,
-    LogoutComponent
+    LoginFormComponent,
+    LogoutComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'serverApp'}),
@@ -79,7 +79,8 @@ registerLocaleData(localeNl);
     HttpClientModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    FormsModule
   ],
   providers: [{
     provide: LOCALE_ID,

@@ -9,20 +9,21 @@ import {Router} from "@angular/router";
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  loggedIn: boolean = false;
-  user: any = {};
   faUser = faUser;
+  user: string | null | undefined;
 
-  constructor(private authService: AuthService, private router: Router) {
-    this.authService.isAuthenticated();
-    this.authService.getLoginStatus().subscribe({
-      next: value => {
-        this.loggedIn = value;
-        this.user = this.authService.getUser();
-      },
-      error: err => {
-        console.log(err);
-       }
-    })
+  constructor(private authService: AuthService) {
+  }
+
+  isLoggedIn(): boolean {
+    return this.authService.isLoggedIn();
+  }
+
+  getUsername() {
+    return this.authService.getUserName();
+  }
+
+  logOut(): void {
+    this.authService.logOut();
   }
 }

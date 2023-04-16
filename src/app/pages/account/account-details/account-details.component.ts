@@ -7,21 +7,23 @@ import {CommentsService} from "../../../services/comments.service";
   templateUrl: './account-details.component.html',
   styleUrls: ['./account-details.component.scss']
 })
-export class AccountDetailsComponent implements OnInit {
+export class AccountDetailsComponent {
 
   user: any = {};
   loading: boolean = true;
 
-  constructor(private authService: AuthService, private commentsService: CommentsService) {
-    this.user = this.authService.getLoggedInUser();
+  constructor(private authService: AuthService) {
   }
 
-  ngOnInit() {
-    this.user = this.authService.getLoggedInUser();
-    this.commentsService.getCommentsByUserId(1, this.user).subscribe({
-      next: value => {
-        console.log(value);
-      }
-    });
+  isLoggedIn(): boolean {
+    return this.authService.isLoggedIn();
+  }
+
+  getUser() {
+    return this.authService.getUserName();
+  }
+
+  logout(): void {
+    this.authService.logOut();
   }
 }

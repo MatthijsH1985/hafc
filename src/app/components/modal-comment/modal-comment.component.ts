@@ -1,9 +1,8 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {HttpHeaders} from "@angular/common/http";
 import {CommentsService} from "../../services/comments.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {comment} from "postcss";
 import {AuthService} from "../../services/auth/auth-service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-modal-comment',
@@ -14,10 +13,12 @@ export class ModalCommentComponent {
   @Output() closeModal: EventEmitter<any> = new EventEmitter();
   @Input() modalStatus: boolean | undefined;
   @Input() postId: number | undefined;
+  username: string | null = '';
+  user_email: string | null = '';
 
   commentForm: FormGroup;
 
-  constructor(private commentService: CommentsService, private authService: AuthService) {
+  constructor(private commentService: CommentsService, private authService: AuthService, private router: Router) {
 
     this.commentForm = new FormGroup({
       name: new FormControl('', Validators.required),
@@ -26,9 +27,37 @@ export class ModalCommentComponent {
     });
   }
 
+  ngOnInit() {
+    this.isLoggedIn();
+  }
+
+  getUserName() {
+    return this.authService.getUserName()
+  }
+
+  logOut() {
+    this.authService.logOut();
+    this.router.navigateByUrl('');
+  }
+
   onCloseModal() {
     this.closeModal.emit(false);
   };
+
+  isLoggedIn(): boolean {
+    if (this.authService.isLoggedIn()) {
+      this.username = this.authService.getUserName();
+      this.user_email = this.authService.getUserEmail()
+      this.commentForm = new FormGroup({
+        name: new FormControl(this.username, Validators.required),
+        email: new FormControl(this.user_email, Validators.email),
+        comment: new FormControl('', Validators.required)
+      });
+      return true
+    } else {
+      return false
+    }
+  }
 
   onPostComment(form: FormGroup): void {
     const commentData = JSON.stringify( {
@@ -39,12 +68,6 @@ export class ModalCommentComponent {
       author_email: form.value.email,
       content: form.value.comment
     });
-
-    const user = this.authService.getLoggedInUser();
-    this.commentService.postComment(commentData, user).subscribe({
-      next: value => console.log(alert('Gelukt')),
-      error: err => console.log(err)
-    })
   }
 
 }

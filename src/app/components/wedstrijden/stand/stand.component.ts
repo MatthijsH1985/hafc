@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
 import {StandingsService} from "../../../services/standings.service";
 
@@ -12,6 +12,7 @@ export class StandComponent implements OnInit, OnDestroy {
   rankingSub: Subscription | undefined;
   ranking: any = [];
   loading = true;
+  @Input('compact') compact: boolean = false;
 
   constructor(private standingsService: StandingsService) {}
 

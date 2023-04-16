@@ -1,10 +1,13 @@
 <div class="flex flex-col min-h-screen relative z-20">
-  <div class="container max-w-[1280px] relative z-10 ml-auto mr-auto">
-    <div class="xl:h-[650px] md:h-[500px] w-1/2 mt-[340px] p-8">
-      <app-login-form></app-login-form>
+  <div class="relative container xl:w-[1100px] flex items-center ml-auto mr-auto xl:h-[450px] block bg-black">
+    <img [src]="'assets/wehmeyer.jpg'" />
+    <div class="absolute z-20 left-8 bottom-12 lg:w-[33.3%]">
+      <h1 class="text-white text-4xl max-w-5xl p-4">Inloggen</h1>
     </div>
   </div>
-  <div class="mt-auto">
-
+  <div class="xl:w-[1100px] mx-auto flex justify-end relative z-10">
+    <div class="bg-white p-8 -mt-16 w-[550px]">
+      <app-login-form></app-login-form>
+    </div>
   </div>
 </div>

@@ -17,6 +17,7 @@ export class HomepageComponent implements OnInit {
   headlines: any = [];
   postsSub: Subscription | undefined;
 
+
   constructor(private postsService: PostsService,
               private router: Router,
               private titleService: Title,
@@ -27,6 +28,7 @@ export class HomepageComponent implements OnInit {
     this.getPosts(false, '');
     this.titleService.setTitle('HAFC - Wij zijn Heracles!');
     this.viewportScroller.scrollToPosition([0, 0]);
+
   }
 
   getPosts(isFirstLoad: any, event: any): void {

@@ -8,13 +8,23 @@
 
 body {
   background: #FFF;
-  &:after {
+  &:before {
     content: "";
     height: 350px;
     --tw-bg-opacity: 1;
     background-color: rgba(0,0,0);
     position: absolute;
     top: 0;
+    right: 0;
+    left: 0;
+  }
+  &:after {
+    content: "";
+    height: 350px;
+    --tw-bg-opacity: 1;
+    background-color: rgba(245,245,245);
+    position: absolute;
+    top: 350px;
     right: 0;
     left: 0;
   }
@@ -51,7 +61,7 @@ body {
     transition-timing-function: cubic-bezier(0,0,.2,1);
     transition-duration: .2s;
   }
-  &:hover {
+  &:hover, &.active {
     --tw-text-opacity: 1;
     color: rgba(0,0,0,var(--tw-text-opacity));
     &:before {

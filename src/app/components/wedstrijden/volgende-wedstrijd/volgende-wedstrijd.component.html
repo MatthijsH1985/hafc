@@ -7,9 +7,6 @@
       <div class="match-divider mx-8">
         <div class="text-base">{{ validDateFormat(nextMatch.time.starting_at.date_time) | date: 'EEEE'}}, {{ validDateFormat(nextMatch.time.starting_at.date_time) | date: 'd MMMM'}}</div>
         <div class="text-base">{{ validDateFormat(nextMatch.time.starting_at.date_time) | date: 'HH:mm' }}</div>
-        <div class=" mt-4">
-          <a href="" class="button button-black-inverted">Praat mee</a>
-        </div>
       </div>
       <div class="w-[80px]">
         <img [src]="nextMatch.visitorteam_id | generateLogoUrl" />
