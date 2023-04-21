@@ -9,6 +9,9 @@
     <input type="password" class="w-full rounded-md border border-gray-800" formControlName="password" id="password">
   </div>
   <div class="flex items-center justify-between">
-    <button class="button button-black" type="submit" [disabled]="!loginForm.valid">Log In</button>
+    <button class="button button-black-inverted" type="submit" [disabled]="!loginForm.valid">Log In</button>
   </div>
+  <p *ngIf="errorMessage !== ''" class="mt-4 p-2 bg-red-200 text-red-800 rounded-md">
+    Je e-mailadres of wachtwoord is niet juist
+  </p>
 </form>

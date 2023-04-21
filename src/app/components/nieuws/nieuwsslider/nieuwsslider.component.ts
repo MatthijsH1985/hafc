@@ -33,4 +33,12 @@ export class NieuwssliderComponent {
 
   }
 
+  validDateFormat(dateString: any) {
+    if(dateString) {
+      const newDate = new Date(dateString);
+      return newDate.toISOString();
+    }
+    return null;
+  }
+
 }

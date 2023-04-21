@@ -4,18 +4,25 @@
     <h3 class="text-4xl">Reactie plaatsen</h3> <button class="ml-auto text-4xl" (click)="onCloseModal()">X</button>
     <p *ngIf="isLoggedIn()">Niet {{ getUserName() }}? Klik dan <button (click)="logOut()">hier</button> om uit te loggen</p>
     <form [formGroup]="commentForm" (ngSubmit)="onPostComment(commentForm)">
-      <div class="mb-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
-          Je naam
-        </label>
-        <input formControlName="name"  class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" />
+      <div *ngIf="!isLoggedIn(); else loggedIn">
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
+            Je naam
+          </label>
+          <input formControlName="name"  class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" />
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
+            Je e-mailadres
+          </label>
+          <input formControlName="email"  class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" />
+        </div>
       </div>
-      <div class="mb-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
-          Je e-mailadres
-        </label>
-        <input formControlName="email"  class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" />
-      </div>
+      <ng-template #loggedIn>
+        <p>
+          Je bent ingelogd als {{ getUserName() }} Ben jij dit niet? Meld je dan af.
+        </p>
+      </ng-template>
       <div class="mb-4">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="comment">
           Je bericht
