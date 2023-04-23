@@ -3,8 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SwiperModule} from "swiper/angular";
-import {NieuwssliderComponent} from "./components/nieuws/nieuwsslider/nieuwsslider.component";
 import {PostsService} from "./services/posts.service";
 import {HttpClientModule} from "@angular/common/http";
 import {ConfigService} from "./services/config.service";
@@ -20,7 +18,6 @@ import {registerLocaleData} from '@angular/common';
 import localeNl from '@angular/common/locales/nl';
 import {HomepageComponent} from "./pages/homepage/homepage.component";
 import {NieuwslijstComponent} from "./components/nieuws/nieuwslijst/nieuwslijst.component";
-import Swiper from "swiper";
 import {NieuwsberichtComponent} from "./pages/nieuwsbericht/nieuwsbericht.component";
 import {HeaderComponent} from "./components/header/header.component";
 import {NieuwsarchiefComponent} from "./pages/nieuwsarchief/nieuwsarchief.component";
@@ -41,7 +38,9 @@ import {LogoutComponent} from "./pages/account/logout/logout.component";
 import {SpelerComponent} from "./pages/team/speler/speler.component";
 import {RoundNumberPipe} from "./shared/round-number/round-number.pipe";
 import {LoginComponent} from "./pages/account/login/login.component";
-
+import { register } from 'swiper/element/bundle'
+import {NieuwssliderModule} from "./components/nieuws/nieuwsslider/nieuwsslider.module";
+register()
 registerLocaleData(localeNl);
 
 @NgModule({
@@ -56,7 +55,6 @@ registerLocaleData(localeNl);
     HomepageComponent,
     NieuwslijstComponent,
     NieuwsberichtComponent,
-    NieuwssliderComponent,
     HeaderComponent,
     HeaderComponent,
     NieuwsarchiefComponent,
@@ -74,19 +72,22 @@ registerLocaleData(localeNl);
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'serverApp'}),
-    SwiperModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FontAwesomeModule,
-    FormsModule
+    FormsModule,
+    NieuwssliderModule
+  ],
+  exports: [
+    HomepageComponent
   ],
   providers: [{
     provide: LOCALE_ID,
     useValue: 'nl',
   },
-    PostsService, ConfigService, CommentsService, PlayersService, TeamService, FixturesService, StandingsService, Swiper],
+    PostsService, ConfigService, CommentsService, PlayersService, TeamService, FixturesService, StandingsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

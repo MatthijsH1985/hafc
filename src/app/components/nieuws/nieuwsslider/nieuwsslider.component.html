@@ -1,6 +1,6 @@
-<swiper [config]="swiperConfig">
-  <ng-template swiperSlide *ngFor="let headline of headlines; let i = index">
-    <a class="relative container xl:w-[1200px] flex items-center ml-auto mr-auto xl:h-[450px] block bg-black" [routerLink]="['nieuws', headline.id, headline.slug]">
+<swiper-container config="config" init="false" #swiper>
+  <swiper-slide *ngFor="let headline of headlines">
+    <a class="relative container xl:w-[1200px] flex items-center ml-auto mr-auto block xl:h-[600px] block bg-black" [routerLink]="['nieuws', headline.id, headline.slug]">
       <img [src]="headline.better_featured_image.source_url" class="object-cover object-top h-full w-full block opacity-80" />
       <div class="absolute z-20 left-8 bottom-12 lg:w-[33.3%]">
         <h1 [innerHTML]="headline.title.rendered" class="text-white text-4xl max-w-5xl p-4"></h1>
@@ -8,5 +8,5 @@
         <span class="text-white font-xl border border-white inline-block p-4 mt-5 button ml-4">{{ headline.comments_count }} reacties</span>
       </div>
     </a>
-  </ng-template>
-</swiper>
+  </swiper-slide>
+</swiper-container>

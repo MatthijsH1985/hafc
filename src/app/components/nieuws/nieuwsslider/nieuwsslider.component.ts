@@ -1,36 +1,68 @@
-import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
-import SwiperCore, {Pagination, Navigation, SwiperOptions} from "swiper";
-import Swiper from "swiper";
-SwiperCore.use([Pagination, Navigation]);
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  Input,
+  ViewChild,
+} from '@angular/core';
+import Swiper, {
+  A11y,
+  Mousewheel,
+  Navigation,
+  Pagination,
+  EffectCreative,
+  SwiperOptions,
+} from 'swiper'
 
 @Component({
   selector: 'app-nieuwsslider',
   templateUrl: './nieuwsslider.component.html',
-  styleUrls: ['./nieuwsslider.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./nieuwsslider.component.scss']
 })
 
-export class NieuwssliderComponent {
-  swiperConfig: SwiperOptions = {
+export class NieuwssliderComponent implements AfterViewInit {
+  public config: SwiperOptions = {
+    modules: [Navigation, Pagination, A11y, Mousewheel],
+    zoom: {
+      maxRatio: 5,
+    },
+    autoHeight: false,
+    spaceBetween: 20,
+    navigation: {
+      prevEl: '.prev-button',
+      nextEl: '.next-button',
+    },
+    pagination: true,
     slidesPerView: 1,
-    effect: 'creative',
-    observer: true,
-    observeParents: true,
+    centeredSlides: true,
+    grabCursor: true,
+    effect: "creative",
     creativeEffect: {
       prev: {
         shadow: true,
-        translate: ['-120%', 0, -500]
+        translate: ["-20%", 0, -1],
       },
       next: {
-        shadow: true,
-        translate: ['120%', 0, -500]
-      }
-    }
+        translate: ["100%", 0, 0],
+      },
+    },
   }
   @Input('headlines') headlines: any;
+  @ViewChild('swiper') swiper: ElementRef | undefined
 
-  constructor(private swiper: Swiper) {
+  constructor() {
 
+  }
+
+  ngAfterViewInit() {
+    // @ts-ignore
+    Object.assign(this.swiper.nativeElement, this.config)
+    // @ts-ignore
+    this.swiper.nativeElement.initialize()
+  }
+
+  onSlideChange(event: any) {
+    console.log(event);
   }
 
   validDateFormat(dateString: any) {

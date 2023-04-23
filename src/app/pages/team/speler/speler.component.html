@@ -1,93 +1,95 @@
 <app-loading-indicator *ngIf="loading"></app-loading-indicator>
 <div class="flex flex-col min-h-screen">
   <div *ngIf="player?.id;">
-    <div class="relative z-10 container w-full md:w-[1200px] mr-auto ml-auto">
-      <div class="flex mb-16">
-        <img [src]="player?.better_featured_image.source_url" class="object-cover object-top block w-[380px] animate-in animate-in slide-in-from-bottom-10 fade-in-25 fill-mode-forwards" />
-        <div class="flex items-end" >
-          <div class="bg-blue-500 p-8 self-end text-7xl text-white">
+    <div class="relative z-10 container w-full md:w-[1200px] flex items-center flex-col mr-auto ml-auto">
+      <div class="flex mb-16 flex flex-col justify-center items-center md:w-[1000px]">
+        <img [src]="player?.better_featured_image.source_url" class="mt-16 block object-cover object-top block md:w-[600px] margin-auto animate-in animate-in slide-in-from-bottom-10 fade-in-25 fill-mode-forwards" />
+        <div class="flex items-end bg-black" >
+          <div class="bg-blue-500 m-4 h-full p-8 self-end text-7xl text-white">
             {{ player?.acf.rugnummer }}
           </div>
-          <h1 class="text-3xl md:text-5xl leading-10 uppercase">
-            <span class="block text-7xl text-white">{{ player?.acf.voornaam }}</span>
-            <span class="block text-7xl text-black font-bold">{{ player?.acf.achternaam }}</span>
+          <h1 class="text-3xl md:text-5xl leading-10 uppercase p-4">
+            <span class="block text-6xl text-white">{{ player?.acf.voornaam }}</span>
+            <span class="block text-6xl  text-white font-bold">{{ player?.acf.achternaam }}</span>
           </h1>
         </div>
       </div>
       <div>
         <div class="" *ngIf="!loading">
-          <div class="content-page">
+          <div class="content-page w-screen p-8 md:p-0 md:w-[1000px]">
             <div class="player-content-container">
-              <div class="player-info-container grid grid-cols-2 gap-x-4">
-                <div class="player-field">
-                  <label>Gemiddelde beoordeling</label>
-                  <div class="field-value" *ngIf="playerStats?.rating">
-                    {{ playerStats?.rating | roundNumber }}
+              <div class="player-info-container grid grid-cols-1 md:grid-cols-3 gap-x-4">
+                <div>
+                  <div class="player-field">
+                    <label>Geboortedatum</label>
+                    <div class="field-value">{{ playerInfo?.birthdate }}</div>
+                  </div>
+                  <div class="player-field">
+                    <label>Lengte</label>
+                    <div class="field-value">{{ playerInfo?.height }}</div>
+                  </div>
+                  <div class="player-field">
+                    <label>Gewicht</label>
+                    <div class="field-value">{{ playerInfo?.weight }}</div>
+                  </div>
+                  <div class="player-field">
+                    <label>Nationaliteit</label>
+                    <div class="field-value">{{ playerInfo?.nationality }}</div>
+                  </div>
+                  <div class="player-field">
+                    <label>Geboorteland</label>
+                    <div class="field-value">{{ playerInfo?.birthcountry }}</div>
+                  </div>
+                  <div class="player-field">
+                    <label>Geboorteplaats</label>
+                    <div class="field-value">{{ playerInfo?.birthplace }}</div>
                   </div>
                 </div>
-                <div class="player-field">
-                  <label>Geboortedatum</label>
-                  <div class="field-value">{{ playerInfo?.birthdate }}</div>
-                </div>
-                <div class="player-field">
-                  <label>Lengte</label>
-                  <div class="field-value">{{ playerInfo?.height }}</div>
-                </div>
-                <div class="player-field">
-                  <label>Gewicht</label>
-                  <div class="field-value">{{ playerInfo?.weight }}</div>
-                </div>
-                <div class="player-field">
-                  <label>Nationaliteit</label>
-                  <div class="field-value">{{ playerInfo?.nationality }}</div>
-                </div>
-                <div class="player-field">
-                  <label>Geboorteplaats</label>
-                  <div class="field-value">{{ playerInfo?.birthcountry }}</div>
-                </div>
-                <div class="player-field">
-                  <label>Geboorteplaats</label>
-                  <div class="field-value">{{ playerInfo?.birthplace }}</div>
+                <div>
+                  <div class="player-field">
+                    <label>Gemiddelde beoordeling</label>
+                    <div class="field-value" *ngIf="playerStats?.rating">
+                      {{ playerStats?.rating | roundNumber }}
+                    </div>
+                  </div>
+                  <div class="player-field">
+                    <label>Aantal wedstrijden</label>
+                    <div class="field-value">{{ playerStats?.appearences }}</div>
+                  </div>
+                  <div class="player-field">
+                    <label>Aantal basisplaatsen</label>
+                    <div class="field-value">{{ playerStats?.lineups }}</div>
+                  </div>
+                  <div class="player-field">
+                    <label>Gemiddelde speelminuten</label>
+                    <div class="field-value">{{ playerStats?.minutes / playerStats?.appearences | roundNumber }}</div>
+                  </div>
+                  <div class="player-field">
+                    <label>Goals</label>
+                    <div class="field-value">{{ playerStats?.goals }}</div>
+                  </div>
+                  <div class="player-field">
+                    <label>Assists</label>
+                    <div class="field-value">{{ playerStats?.assists }}</div>
+                  </div>
+                  <div class="player-field">
+                    <label>Gele kaarten</label>
+                    <div class="field-value">{{ playerStats?.yellowcards }}</div>
+                  </div>
+                  <div class="player-field">
+                    <label>Rode kaarten</label>
+                    <div class="field-value">{{ playerStats?.redcards }}</div>
+                  </div>
+                  <div *ngIf="playerStats?.saves !== 0;">
+                    <div class="player-field">
+                      <h5>Reddingen</h5>
+                    </div>
+                    <div class="player-field" *ngIf="playerStats?.saves">
+                      <label>Belangrijke reddingen</label>
+                      <div class="field-value">{{ playerStats?.saves }}</div>
+                    </div>
                 </div>
               </div>
-              <div class="player-data-container grid grid-cols-2 gap-4">
-                <div class="player-field">
-                  <label>Aantal wedstrijden</label>
-                  <div class="field-value">{{ playerStats?.appearences }}</div>
-                </div>
-                <div class="player-field">
-                  <label>Aantal basisplaatsen</label>
-                  <div class="field-value">{{ playerStats?.lineups }}</div>
-                </div>
-                <div class="player-field">
-                  <label>Gemiddelde speelminuten</label>
-                  <div class="field-value">{{ playerStats?.minutes / playerStats?.appearences | roundNumber }}</div>
-                </div>
-                <div class="player-field">
-                  <label>Goals</label>
-                  <div class="field-value">{{ playerStats?.goals }}</div>
-                </div>
-                <div class="player-field">
-                  <label>Assists</label>
-                  <div class="field-value">{{ playerStats?.assists }}</div>
-                </div>
-                <div class="player-field">
-                  <label>Gele kaarten</label>
-                  <div class="field-value">{{ playerStats?.yellowcards }}</div>
-                </div>
-                <div class="player-field">
-                  <label>Rode kaarten</label>
-                  <div class="field-value">{{ playerStats?.redcards }}</div>
-                </div>
-                <div *ngIf="playerStats?.saves !== 0;">
-                  <div class="player-field">
-                    <h5>Reddingen</h5>
-                  </div>
-                  <div class="player-field" *ngIf="playerStats?.saves">
-                    <label>Belangrijke reddingen</label>
-                    <div class="field-value">{{ playerStats?.saves }}</div>
-                  </div>
-                </div>
                 <div *ngIf="playerStats?.passes?.total !== 0;">
                   <div class="player-field">
                     <h5>Passes</h5>
@@ -104,32 +106,32 @@
                     <label>Succesvol</label>
                     <div class="field-value">{{ playerStats?.passes?.accuracy }} %</div>
                   </div>
+                  <div class="player-field">
+                    <h5>Duels</h5>
+                  </div>
+                  <div class="player-field" *ngIf="playerStats?.duels?.total">
+                    <label>Totaal aantal duels</label>
+                    <div class="field-value">{{ playerStats?.duels.total }}</div>
+                  </div>
+                  <div class="player-field" *ngIf="playerStats?.duels?.won">
+                    <label>Gewonnen duels</label>
+                    <div class="field-value">{{ playerStats?.duels.won }}</div>
+                  </div>
+                  <div class="player-field" *ngIf="playerStats?.tackles">
+                    <label>Tackels</label>
+                    <div class="field-value">{{ playerStats?.tackles }}</div>
+                  </div>
+                  <div class="player-field" *ngIf="playerStats?.fouls.committed">
+                    <label>Overtredingen gemaakt</label>
+                    <div class="field-value">{{ playerStats?.fouls.committed }}</div>
+                  </div>
+                  <div class="player-field" *ngIf="playerStats?.fouls.drawn">
+                    <label>Overtredingen mee</label>
+                    <div class="field-value">{{ playerStats?.fouls.drawn }}</div>
+                  </div>
                 </div>
-                <div class="player-field">
-                  <h5>Duels</h5>
-                </div>
-                <div class="player-field" *ngIf="playerStats?.duels?.total">
-                  <label>Totaal aantal duels</label>
-                  <div class="field-value">{{ playerStats?.duels.total }}</div>
-                </div>
-                <div class="player-field" *ngIf="playerStats?.duels?.won">
-                  <label>Gewonnen duels</label>
-                  <div class="field-value">{{ playerStats?.duels.won }}</div>
-                </div>
-                <div class="player-field" *ngIf="playerStats?.tackles">
-                  <label>Tackels</label>
-                  <div class="field-value">{{ playerStats?.tackles }}</div>
-                </div>
-                <div class="player-field" *ngIf="playerStats?.fouls.committed">
-                  <label>Overtredingen gemaakt</label>
-                  <div class="field-value">{{ playerStats?.fouls.committed }}</div>
-                </div>
-                <div class="player-field" *ngIf="playerStats?.fouls.drawn">
-                  <label>Overtredingen mee</label>
-                  <div class="field-value">{{ playerStats?.fouls.drawn }}</div>
-                </div>
+
               </div>
-            </div>
           </div>
         </div>
       </div>
