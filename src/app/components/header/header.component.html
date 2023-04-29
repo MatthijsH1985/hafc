@@ -1,19 +1,19 @@
 <header class="sticky top-0 bg-black z-30 text-white px-4 xl:px-10 ml-auto mr-auto">
   <div class=" m-auto  xl:w-[1200px] container flex justify-center items-center">
     <div class="flex-1 text-left">
-      <nav>
+      <nav class="hidden md:block">
         <ul class="flex space-x-4 uppercase text-white">
           <li>
-            <a class="button" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/">Home</a>
+            <a class="button button-black" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/">Home</a>
           </li>
           <li>
-            <a class="button" routerLinkActive="active" routerLink="/nieuws">Nieuws</a>
+            <a class="button  button-black" routerLinkActive="active" routerLink="/nieuws">Nieuws</a>
           </li>
           <li>
-            <a class="button" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/team">Selectie</a>
+            <a class="button  button-black" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/team">Selectie</a>
           </li>
           <li>
-            <a class="button" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/wedstrijden">Wedstrijden</a>
+            <a class="button  button-black" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/wedstrijden">Wedstrijden</a>
           </li>
         </ul>
       </nav>
@@ -22,18 +22,21 @@
       <img src="assets/logo_hafc.svg" class="w-[100px] h-auto m-4 block bg-white" title="HAFC" />
     </a>
     <div class="flex-1 text-right uppercase text-white">
-      <nav>
+      <nav class="hidden md:block">
         <ul class="flex space-x-4 uppercase text-white justify-end">
           <li *ngIf="!isLoggedIn()">
-            <a class="button" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/account/login">Inloggen</a>
+            <a class="button  button-black" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/account/register">Registreer</a>
+          </li>
+          <li *ngIf="!isLoggedIn()">
+            <a class="button  button-black" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/account/login">Inloggen</a>
           </li>
           <li *ngIf="isLoggedIn()">
-            <a class="button" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/account/details">
+            <a class="button  button-black" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/account/details/mijn-gegevens">
                 Mijn HAFC <fa-icon [icon]="faUser"></fa-icon>
             </a>
           </li>
           <li *ngIf="isLoggedIn()">
-            <a class="button" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/account/logout" title="Uitloggen">Uitloggen</a>
+            <a class="button button-black" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/account/logout" title="Uitloggen">Uitloggen</a>
           </li>
         </ul>
       </nav>

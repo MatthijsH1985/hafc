@@ -1,0 +1,28 @@
+
+<div class="flex flex-col min-h-screen relative z-20">
+  <div class="relative container xl:w-[1200px] flex items-center ml-auto mr-auto xl:h-[450px] block bg-black">
+    <img [src]="'assets/wehmeyer.jpg'" />
+    <div class="absolute z-20 left-8 bottom-12 lg:w-[33.3%]">
+      <h1 class="text-white text-4xl max-w-5xl p-4">Inloggen</h1>
+    </div>
+  </div>
+  <div class="flex flex-row w-[1000px] mr-auto ml-auto justify-self-start self-start">
+    <div class="mt-[100px]">
+      <p>Als je wilt inloggen, ga je akkoord met de huisregeles. De huisregels zijn:</p>
+      <ul class="list-disc mt-8">
+        <li class="ml-4">Niet schelden onder de comments</li>
+        <li class="ml-4">Trollen levert een ban op</li>
+        <li class="ml-4">Blijf on-topic</li>
+        <li class="ml-4">Registreer je met een normale (nick)name</li>
+      </ul>
+    </div>
+    <div class="xl:w-[1100px] mx-auto flex justify-end relative z-10">
+      <div class="bg-white p-8 -mt-16 w-[550px]">
+        <app-registration-form></app-registration-form>
+      </div>
+    </div>
+  </div>
+  <div class="mt-auto">
+    <app-footer></app-footer>
+  </div>
+</div>

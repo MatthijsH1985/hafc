@@ -1,37 +1,37 @@
-<div class="fixed z-10 bg-black opacity-80 w-full h-full bottom-0 overlay" [ngClass]="{'show-overlay': modalStatus === true}"></div>
-<div class="xl:w-[1000px] fixed bg-white z-20 bg-white fixed bottom-0 w-full modal-comment left-1/2 transform -translate-x-1/2" [ngClass]="{'active': modalStatus === true}">
+<div class="fixed z-30 bg-black opacity-80 w-full h-full bottom-0 overlay" [ngClass]="{'show-overlay': modalStatus === true}"></div>
+<div class="xl:w-[1000px] fixed bg-white z-40 bg-white fixed bottom-0 w-full modal-comment left-1/2 transform -translate-x-1/2" [ngClass]="{'active': modalStatus === true}">
   <div class="flex flex-col">
     <h3 class="text-4xl">Reactie plaatsen</h3> <button class="ml-auto text-4xl" (click)="onCloseModal()">X</button>
-    <p *ngIf="isLoggedIn()">Niet {{ getUserName() }}? Klik dan <button (click)="logOut()">hier</button> om uit te loggen</p>
     <form [formGroup]="commentForm" (ngSubmit)="onPostComment(commentForm)">
       <div *ngIf="!isLoggedIn(); else loggedIn">
         <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
+          <label for="name">
             Je naam
           </label>
-          <input formControlName="name"  class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" />
+          <input formControlName="name" id="name" type="text" />
         </div>
         <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
+          <label for="email">
             Je e-mailadres
           </label>
-          <input formControlName="email"  class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" />
+          <input formControlName="email" id="email" type="email" />
         </div>
       </div>
       <ng-template #loggedIn>
-        <p>
-          Je bent ingelogd als {{ getUserName() }} Ben jij dit niet? Meld je dan af.
+        <p class="text-base pl-4 mb-8">
+          Je bent ingelogd als {{ getUserName() }} Ben jij dit niet? <button (click)="logOut()" class="underline">Meld je dan af.</button>
         </p>
       </ng-template>
       <div class="mb-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="comment">
+        <label for="comment">
           Je bericht
         </label>
-        <textarea formControlName="comment"  class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="comment"></textarea>
+        <textarea formControlName="comment" id="comment" placeholder="Voer hier je bericht in"></textarea>
       </div>
       <div class="flex items-center justify-between">
         <button type="submit" class="button button-black">Reactie plaatsen</button>
       </div>
     </form>
   </div>
+  <p *ngIf="errorMessage" class="bg-red-200 text-red-800 p-4 rounded-md">{{ errorMessage }}</p>
 </div>

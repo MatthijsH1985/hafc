@@ -18,6 +18,7 @@ export class NieuwsberichtComponent implements OnInit {
   loading: boolean = true;
   currentRoute: any;
   modalCommentsOpen: boolean = false;
+  addedComment: any;
 
   constructor(private activatedRoute: ActivatedRoute,
               private postService: PostsService,
@@ -29,6 +30,10 @@ export class NieuwsberichtComponent implements OnInit {
   ngOnInit() {
     this.loading = true;
     this.currentRoute = this.route.url;
+    this.loadCOmments();
+  }
+
+  loadCOmments() {
     this.currentPostSub = this.postService.getPost(this.postId).subscribe({
       next: post => {
         this.post = post;
@@ -40,6 +45,10 @@ export class NieuwsberichtComponent implements OnInit {
         console.log(error);
       }
     })
+  }
+
+  addComment(comment: any) {
+   this.addedComment = comment;
   }
 
   onModalClose() {

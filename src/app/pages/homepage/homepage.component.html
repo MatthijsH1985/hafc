@@ -2,16 +2,19 @@
   <div class="container max-w-[1200px] relative z-10 ml-auto mr-auto">
     <div class="md:h-[600px] overflow-hidden relative bg-black">
       <app-nieuwsslider [headlines]="headlines"></app-nieuwsslider>
-      <div class="p-4 text-center absolute right-0 bg-white bottom-0 lg:w-[33.3%] z-10 border-black">
-        <app-volgende-wedstrijd></app-volgende-wedstrijd>
-      </div>
     </div>
     <div class="flex">
-      <div class="w-2/3 pt-8">
+      <div class="w-1/2 md:w-2/3 pt-8">
+        <div class="p-16: -mt-[120px] relative z-10 text-center bg-white w-full mb-8">
+          <app-volgende-wedstrijd></app-volgende-wedstrijd>
+        </div>
         <app-nieuwslijst [compact]="true" [posts]="posts"></app-nieuwslijst>
       </div>
-      <div class="w-1/3 bg-white pt-8 pl-8 pr-8">
-        <app-stand [compact]="true"></app-stand>
+      <div class="w-1/2 md:w-1/3 bg-white">
+        <h3 class="text-xl bg-black text-white px-6 py-4 mb-2 font-bold">Stand KKD</h3>
+        <div class="p-4">
+          <app-stand [compact]="true"></app-stand>
+        </div>
       </div>
     </div>
   </div>

@@ -1,7 +1,8 @@
 <app-loading-indicator *ngIf="loading"></app-loading-indicator>
-<div class="flex flex-col min-h-screen relative z-10">
+<button (click)="onOpenCommentModal()" class="button button-black">Reactie plaatsen</button>
+<div class="flex flex-col min-h-screen">
   <div *ngIf="post?.id;">
-    <div class="container xl:w-[1200px] relative z-10 ml-auto mr-auto">
+    <div class="container xl:w-[1200px] ml-auto mr-auto">
       <div class="relative container xl:h-[450px] md:h-[500px] align-center">
         <img [src]="post?.better_featured_image.source_url" class="object-cover object-top w-full h-full animate-in animate-in slide-in-from-bottom-10 fade-in-25 fill-mode-forwards" />
       </div>
@@ -11,20 +12,26 @@
         <a routerLink="">Home</a> <a routerLink="#">Nieuws</a> <span [innerHTML]="post?.title.rendered"></span>
       </div>
       <div class="flex flex-1 justify-end items-center space-x-2">
-        <span>{{ post?.comments_count }} reacties</span> <button (click)="onOpenCommentModal()" class="button button-black">Reactie plaatsen</button>
+        <span>{{ post.date | date }}</span>
       </div>
     </div>
-    <div class="flex flex-row bg-gray-100 p-12">
-      <div class="container xl:w-[1200px] flex ml-auto mr-auto items-center">
-        <div class="p-8 news-container m-auto w-[800px]">
+    <div class="flex flex-col xl:w-[1200px] ml-auto mr-auto relative z-20">
+      <div class="container bg-white mb-8 xl:w-[1100px] flex flex-col ml-auto mr-auto items-center">
+        <div class="px-24 pt-16 news-container m-auto">
           <h1 [innerHTML]="post?.title.rendered" class="text-5xl mb-4 leading-[1.25]"></h1>
           <div [innerHTML]="post?.content.rendered" class="leading-8 text-base leading-[1.5]"></div>
         </div>
+        <div class="bg-gray-200 flex justify-end w-full mt-8 items-center">
+          <span class="mr-8 inline-block">{{ post?.comments_count }} reacties</span>
+          <button class="button button-black text-xl" (click)="onOpenCommentModal()">Reageer op dit artikel</button>
+        </div>
       </div>
     </div>
-    <div class="bg-black">
-      <div class="xl:w-[800px] ml-auto mr-auto">
-        <app-comments [postId]="postId"></app-comments>
+    <div class="flex m-auto">
+      <div class="flex flex-col w-full justify-end ml-auto mr-auto">
+        <div class="w-full">
+          <app-comments [postId]="postId"></app-comments>
+        </div>
       </div>
     </div>
   </div>
@@ -33,4 +40,4 @@
   </div>
 </div>
 
-<app-modal-comment (closeModal)="onModalClose()" [modalStatus]="modalCommentsOpen" [postId]="postId"></app-modal-comment>
+<app-modal-comment (commentSuccesful)="addComment($event)" (closeModal)="onModalClose()" [modalStatus]="modalCommentsOpen" [postId]="postId"></app-modal-comment>

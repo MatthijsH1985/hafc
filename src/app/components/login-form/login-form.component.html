@@ -1,15 +1,15 @@
 
 <form class="rounded px-8 pt-6 pb-8 mb-4" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
   <div class="mb-4">
-    <label class="block text-gray-700 text-md font-bold mb-2" for="email">E-mailadres</label>
-    <input type="email" class="border border-gray-800 rounded-md w-full" formControlName="email" id="email" />
+    <label for="email">E-mailadres</label>
+    <input type="email" formControlName="email" id="email" />
   </div>
   <div class="mb-4">
-    <label class="block text-gray-700 text-md font-bold mb-2" for="password">Wachtwoord</label>
-    <input type="password" class="w-full rounded-md border border-gray-800" formControlName="password" id="password">
+    <label for="password">Wachtwoord</label>
+    <input type="password" formControlName="password" id="password">
   </div>
   <div class="flex items-center justify-between">
-    <button class="button button-black-inverted" type="submit" [disabled]="!loginForm.valid">Log In</button>
+    <button class="button button-black" type="submit" [disabled]="!loginForm.valid">Log In</button>
   </div>
   <p *ngIf="errorMessage !== ''" class="mt-4 p-2 bg-red-200 text-red-800 rounded-md">
     Je e-mailadres of wachtwoord is niet juist

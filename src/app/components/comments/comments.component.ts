@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {CommentsService} from "../../services/comments.service";
 import {Subscription} from "rxjs";
+import {faCheck} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-comments',
@@ -15,7 +16,9 @@ export class CommentsComponent implements OnInit{
   commentsOrder = 'desc';
   loading: boolean = true;
   noCommentsMessage = 'Er is (nog) niet gereageerd op dit artikel';
-  noComments: boolean = true;
+  loadingComments: boolean = true;
+  noCommentsLoaded = true;
+  faCheck = faCheck;
 
   constructor(private commentsService: CommentsService) {
 
@@ -26,13 +29,15 @@ export class CommentsComponent implements OnInit{
   }
 
   getComments(isFirstLoad: any, event: any, order: string) {
-
     this.commentsService.getComments(this.postId).subscribe({
       next: comments => {
         this.comments = comments;
+        this.loadingComments = false;
+        this.noCommentsLoaded = false;
       },
       error:error => {
-        console.log(error)
+        this.loadingComments = false;
+        this.noCommentsLoaded = true;
     }
     })
   }

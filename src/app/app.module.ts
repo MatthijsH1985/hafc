@@ -40,6 +40,12 @@ import {RoundNumberPipe} from "./shared/round-number/round-number.pipe";
 import {LoginComponent} from "./pages/account/login/login.component";
 import { register } from 'swiper/element/bundle'
 import {NieuwssliderModule} from "./components/nieuws/nieuwsslider/nieuwsslider.module";
+import {JWT_OPTIONS, JwtHelperService} from "@auth0/angular-jwt";
+import {UserCommentsComponent} from "./pages/account/user-comments/user-comments.component";
+import {UserConfigComponent} from "./pages/account/user-config/user-config.component";
+import {UserService} from "./services/user.service";
+import {RegisterComponent} from "./pages/account/register/register.component";
+import {ToastrModule} from "ngx-toastr";
 register()
 registerLocaleData(localeNl);
 
@@ -68,13 +74,17 @@ registerLocaleData(localeNl);
     AccountDetailsComponent,
     LoginFormComponent,
     LogoutComponent,
-    LoginComponent
+    LoginComponent,
+    UserCommentsComponent,
+    UserConfigComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'serverApp'}),
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     ReactiveFormsModule,
     FontAwesomeModule,
     FormsModule,
@@ -87,7 +97,9 @@ registerLocaleData(localeNl);
     provide: LOCALE_ID,
     useValue: 'nl',
   },
-    PostsService, ConfigService, CommentsService, PlayersService, TeamService, FixturesService, StandingsService],
+    PostsService, ConfigService, CommentsService, PlayersService, TeamService, FixturesService, StandingsService, UserService, JwtHelperService, {
+    provide: JWT_OPTIONS, useValue: JWT_OPTIONS
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

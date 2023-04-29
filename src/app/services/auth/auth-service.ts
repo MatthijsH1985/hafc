@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, tap} from 'rxjs';
 import { environment } from '../../../environments/environment';
+import {JwtHelperService} from "@auth0/angular-jwt";
 
 interface LoginResponse {
   token: string;
@@ -14,33 +15,56 @@ export class AuthService {
   private apiUrl = environment.apiUrl;
   private loginUrl = environment.loginUrl;
   private readonly JWT_TOKEN = 'JWT_TOKEN';
+  private readonly USER_ID = 'USER_ID';
   private readonly USERNAME = 'USERNAME';
   private readonly USER_EMAIL = 'USER_EMAIL'
 
-  constructor(private http: HttpClient) { }
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json;charset=UTF-8',
+      'Authorization': `Bearer ${this.getToken()}`
+    })
+  };
+
+  constructor(private http: HttpClient, private jwtHelper: JwtHelperService) { }
 
   login(email: string, password: string): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}` + `${this.loginUrl}`, { username: email, password: password })
       .pipe(
         tap(response => {
           const token = response.token;
+          const user_id = response.user_id;
           const username = response.user_nicename;
           const user_email = response.user_email;
           this.storeToken(token);
+          this.storeUserID(user_id);
           this.storeUsername(username);
           this.storeUserEmail(user_email);
         })
       );
   }
 
-  isLoggedIn(): boolean {
-    return !!this.getToken();
+  getUserInfo(userID: number): Observable<any>  {
+    return this.http.get<any>(`${this.apiUrl}` + 'wp/v2/users/me?context=edit', this.httpOptions).pipe(
+      tap( user => {
+        return user;
+      })
+    )
+  }
+
+  public isAuthenticated(): boolean {
+    const token = localStorage.getItem(this.JWT_TOKEN);
+    return !this.jwtHelper.isTokenExpired(token);
   }
 
   logOut(): void {
     this.removeToken();
     this.removeUsername();
     this.removeUserEmail();
+  }
+
+  getUserID(): string | null {
+    return localStorage.getItem(this.USER_ID)
   }
 
   getUserName(): string | null {
@@ -55,6 +79,10 @@ export class AuthService {
     localStorage.setItem(this.JWT_TOKEN, token);
   }
 
+  private storeUserID(user_id: string): void {
+    localStorage.setItem(this.USER_ID, user_id);
+  }
+
   private storeUsername(username: string): void {
     localStorage.setItem(this.USERNAME, username);
   }
@@ -63,7 +91,7 @@ export class AuthService {
     localStorage.setItem(this.USER_EMAIL, userEmail);
   }
 
-  private getToken(): string | null {
+  public getToken(): string | null {
     return localStorage.getItem(this.JWT_TOKEN);
   }
 

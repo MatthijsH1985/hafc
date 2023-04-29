@@ -1,17 +1,17 @@
-<div [ngClass]="['matches next-match']" *ngIf="nextMatch.localteam_id" >
-  <a class="" (click)="onOpenMatch(nextMatch.id)">
+<div [ngClass]="['matches next-match']" *ngIf="nextMatch.localteam_id" class="p-4">
+  <a (click)="onOpenMatch(nextMatch.id)">
     <div class="flex items-center justify-center flex-wrap">
-      <div class="w-[80px]">
+      <div class="w-[40px] md:w-[80px]">
         <img [src]="nextMatch.localteam_id | generateLogoUrl" />
       </div>
       <div class="match-divider mx-8">
-        <div class="text-base">{{ validDateFormat(nextMatch.time.starting_at.date_time) | date: 'EEEE'}}, {{ validDateFormat(nextMatch.time.starting_at.date_time) | date: 'd MMMM'}}</div>
-        <div class="text-base">{{ validDateFormat(nextMatch.time.starting_at.date_time) | date: 'HH:mm' }}</div>
+        <div class="text-sm md:text-base">{{ validDateFormat(nextMatch.time.starting_at.date_time) | date: 'EEEE'}}, {{ validDateFormat(nextMatch.time.starting_at.date_time) | date: 'd MMMM'}}</div>
+        <div class="text-sm md:text-base">{{ validDateFormat(nextMatch.time.starting_at.date_time) | date: 'HH:mm' }}</div>
       </div>
-      <div class="w-[80px]">
+      <div class="w-[40px] md:w-[80px]">
         <img [src]="nextMatch.visitorteam_id | generateLogoUrl" />
       </div>
     </div>
-
   </a>
+  <a class="button button-black button-sm mt-2" href="https://www.heracles.nl">Kaartverkoop</a>
 </div>

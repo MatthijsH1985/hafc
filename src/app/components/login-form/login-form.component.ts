@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {AuthService} from "../../services/auth/auth-service";
 import {Router} from "@angular/router";
+import {catchError, of} from "rxjs";
 
 @Component({
   selector: 'app-login-form',
@@ -24,22 +25,24 @@ export class LoginFormComponent implements OnInit {
   }
 
   isLoggedIn() {
-     return this.authService.isLoggedIn();
+     return this.authService.isAuthenticated();
   }
 
-  onSubmit() {
+  async onSubmit() {
     if (this.loginForm.valid) {
       const email = this.loginForm.get('email')?.value;
       const password = this.loginForm.get('password')?.value;
       if (email) {
-        this.authService.login(email, password).subscribe(
-          () => {
-            this.router.navigate(['account/details']);
-          },
-          (error) => {
+        this.authService.login(email, password).pipe(
+          catchError((error: any) => {
             this.errorMessage = error.message;
+            return of(null);
+          })
+        ).subscribe((result) => {
+          if (result) {
+            this.router.navigate(['account/details']);
           }
-        );
+        });
       }
     }
   }

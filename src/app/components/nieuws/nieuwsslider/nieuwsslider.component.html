@@ -1,11 +1,11 @@
 <swiper-container config="config" init="false" #swiper>
   <swiper-slide *ngFor="let headline of headlines">
-    <a class="relative container xl:w-[1200px] flex items-center ml-auto mr-auto block xl:h-[600px] block bg-black" [routerLink]="['nieuws', headline.id, headline.slug]">
-      <img [src]="headline.better_featured_image.source_url" class="object-cover object-top h-full w-full block opacity-80" />
-      <div class="absolute z-20 left-8 bottom-12 lg:w-[33.3%]">
+    <a class="relative xl:w-[1200px] flex items-center block xl:h-[600px] block bg-black" [routerLink]="['nieuws', headline.id, headline.slug]">
+      <img [src]="headline.better_featured_image.source_url" class="object-cover w-full h-full object-top h-full w-full block opacity-80" />
+      <div class="absolute z-20 left-8 bottom-8 flex md:block flex-col md:bottom-32 lg:w-[33.3%]">
         <h1 [innerHTML]="headline.title.rendered" class="text-white text-4xl max-w-5xl p-4"></h1>
-        <span class="block pl-4 text-white">{{ validDateFormat(headline.date)  | date: 'd MMMM' }}</span>
-        <span class="text-white font-xl border border-white inline-block p-4 mt-5 button ml-4">{{ headline.comments_count }} reacties</span>
+        <span class="block justify-self-end self-end pl-4 text-white">{{ validDateFormat(headline.date)  | date: 'd MMMM' }}</span>
+        <span class="text-white justify-self-end self-end font-xl border border-white inline-block p-4 mt-5 button button-bordered ml-4">{{ headline.comments_count }} reacties</span>
       </div>
     </a>
   </swiper-slide>

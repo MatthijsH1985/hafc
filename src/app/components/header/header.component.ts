@@ -13,14 +13,11 @@ export class HeaderComponent {
   user: string | null | undefined;
 
   constructor(private authService: AuthService) {
+
   }
 
   isLoggedIn(): boolean {
-    return this.authService.isLoggedIn();
-  }
-
-  getUsername() {
-    return this.authService.getUserName();
+    return this.authService.isAuthenticated();
   }
 
   logOut(): void {

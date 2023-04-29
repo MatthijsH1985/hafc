@@ -12,6 +12,9 @@ import {AuthGuard} from "./services/auth/auth.guard";
 import {LoginComponent} from "./pages/account/login/login.component";
 import {LogoutComponent} from "./pages/account/logout/logout.component";
 import {SpelerComponent} from "./pages/team/speler/speler.component";
+import {UserConfigComponent} from "./pages/account/user-config/user-config.component";
+import {UserCommentsComponent} from "./pages/account/user-comments/user-comments.component";
+import {RegisterComponent} from "./pages/account/register/register.component";
 
 const routes: Routes = [
 
@@ -58,13 +61,27 @@ const routes: Routes = [
     path: 'account/login'
   },
   {
+    component: RegisterComponent,
+    path: 'account/register'
+  },
+  {
     component: LogoutComponent,
     path: 'account/logout'
   },
   {
     component: AccountDetailsComponent,
     path: 'account/details',
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: 'mijn-gegevens',
+        component: UserConfigComponent
+      },
+      {
+        path: 'mijn-reacties',
+        component: UserCommentsComponent
+      }
+    ]
   }
 ];
 
