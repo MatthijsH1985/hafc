@@ -87,7 +87,7 @@ export class ModalCommentComponent {
     ).subscribe((result) => {
       if (result) {
         this.onCommentSuccesfull(result);
-        this.toastrService.success('Je reactie is geplaatst', 'Gelukt!');
+        this.toastrService.success('Je reactie wordt geplaatst', 'Gelukt!');
       }
     });
   }

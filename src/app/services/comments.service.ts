@@ -31,7 +31,7 @@ export class CommentsService {
     return this.http.get<Config[]>(this.configService.config.apiEndpoint + '/comments?post='+ post + '&per_page=100&page='+ page + '&order='+ order + '', this.httpOptions);
   }
 
-  getCommentsByUserId(userId: number):Observable<any> {
+  getCommentsByUserId(userId: number | undefined):Observable<any> {
     const token: any = this.authService.getToken();
     const httpOptionsBearer = {
       headers: new HttpHeaders({

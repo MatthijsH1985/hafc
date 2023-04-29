@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {CommentsService} from "../../services/comments.service";
 import {Subscription} from "rxjs";
 import {faCheck} from "@fortawesome/free-solid-svg-icons";
@@ -8,9 +8,10 @@ import {faCheck} from "@fortawesome/free-solid-svg-icons";
   templateUrl: './comments.component.html',
   styleUrls: ['./comments.component.scss']
 })
-export class CommentsComponent implements OnInit{
+export class CommentsComponent implements OnInit, OnChanges {
   commentsSub: Subscription | undefined;
   @Input() postId: string | undefined;
+  @Input() onReloadComments: boolean = false;
   comments: any = [];
   commentPage = 1;
   commentsOrder = 'desc';
@@ -25,10 +26,16 @@ export class CommentsComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.getComments(false, event, this.commentsOrder);
+    this.getComments();
   }
 
-  getComments(isFirstLoad: any, event: any, order: string) {
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['onReloadComments'] && !changes['onReloadComments'].firstChange) {
+      this.getComments();
+    }
+  }
+
+  getComments() {
     this.commentsService.getComments(this.postId).subscribe({
       next: comments => {
         this.comments = comments;

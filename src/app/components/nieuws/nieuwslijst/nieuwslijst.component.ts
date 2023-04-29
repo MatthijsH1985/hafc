@@ -7,6 +7,7 @@ import {Component, Input} from '@angular/core';
 })
 export class NieuwslijstComponent {
   @Input('posts') posts: any;
+  @Input('pagination') pagination: boolean = true;
   @Input('compact') compact: boolean = false;
   validDateFormat(dateString: any) {
     if(dateString) {

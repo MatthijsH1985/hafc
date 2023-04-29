@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit, Output} from '@angular/core';
 import {Subscription} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 import {PostsService} from "../../services/posts.service";
@@ -10,7 +10,7 @@ import {ViewportScroller} from "@angular/common";
   templateUrl: './nieuwsbericht.component.html',
   styleUrls: ['./nieuwsbericht.component.scss']
 })
-export class NieuwsberichtComponent implements OnInit {
+export class NieuwsberichtComponent implements OnInit, OnDestroy {
   currentPostSub: Subscription | undefined;
   postId: any = this.activatedRoute.snapshot.paramMap.get('id')
   post: any;
@@ -18,7 +18,7 @@ export class NieuwsberichtComponent implements OnInit {
   loading: boolean = true;
   currentRoute: any;
   modalCommentsOpen: boolean = false;
-  addedComment: any;
+  @Output() reloadComments: any;
 
   constructor(private activatedRoute: ActivatedRoute,
               private postService: PostsService,
@@ -30,10 +30,10 @@ export class NieuwsberichtComponent implements OnInit {
   ngOnInit() {
     this.loading = true;
     this.currentRoute = this.route.url;
-    this.loadCOmments();
+    this.loadPost();
   }
 
-  loadCOmments() {
+  loadPost() {
     this.currentPostSub = this.postService.getPost(this.postId).subscribe({
       next: post => {
         this.post = post;
@@ -48,7 +48,8 @@ export class NieuwsberichtComponent implements OnInit {
   }
 
   addComment(comment: any) {
-   this.addedComment = comment;
+    this.reloadComments = true;
+    this.onModalClose();
   }
 
   onModalClose() {
@@ -57,6 +58,10 @@ export class NieuwsberichtComponent implements OnInit {
 
   onOpenCommentModal() {
     this.modalCommentsOpen = true;
+  }
+
+  ngOnDestroy() {
+    this.currentPostSub?.unsubscribe()
   }
 
 }
