@@ -44,7 +44,7 @@ export class AuthService {
       );
   }
 
-  getUserInfo(userID: number): Observable<any>  {
+  getUserInfo(): Observable<any>  {
     return this.http.get<any>(`${this.apiUrl}` + 'wp/v2/users/me?context=edit', this.httpOptions).pipe(
       tap( user => {
         return user;

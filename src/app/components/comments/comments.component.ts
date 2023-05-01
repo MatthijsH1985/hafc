@@ -13,8 +13,6 @@ export class CommentsComponent implements OnInit, OnChanges {
   @Input() postId: string | undefined;
   @Input() onReloadComments: boolean = false;
   comments: any = [];
-  commentPage = 1;
-  commentsOrder = 'desc';
   loading: boolean = true;
   noCommentsMessage = 'Er is (nog) niet gereageerd op dit artikel';
   loadingComments: boolean = true;

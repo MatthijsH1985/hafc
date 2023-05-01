@@ -28,7 +28,7 @@ export class UserConfigComponent implements OnInit {
 
   ngOnInit() {
     if (this.authService.isAuthenticated()) {
-      this.authService.getUserInfo(1).pipe(
+      this.authService.getUserInfo().pipe(
         catchError((error: any) => {
           return of(null);
         })

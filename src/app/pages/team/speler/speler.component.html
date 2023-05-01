@@ -3,14 +3,14 @@
   <div *ngIf="player?.id;">
     <div class="relative z-10 container w-full md:w-[1200px] flex items-center flex-col mr-auto ml-auto">
       <div class="flex mb-16 flex flex-col justify-center items-center md:w-[1000px]">
-        <img [src]="player?.better_featured_image.source_url" class="mt-16 block object-cover object-top block md:w-[600px] margin-auto animate-in animate-in slide-in-from-bottom-10 fade-in-25 fill-mode-forwards" />
+        <img [src]="player?.better_featured_image.source_url" class="mt-16 block object-cover object-top block md:w-[400px] margin-auto animate-in animate-in slide-in-from-bottom-10 fade-in-25 fill-mode-forwards" />
         <div class="flex items-center bg-black" >
-          <div class="bg-blue-500 m-4 h-full p-8 self-end text-7xl text-white">
+          <div class="bg-blue-500 m-4 h-full p-8 self-end text-5xl text-white">
             {{ player?.acf.rugnummer }}
           </div>
-          <h1 class="text-3xl md:text-5xl leading-10 uppercase p-4">
-            <span class="block text-6xl text-white">{{ player?.acf.voornaam }}</span>
-            <span class="block text-6xl  text-white font-bold">{{ player?.acf.achternaam }}</span>
+          <h1 class="text-3xl md:text-4xl leading-10 uppercase p-4">
+            <span class="block text-4xl text-white">{{ player?.acf.voornaam }}</span>
+            <span class="block text-4xl  text-white font-bold">{{ player?.acf.achternaam }}</span>
           </h1>
         </div>
       </div>
