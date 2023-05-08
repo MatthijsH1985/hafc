@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {FixturesService} from '../../services/fixtures.service';
-import * as moment from 'moment';
 import 'moment/locale/pt-br';
 
 @Component({
@@ -26,13 +25,16 @@ export class WedstrijdenComponent implements OnInit {
   }
 
   getFixtures() {
-    this.fixturesService.getFixtures(this.teamId).subscribe((data) => {
-      this.teamFixtures = data.data.upcoming.data.slice(1);
+    this.fixturesService.getFixtures(this.teamId).subscribe({
+      next: data => {
+      this.teamFixtures = data.data.upcoming.data;
+        console.log(this.teamFixtures)
       this.nextMatch = data.data.upcoming.data[0];
-      console.log(this.nextMatch);
       this.loading = false;
-    }, (error) => {
-      console.log('Er is iets mis gegaan: ' + error);
+    },
+    error: error => {
+        console.log(error)
+    }
     });
   }
 
@@ -45,11 +47,14 @@ export class WedstrijdenComponent implements OnInit {
   }
 
   getResults() {
-    this.fixturesService.getResults(this.teamId, this.currentSeason).subscribe((data) => {
-      this.teamResults = data.data.latest.data;
-      this.loading = false;
-    }, (error) => {
-      console.log('Er is iets mis gegaan: ' + error);
+    this.fixturesService.getResults(this.teamId, this.currentSeason).subscribe( {
+      next: results => {
+        this.teamResults = results.data.latest.data;
+        this.loading = false;
+      },
+      error: error => {
+        console.log(error);
+      }
     });
   }
 

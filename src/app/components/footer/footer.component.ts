@@ -1,5 +1,7 @@
-import {ChangeDetectionStrategy, Component, HostListener} from '@angular/core';
+import {ChangeDetectionStrategy, Component, HostListener, OnInit} from '@angular/core';
 import {ViewportScroller} from "@angular/common";
+import {AdsService} from "../../services/ads.service";
+import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-footer',
@@ -7,15 +9,28 @@ import {ViewportScroller} from "@angular/common";
   styleUrls: ['./footer.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FooterComponent {
+export class FooterComponent implements OnInit {
   buttonVisible: boolean = false;
+  links: any = [];
+  faArrowUp = faArrowUp;
   @HostListener('window:scroll', ['$event']) onScroll(event: any) {
     const winScroll = event.target.documentElement.scrollTop || event.currentTarget.scrollTop || document.body.scrollTop;
 
     this.isButtonVisible(winScroll);
   }
 
-  constructor(private viewportScroller: ViewportScroller) {
+  constructor(private viewportScroller: ViewportScroller, private linkService: AdsService) {
+  }
+
+  ngOnInit(){
+    this.linkService.getLinks(809).subscribe({
+      next: links => {
+        this.links = links;
+      },
+      error: error => {
+        console.log(error);
+      }
+    })
   }
   isButtonVisible(scrollHeight: number): void {
     this.buttonVisible = (scrollHeight > 1000) ? true : false

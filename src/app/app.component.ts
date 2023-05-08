@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import {Component, Inject, PLATFORM_ID} from '@angular/core';
 import {ChildrenOutletContexts} from "@angular/router";
 import {slideInAnimation} from "./shared/animations";
+import {BehaviorSubject} from "rxjs";
+import {isPlatformBrowser} from "@angular/common";
 
 @Component({
   selector: 'app-root',
@@ -11,7 +13,10 @@ import {slideInAnimation} from "./shared/animations";
   ]
 })
 export class AppComponent {
-  constructor(private contexts: ChildrenOutletContexts) {
+  static isBrowser = new BehaviorSubject<boolean>(false);
+
+  constructor(@Inject(PLATFORM_ID) private platformId: any, private contexts: ChildrenOutletContexts) {
+    AppComponent.isBrowser.next(isPlatformBrowser(platformId));
   }
   getRouteAnimationData() {
     return this.contexts.getContext('primary')?.route?.snapshot?.data?.['animation'];

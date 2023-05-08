@@ -46,6 +46,7 @@ import {UserConfigComponent} from "./pages/account/user-config/user-config.compo
 import {UserService} from "./services/user.service";
 import {RegisterComponent} from "./pages/account/register/register.component";
 import {ToastrModule} from "ngx-toastr";
+import {AdsService} from "./services/ads.service";
 register()
 registerLocaleData(localeNl);
 
@@ -97,9 +98,22 @@ registerLocaleData(localeNl);
     provide: LOCALE_ID,
     useValue: 'nl',
   },
-    PostsService, ConfigService, CommentsService, PlayersService, TeamService, FixturesService, StandingsService, UserService, JwtHelperService, {
+    PostsService,
+    ConfigService,
+    CommentsService,
+    PlayersService,
+    TeamService,
+    FixturesService,
+    StandingsService,
+    AdsService,
+    UserService,
+    JwtHelperService, {
     provide: JWT_OPTIONS, useValue: JWT_OPTIONS
-  }],
+  },
+    {
+      provide: 'isBrowser',
+      useValue: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,8 +1,8 @@
 
 <div class="comments-section">
   <div *ngIf="!loadingComments;">
-    <ul *ngIf="comments.length > 0;" class="xl:w-[1100px] ml-auto mr-auto">
-      <h3 class="text-4xl pt-4">Reacties</h3>
+    <ul *ngIf="comments.length > 0;" class="xl:w-[1100px] container ml-auto mr-auto">
+      <h3 class="text-4xl pt-4 ml-16">Reacties</h3>
       <li *ngFor="let comment of comments" class="p-8">
         <div class="author-name p-4 ml-4 text-xl">
           <h3 class="text-xl font-bold">{{ comment.author_name }} <fa-icon [icon]="faCheck" *ngIf="comment.author !== 0" title="Geverifiëerde gebruiker"></fa-icon></h3>

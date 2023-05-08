@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {PostsService} from "../../services/posts.service";
 import {Title} from "@angular/platform-browser";
 import {ViewportScroller} from "@angular/common";
+import {faChevronRight} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-nieuwsbericht',
@@ -18,6 +19,8 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy {
   loading: boolean = true;
   currentRoute: any;
   modalCommentsOpen: boolean = false;
+  chevronRight = faChevronRight;
+  categoryName: any;
   @Output() reloadComments: any;
 
   constructor(private activatedRoute: ActivatedRoute,
@@ -37,6 +40,7 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy {
     this.currentPostSub = this.postService.getPost(this.postId).subscribe({
       next: post => {
         this.post = post;
+        this.categoryName = this.post.category_name[0].cat_name;
         this.loading = false;
         this.titleService.setTitle(this.post.title.rendered);
         this.viewportScroller.scrollToPosition([0, 0]);

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {PlayersService} from "../../../services/players.service";
 import {ActivatedRoute} from "@angular/router";
 import {Subscription} from "rxjs";
+import {ViewportScroller} from "@angular/common";
 
 @Component({
   selector: 'app-speler',
@@ -16,9 +17,10 @@ export class SpelerComponent implements OnInit {
   playerStatsSub: Subscription | undefined;
   playerStats: any = [];
   playerInfo: any = [];
-  constructor(private playersService: PlayersService, private activatedRoute: ActivatedRoute) {
+  constructor(private playersService: PlayersService, private viewportScroller: ViewportScroller, private activatedRoute: ActivatedRoute) {
   }
   ngOnInit() {
+    this.viewportScroller.scrollToPosition([0, 0]);
     this.playerSub = this.playersService.getPlayer(this.playerId).subscribe({
       next: playerInfo => {
         this.player = playerInfo;

@@ -6,7 +6,10 @@ import {RouterModule} from "@angular/router";
 @NgModule({
   imports: [CommonModule, RouterModule],
   declarations: [NieuwssliderComponent],
-  providers: [],
+  providers: [{
+    provide: 'isBrowser',
+    useValue: true
+  }],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [NieuwssliderComponent]
 })

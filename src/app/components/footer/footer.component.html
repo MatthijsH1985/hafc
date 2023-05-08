@@ -1,10 +1,10 @@
-<button *ngIf="buttonVisible" (click)="toTop()" class="fixed hover:cursor-pointer hover:bg-gray-900 p-4 bg-gray-700 text-white text-xl z-20 right-0 bottom-0">
-  Naar boven
+<button *ngIf="buttonVisible" (click)="toTop()" class="fixed hover:cursor-pointer hover:bg-gray-900 p-4 bg-gray-800 text-white text-xl z-20 right-0 bottom-0">
+  <fa-icon [icon]="faArrowUp"></fa-icon> Naar boven
 </button>
 
-<footer class="p-8 bg-gray-800">
+<footer class="px-8 py-16 bg-gray-800">
   <div class="container xl:w-[1280px] relative z-10 ml-auto mr-auto">
-    <nav class="f-full grid grid-cols-4 ">
+    <nav class="flex flex-col md:grid md:grid-cols-2 md:grid-cols-4">
       <ul class="text-white">
         <li>
           <strong class="mb-2 block">HAFC.nl</strong>
@@ -34,14 +34,9 @@
         <li>
           <strong class="mb-2 block">Interessante links</strong>
         </li>
-        <li class="mb-2">
-          <a href="" title="" class="hover:underline">
-            Voetbaltracker
-          </a>
-        </li>
-        <li class="mb-2">
-          <a href="" title="" class="hover:underline">
-            ShockMedia
+        <li class="mb-2" *ngFor="let link of links">
+          <a [href]="link.acf.url" target="_blank" [title]="link.acf.anchor" class="hover:underline">
+            {{ link.acf.anchor }}
           </a>
         </li>
       </ul>

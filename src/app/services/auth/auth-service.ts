@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
+import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, tap} from 'rxjs';
 import { environment } from '../../../environments/environment';
 import {JwtHelperService} from "@auth0/angular-jwt";
+import {localStorage} from "localstorage-memory";
 
 interface LoginResponse {
   token: string;
@@ -26,20 +27,23 @@ export class AuthService {
     })
   };
 
-  constructor(private http: HttpClient, private jwtHelper: JwtHelperService) { }
+  constructor(private http: HttpClient, private jwtHelper: JwtHelperService, @Inject('isBrowser') private isBrowser: boolean) {
+  }
 
   login(email: string, password: string): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}` + `${this.loginUrl}`, { username: email, password: password })
       .pipe(
         tap(response => {
-          const token = response.token;
-          const user_id = response.user_id;
-          const username = response.user_nicename;
-          const user_email = response.user_email;
-          this.storeToken(token);
-          this.storeUserID(user_id);
-          this.storeUsername(username);
-          this.storeUserEmail(user_email);
+          if (this.isBrowser) {
+            const token = response.token;
+            const user_id = response.user_id;
+            const username = response.user_nicename;
+            const user_email = response.user_email;
+            this.storeToken(token);
+            this.storeUserID(user_id);
+            this.storeUsername(username);
+            this.storeUserEmail(user_email);
+          }
         })
       );
   }
@@ -52,9 +56,11 @@ export class AuthService {
     )
   }
 
-  public isAuthenticated(): boolean {
-    const token = localStorage.getItem(this.JWT_TOKEN);
-    return !this.jwtHelper.isTokenExpired(token);
+  public isAuthenticated(): any {
+    if (this.isBrowser && localStorage !== undefined) {
+      const token = localStorage.getItem(this.JWT_TOKEN);
+      return !this.jwtHelper.isTokenExpired(token);
+    }
   }
 
   logOut(): void {
@@ -63,47 +69,69 @@ export class AuthService {
     this.removeUserEmail();
   }
 
-  getUserID(): string | null {
-    return localStorage.getItem(this.USER_ID)
+  getUserID(): any | null {
+    if (this.isBrowser && localStorage !== undefined) {
+      return localStorage.getItem(this.USER_ID)
+    }
   }
 
-  getUserName(): string | null {
-    return localStorage.getItem(this.USERNAME);
+  getUserName(): any | null {
+    if (this.isBrowser && localStorage !== undefined) {
+      return localStorage.getItem(this.USERNAME);
+    }
   }
 
-  getUserEmail() {
-    return localStorage.getItem(this.USER_EMAIL);
+  getUserEmail(): any {
+    if (this.isBrowser && localStorage !== undefined) {
+      return localStorage.getItem(this.USER_EMAIL);
+    }
   }
 
   private storeToken(token: string): void {
-    localStorage.setItem(this.JWT_TOKEN, token);
+    if (this.isBrowser && localStorage !== undefined) {
+      localStorage.setItem(this.JWT_TOKEN, token);
+    }
   }
 
   private storeUserID(user_id: string): void {
-    localStorage.setItem(this.USER_ID, user_id);
+    if (this.isBrowser && localStorage !== undefined) {
+      localStorage.setItem(this.USER_ID, user_id);
+    }
   }
 
   private storeUsername(username: string): void {
-    localStorage.setItem(this.USERNAME, username);
+    if (this.isBrowser && localStorage !== undefined) {
+      localStorage.setItem(this.USERNAME, username);
+    }
   }
 
   private storeUserEmail(userEmail: string): void {
-    localStorage.setItem(this.USER_EMAIL, userEmail);
+    if (this.isBrowser && localStorage !== undefined) {
+      localStorage.setItem(this.USER_EMAIL, userEmail);
+    }
   }
 
-  public getToken(): string | null {
-    return localStorage.getItem(this.JWT_TOKEN);
+  public getToken(): any | null {
+    if (this.isBrowser && localStorage !== undefined) {
+      return localStorage.getItem(this.JWT_TOKEN);
+    }
   }
 
   private removeToken(): void {
-    localStorage.removeItem(this.JWT_TOKEN);
+    if (this.isBrowser && localStorage !== undefined) {
+      localStorage.removeItem(this.JWT_TOKEN);
+    }
   }
 
   private removeUsername(): void {
-    localStorage.removeItem(this.USERNAME);
+    if (this.isBrowser && localStorage !== undefined) {
+      localStorage.removeItem(this.USERNAME);
+    }
   }
 
   private removeUserEmail(): void {
-    localStorage.removeItem(this.USER_EMAIL);
+    if (this.isBrowser && localStorage !== undefined) {
+      localStorage.removeItem(this.USER_EMAIL);
+    }
   }
 }

@@ -4,7 +4,7 @@
     <div class="o-table-row" *ngIf="!compact">
       <div class="o-table-cell"></div>
       <div class="o-table-cell"></div>
-      <div class="o-table-cell">Team</div>
+      <div class="o-table-cell pr-2">Team</div>
       <div class="o-table-cell"></div>
       <div class="o-table-cell" *ngIf="!compact"></div>
       <div class="o-table-cell" *ngIf="!compact"></div>
@@ -17,14 +17,14 @@
   </div>
   <div class="o-table-body">
     <div class="o-table-row" *ngFor="let club of ranking; let i = index;" [ngClass]="{'font-bold bg-gray-100': club.team_name === 'Heracles Almelo'}">
-      <div class="o-table-cell rank-position p-2 text-sm md:text-base">
+      <div class="o-table-cell rank-position text-sm md:text-base pr-1">
         {{ club?.position }}
       </div>
       <div class="o-table-cell rank-logo py-2 text-sm md:text-base">
         <img [src]="[club?.team_id | generateLogoUrl]" class="w-8" />
       </div>
-      <div class="o-table-cell rank-clubname py-2 text-sm md:text-base">
-        {{ club?.team_name }}
+      <div class="flex md:o-table-cell rank-clubname py-2 text-sm md:text-base">
+        <div class="inline-block md:table-cell text-ellipsis whitespace-nowrap overflow-hidden max-w-[80%]">{{ club?.team_name }}</div>
       </div>
       <div class="o-table-cell left-auto py-2 text-sm md:text-base">
         {{ club?.overall.games_played }}
@@ -47,8 +47,8 @@
       <div class="o-table-cell py-2 text-sm md:text-base" *ngIf="!compact">
         {{ club?.total.goal_difference }}
       </div>
-      <div class="o-table-cell py-2 text-sm md:text-base">
-        {{ club?.points }}
+      <div class="o-table-cell text-sm md:text-base">
+        <div class="pl-2">{{ club?.points }}</div>
       </div>
     </div>
   </div>

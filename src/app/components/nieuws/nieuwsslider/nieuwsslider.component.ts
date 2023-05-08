@@ -1,7 +1,7 @@
 import {
   AfterViewInit,
   Component,
-  ElementRef,
+  ElementRef, Inject,
   Input,
   ViewChild,
 } from '@angular/core';
@@ -10,7 +10,6 @@ import Swiper, {
   Mousewheel,
   Navigation,
   Pagination,
-  EffectCreative,
   SwiperOptions,
 } from 'swiper'
 
@@ -32,7 +31,7 @@ export class NieuwssliderComponent implements AfterViewInit {
       prevEl: '.prev-button',
       nextEl: '.next-button',
     },
-    pagination: true,
+    pagination: false,
     slidesPerView: 1,
     centeredSlides: true,
     grabCursor: true,
@@ -50,15 +49,17 @@ export class NieuwssliderComponent implements AfterViewInit {
   @Input('headlines') headlines: any;
   @ViewChild('swiper') swiper: ElementRef | undefined
 
-  constructor() {
+  constructor(@Inject('isBrowser') private isBrowser: boolean) {
 
   }
 
   ngAfterViewInit() {
     // @ts-ignore
     Object.assign(this.swiper.nativeElement, this.config)
-    // @ts-ignore
-    this.swiper.nativeElement.initialize()
+    if(this.isBrowser) {
+      // @ts-ignore
+     // this.swiper.nativeElement.initialize()
+    }
   }
 
   onSlideChange(event: any) {
