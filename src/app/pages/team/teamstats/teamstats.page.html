@@ -1,0 +1,177 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="Terug"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Statistieken
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="header header-game greyscale" *ngIf="venue?.image_path !== null" [ngStyle]="{'background-image': 'url(' + venue?.image_path + ')'}"></div>
+  <div class="content-page" *ngIf="teamStats">
+    <div class="team-info-container">
+      <div class="team-logo">
+        <img *ngIf="teamStats?.teamId !== null" src="{{ teamStats?.team_id | generateLogoUrl }}" />
+      </div>
+      <div class="stats-container">
+        <h3>Gemiddelde</h3>
+        <div class="stat">
+          <label>Gemid. balbezit:</label>
+          <div class="value">
+            {{ teamStats?.avg_ball_possession_percentage | roundNumber }} %
+          </div>
+        </div>
+        <div class="stat">
+          <label>Gemid. speler beoordeling:</label>
+          <div class="value">
+            {{ teamStats?.avg_player_rating | roundNumber }}
+          </div>
+        </div>
+        <h3>Doelpunten</h3>
+        <h4>Doelpunten/minuten</h4>
+        <div class="bar-stats">
+          <div class="bar-inner" *ngIf="teamStats?.scoring_minutes[0].period[0].percentage !== 0" [ngStyle]="{'width': teamStats?.scoring_minutes[0].period[0].percentage + '%' } ">
+            <div class="minutes">
+              0-15
+            </div>
+            <div class="percentage">
+              {{ teamStats?.scoring_minutes[0].period[0].percentage }}%
+            </div>
+          </div>
+          <div class="bar-inner" *ngIf="teamStats?.scoring_minutes[0].period[1].percentage !== 0" [ngStyle]="{'width': teamStats?.scoring_minutes[0].period[1].percentage + '%' } ">
+            <div class="minutes">
+              15-30
+            </div>
+            <div class="percentage">
+              {{ teamStats?.scoring_minutes[0].period[1].percentage }}%
+            </div>
+          </div>
+          <div class="bar-inner" *ngIf="teamStats?.scoring_minutes[0].period[2].percentage !== 0" [ngStyle]="{'width': teamStats?.scoring_minutes[0].period[2].percentage + '%' } ">
+            <div class="minutes">
+              30-45
+            </div>
+            <div class="percentage">
+              {{ teamStats?.scoring_minutes[0].period[2].percentage }}%
+            </div>
+          </div>
+          <div class="bar-inner" *ngIf="teamStats?.scoring_minutes[0].period[3].percentage !== 0" [ngStyle]="{'width': teamStats?.scoring_minutes[0].period[3].percentage + '%' } ">
+            <div class="minutes">
+              45-60
+            </div>
+            <div class="percentage">
+              {{ teamStats?.scoring_minutes[0].period[3].percentage }}%
+            </div>
+          </div>
+          <div class="bar-inner" *ngIf="teamStats?.scoring_minutes[0].period[4].percentage !== 0" [ngStyle]="{'width': teamStats?.scoring_minutes[0].period[4].percentage + '%' } ">
+            <div class="minutes">
+              60-75
+            </div>
+            <div class="percentage">
+              {{ teamStats?.scoring_minutes[0].period[4].percentage }}%
+            </div>
+          </div>
+          <div class="bar-inner" *ngIf="teamStats?.scoring_minutes[0].period[5].percentage !== 0" [ngStyle]="{'width': teamStats?.scoring_minutes[0].period[5].percentage + '%' } ">
+            <div class="minutes">
+              75-90
+            </div>
+            <div class="percentage">
+              {{ teamStats?.scoring_minutes[0].period[5].percentage }}%
+            </div>
+          </div>
+        </div>
+        <h4>Doelpunten gemaakt</h4>
+        <div class="stat">
+          <label>Thuis</label>
+          <div class="value">
+            {{ teamStats?.goals_for.home }}
+          </div>
+        </div>
+        <div class="stat">
+          <label>Uit</label>
+          <div class="value">
+            {{ teamStats?.goals_for.away }}
+          </div>
+        </div>
+        <div class="stat">
+          <label><strong>Totaal</strong></label>
+          <div class="value">
+            <strong>{{ teamStats?.goals_for.total }}</strong>
+          </div>
+        </div>
+        <h4>Doelpunten tegen</h4>
+        <div class="stat">
+          <label>Thuis</label>
+          <div class="value">
+            {{ teamStats?.goals_against.home }}
+          </div>
+        </div>
+        <div class="stat">
+          <label>Uit</label>
+          <div class="value">
+            {{ teamStats?.goals_against.away }}
+          </div>
+        </div>
+        <div class="stat">
+          <label><strong>Totaal</strong></label>
+          <div class="value">
+            <strong>{{ teamStats?.goals_against.total }}</strong>
+          </div>
+        </div>
+        <h3>Kaarten</h3>
+        <div class="stat">
+          <label>Gele kaarten</label>
+          <div class="value">
+            {{ teamStats?.yellowcards }}
+          </div>
+        </div>
+        <div class="stat">
+          <label>Rode kaarten</label>
+          <div class="value">
+            {{ teamStats?.redcards }}
+          </div>
+        </div>
+        <h3>Clean sheets</h3>
+        <div class="stat">
+          <label>Thuis</label>
+          <div class="value">
+            {{ teamStats?.clean_sheet.home }}
+          </div>
+        </div>
+        <div class="stat">
+          <label>Uit</label>
+          <div class="value">
+            {{ teamStats?.clean_sheet.away }}
+          </div>
+        </div>
+        <div class="stat">
+          <label>Totaal:</label>
+          <div class="value">
+            {{ teamStats?.clean_sheet.total }}
+          </div>
+        </div>
+        <h3>Overige data</h3>
+        <div class="stat">
+          <label>Corners</label>
+          <div class="value">
+            {{ teamStats?.total_corners }}
+          </div>
+        </div>
+        <div class="stat">
+          <label>Schoten op doel</label>
+          <div class="value">
+            {{ teamStats?.shots_on_target }}
+          </div>
+        </div>
+        <div class="stat">
+          <label>Schoten naast of over het doel</label>
+          <div class="value">
+            {{ teamStats?.shots_off_target }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-loading-indicator *ngIf="loading"></app-loading-indicator>
+</ion-content>

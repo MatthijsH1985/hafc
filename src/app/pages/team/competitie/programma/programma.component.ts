@@ -22,12 +22,11 @@ export class ProgrammaComponent implements OnInit{
 
   ngOnInit() {
     this.getFixtures();
-    this.getResults();
   }
 
   getFixtures() {
     this.fixturesService.getFixtures(this.teamId).subscribe((data) => {
-      this.teamFixtures = data.data.upcoming.data.slice(1);
+      this.teamFixtures = data.data.upcoming.data;
       this.nextMatch = data.data.upcoming.data[0];
       console.log(this.nextMatch);
       this.loading = false;
@@ -40,15 +39,6 @@ export class ProgrammaComponent implements OnInit{
     if(dateString) {
       return moment.utc(dateString);
     }
-  }
-
-  getResults() {
-    this.fixturesService.getResults(this.teamId, this.currentSeason).subscribe((data) => {
-      this.teamResults = data.data.latest.data;
-      this.loading = false;
-    }, (error) => {
-      console.log('Er is iets mis gegaan: ' + error);
-    });
   }
 
   onOpenMatchReport(matchId: number) {

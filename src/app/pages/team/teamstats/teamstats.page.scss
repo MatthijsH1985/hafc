@@ -1,0 +1,70 @@
+.team-info-container{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  .team-logo {
+    margin-top: -4rem;
+  }
+  .stats-container {
+    width: 100%;
+    .stat {
+      line-height: 1.5;
+      margin: .5rem 0;
+      display: flex;
+      align-items: center;
+      font-size: .9rem;
+      .value {
+        margin-left: auto;
+      }
+    }
+    h3 {
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+    h4 {
+      margin: 1rem 0 0 0;
+      color: var(--ion-color-primary);
+      font-size: .9rem;
+    }
+  }
+}
+
+.bar-stats {
+  width: 100%;
+  background: var(--ion-background-color);
+  display: table;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  margin: 1rem 0 0 0;
+  .bar-inner {
+    display: table-cell;
+    font-size: .6rem;
+    text-align: center;
+    vertical-align: middle;
+    .percentage {
+      background: var(--ion-color-light);
+      color: var(--ion-color-dark);
+    }
+    &:nth-child(odd) {
+      .percentage {
+        background: var(--ion-color-primary);
+        color: var(--ion-color-white);
+      }
+    }
+  }
+  .percentage, .minutes {
+    padding: .25rem;
+  }
+  .minutes {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .bar-legend {
+    height: 20px;
+    text-align: center;
+    padding: .5rem;
+  }
+}

@@ -27,25 +27,29 @@ export class UserConfigComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log('Koekoek')
+    console.log(this.authService.isAuthenticated());
     if (this.authService.isAuthenticated()) {
-      this.authService.getUserInfo().pipe(
-        catchError((error: any) => {
-          return of(null);
-        })
-      ).subscribe((user: any) => {
-        this.userID = user.id;
-        this.userForm = new FormGroup({
-          username: new FormControl({
-            value: user.username,
-            disabled: true
-          }),
-          user_nickname: new FormControl(user.nickname, Validators.required),
-          user_email: new FormControl(user.email, Validators.required),
-          user_first_name: new FormControl(user.first_name, Validators.required),
-          user_last_name: new FormControl(user.last_name, Validators.required),
-        })
-        this.loadingUser = false;
-      });
+      this.authService.getUserInfo().subscribe({
+        next: (user: any) => {
+          this.userID = user.id;
+          console.log(user);
+          this.userForm = new FormGroup({
+            username: new FormControl({
+              value: user.username,
+              disabled: true
+            }),
+            user_nickname: new FormControl(user.nickname, Validators.required),
+            user_email: new FormControl(user.email, Validators.required),
+            user_first_name: new FormControl(user.first_name, Validators.required),
+            user_last_name: new FormControl(user.last_name, Validators.required),
+          })
+          this.loadingUser = false;
+        },
+        error: (err: any) => {
+          console.log(err);
+        }
+      })
     }
   }
 

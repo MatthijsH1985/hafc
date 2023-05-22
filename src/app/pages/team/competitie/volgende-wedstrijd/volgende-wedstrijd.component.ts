@@ -17,10 +17,13 @@ export class VolgendeWedstrijdComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.fixturesService.getFixtures(1403).subscribe((data) => {
-      this.nextMatch = data.data.upcoming.data[0];
-    }, (error) => {
-      console.log(error);
+    this.fixturesService.getFixtures(1403).subscribe({
+      next: data => {
+        this.nextMatch = data.data.upcoming.data[0];
+      },
+      error: error => {
+        console.error(error);
+      }
     });
   }
 
