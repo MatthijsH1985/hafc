@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import {AuthService} from "../../services/auth/auth-service";
-import {faUser} from "@fortawesome/free-solid-svg-icons";
-import {Router} from "@angular/router";
+import { faStream} from "@fortawesome/free-solid-svg-icons";
+import {MenuService} from "../../services/menu.service";
 
 @Component({
   selector: 'app-header',
@@ -9,18 +8,8 @@ import {Router} from "@angular/router";
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  faUser = faUser;
-  user: string | null | undefined;
+  faStream = faStream;
 
-  constructor(private authService: AuthService) {
-
-  }
-
-  isLoggedIn(): boolean {
-    return this.authService.isAuthenticated();
-  }
-
-  logOut(): void {
-    this.authService.logOut();
+  constructor(public menuService: MenuService) {
   }
 }

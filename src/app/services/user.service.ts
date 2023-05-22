@@ -27,6 +27,18 @@ export class UserService {
     return this.http.post<Config[]>(`${this.apiUrl}` + `${this.userServiceUrl}`  + 'create/', user, this.httpOptions);
   }
 
+  forgetPassWord(userEmail: any) {
+    return this.http.post<Config[]>(`${this.apiUrl}` + 'bdpwr/v1/reset-password/', userEmail, this.httpOptions);
+  }
+
+  setUserPassword(payload: any) {
+    return this.http.post<Config[]>(`${this.apiUrl}` + 'bdpwr/v1/set-password/', payload, this.httpOptions);
+  }
+
+  validateCode(payload: any) {
+    return this.http.post<Config[]>(`${this.apiUrl}` + 'bdpwr/v1/validate-code/', payload, this.httpOptions);
+  }
+
   updateUser(user: number | undefined, userData: any): Observable<Config[]> {
     const httpOptions = {
       headers: new HttpHeaders({

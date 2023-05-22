@@ -1,6 +1,6 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
-import {StandingsService} from "../../../services/standings.service";
+import {StandingsService} from "../../../../services/standings.service";
 
 interface RankingRow {
   team_name: string;
@@ -17,6 +17,7 @@ export class StandComponent implements OnInit, OnDestroy {
   rankingSub: Subscription | undefined;
   ranking: any = [];
   loading = true;
+  teamId: number = 0;
   mainClub: any;
   position: any;
   compactRanking: any = [];

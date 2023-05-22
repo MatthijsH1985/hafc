@@ -1,0 +1,62 @@
+
+
+.main-menu {
+  .has-sub-menu {
+    &:hover {
+      @apply bg-white
+    }
+    .sub-menu-inner {
+      a {
+        &:hover {
+          @apply underline text-blue-500
+        }
+      }
+    }
+  }
+  &.menu-open {
+    @apply flex-1 fixed w-screen h-screen left-0 top-0 justify-start items-start flex-col bg-black pt-16;
+    .text-left, .text-right {
+      display: block;
+      width: 100%;
+      flex: 0;
+      text-align: left;
+      ul {
+        li {
+          &:hover {
+            .button {
+              @apply block
+            }
+            .sub-menu {
+              @apply pt-0
+            }
+          }
+          @apply ml-0
+        }
+        @apply flex-col
+      }
+      .sub-menu {
+        .sub-menu-inner {
+          h4 {
+            @apply text-white
+          }
+          li {
+            a {
+              @apply text-white
+            }
+          }
+          @apply bg-black pl-8 pt-0 pb-0 mt-0 h-auto pt-0
+        }
+        @apply md:absolute relative bg-black mt-0 pt-0 pb-4
+      }
+    }
+
+    nav {
+      display: block !important;
+      &.right-menu {
+        @apply pt-8;
+      }
+    }
+
+  }
+  @apply p-12 md:p-6
+}

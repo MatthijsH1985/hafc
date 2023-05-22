@@ -12,6 +12,7 @@ import {Router} from "@angular/router";
 export class RegistrationFormComponent {
   userFormData: FormGroup;
   errorMessage: string = '';
+  feedbackMessage: string = ''
 
   constructor(private userService: UserService, private router: Router) {
     this.userFormData = new FormGroup({
@@ -36,12 +37,15 @@ export class RegistrationFormComponent {
     })
     this.userService.createUser(formData).pipe(
       catchError((error: any) => {
-        this.errorMessage = error.message;
+        this.errorMessage = error.error.message;
         return of(null);
       })
     ).subscribe((result:any) => {
       if (result) {
-        this.router.navigateByUrl('/account/login');
+        this.feedbackMessage = 'Gelukt, je bent succesvol geregistreerd. je kunt nu inloggen';
+        setTimeout(() => {
+          this.router.navigateByUrl('/account/login');
+        }, 3000)
       }
     });
   }

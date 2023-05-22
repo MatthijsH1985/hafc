@@ -21,6 +21,10 @@ export class PostsService {
     return this.http.get<Config[]>(this.configService.config.apiEndpoint + '/posts?page='+ page + '&per_page=12&categories=' + category + '', this.httpOptions);
   }
 
+  getPostsBySearchTerm(searchTerm: string, page: number = 1) {
+    return this.http.get<Config[]>(this.configService.config.apiEndpoint + '/search?search=' + searchTerm + '&context=embed&page=' + page + '&per_page=20', this.httpOptions);
+  }
+
   getPost(postId: any | null): Observable<Config[]> {
     // @ts-ignore
     return this.http.get<Config[]>(this.configService.config.apiEndpoint + '/posts/'+ postId + '', this.httpOptions);

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {FixturesService} from "../../../services/fixtures.service";
+import {FixturesService} from "../../../../services/fixtures.service";
 import * as moment from 'moment';
 
 @Component({

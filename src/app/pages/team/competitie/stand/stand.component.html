@@ -1,4 +1,4 @@
-<div class="relative z-20 bg-white">
+<div class="relative z-20 bg-white p-4">
   <div class="container ml-auto mr-auto" [ngClass]="{'xl:w-[1100px]': !compact}">
     <div class="o-table">
       <div class="o-table-header" *ngIf="ranking.length > 0">
@@ -25,7 +25,7 @@
             <img [src]="[club?.team_id | generateLogoUrl]" class="w-8" />
           </div>
           <div class="o-table-cell rank-clubname">
-            {{ club?.team_name }}
+            <a class="hover:text-blue-500 hover:underline" [routerLink]="['/', 'club', 'teamstats', club.team_id]" [title]="club?.team_name">{{ club?.team_name }}</a>
           </div>
           <div class="o-table-cell left-auto py-2">
             {{ club?.overall.games_played }}

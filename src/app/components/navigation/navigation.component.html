@@ -1,0 +1,66 @@
+<div class=" m-auto xl:w-[1200px] relative container flex justify-center items-center main-menu" [ngClass]="{'menu-open': (menuService.isOpen | async)}">
+<div class="flex-1 text-left">
+  <nav class="hidden lg:block left-menu">
+    <ul class="flex space-x-2 uppercase text-white menu-left">
+      <li>
+        <a class="button button-black" (click)="menuService.close()" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/']">Home</a>
+      </li>
+      <li>
+        <a class="button  button-black" (click)="menuService.close()" routerLinkActive="active" routerLink="/nieuws">Nieuws</a>
+      </li>
+      <li>
+        <a class="button  button-black" (click)="menuService.close()" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['specials']">Specials</a>
+      </li>
+      <li class="has-sub-menu group button button-black" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <a (click)="menuService.close()" [routerLink]="['club']">Club <fa-icon class="text-xs" [icon]="faChevronDown"></fa-icon></a>
+        <div class="sub-menu hidden absolute w-full left-0 pt-8 group-hover:flex">
+          <div class="bg-white sub-menu-inner p-8 w-full h-[300px] md:flex">
+            <div class="md:p-4">
+              <h4 class="my-4 text-black">Eerste elftal</h4>
+              <ul class="">
+                <li>
+                  <a class="text-black text-sm" (click)="menuService.close()" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['club', 'selectie']">Selectie</a>
+                </li>
+              </ul>
+            </div>
+            <div class="md:p-4">
+              <h4 class="my-4 text-black">Competitie</h4>
+              <ul class="">
+                <li>
+                  <a class="text-black text-sm" (click)="menuService.close()" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['club', 'competitie', 'wedstrijdprogramma']">Wedstrijdprogramma</a>
+                </li>
+                <li>
+                  <a class="text-black text-sm" (click)="menuService.close()" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['club', 'competitie', 'uitslagen']">Uitslagen</a>
+                </li>
+                <li>
+                  <a class="text-black text-sm" (click)="menuService.close()" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['club', 'competitie', 'stand']">Stand</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </nav>
+</div>
+<div class="flex-1 text-right uppercase text-white menu-right">
+  <nav class="hidden lg:block right-menu">
+    <ul class="flex space-x-2 uppercase text-white justify-end">
+      <li *ngIf="!isLoggedIn()">
+        <a class="button  button-black" (click)="menuService.close()" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['account', 'register']">Registreer</a>
+      </li>
+      <li *ngIf="!isLoggedIn()">
+        <a class="button  button-black" (click)="menuService.close()" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"[routerLink]="['account', 'login']">Inloggen</a>
+      </li>
+      <li *ngIf="isLoggedIn()">
+        <a class="button  button-black" (click)="menuService.close()" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['account', 'details', 'mijn-gegevens']">
+          Mijn HAFC <fa-icon [icon]="faUser"></fa-icon>
+        </a>
+      </li>
+      <li *ngIf="isLoggedIn()">
+        <a class="button button-black" (click)="menuService.close()" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['account', 'logout']" title="Uitloggen">Uitloggen</a>
+      </li>
+    </ul>
+  </nav>
+</div>
+</div>

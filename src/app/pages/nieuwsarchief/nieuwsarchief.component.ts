@@ -1,54 +1,37 @@
-import {Component, OnInit} from '@angular/core';
-import {Subscription} from "rxjs";
+import {Component, OnInit, Output} from '@angular/core';
+import {catchError, of, Subscription} from "rxjs";
 import {PostsService} from "../../services/posts.service";
 import {Router} from "@angular/router";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-nieuwsarchief',
   templateUrl: './nieuwsarchief.component.html',
   styleUrls: ['./nieuwsarchief.component.scss']
 })
-export class NieuwsarchiefComponent implements OnInit {
+export class NieuwsarchiefComponent {
   posts: any = [];
-  headlines: any;
-  postPage = 1;
   loading = true;
-  postsSub: Subscription | undefined;
-  constructor(private postsService: PostsService, private router: Router) {}
+  @Output() searchTerms: any;
+  reloadItems: boolean = false;
 
-  ngOnInit() {
-    this.getPosts(false, '')
+  searchForm: FormGroup = new FormGroup({
+    searchTerm: new FormControl('', [Validators.required])
+  });
+
+  constructor(private postsService: PostsService, private router: Router) {
+
   }
 
-  getPosts(isFirstLoad: any, event: any): void {
-    this.postsSub = this.postsService.getPosts(this.postPage).subscribe((data) => {
-      for (let i = 0; i < data.length; i++) {
-        // @ts-ignore
-        this.posts.push(data[i]);
+  async onSearch() {
+    this.posts = [];
+    if (this.searchForm.valid) {
+      const searchTerm = this.searchForm.get('searchTerm')?.value;
+      if (searchTerm) {
+        this.reloadItems = true;
+        this.searchTerms = searchTerm;
       }
-
-      if (isFirstLoad) {
-        event.target.complete();
-      } else {
-        this.createHeadlines(this.posts);
-      }
-      this.loading = false;
-      this.postPage++;
-
-    }, error => {
-      console.log(error);
-    });
-  }
-
-  createHeadlines(posts: any): void {
-    this.headlines = posts.slice(0,3);
-  }
-
-  getMorePosts(event: any) {
-    this.getPosts(true, event);
-  }
-
-  openPost(post: any): void {
-    this.router.navigateByUrl(`nieuws/${post.id}`);
+    }
+    this.reloadItems = false;
   }
 }

@@ -5,9 +5,11 @@ import {Router} from "@angular/router";
 import {Title} from "@angular/platform-browser";
 import {ViewportScroller} from "@angular/common";
 import {AdsService} from "../../services/ads.service";
+import { Platform } from '@angular/cdk/platform';
 
 // @ts-ignore
 import * as _ from "lodash";
+import {MenuService} from "../../services/menu.service";
 
 @Component({
   selector: 'app-homepage',
@@ -18,7 +20,7 @@ export class HomepageComponent implements OnInit {
   posts: any = [];
   postPage = 1;
   loading = true;
-  headlines: any = [];
+  headline: any = [];
   postsSub: Subscription | undefined;
   adsSub: Subscription | undefined;
   adsCategoryId: number = 804;
@@ -29,11 +31,11 @@ export class HomepageComponent implements OnInit {
               private adsService: AdsService,
               private router: Router,
               private titleService: Title,
-              private viewportScroller: ViewportScroller) {
+              private viewportScroller: ViewportScroller,
+              private platform: Platform) {
   }
 
   ngOnInit() {
-    this.getPosts(false, '');
     this.getAds(this.adsCategoryId);
     this.titleService.setTitle('HAFC - Wij zijn Heracles!');
     this.viewportScroller.scrollToPosition([0, 0]);
@@ -45,37 +47,28 @@ export class HomepageComponent implements OnInit {
           this.randomizeAds(ads);
         },
         error: error => {
-          console.log(error)
+          console.error(error);
         }
       }
     )
   }
 
-  randomizeAds(ads: any) {
-    this.randomizedAds  = _.sampleSize(ads, 4);
-    setInterval(() => {
-      const adsRandimized = _.sampleSize(ads, 4);
-      this.randomizedAds = adsRandimized;
-    }, 15000)
+  validDateFormat(dateString: any) {
+    if(dateString) {
+      const newDate = new Date(dateString);
+      return newDate.toISOString();
+    }
+    return null;
   }
 
-  getPosts(isFirstLoad: any, event: any): void {
-    this.postsSub = this.postsService.getPosts(this.postPage).subscribe((data) => {
-      for (let i = 0; i < data.length; i++) {
-        // @ts-ignore
-        this.posts.push(data[i]);
-      }
-      this.headlines = this.posts.slice(0,3);
-
-      if (isFirstLoad) {
-        event.target.complete();
-      }
-      this.loading = false;
-      this.postPage++;
-
-    }, error => {
-      console.log(error);
-    });
+  randomizeAds(ads: any) {
+    this.randomizedAds  = _.sampleSize(ads, 4);
+    if (this.platform.isBrowser) {
+      setInterval(() => {
+        const adsRandimized = _.sampleSize(ads, 4);
+        this.randomizedAds = adsRandimized;
+      }, 15000)
+    }
   }
 
   openPost(post: any): void {

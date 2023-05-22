@@ -31,3 +31,9 @@
     <button class="button button-black" type="submit" [disabled]="!userFormData.valid">Registreer</button>
   </div>
 </form>
+<div *ngIf="errorMessage" class="mt-4 p-2 bg-red-200 text-red-800 rounded-md">
+  {{ errorMessage }}
+</div>
+<div *ngIf="feedbackMessage" class="mt-4 p-2 bg-green-100 text-green-800 rounded-md">
+
+</div>

@@ -1,12 +1,21 @@
-<swiper-container config="config" init="false" #swiper>
-  <swiper-slide *ngFor="let headline of headlines">
-    <a class="relative xl:w-[1200px] flex items-center block xl:h-[600px] block bg-black group" [routerLink]="['nieuws', headline.id, headline.slug]">
-      <img [src]="headline.better_featured_image.source_url" class="object-cover w-full h-[400px] md:h-[600px] object-top h-full transition-all w-full block opacity-80 group-hover:scale-105 group-hover:opacity-100" />
-      <div class="absolute z-20 left-8 bottom-8 md:block flex-col md:bottom-32 lg:w-[33.3%]">
-        <h1 [innerHTML]="headline.title.rendered" class="text-white text-2xl p-4"></h1>
-        <span class="block ml-4 text-white">{{ validDateFormat(headline.date)  | date: 'd MMMM' }}</span>
-        <span class="text-white ml-4 font-xl border border-white inline-block p-4 mt-5 button button-bordered ml-4">{{ headline.comments_count }} reacties</span>>
-      </div>
-    </a>
-  </swiper-slide>
-</swiper-container>
+<!--<swiper-container config="config" init="false" #swiper>-->
+<!--  <swiper-slide *ngFor="let headline of headlines">-->
+<!--    <a class="relative xl:w-[1200px] flex items-center block xl:h-[600px] block bg-black group" [routerLink]="['nieuws', headline.id, headline.slug]">-->
+<!--      <img [src]="headline.better_featured_image.source_url" class="object-cover w-full h-[400px] md:h-[600px] object-top h-full transition-all w-full block opacity-80 group-hover:scale-105 group-hover:opacity-100" />-->
+<!--      <div class="absolute z-20 left-8 bottom-8 md:block flex-col md:bottom-32 lg:w-[33.3%]">-->
+<!--        <h1 [innerHTML]="headline.title.rendered" class="text-white text-2xl p-4"></h1>-->
+<!--        <span class="block ml-4 text-white">{{ validDateFormat(headline.date)  | date: 'd MMMM' }}</span>-->
+<!--      </div>-->
+<!--    </a>-->
+<!--  </swiper-slide>-->
+<!--</swiper-container>-->
+<div *ngIf="headline">
+  <a class="relative xl:w-[1200px] flex items-center block xl:h-[600px] block bg-black group" [routerLink]="['nieuws', headline?.id, headline?.slug]">
+    <img [src]="headline?.better_featured_image?.source_url" class="object-cover w-full h-[500px] md:h-[600px] object-top transition-all w-full block opacity-60 group-hover:scale-105 group-hover:opacity-100" />
+    <div class="absolute z-20 left-8 bottom-16 md:block flex-col md:bottom-32 lg:w-[50%]">
+      <h1 [innerHTML]="headline?.title?.rendered" class="text-white text-center md:text-left md:text-4xl text-2xl leading-10 p-4"></h1>
+      <span class="block ml-4 text-white text-center md:text-left">{{ validDateFormat(headline?.date)  | date: 'd MMMM' }}</span>
+    </div>
+  </a>
+</div>
+

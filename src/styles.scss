@@ -55,6 +55,12 @@ body {
         background-position: left;
       }
     }
+    &[disabled] {
+      opacity: 0.4;
+      cursor: not-allowed;
+      background: #000;
+      color: white;
+    }
   }
   &.button-white {
     background: linear-gradient(
@@ -98,6 +104,7 @@ body {
   &.button-sm {
     font-size: .85rem;
   }
+
 }
 
 .news-container {
@@ -114,9 +121,9 @@ body {
 
 .submenu {
   li {
-    @apply block w-full w-[220px];
+    @apply block w-full;
     a {
-      @apply p-4 block bg-gray-200 text-black rounded-l-md
+      @apply p-4 block bg-gray-200 text-black md:rounded-l-md
     }
     &.active {
       a {
@@ -130,7 +137,7 @@ form {
   label {
     @apply block mb-2 ml-4 text-base;
   }
-  input[type=text], input[type=email], input[type=password], textarea {
+  input[type=text], input[type=email], input[type=password], textarea, input[type=number] {
     @apply border border-black p-4 border border-gray-300 rounded-md w-full
 
   }
@@ -186,6 +193,16 @@ form {
   }
 }
 
+.tabs {
+  li {
+    a {
+      &.active {
+        @apply border-b-2 border-blue-500 pb-4
+      }
+    }
+  }
+}
+
 @keyframes curtainUp {
   0%   {
     top: 0
@@ -200,4 +217,8 @@ form {
   25%  {opacity: 0;}
   50%  {opacity: 1;}
   100% {opacity: 1;}
+}
+
+.player-of-the-week-background {
+  background: linear-gradient(#ffffff 50%, #333333 50%);
 }

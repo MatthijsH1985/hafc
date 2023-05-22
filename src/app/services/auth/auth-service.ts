@@ -3,7 +3,8 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, tap} from 'rxjs';
 import { environment } from '../../../environments/environment';
 import {JwtHelperService} from "@auth0/angular-jwt";
-import {localStorage} from "localstorage-memory";
+import {LocalStorage} from "../local-storage";
+import {Platform} from "@angular/cdk/platform";
 
 interface LoginResponse {
   token: string;
@@ -27,14 +28,14 @@ export class AuthService {
     })
   };
 
-  constructor(private http: HttpClient, private jwtHelper: JwtHelperService, @Inject('isBrowser') private isBrowser: boolean) {
+  constructor(private http: HttpClient, private storage: LocalStorage, private _platform: Platform, private jwtHelper: JwtHelperService) {
   }
 
   login(email: string, password: string): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}` + `${this.loginUrl}`, { username: email, password: password })
       .pipe(
         tap(response => {
-          if (this.isBrowser) {
+          if (this._platform.isBrowser) {
             const token = response.token;
             const user_id = response.user_id;
             const username = response.user_nicename;
@@ -49,16 +50,12 @@ export class AuthService {
   }
 
   getUserInfo(): Observable<any>  {
-    return this.http.get<any>(`${this.apiUrl}` + 'wp/v2/users/me?context=edit', this.httpOptions).pipe(
-      tap( user => {
-        return user;
-      })
-    )
+    return this.http.get<any>(`${this.apiUrl}` + 'wp/v2/users/me?context=edit', this.httpOptions)
   }
 
   public isAuthenticated(): any {
-    if (this.isBrowser && localStorage !== undefined) {
-      const token = localStorage.getItem(this.JWT_TOKEN);
+    if (this._platform.isBrowser) {
+      const token = this.storage.getItem(this.JWT_TOKEN);
       return !this.jwtHelper.isTokenExpired(token);
     }
   }
@@ -70,68 +67,70 @@ export class AuthService {
   }
 
   getUserID(): any | null {
-    if (this.isBrowser && localStorage !== undefined) {
-      return localStorage.getItem(this.USER_ID)
+    if (this._platform.isBrowser) {
+      return this.storage.getItem(this.USER_ID)
     }
   }
 
   getUserName(): any | null {
-    if (this.isBrowser && localStorage !== undefined) {
-      return localStorage.getItem(this.USERNAME);
+    if (this._platform.isBrowser) {
+      return this.storage.getItem(this.USERNAME);
     }
   }
 
   getUserEmail(): any {
-    if (this.isBrowser && localStorage !== undefined) {
-      return localStorage.getItem(this.USER_EMAIL);
+    if (this._platform.isBrowser) {
+      return this.storage.getItem(this.USER_EMAIL);
     }
   }
 
   private storeToken(token: string): void {
-    if (this.isBrowser && localStorage !== undefined) {
-      localStorage.setItem(this.JWT_TOKEN, token);
+    if (this._platform.isBrowser) {
+      this.storage.setItem(this.JWT_TOKEN, token);
     }
   }
 
   private storeUserID(user_id: string): void {
-    if (this.isBrowser && localStorage !== undefined) {
-      localStorage.setItem(this.USER_ID, user_id);
+    if (this._platform.isBrowser) {
+      this.storage.setItem(this.USER_ID, user_id);
     }
   }
 
   private storeUsername(username: string): void {
-    if (this.isBrowser && localStorage !== undefined) {
-      localStorage.setItem(this.USERNAME, username);
+    if (this._platform.isBrowser) {
+      this.storage.setItem(this.USERNAME, username);
     }
   }
 
   private storeUserEmail(userEmail: string): void {
-    if (this.isBrowser && localStorage !== undefined) {
-      localStorage.setItem(this.USER_EMAIL, userEmail);
+    if (this._platform.isBrowser) {
+      this.storage.setItem(this.USER_EMAIL, userEmail);
     }
   }
 
   public getToken(): any | null {
-    if (this.isBrowser && localStorage !== undefined) {
-      return localStorage.getItem(this.JWT_TOKEN);
+    console.log(this._platform.isBrowser);
+    console.log(this.storage.getItem(this.JWT_TOKEN));
+    if (this._platform.isBrowser) {
+      return this.storage.getItem(this.JWT_TOKEN);
     }
   }
 
   private removeToken(): void {
-    if (this.isBrowser && localStorage !== undefined) {
-      localStorage.removeItem(this.JWT_TOKEN);
+    if (this._platform.isBrowser) {
+      this.storage.removeItem(this.JWT_TOKEN);
     }
   }
 
   private removeUsername(): void {
-    if (this.isBrowser && localStorage !== undefined) {
-      localStorage.removeItem(this.USERNAME);
+    if (this._platform.isBrowser) {
+      this.storage.removeItem(this.USERNAME);
     }
   }
 
   private removeUserEmail(): void {
-    if (this.isBrowser && localStorage !== undefined) {
-      localStorage.removeItem(this.USER_EMAIL);
+    if (this._platform.isBrowser) {
+      this.storage.removeItem(this.USER_EMAIL);
     }
   }
 }

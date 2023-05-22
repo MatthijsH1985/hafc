@@ -4,7 +4,7 @@
   <div *ngIf="post?.id;">
     <div class="container xl:w-[1200px] ml-auto mr-auto">
       <div class="relative container xl:h-[450px] md:h-[500px] align-center">
-        <img [src]="post?.better_featured_image.source_url" class="object-cover object-top w-full h-full animate-in animate-in slide-in-from-bottom-10 fade-in-25 fill-mode-forwards" />
+        <img [src]="post?.better_featured_image.source_url" class="object-cover object-middle w-full h-full animate-in animate-in slide-in-from-bottom-10 fade-in-25 fill-mode-forwards" />
       </div>
     </div>
     <div class="flex container xl:w-[1200px] ml-auto mr-auto p-8">
@@ -17,7 +17,7 @@
     </div>
     <div class="flex flex-col xl:w-[1200px] ml-auto mr-auto relative z-20">
       <div class="container bg-white mb-8 xl:w-[1100px] flex flex-col ml-auto mr-auto items-center">
-        <div class="px-24 pt-16 news-container m-auto">
+        <div class="px-12 pt-16 news-container m-auto">
           <h1 [innerHTML]="post?.title.rendered" class="text-5xl mb-4 leading-[1.25]"></h1>
           <div [innerHTML]="post?.content.rendered" class="leading-8 text-base leading-[1.5]"></div>
         </div>

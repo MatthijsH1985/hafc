@@ -12,6 +12,8 @@ import Swiper, {
   Pagination,
   SwiperOptions,
 } from 'swiper'
+import {Subscription} from "rxjs";
+import {PostsService} from "../../../services/posts.service";
 
 @Component({
   selector: 'app-nieuwsslider',
@@ -20,46 +22,59 @@ import Swiper, {
 })
 
 export class NieuwssliderComponent implements AfterViewInit {
-  public config: SwiperOptions = {
-    modules: [Navigation, Pagination, A11y, Mousewheel],
-    zoom: {
-      maxRatio: 5,
-    },
-    autoHeight: false,
-    spaceBetween: 20,
-    navigation: {
-      prevEl: '.prev-button',
-      nextEl: '.next-button',
-    },
-    pagination: false,
-    slidesPerView: 1,
-    centeredSlides: true,
-    grabCursor: true,
-    effect: "creative",
-    creativeEffect: {
-      prev: {
-        shadow: true,
-        translate: ["-20%", 0, -1],
-      },
-      next: {
-        translate: ["100%", 0, 0],
-      },
-    },
-  }
-  @Input('headlines') headlines: any;
-  @ViewChild('swiper') swiper: ElementRef | undefined
+  postsSub: Subscription;
+  // public config: SwiperOptions = {
+  //   modules: [Navigation, Pagination, A11y, Mousewheel],
+  //   zoom: {
+  //     maxRatio: 5,
+  //   },
+  //   autoHeight: false,
+  //   spaceBetween: 20,
+  //   navigation: {
+  //     prevEl: '.prev-button',
+  //     nextEl: '.next-button',
+  //   },
+  //   pagination: false,
+  //   slidesPerView: 1,
+  //   centeredSlides: true,
+  //   grabCursor: true,
+  //   effect: "creative",
+  //   creativeEffect: {
+  //     prev: {
+  //       shadow: true,
+  //       translate: ["-20%", 0, -1],
+  //     },
+  //     next: {
+  //       translate: ["100%", 0, 0],
+  //     },
+  //   },
+  // }
+  @Input('headline') headline: any;
+  // @ViewChild('swiper') swiper: ElementRef | undefined
 
-  constructor(@Inject('isBrowser') private isBrowser: boolean) {
-
+  constructor(@Inject('isBrowser') private isBrowser: boolean, private postsService: PostsService) {
+    this.postsSub = new Subscription()
   }
 
   ngAfterViewInit() {
-    // @ts-ignore
-    Object.assign(this.swiper.nativeElement, this.config)
+    // Object.assign(this.swiper.nativeElement, this.config)
     if(this.isBrowser) {
-      // @ts-ignore
-     // this.swiper.nativeElement.initialize()
+      if (this.isBrowser) {
+        // this.swiper.nativeElement.initialize();
+      }
     }
+    this.getHeadline();
+  }
+
+  getHeadline(): void {
+    this.postsSub = this.postsService.getPosts(1).subscribe({
+      next: (data: any) => {
+        this.headline = data[0];
+      },
+      error: (error: any) => {
+        console.log(error);
+      }
+    });
   }
 
   onSlideChange(event: any) {

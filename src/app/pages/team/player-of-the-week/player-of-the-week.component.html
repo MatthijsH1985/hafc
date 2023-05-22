@@ -1,0 +1,10 @@
+
+<a class="group flex md:flex-col" [routerLink]="['club', 'selectie', playerOfTheWeek?.id, playerOfTheWeek?.slug]" *ngIf="playerOfTheWeek">
+  <div class="pl-4 pt-4 pr-4 player-of-the-week-background">
+    <img class="block w-[200px] md:w-full" [src]="playerOfTheWeek?.better_featured_image.source_url" alt="{{ playerOfTheWeek?.acf?.voornaam + ' ' + playerOfTheWeek?.acf?.achternaam }}" />
+  </div>
+  <div class="bg-white flex-1 p-4 flex flex-col justify-end">
+    <h4 class="block mb-2 text-black text-xl">Speler van de week</h4>
+    <h5 class="text-blue-500 text-2xl">{{ playerOfTheWeek?.acf?.voornaam }} {{ playerOfTheWeek?.acf?.achternaam }}</h5>
+  </div>
+</a>

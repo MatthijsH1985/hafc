@@ -1,5 +1,4 @@
 import {LOCALE_ID, NgModule} from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,19 +8,18 @@ import {ConfigService} from "./services/config.service";
 import {TeamComponent} from "./pages/team/team.component";
 import {PlayersService} from "./services/players.service";
 import {TeamService} from "./services/team.service";
-import {StandComponent} from "./components/wedstrijden/stand/stand.component";
-import {WedstrijdenComponent} from "./pages/wedstrijden/wedstrijden.component";
+import {StandComponent} from "./pages/team/competitie/stand/stand.component";
 import {FixturesService} from "./services/fixtures.service";
 import {StandingsService} from "./services/standings.service";
 import {GenerateLogoUrlPipe} from "./shared/generate-logo-url/generate-logo-url.pipe";
-import {registerLocaleData} from '@angular/common';
+import {CommonModule, registerLocaleData} from '@angular/common';
 import localeNl from '@angular/common/locales/nl';
 import {HomepageComponent} from "./pages/homepage/homepage.component";
 import {NieuwslijstComponent} from "./components/nieuws/nieuwslijst/nieuwslijst.component";
 import {NieuwsberichtComponent} from "./pages/nieuwsbericht/nieuwsbericht.component";
 import {HeaderComponent} from "./components/header/header.component";
 import {NieuwsarchiefComponent} from "./pages/nieuwsarchief/nieuwsarchief.component";
-import {VolgendeWedstrijdComponent} from "./components/wedstrijden/volgende-wedstrijd/volgende-wedstrijd.component";
+import {VolgendeWedstrijdComponent} from "./pages/team/competitie/volgende-wedstrijd/volgende-wedstrijd.component";
 import {ModalCommentComponent} from "./components/modal-comment/modal-comment.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {LoadingIndicatorComponent} from "./shared/loading-indicator/loading-indicator.component";
@@ -38,8 +36,9 @@ import {LogoutComponent} from "./pages/account/logout/logout.component";
 import {SpelerComponent} from "./pages/team/speler/speler.component";
 import {RoundNumberPipe} from "./shared/round-number/round-number.pipe";
 import {LoginComponent} from "./pages/account/login/login.component";
-import { register } from 'swiper/element/bundle'
-import {NieuwssliderModule} from "./components/nieuws/nieuwsslider/nieuwsslider.module";
+// import { register } from 'swiper/element/bundle'
+// import {NieuwssliderModule} from "./components/nieuws/nieuwsslider/nieuwsslider.module";
+
 import {JWT_OPTIONS, JwtHelperService} from "@auth0/angular-jwt";
 import {UserCommentsComponent} from "./pages/account/user-comments/user-comments.component";
 import {UserConfigComponent} from "./pages/account/user-config/user-config.component";
@@ -47,7 +46,24 @@ import {UserService} from "./services/user.service";
 import {RegisterComponent} from "./pages/account/register/register.component";
 import {ToastrModule} from "ngx-toastr";
 import {AdsService} from "./services/ads.service";
-register()
+import {LocalStorage} from "./services/local-storage";
+import {SessionStorage} from "./services/session-storage";
+import {MemoryStorage} from "./services/memory-storage";
+import {MenuService} from "./services/menu.service";
+import {ResultsComponent} from "./pages/team/competitie/results/results.component";
+import {SelectieComponent} from "./pages/team/selectie/selectie.component";
+import {ProgrammaComponent} from "./pages/team/competitie/programma/programma.component";
+import {TransformTeamDataPipe} from "./shared/transform-team-data/transform-team-data.pipe";
+import {MatchreportComponent} from "./pages/team/competitie/matchreport/matchreport.component";
+import {NavigationComponent} from "./components/navigation/navigation.component";
+import {PlayerOfTheWeekComponent} from "./pages/team/player-of-the-week/player-of-the-week.component";
+import {CompetitieComponent} from "./pages/team/competitie/competitie.component";
+import {SpecialsComponent} from "./pages/specials/specials.component";
+import {TeamstatsComponent} from "./pages/team/teamstats/teamstats.component";
+import {NieuwssliderModule} from "./components/nieuws/nieuwsslider/nieuwsslider.module";
+import {PasswordResetComponent} from "./pages/account/password-reset/password-reset.component";
+import {SetNewPasswordComponent} from "./pages/account/set-new-password/set-new-password.component";
+// register()
 registerLocaleData(localeNl);
 
 @NgModule({
@@ -56,9 +72,15 @@ registerLocaleData(localeNl);
     TeamComponent,
     SpelerComponent,
     StandComponent,
-    WedstrijdenComponent,
+    ProgrammaComponent,
+    SelectieComponent,
+    CompetitieComponent,
+    PlayerOfTheWeekComponent,
+    MatchreportComponent,
+    ResultsComponent,
     GenerateLogoUrlPipe,
     RoundNumberPipe,
+    TransformTeamDataPipe,
     HomepageComponent,
     NieuwslijstComponent,
     NieuwsberichtComponent,
@@ -78,10 +100,15 @@ registerLocaleData(localeNl);
     LoginComponent,
     UserCommentsComponent,
     UserConfigComponent,
-    RegisterComponent
+    RegisterComponent,
+    NavigationComponent,
+    SpecialsComponent,
+    TeamstatsComponent,
+    PasswordResetComponent,
+    SetNewPasswordComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({appId: 'serverApp'}),
+    CommonModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
@@ -106,13 +133,13 @@ registerLocaleData(localeNl);
     FixturesService,
     StandingsService,
     AdsService,
+    LocalStorage,
+    SessionStorage,
+    MemoryStorage,
     UserService,
+    MenuService,
     JwtHelperService, {
-    provide: JWT_OPTIONS, useValue: JWT_OPTIONS
-  },
-    {
-      provide: 'isBrowser',
-      useValue: true
+      provide: JWT_OPTIONS, useValue: JWT_OPTIONS
     }],
   bootstrap: [AppComponent]
 })
