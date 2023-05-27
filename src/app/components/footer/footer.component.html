@@ -5,7 +5,7 @@
 <footer class="px-8 py-16 bg-gray-800">
   <div class="container xl:w-[1280px] relative z-10 ml-auto mr-auto">
     <nav class="flex flex-col md:grid md:grid-cols-2 md:grid-cols-4">
-      <ul class="text-white">
+      <ul class="text-white mb-4">
         <li>
           <strong class="mb-2 block">HAFC.nl</strong>
         </li>
@@ -30,7 +30,27 @@
           </a>
         </li>
       </ul>
-      <ul class="text-white">
+      <ul class="text-white mb-4">
+        <li>
+          <strong class="mb-2 block">Eredivisie</strong>
+        </li>
+        <li class="mb-2">
+          <a [routerLink]="['club', 'competitie', 'wedstrijdprogramma']" title="" class="hover:underline">
+            Programma
+          </a>
+        </li>
+        <li class="mb-2">
+          <a [routerLink]="['club', 'competitie', 'uitslagen']" title="" class="hover:underline">
+            Uitslagen
+          </a>
+        </li>
+        <li class="mb-2">
+          <a [routerLink]="['club', 'competitie', 'stand']" title="" class="hover:underline">
+            Stand
+          </a>
+        </li>
+      </ul>
+      <ul class="text-white mb-4">
         <li>
           <strong class="mb-2 block">Interessante links</strong>
         </li>
@@ -40,22 +60,7 @@
           </a>
         </li>
       </ul>
-      <ul class="text-white">
-        <li>
-          <strong class="mb-2 block">HAFC App</strong>
-        </li>
-        <li class="mb-2">
-          <a href="" title="" class="hover:underline">
-            HAFC voor Iphone
-          </a>
-        </li>
-        <li class="mb-2">
-          <a href="" title="" class="hover:underline">
-            HAFC voor Android
-          </a>
-        </li>
-      </ul>
-      <ul class="text-white">
+      <ul class="text-white mb-4">
         <li class="mb-4">
           <a href="https://apps.apple.com/pk/app/hafc/id1642538892" title="Mumba Web Solutions" class="block relative h-auto">
             <img src="assets/appstore.svg" alt="Download in de app store" class="block w-[130px]" />
