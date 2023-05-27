@@ -30,6 +30,7 @@ export class NieuwsarchiefComponent {
       if (searchTerm) {
         this.reloadItems = true;
         this.searchTerms = searchTerm;
+        this.loading = false;
       }
     }
     this.reloadItems = false;

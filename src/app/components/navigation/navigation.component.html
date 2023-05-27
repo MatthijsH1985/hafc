@@ -12,7 +12,7 @@
         <a class="button  button-black" (click)="menuService.close()" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['specials']">Specials</a>
       </li>
       <li class="has-sub-menu group button button-black" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-        <a (click)="menuService.close()" [routerLink]="['club']">Club <fa-icon class="text-xs" [icon]="faChevronDown"></fa-icon></a>
+        <a (click)="menuService.close()" [routerLink]="['club']">Club ></a>
         <div class="sub-menu hidden absolute w-full left-0 pt-8 group-hover:flex">
           <div class="bg-white sub-menu-inner p-8 w-full h-[300px] md:flex">
             <div class="md:p-4">
@@ -54,7 +54,7 @@
       </li>
       <li *ngIf="isLoggedIn()">
         <a class="button  button-black" (click)="menuService.close()" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['account', 'details', 'mijn-gegevens']">
-          Mijn HAFC <fa-icon [icon]="faUser"></fa-icon>
+          Mijn HAFC
         </a>
       </li>
       <li *ngIf="isLoggedIn()">

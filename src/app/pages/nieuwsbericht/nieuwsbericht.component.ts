@@ -4,7 +4,6 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {PostsService} from "../../services/posts.service";
 import {Title} from "@angular/platform-browser";
 import {ViewportScroller} from "@angular/common";
-import {faChevronRight} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-nieuwsbericht',
@@ -19,7 +18,6 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy {
   loading: boolean = true;
   currentRoute: any;
   modalCommentsOpen: boolean = false;
-  chevronRight = faChevronRight;
   categoryName: any;
   @Output() reloadComments: any;
 

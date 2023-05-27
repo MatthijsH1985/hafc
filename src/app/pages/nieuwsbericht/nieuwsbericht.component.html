@@ -9,7 +9,7 @@
     </div>
     <div class="flex container xl:w-[1200px] ml-auto mr-auto p-8">
       <div class="flex space-x-4 items-center space-x-4 hidden md:flex">
-        <a routerLink="/" class="hover:underline">Home</a> <fa-icon [icon]="chevronRight" class="text-xs"></fa-icon> <a routerLink="/nieuws" class="hover:underline">Nieuws</a> <fa-icon [icon]="chevronRight" class="text-xs"></fa-icon> <span [innerHTML]="post?.title.rendered"></span>
+        <a routerLink="/" class="hover:underline">Home</a> > <a routerLink="/nieuws" class="hover:underline">Nieuws</a> <span [innerHTML]="post?.title.rendered"></span>
       </div>
       <div class="flex justify-end items-center space-x-2 mr-0 md:ml-auto">
         <span class="font-bold">{{ post.date | date }}</span> <span class="inline-block md:hidden ml-5">{{ categoryName }}</span>

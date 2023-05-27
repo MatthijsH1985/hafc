@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CommentsService} from "../../../services/comments.service";
 import {AuthService} from "../../../services/auth/auth-service";
-import {faChevronRight} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-user-comments',
@@ -11,7 +10,6 @@ import {faChevronRight} from "@fortawesome/free-solid-svg-icons";
 export class UserCommentsComponent implements OnInit{
 
   comments: any = [];
-  faChevronRight = faChevronRight;
   constructor(private commentsService: CommentsService, private authService: AuthService) {}
 
   ngOnInit() {

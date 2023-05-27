@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FixturesService} from "../../../../services/fixtures.service";
-import {faArrowLeft, faArrowRight} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-matchreport',
@@ -48,9 +47,6 @@ export class MatchreportComponent implements OnInit {
   hours: any;
   minutes: any;
   seconds: any;
-
-  faArrowLeft = faArrowLeft;
-  faArrowRight = faArrowRight;
 
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private fixturesService: FixturesService) {}

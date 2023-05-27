@@ -1,5 +1,5 @@
 <button *ngIf="buttonVisible" (click)="toTop()" class="fixed hover:cursor-pointer hover:bg-gray-900 p-4 bg-gray-800 text-white text-xl z-20 right-0 bottom-0">
-  <fa-icon [icon]="faArrowUp"></fa-icon> Naar boven
+  Naar boven
 </button>
 
 <footer class="px-8 py-16 bg-gray-800">
@@ -56,9 +56,14 @@
         </li>
       </ul>
       <ul class="text-white">
-        <li class="mb-2">
-          <a href="" title="" class="hover:underline">
-            Mumba Web Solutions
+        <li class="mb-4">
+          <a href="https://apps.apple.com/pk/app/hafc/id1642538892" title="Mumba Web Solutions" class="block relative h-auto">
+            <img src="assets/appstore.svg" alt="Download in de app store" class="block w-[130px]" />
+          </a>
+        </li>
+        <li>
+          <a href="https://play.google.com/store/apps/details?id=nl.hafc.app&pli=1" title="Mumba Web Solutions" class="block relative h-auto">
+            <img src="assets/playstore.svg" alt="Beschikbaar op Google Play" class="block w-[130px]" />
           </a>
         </li>
       </ul>

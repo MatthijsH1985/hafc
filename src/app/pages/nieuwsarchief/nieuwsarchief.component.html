@@ -1,17 +1,17 @@
-<div class="container xl:w-[1200px] max-h-[400px] overflow-hidden ml-auto mr-auto relative z-10 hidden">
-  <div class="p-8">
-    <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
-      <div class="relative">
-        <input type="text" formControlName="searchTerm" name="" placeholder="Zoeken" />
-      </div>
-      <div class="">
-        <button type="submit">
-          Zoeken
-        </button>
-      </div>
-    </form>
-  </div>
-</div>
+<!--<div class="container xl:w-[1200px] max-h-[400px] overflow-hidden ml-auto mr-auto relative z-10 hidden">-->
+<!--  <div class="p-8">-->
+<!--    <form [formGroup]="searchForm" (ngSubmit)="onSearch()">-->
+<!--      <div class="relative">-->
+<!--        <input type="text" formControlName="searchTerm" name="" placeholder="Zoeken" />-->
+<!--      </div>-->
+<!--      <div class="">-->
+<!--        <button type="submit">-->
+<!--          Zoeken-->
+<!--        </button>-->
+<!--      </div>-->
+<!--    </form>-->
+<!--  </div>-->
+<!--</div>-->
 <div class="container p-8 bg-white lg:w-[1200px] ml-auto mr-auto z-10 relative">
   <div class="">
     <app-nieuwslijst [searchTerms]="searchTerms" [reloadItemsBySearch]="reloadItems" [pagination]="true"></app-nieuwslijst>

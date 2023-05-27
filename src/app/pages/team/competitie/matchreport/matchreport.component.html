@@ -1,7 +1,7 @@
 
-<div class="match-report-container">
-  <div class="lineups-container" *ngIf="matchReport.time?.status === 'FT'">
-    <div class="lineup">
+<div class="flex flex-col">
+  <div class="flex" *ngIf="matchReport.time?.status === 'FT'">
+    <div class="w-1/2 items-end text-right flex flex-col">
       <h4>{{ localTeamId | idToTeamName }}</h4>
       <div class="o-table">
         <div class="o-table-header">
@@ -11,8 +11,8 @@
           </div>
         </div>
         <div class="o-table-body">
-          <div class="o-table-row" *ngFor="let player of lineup[localTeamId]">
-            <div class="o-table-cell player-number valign-top">
+          <div class="flex" *ngFor="let player of lineup[localTeamId]">
+            <div class="">
               {{ player.number }}
             </div>
             <div class="o-table-cell valign-top">
@@ -29,12 +29,12 @@
       </div>
       <div class="substitutions">
         <div class="player player-substitution" *ngFor="let player of substitutions[localTeamId]">
-          <span class="player-name"><span class="minute">({{ player.minute }})</span>{{ player.player_in_name }} <fa-icon [icon]="faArrowRight"></fa-icon></span>
-          <span class="player-name">{{ player.player_out_name }} <fa-icon [icon]="faArrowLeft"></fa-icon></span>
+          <span class="player-name"><span class="minute">({{ player.minute }})</span>{{ player.player_in_name }} -></span>
+          <span class="player-name">{{ player.player_out_name }} <-</span>
         </div>
       </div>
     </div>
-    <div class="lineup lineup-away">
+    <div class="w-1/2">
       <h4>{{ visitorTeamId | idToTeamName }}</h4>
       <div class="o-table">
         <div class="o-table-header">
@@ -44,7 +44,7 @@
           </div>
         </div>
         <div class="o-table-body">
-          <div class="o-table-row" *ngFor="let player of lineup[visitorTeamId]">
+          <div class="flex" *ngFor="let player of lineup[visitorTeamId]">
             <div class="o-table-cell player-number valign-top">
               {{ player.number }}
             </div>
@@ -62,8 +62,8 @@
       </div>
       <div class="substitutions">
         <div class="player player-substitution" *ngFor="let player of substitutions[visitorTeamId]">
-          <span class="player-name"><span class="minute">({{ player.minute }})</span><fa-icon [icon]="faArrowRight"></fa-icon> {{ player.player_in_name }}</span>
-          <span class="player-name"><fa-icon [icon]="faArrowLeft"></fa-icon> {{ player.player_out_name }}</span>
+          <span class="player-name"><span class="minute">({{ player.minute }})</span>-> {{ player.player_in_name }}</span>
+          <span class="player-name"><- {{ player.player_out_name }}</span>
         </div>
       </div>
     </div>

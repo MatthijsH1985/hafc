@@ -39,7 +39,7 @@ export class ResultsComponent implements OnInit {
   }
 
   onOpenMatchReport(matchId: number) {
-    this.router.navigateByUrl('/club/uitslagen/' + matchId);
+    this.router.navigateByUrl('/club/competitie/uitslagen/' + matchId);
   }
 
 }

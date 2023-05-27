@@ -2,8 +2,8 @@
   <div class="container xl:w-[1200px] mt-8 max-h-[480px] overflow-hidden ml-auto mr-auto relative z-10">
     <img src="assets/blijdschap.jpg" class="block m-auto w-full max-h-[480px] object-cover object-center" />
   </div>
-  <div class="relative z-20">
-    <ul class="flex space-x-4 pt-8 pl-4 pr-4 pb-8 text-base md:text-xl justify-center bg-white -mt-[30px] tabs">
+  <div class="relative z-20 xl:w-[1160px] mx-auto mb-8">
+    <ul class="flex space-x-4 pt-8 pl-4 pr-4 pb-8 text-base md:text-xl justify-center bg-white -mt-[45px] tabs">
       <li>
         <a [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/', 'club', 'competitie', 'wedstrijdprogramma']" routerLinkActive="active">Wedstrijdprogramma</a>
       </li>
@@ -15,7 +15,7 @@
       </li>
     </ul>
   </div>
-  <div class="p-4 md:p-16">
+  <div class="xl:w-[1160px] mx-auto">
     <router-outlet></router-outlet>
   </div>
   <div class="mt-auto">

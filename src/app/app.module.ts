@@ -31,7 +31,6 @@ import {LoginFormComponent} from "./components/login-form/login-form.component";
 import {RegistrationFormComponent} from "./components/registration-form/registration-form.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AccountDetailsComponent} from "./pages/account/account-details/account-details.component";
-import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {LogoutComponent} from "./pages/account/logout/logout.component";
 import {SpelerComponent} from "./pages/team/speler/speler.component";
 import {RoundNumberPipe} from "./shared/round-number/round-number.pipe";
@@ -114,7 +113,6 @@ registerLocaleData(localeNl);
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     ReactiveFormsModule,
-    FontAwesomeModule,
     FormsModule,
     NieuwssliderModule
   ],
