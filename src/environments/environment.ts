@@ -6,8 +6,13 @@ export const environment = {
   production: false,
   apiUrl: 'https://www.hafc.nl/wp-json/',
   loginUrl: 'jwt-auth/v1/token',
-  userServiceUrl: 'userservice/'
+  userServiceUrl: 'userservice/',
+  recaptcha: {
+    siteKey: '6LdyyrcUAAAAAB81RMMORr90yBEMcYN_omdANSEe',
+  },
 };
+
+
 
 /*
  * For easier debugging in development mode, you can import the following file

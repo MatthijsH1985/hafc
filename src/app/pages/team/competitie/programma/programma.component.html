@@ -1,19 +1,26 @@
 <div class="relative z-20">
   <div class="container ml-auto mr-auto xl:w-[1100px]">
-    <a class="mb-8 block p-8 bg-white" *ngFor="let match of teamFixtures" (click)="onOpenMatchReport(match.id)">
-      <div class="flex items-center justify-center">
-        <div class="">
-          <img src="{{ match.localteam_id | generateLogoUrl }}" class="w-[80px] h-auto" />
+    <div *ngIf="teamFixtures.length > 0; else noMatches">
+      <a class="mb-8 block p-8 bg-white" *ngFor="let match of teamFixtures" (click)="onOpenMatchReport(match.id)">
+        <div class="flex items-center justify-center">
+          <div class="">
+            <img src="{{ match.localteam_id | generateLogoUrl }}" class="w-[80px] h-auto" />
+          </div>
+          <div class="px-4">
+            <div class="text-base">{{ validDateFormat(nextMatch.time.starting_at.date_time) | date: 'EEEE'}}</div>
+            <div class="text-base">{{ validDateFormat(nextMatch.time.starting_at.date_time) | date: 'd MMMM'}}</div>
+            <div class="text-base">{{ validDateFormat(nextMatch.time.starting_at.date_time) | date: 'HH:mm' }}</div>
+          </div>
+          <div class="">
+            <img src="{{ match.visitorteam_id | generateLogoUrl }}" class="w-[80px] h-auto" />
+          </div>
         </div>
-        <div class="px-4">
-          <div class="text-base">{{ validDateFormat(nextMatch.time.starting_at.date_time) | date: 'EEEE'}}</div>
-          <div class="text-base">{{ validDateFormat(nextMatch.time.starting_at.date_time) | date: 'd MMMM'}}</div>
-          <div class="text-base">{{ validDateFormat(nextMatch.time.starting_at.date_time) | date: 'HH:mm' }}</div>
-        </div>
-        <div class="">
-          <img src="{{ match.visitorteam_id | generateLogoUrl }}" class="w-[80px] h-auto" />
-        </div>
+      </a>
+    </div>
+    <ng-template #noMatches>
+      <div class="mb-8 block p-8 bg-white text-center">
+        <p>Geen wedstrijden om te tonen</p>
       </div>
-    </a>
+    </ng-template>
   </div>
 </div>

@@ -39,6 +39,10 @@ export class StandComponent implements OnInit, OnDestroy {
     });
   }
 
+  calculateGoalDifference(goalDifference: number) :any {
+    return (goalDifference > 0 ? '+' + goalDifference : goalDifference);
+  }
+
   selectieRijen(ranking: RankingRow[], club: string): RankingRow[] {
     const index = ranking.findIndex((row: RankingRow) => row.team_name === club);
 

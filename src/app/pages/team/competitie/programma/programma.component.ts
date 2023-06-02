@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {FixturesService} from "../../../../services/fixtures.service";
 import * as moment from 'moment';
+import {ViewportScroller} from "@angular/common";
 
 @Component({
   selector: 'app-programma',
@@ -11,13 +12,11 @@ import * as moment from 'moment';
 export class ProgrammaComponent implements OnInit{
 
   teamId = 1403;
-  currentSeason = 19727;
   teamFixtures: any = [];
-  teamResults: any = [];
   nextMatch: any = [];
   loading: boolean = true;
 
-  constructor(private router: Router, private fixturesService: FixturesService) {
+  constructor(private router: Router, private fixturesService: FixturesService, private viewportScroller: ViewportScroller) {
   }
 
   ngOnInit() {
@@ -25,13 +24,16 @@ export class ProgrammaComponent implements OnInit{
   }
 
   getFixtures() {
-    this.fixturesService.getFixtures(this.teamId).subscribe((data) => {
-      this.teamFixtures = data.data.upcoming.data;
-      this.nextMatch = data.data.upcoming.data[0];
-      console.log(this.nextMatch);
-      this.loading = false;
-    }, (error) => {
-      console.log('Er is iets mis gegaan: ' + error);
+    this.fixturesService.getFixtures(this.teamId).subscribe( {
+      next: data => {
+        this.teamFixtures = data.data.upcoming.data;
+        this.nextMatch = data.data.upcoming.data[0];
+        this.loading = false;
+        this.viewportScroller.scrollToPosition([0, 0]);
+      },
+      error: error => {
+        console.error(error)
+      }
     });
   }
 

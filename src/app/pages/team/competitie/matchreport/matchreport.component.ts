@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FixturesService} from "../../../../services/fixtures.service";
+import {ViewportScroller} from "@angular/common";
 
 @Component({
   selector: 'app-matchreport',
@@ -49,15 +50,15 @@ export class MatchreportComponent implements OnInit {
   seconds: any;
 
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private fixturesService: FixturesService) {}
+  constructor(private router: Router, private viewportScroller: ViewportScroller, private activatedRoute: ActivatedRoute, private fixturesService: FixturesService) {}
 
   ngOnInit() {
-    console.log('Hallo');
     this.loading = true;
     this.currentMatchId = this.activatedRoute.snapshot.paramMap.get('matchId');
     this.matchReportSub = this.fixturesService.getMatchReport(this.currentMatchId).subscribe({
       next: data => {
         this.matchReportResult = data;
+        console.log(this.matchReportResult);
         this.matchReport = this.matchReportResult.data;
         this.localTeamId = this.matchReport.localteam_id;
         this.visitorTeamId = this.matchReport.visitorteam_id;
@@ -65,6 +66,7 @@ export class MatchreportComponent implements OnInit {
         this.substitutions = this.createLineup(this.matchReport.substitutions.data, 'team_id');
         this.createCountdown(this.matchReport.time.starting_at.date_time);
         this.loading = false;
+        this.viewportScroller.scrollToPosition([0, 0]);
       },
       error: error => {
         console.error(error)

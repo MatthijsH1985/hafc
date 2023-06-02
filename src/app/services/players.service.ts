@@ -19,7 +19,7 @@ export class PlayersService {
   }
 
   getPlayers(): Observable<Config[]> {
-    return this.http.get<Config[]>(this.configService.config.apiEndpoint + '/pages?parent=23380&per_page=50', this.httpOptions);
+    return this.http.get<Config[]>(this.configService.config.apiEndpoint + '', this.httpOptions);
   }
 
   getPlayer(playerId: number): Observable<Config[]> {

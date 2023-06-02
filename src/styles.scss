@@ -199,6 +199,9 @@ form {
       &.active {
         @apply border-b-2 border-blue-500 pb-4
       }
+      &:hover {
+        @apply text-blue-500 border-black border-b-2 pb-4
+      }
     }
   }
 }

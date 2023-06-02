@@ -13,8 +13,11 @@ export class RegistrationFormComponent {
   userFormData: FormGroup;
   errorMessage: string = '';
   feedbackMessage: string = ''
+  token: string|undefined;
+
 
   constructor(private userService: UserService, private router: Router) {
+    this.token = undefined;
     this.userFormData = new FormGroup({
       user_name: new FormControl('', Validators.required),
       user_nickname: new FormControl('', Validators.required),
@@ -48,6 +51,7 @@ export class RegistrationFormComponent {
         }, 3000)
       }
     });
+    console.debug(`Token [${this.token}] generated`);
   }
 
 }

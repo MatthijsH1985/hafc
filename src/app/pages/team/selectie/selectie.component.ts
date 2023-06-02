@@ -27,21 +27,23 @@ export class SelectieComponent implements OnInit{
 
   ngOnInit() {
     this.loading = true;
-    this.playerService.getPlayers().subscribe((data:any) => {
-      this.groupPlayers(data);
-      this.loading = false;
-      this.keepers = this.team.Keeper;
-      this.keepers.sort((a:any, b:any) => a.acf.rugnummer.localeCompare(b.acf.rugnummer, {numeric: true, sensitivity: 'base'}));
-      this.verdedigers = this.team.Verdediger;
-      this.verdedigers.sort((a:any, b:any) => Number(a.acf.rugnummer) - Number(b.acf.rugnummer));
-      this.middenvelders = this.team.Middenvelder;
-      this.middenvelders.sort((a:any, b:any) => Number(a.acf.rugnummer) - Number(b.acf.rugnummer));
-      this.aanvallers = this.team.Aanvaller;
-      this.aanvallers.sort((a:any, b:any) => Number(a.acf.rugnummer) - Number(b.acf.rugnummer));
-
-    }, (error: any) => {
-      console.log('Er ging iets fout: ' + error);
-      this.loading = false;
+    this.playerService.getPlayers().subscribe( {
+      next: data => {
+        console.log(data);
+        this.groupPlayers(data);
+        this.loading = false;
+        this.keepers = this.team.Keeper;
+        this.keepers.sort((a:any, b:any) => a.acf.rugnummer.localeCompare(b.acf.rugnummer, {numeric: true, sensitivity: 'base'}));
+        this.verdedigers = this.team.Verdediger;
+        this.verdedigers.sort((a:any, b:any) => Number(a.acf.rugnummer) - Number(b.acf.rugnummer));
+        this.middenvelders = this.team.Middenvelder;
+        this.middenvelders.sort((a:any, b:any) => Number(a.acf.rugnummer) - Number(b.acf.rugnummer));
+        this.aanvallers = this.team.Aanvaller;
+        this.aanvallers.sort((a:any, b:any) => Number(a.acf.rugnummer) - Number(b.acf.rugnummer));
+      },
+      error: error => {
+        this.loading = false;
+      }
     });
   }
 

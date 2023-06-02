@@ -1,67 +1,77 @@
 
 <div class="flex flex-col">
-  <div class="flex" *ngIf="matchReport.time?.status === 'FT'">
-    <div class="w-1/2 items-end text-right flex flex-col">
-      <h4>{{ localTeamId | idToTeamName }}</h4>
-      <div class="o-table">
-        <div class="o-table-header">
-          <div class="o-table-row">
-            <div class="o-table-cell"></div>
-            <div class="o-table-cell"></div>
-          </div>
-        </div>
-        <div class="o-table-body">
-          <div class="flex" *ngFor="let player of lineup[localTeamId]">
-            <div class="">
-              {{ player.number }}
+  <div class="flex flex-col" *ngIf="matchReport.time?.status === 'FT'">
+    <div class="bg-gray-800 mb-8 p-8">
+      <div class="flex space-x-3 justify-center items-center">
+        <h4 class="text-3xl text-white">{{ localTeamId | idToTeamName }} <span class="ml-4">{{ matchReport?.scores?.localteam_score }}</span></h4>
+        <h4 class="text-3xl text-white"><span class="mr-4">{{ matchReport?.scores?.visitorteam_score }}</span> {{ visitorTeamId | idToTeamName }}</h4>
+      </div>
+    </div>
+    <div class="flex bg-white p-8">
+      <div class="w-1/2 items-end text-right flex flex-col">
+        <div class="o-table">
+          <div class="o-table-header">
+            <div class="o-table-row">
+              <div class="o-table-cell"></div>
+              <div class="o-table-cell"></div>
             </div>
-            <div class="o-table-cell valign-top">
-              {{ player.player_name }}
-              <div *ngIf="player.stats.goals.scored > 0" class="goals">
-                {{ player.stats.goals.scored }} goal(s)
+          </div>
+          <div class="o-table-body">
+            <div class="flex flex-row-reverse p-1" *ngFor="let player of lineup[localTeamId]">
+              <div class="w-[40px]">
+                {{ player.number }}
               </div>
-              <div *ngIf="player.stats.goals.assists > 0" class="assists">
-                {{ player.stats.goals.assists  }} assist(s)
+              <div class="o-table-cell relative valign-top text-right">
+                {{ player.player_name }}
+                <div *ngIf="player.stats.goals.scored > 0" class="text-sm absolute text-yellow -right-3 -top-2">
+                  {{ player.stats.goals.scored }}
+                </div>
+                <div *ngIf="player.stats.goals.assists > 0"  class="text-sm absolute text-blue -right-3 -top-2">
+                  {{ player.stats.goals.assists  }}
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="substitutions">
-        <div class="player player-substitution" *ngFor="let player of substitutions[localTeamId]">
+      <div class="w-1/2">
+        <div class="o-table">
+          <div class="o-table-header">
+            <div class="o-table-row">
+              <div class="o-table-cell"></div>
+              <div class="o-table-cell"></div>
+            </div>
+          </div>
+          <div class="o-table-body">
+            <div class="flex flex-row p-1" *ngFor="let player of lineup[visitorTeamId]">
+              <div class="w-[40px]">
+                {{ player.number }}
+              </div>
+              <div class="o-table-cell relative valign-top text-right">
+                {{ player.player_name }}
+                <div *ngIf="player.stats.goals.scored > 0" class="text-sm absolute right-0 top-0">
+                  {{ player.stats.goals.scored }} goal(s)
+                </div>
+                <div *ngIf="player.stats.goals.assists > 0"  class="text-sm absolute right-0 top-0">
+                  {{ player.stats.goals.assists  }} assist(s)
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="flex flex-col mt-8">
+    <div class="flex p-8 bg-white">
+      <div class="w-1/2 items-end text-right flex flex-col">
+        <div class="p-1" *ngFor="let player of substitutions[localTeamId]">
           <span class="player-name"><span class="minute">({{ player.minute }})</span>{{ player.player_in_name }} -></span>
           <span class="player-name">{{ player.player_out_name }} <-</span>
         </div>
       </div>
-    </div>
-    <div class="w-1/2">
-      <h4>{{ visitorTeamId | idToTeamName }}</h4>
-      <div class="o-table">
-        <div class="o-table-header">
-          <div class="o-table-row">
-            <div class="o-table-cell"></div>
-            <div class="o-table-cell"></div>
-          </div>
-        </div>
-        <div class="o-table-body">
-          <div class="flex" *ngFor="let player of lineup[visitorTeamId]">
-            <div class="o-table-cell player-number valign-top">
-              {{ player.number }}
-            </div>
-            <div class="o-table-cell valign-top">
-              {{ player.player_name }}
-              <div *ngIf="player.stats.goals.scored > 0" class="goals">
-                {{ player.stats.goals.scored }} goal(s)
-              </div>
-              <div *ngIf="player.stats.goals.assists > 0" class="assists">
-                {{ player.stats.goals.assists  }} assist(s)
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="substitutions">
-        <div class="player player-substitution" *ngFor="let player of substitutions[visitorTeamId]">
+      <div class="w-1/2">
+        <div class="p-1" *ngFor="let player of substitutions[visitorTeamId]">
           <span class="player-name"><span class="minute">({{ player.minute }})</span>-> {{ player.player_in_name }}</span>
           <span class="player-name"><- {{ player.player_out_name }}</span>
         </div>

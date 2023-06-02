@@ -35,6 +35,9 @@ import {LogoutComponent} from "./pages/account/logout/logout.component";
 import {SpelerComponent} from "./pages/team/speler/speler.component";
 import {RoundNumberPipe} from "./shared/round-number/round-number.pipe";
 import {LoginComponent} from "./pages/account/login/login.component";
+import { RECAPTCHA_SETTINGS, RecaptchaFormsModule, RecaptchaModule, RecaptchaSettings } from 'ng-recaptcha';
+import {environment} from "../environments/environment";
+
 // import { register } from 'swiper/element/bundle'
 // import {NieuwssliderModule} from "./components/nieuws/nieuwsslider/nieuwsslider.module";
 
@@ -62,6 +65,7 @@ import {TeamstatsComponent} from "./pages/team/teamstats/teamstats.component";
 import {NieuwssliderModule} from "./components/nieuws/nieuwsslider/nieuwsslider.module";
 import {PasswordResetComponent} from "./pages/account/password-reset/password-reset.component";
 import {SetNewPasswordComponent} from "./pages/account/set-new-password/set-new-password.component";
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 // register()
 registerLocaleData(localeNl);
 
@@ -114,7 +118,10 @@ registerLocaleData(localeNl);
     ToastrModule.forRoot(),
     ReactiveFormsModule,
     FormsModule,
-    NieuwssliderModule
+    NieuwssliderModule,
+    FontAwesomeModule,
+    RecaptchaModule,
+    RecaptchaFormsModule
   ],
   exports: [
     HomepageComponent
@@ -123,6 +130,12 @@ registerLocaleData(localeNl);
     provide: LOCALE_ID,
     useValue: 'nl',
   },
+    {
+      provide: RECAPTCHA_SETTINGS,
+      useValue: {
+        siteKey: environment.recaptcha.siteKey,
+      } as RecaptchaSettings,
+    },
     PostsService,
     ConfigService,
     CommentsService,

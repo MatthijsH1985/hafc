@@ -5,7 +5,7 @@
         <div class="o-table-row" *ngIf="!compact">
           <div class="o-table-cell"></div>
           <div class="o-table-cell"></div>
-          <div class="o-table-cell pr-2">Team</div>
+          <div class="o-table-cell pr-2"></div>
           <div class="o-table-cell"></div>
           <div class="o-table-cell" *ngIf="!compact"></div>
           <div class="o-table-cell" *ngIf="!compact"></div>
@@ -13,7 +13,7 @@
           <div class="o-table-cell" *ngIf="!compact"></div>
           <div class="o-table-cell" *ngIf="!compact"></div>
           <div class="o-table-cell" *ngIf="!compact"></div>
-          <div class="o-table-cell">Pt</div>
+          <div class="o-table-cell"></div>
         </div>
       </div>
       <div class="o-table-body">
@@ -46,7 +46,7 @@
             {{ club?.overall.goals_against }}
           </div>
           <div class="o-table-cell py-2" *ngIf="!compact">
-            {{ club?.total.goal_difference }}
+            {{ calculateGoalDifference(club?.total.goal_difference) }}
           </div>
           <div class="o-table-cell">
             {{ club?.points }}

@@ -1,7 +1,15 @@
 <button *ngIf="buttonVisible" (click)="toTop()" class="fixed hover:cursor-pointer hover:bg-gray-900 p-4 bg-gray-800 text-white text-xl z-20 right-0 bottom-0">
   Naar boven
 </button>
-
+<section>
+  <div class="flex p-8 space-x-2 bg-gray-300 justify-center align-middle">
+    <h4>1927</h4> <span>/</span>
+    <h4>1941</h4> <span>/</span>
+    <h4>1985</h4> <span>/</span>
+    <h4>2005</h4> <span>/</span>
+    <h4>2023</h4>
+  </div>
+</section>
 <footer class="px-8 py-16 bg-gray-800">
   <div class="container xl:w-[1280px] relative z-10 ml-auto mr-auto">
     <nav class="flex flex-col md:grid md:grid-cols-2 md:grid-cols-4">
@@ -20,13 +28,8 @@
           </a>
         </li>
         <li class="mb-2">
-          <a routerLink="/team" title="" class="hover:underline">
+          <a [routerLink]="['club', 'selectie']" title="" class="hover:underline">
             Selectie
-          </a>
-        </li>
-        <li class="mb-2">
-          <a routerLink="/wedstrijden" href="" title="" class="hover:underline">
-            Wedstrijden
           </a>
         </li>
       </ul>
@@ -35,17 +38,17 @@
           <strong class="mb-2 block">Eredivisie</strong>
         </li>
         <li class="mb-2">
-          <a [routerLink]="['club', 'competitie', 'wedstrijdprogramma']" title="" class="hover:underline">
+          <a [routerLink]="['/', 'club', 'competitie', 'wedstrijdprogramma']" title="" class="hover:underline">
             Programma
           </a>
         </li>
         <li class="mb-2">
-          <a [routerLink]="['club', 'competitie', 'uitslagen']" title="" class="hover:underline">
+          <a [routerLink]="['/', 'club', 'competitie', 'uitslagen']" title="" class="hover:underline">
             Uitslagen
           </a>
         </li>
         <li class="mb-2">
-          <a [routerLink]="['club', 'competitie', 'stand']" title="" class="hover:underline">
+          <a [routerLink]="['/', 'club', 'competitie', 'stand']" title="" class="hover:underline">
             Stand
           </a>
         </li>

@@ -7,7 +7,6 @@ import {MenuService} from "../../services/menu.service";
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-
   constructor(public menuService: MenuService) {
   }
 }
