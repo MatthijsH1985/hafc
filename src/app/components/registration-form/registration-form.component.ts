@@ -51,7 +51,6 @@ export class RegistrationFormComponent {
         }, 3000)
       }
     });
-    console.debug(`Token [${this.token}] generated`);
   }
 
 }

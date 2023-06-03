@@ -8,7 +8,7 @@ export const environment = {
   loginUrl: 'jwt-auth/v1/token',
   userServiceUrl: 'userservice/',
   recaptcha: {
-    siteKey: '6LdyyrcUAAAAAB81RMMORr90yBEMcYN_omdANSEe',
+    siteKey: '6LfEKGImAAAAACNlgj6_ompIBaRy_e4sulh4Axgu',
   },
 };
 

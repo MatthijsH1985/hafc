@@ -30,6 +30,9 @@
   <div class="flex items-center justify-between">
     <button class="button button-black" type="submit" [disabled]="!userFormData.valid">Registreer</button>
   </div>
+  <div class="mt-4">
+    <re-captcha id="recaptcha" name="recaptcha" #recaptcha="ngModel" [(ngModel)]="token" required [class.is-invalid]="recaptcha.invalid && (recaptcha.dirty || recaptcha.touched)"></re-captcha>
+  </div>
 </form>
 <div *ngIf="errorMessage" class="mt-4 p-2 bg-red-200 text-red-800 rounded-md">
   {{ errorMessage }}
@@ -38,4 +41,3 @@
 
 </div>
 
-<re-captcha id="recaptcha" name="recaptcha" #recaptcha="ngModel" [(ngModel)]="token" required [class.is-invalid]="recaptcha.invalid && (recaptcha.dirty || recaptcha.touched)"></re-captcha>

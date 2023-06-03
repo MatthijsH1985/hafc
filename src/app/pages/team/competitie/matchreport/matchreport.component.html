@@ -49,11 +49,11 @@
               </div>
               <div class="o-table-cell relative valign-top text-right">
                 {{ player.player_name }}
-                <div *ngIf="player.stats.goals.scored > 0" class="text-sm absolute right-0 top-0">
-                  {{ player.stats.goals.scored }} goal(s)
+                <div *ngIf="player.stats.goals.scored > 0" class="text-sm absolute text-yellow -right-3 -top-2">
+                  {{ player.stats.goals.scored }} g
                 </div>
-                <div *ngIf="player.stats.goals.assists > 0"  class="text-sm absolute right-0 top-0">
-                  {{ player.stats.goals.assists  }} assist(s)
+                <div *ngIf="player.stats.goals.assists > 0" class="text-sm absolute text-yellow -right-3 -top-2">
+                  {{ player.stats.goals.assists  }} a
                 </div>
               </div>
             </div>

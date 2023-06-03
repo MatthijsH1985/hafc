@@ -21,10 +21,12 @@ export class ModalCommentComponent {
   user_email: string | null = '';
   errorMessage: string | undefined;
   @Output() commentSuccesful = new EventEmitter();
+  token: string|undefined;
 
   commentForm: FormGroup;
 
   constructor(private commentService: CommentsService, private toastrService: ToastrService, private authService: AuthService, private router: Router, private activatedRoute: ActivatedRoute) {
+    this.token = undefined;
     this.commentForm = new FormGroup({
       name: new FormControl('', Validators.required),
       email: new FormControl('', Validators.email),

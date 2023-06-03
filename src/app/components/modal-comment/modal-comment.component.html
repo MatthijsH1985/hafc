@@ -1,5 +1,5 @@
 <div class="fixed z-30 bg-black opacity-80 w-full h-full bottom-0 overlay" [ngClass]="{'show-overlay': modalStatus === true}"></div>
-<div class="xl:w-[1000px] fixed bg-white z-40 bg-white fixed bottom-0 w-full modal-comment left-1/2 transform -translate-x-1/2" [ngClass]="{'active': modalStatus === true}">
+<div class="xl:w-[1000px] fixed bg-white z-40 bg-white overflow-auto fixed bottom-0 w-full modal-comment left-1/2 transform -translate-x-1/2" [ngClass]="{'active': modalStatus === true}">
   <div class="flex flex-col">
     <h3 class="text-4xl">Reactie plaatsen</h3> <button class="ml-auto text-4xl" (click)="onCloseModal()">X</button>
     <form [formGroup]="commentForm" (ngSubmit)="onPostComment(commentForm)">
@@ -31,7 +31,11 @@
       <div class="flex items-center justify-between">
         <button type="submit" class="button button-black">Reactie plaatsen</button>
       </div>
+      <div class="mt-4" *ngIf="!isLoggedIn()">
+        <re-captcha id="recaptcha" name="recaptcha" #recaptcha="ngModel" [(ngModel)]="token" required [class.is-invalid]="recaptcha.invalid && (recaptcha.dirty || recaptcha.touched)"></re-captcha>
+      </div>
     </form>
   </div>
   <p *ngIf="errorMessage" class="bg-red-200 text-red-800 p-4 rounded-md">{{ errorMessage }}</p>
 </div>
+

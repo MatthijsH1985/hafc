@@ -35,7 +35,12 @@ import {LogoutComponent} from "./pages/account/logout/logout.component";
 import {SpelerComponent} from "./pages/team/speler/speler.component";
 import {RoundNumberPipe} from "./shared/round-number/round-number.pipe";
 import {LoginComponent} from "./pages/account/login/login.component";
-import { RECAPTCHA_SETTINGS, RecaptchaFormsModule, RecaptchaModule, RecaptchaSettings } from 'ng-recaptcha';
+import {
+  RECAPTCHA_V3_SITE_KEY,
+  RecaptchaFormsModule,
+  RecaptchaModule,
+  RecaptchaV3Module
+} from 'ng-recaptcha';
 import {environment} from "../environments/environment";
 
 // import { register } from 'swiper/element/bundle'
@@ -121,7 +126,8 @@ registerLocaleData(localeNl);
     NieuwssliderModule,
     FontAwesomeModule,
     RecaptchaModule,
-    RecaptchaFormsModule
+    RecaptchaFormsModule,
+    RecaptchaV3Module
   ],
   exports: [
     HomepageComponent
@@ -131,10 +137,8 @@ registerLocaleData(localeNl);
     useValue: 'nl',
   },
     {
-      provide: RECAPTCHA_SETTINGS,
-      useValue: {
-        siteKey: environment.recaptcha.siteKey,
-      } as RecaptchaSettings,
+      provide: RECAPTCHA_V3_SITE_KEY,
+      useValue: environment.recaptcha.siteKey
     },
     PostsService,
     ConfigService,
