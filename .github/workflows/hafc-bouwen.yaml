@@ -3,12 +3,6 @@ on:
   push:
     tags: ['*']
 jobs:
-  geheim:
-    runs-on: ubuntu-22.04
-    #container: node:16-bullseye-slim
-    steps:
-      - name: "echo geheim spul"
-        uses: actions/checkout@v3
   bouwen:
     runs-on: ubuntu-22.04
     #container: node:16-bullseye-slim
