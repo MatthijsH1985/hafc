@@ -5,6 +5,7 @@ on:
 jobs:
   bouwen:
     runs-on: ubuntu-22.04
+    environment: prod
     #container: node:16-bullseye-slim
     steps:
       - name: "checkout doen"
