@@ -42,3 +42,4 @@ testem.log
 Thumbs.db
 
 .github/workflows/my-secrets.env
+keys/
