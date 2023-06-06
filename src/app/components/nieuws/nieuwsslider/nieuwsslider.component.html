@@ -10,8 +10,8 @@
 <!--  </swiper-slide>-->
 <!--</swiper-container>-->
 <div *ngIf="headline">
-  <a class="relative xl:w-[1200px] flex items-center block xl:h-[600px] block bg-black group" [routerLink]="['nieuws', headline?.id, headline?.slug]">
-    <img [src]="headline?.better_featured_image?.source_url" class="object-cover w-full h-[500px] md:h-[600px] object-top transition-all w-full block opacity-60 group-hover:scale-105 group-hover:opacity-100" />
+  <a class="relative xl:w-[1200px] flex items-center block md:h-[450px] block bg-black group" [routerLink]="['nieuws', headline?.id, headline?.slug]">
+    <img [src]="headline?.better_featured_image?.source_url" class="object-cover w-full h-[500px] md:h-[450px] object-top transition-all w-full block opacity-60 group-hover:scale-105 group-hover:opacity-100" />
     <div class="absolute z-20 left-8 bottom-16 md:block flex-col md:bottom-32 lg:w-[50%]">
       <h1 [innerHTML]="headline?.title?.rendered" class="text-white text-center md:text-left md:text-4xl text-2xl leading-10 p-4"></h1>
       <span class="block ml-4 text-white text-center md:text-left">{{ validDateFormat(headline?.date)  | date: 'd MMMM' }}</span>
