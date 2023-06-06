@@ -3,11 +3,11 @@
   <div class="flex flex-col" *ngIf="matchReport.time?.status === 'FT'">
     <div class="bg-gray-800 mb-8 p-8">
       <div class="flex space-x-3 justify-center items-center">
-        <h4 class="text-3xl text-white">{{ localTeamId | idToTeamName }} <span class="ml-4">{{ matchReport.scores.localteam_score }}</span></h4>
-        <h4 class="text-3xl text-white"><span class="mr-4">{{ matchReport.scores.visitorteam_score }}</span> {{ visitorTeamId | idToTeamName }}</h4>
+        <h4 class="text-2xl text-white">{{ localTeamId | idToTeamName }} <span class="ml-4">{{ matchReport.scores.localteam_score }}</span></h4>
+        <h4 class="text-2xl text-white"><span class="mr-4">{{ matchReport.scores.visitorteam_score }}</span> {{ visitorTeamId | idToTeamName }}</h4>
       </div>
     </div>
-    <div class="flex bg-white p-8">
+    <div class="flex bg-white p-4">
       <div class="w-1/2 items-end text-right flex flex-col">
         <div class="o-table">
           <div class="o-table-header">
@@ -18,7 +18,7 @@
           </div>
           <div class="o-table-body">
             <div class="flex flex-row-reverse p-1" *ngFor="let player of lineup[localTeamId]">
-              <div class="w-[40px]">
+              <div class="w-[30px]">
                 {{ player.number }}
               </div>
               <div class="o-table-cell relative valign-top text-right">
@@ -44,10 +44,10 @@
           </div>
           <div class="o-table-body">
             <div class="flex flex-row p-1" *ngFor="let player of lineup[visitorTeamId]">
-              <div class="w-[40px]">
+              <div class="w-[30px]">
                 {{ player.number }}
               </div>
-              <div class="o-table-cell relative valign-top text-right">
+              <div class="o-table-cell relative valign-top text-left">
                 {{ player.player_name }}
                 <div *ngIf="player.stats.goals.scored > 0" class="text-sm absolute text-yellow -right-3 -top-2">
                   {{ player.stats.goals.scored }} g

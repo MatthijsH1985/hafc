@@ -1,27 +1,27 @@
 <app-loading-indicator *ngIf="loading"></app-loading-indicator>
 <div class="flex flex-col min-h-screen" *ngIf="!loading">
-  <div class="container max-w-[1200px] relative z-10 ml-auto mr-auto mt-8">
-    <div class="flex gap-4 h-[500px]">
-      <div class="w-2/3 overflow-hidden relative bg-black">
-        <a class="relative xl:w-[1200px] flex items-center block xl:h-[600px] block bg-black group" [routerLink]="['nieuws', headlines[0]?.id, headlines[0]?.slug]">
-          <img [src]="headlines[0]?.better_featured_image?.source_url" class="object-cover w-full object-center transition-all block opacity-60 group-hover:scale-105 group-hover:opacity-100" />
+  <div class="container max-w-[1200px] relative z-10 ml-auto mr-auto">
+    <div class="flex flex-wrap gap-4 h-[300px] md:h-[500px]">
+      <div class="w-full md:w-2/3 overflow-hidden relative bg-black">
+        <a class="relative xl:w-[1200px] h-[300px] flex items-center block xl:h-[600px] block bg-black group" [routerLink]="['../', 'nieuws', headlines[0]?.id, headlines[0]?.slug]">
+          <img [src]="headlines[0]?.better_featured_image?.source_url" class="object-cover w-full h-[300px] object-center transition-all block opacity-60 group-hover:scale-105 group-hover:opacity-100" />
           <div class="absolute z-20 left-8 bottom-16 md:block flex-col md:bottom-32 lg:w-[50%]">
             <h1 [innerHTML]="headlines[0]?.title?.rendered" class="text-white text-center md:text-left md:text-4xl text-2xl leading-10 p-4"></h1>
             <span class="block ml-4 text-white text-center md:text-left">{{ validDateFormat(headlines[0]?.date)  | date: 'd MMMM' }}</span>
           </div>
         </a>
       </div>
-      <div class="flex w-1/3 flex-col gap-4">
-        <a class="relative overflow-hidden flex flex-1 items-center block xl:h-[280] block bg-black group" [routerLink]="['nieuws', headlines[1]?.id, headlines[1]?.slug]">
+      <div class="w-full md:w-1/3 flex-row md:flex-col gap-4 hidden md:flex">
+        <a class="relative overflow-hidden flex w-1/2 md:flex-1 items-center block xl:h-[280] block bg-black group" [routerLink]="['../', 'nieuws', headlines[1]?.id, headlines[1]?.slug]">
           <img [src]="headlines[1]?.better_featured_image?.source_url" class="object-cover w-full object-center transition-all block opacity-60 group-hover:scale-105 group-hover:opacity-100" />
-          <div class="absolute z-20 left-8 bottom-4 md:block flex-col">
+          <div class="absolute z-20 md:left-8 bottom-0 md:bottom-4 md:block flex-col">
             <h1 [innerHTML]="headlines[1]?.title?.rendered" class="text-white text-center md:text-left md:text-2xl text-xl leading-10 p-4"></h1>
             <span class="block ml-4 text-white text-center md:text-left">{{ validDateFormat(headlines[1]?.date)  | date: 'd MMMM' }}</span>
           </div>
         </a>
-        <a class="relative overflow-hidden flex flex-1 items-center block xl:h-[280px] block bg-black group" [routerLink]="['nieuws', headlines[2]?.id, headlines[2]?.slug]">
+        <a class="relative overflow-hidden flex w-1/2 md:flex-1 items-center block xl:h-[280px] block bg-black group" [routerLink]="['../', 'nieuws', headlines[2]?.id, headlines[2]?.slug]">
           <img [src]="headlines[2]?.better_featured_image?.source_url" class="object-center w-full object-top transition-all block opacity-60 group-hover:scale-105 group-hover:opacity-100" />
-          <div class="absolute z-20 left-8 bottom-4 md:block flex-col">
+          <div class="absolute z-20 md:left-8 bottom-0 md:bottom-4  md:block flex-col">
             <h1 [innerHTML]="headlines[2]?.title?.rendered" class="text-white text-center md:text-left md:text-2xl text-xl leading-10 p-4"></h1>
             <span class="block ml-4 text-white text-center md:text-left">{{ validDateFormat(headlines[2]?.date)  | date: 'd MMMM' }}</span>
           </div>

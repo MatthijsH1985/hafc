@@ -1,6 +1,7 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
 import {StandingsService} from "../../../../services/standings.service";
+import {ViewportScroller} from "@angular/common";
 
 interface RankingRow {
   team_name: string;
@@ -23,9 +24,10 @@ export class StandComponent implements OnInit, OnDestroy {
   compactRanking: any = [];
   @Input('compact') compact: boolean = false;
 
-  constructor(private standingsService: StandingsService) {}
+  constructor(private standingsService: StandingsService, private viewportScroller: ViewportScroller) {}
 
   ngOnInit() {
+    this.viewportScroller.scrollToPosition([0,0]);
     this.rankingSub = this.standingsService.getStandings(this.currentSeasonId).subscribe((data) => {
       this.loading = false;
       this.ranking = data.data[0].standings.data;

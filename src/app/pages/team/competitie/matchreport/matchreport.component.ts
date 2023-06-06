@@ -61,7 +61,6 @@ export class MatchreportComponent implements OnInit {
     this.matchReportSub = this.fixturesService.getMatchReport(this.currentMatchId).subscribe({
       next: data => {
         this.matchReportResult = data;
-        console.log(this.matchReportResult);
         this.matchReport = this.matchReportResult.data;
         this.localTeamId = this.matchReport.localteam_id;
         this.visitorTeamId = this.matchReport.visitorteam_id;

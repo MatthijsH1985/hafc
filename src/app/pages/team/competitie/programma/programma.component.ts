@@ -20,6 +20,7 @@ export class ProgrammaComponent implements OnInit{
   }
 
   ngOnInit() {
+    this.viewportScroller.scrollToPosition([0,0]);
     this.getFixtures();
   }
 

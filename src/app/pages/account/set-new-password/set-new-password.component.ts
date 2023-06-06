@@ -1,20 +1,25 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../../../services/user.service";
+import {ViewportScroller} from "@angular/common";
 
 @Component({
   selector: 'app-set-new-password',
   templateUrl: './set-new-password.component.html',
   styleUrls: ['./set-new-password.component.scss']
 })
-export class SetNewPasswordComponent {
-  constructor(private userService: UserService) {}
+export class SetNewPasswordComponent implements OnInit {
+  constructor(private userService: UserService, private viewportScroller: ViewportScroller) {}
   userData: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', Validators.required),
     authorizationcode: new FormControl('', Validators.required)
   });
   feedbackMessage: any = '';
+
+  ngOnInit() {
+    this.viewportScroller.scrollToPosition([0,0]);
+  }
 
   onSubmitForm() {
     const emailAddress = this.userData.get('email')?.value;

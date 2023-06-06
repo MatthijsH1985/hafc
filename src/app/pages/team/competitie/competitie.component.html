@@ -5,17 +5,17 @@
   <div class="relative z-20 xl:w-[1160px] md:mx-auto mb-8">
     <ul class="flex space-x-4 pt-8 pl-4 pr-4 pb-8 text-base md:text-xl justify-center bg-white -mt-[45px] tabs">
       <li>
-        <a [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/', 'club', 'competitie', 'wedstrijdprogramma']" routerLinkActive="active">Wedstrijdprogramma</a>
+        <a [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/', 'club', 'competitie', 'wedstrijdprogramma']" routerLinkActive="active">Programma</a>
       </li>
       <li>
         <a [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/', 'club', 'competitie', 'uitslagen']" routerLinkActive="active">Uitslagen</a>
       </li>
       <li>
-        <a [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/', 'club', 'competitie', 'stand']" routerLinkActive="active">Stand Eredivisie</a>
+        <a [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/', 'club', 'competitie', 'stand']" routerLinkActive="active">Stand</a>
       </li>
     </ul>
   </div>
-  <div class="xl:w-[1160px] w-full md:w-[1000px] mx-auto">
+  <div class="xl:w-[1160px] w-full md:w-[768px] mx-auto">
     <router-outlet></router-outlet>
   </div>
   <div class="mt-auto">

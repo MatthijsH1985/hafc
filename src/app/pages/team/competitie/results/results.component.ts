@@ -18,6 +18,7 @@ export class ResultsComponent implements OnInit {
   constructor(private fixturesService: FixturesService, private viewportScroller: ViewportScroller, private router: Router) {}
 
   ngOnInit() {
+  this.viewportScroller.scrollToPosition([0,0]);
     this.getResults();
   }
 

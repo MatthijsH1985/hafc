@@ -1,17 +1,18 @@
-import {Component, KeyValueDiffers} from '@angular/core';
+import {Component, KeyValueDiffers, OnInit} from '@angular/core';
 import {UserService} from "../../../services/user.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {environment} from "../../../../environments/environment";
 import {ReCaptchaV3Service} from "ng-recaptcha";
 import {Router} from "@angular/router";
+import {ViewportScroller} from "@angular/common";
 
 @Component({
   selector: 'app-password-reset',
   templateUrl: './password-reset.component.html',
   styleUrls: ['./password-reset.component.scss']
 })
-export class PasswordResetComponent {
-constructor(private userService: UserService, private router: Router, private recaptchaV3Service: ReCaptchaV3Service,) {
+export class PasswordResetComponent implements OnInit {
+constructor(private userService: UserService, private viewportScroller: ViewportScroller,  private router: Router, private recaptchaV3Service: ReCaptchaV3Service,) {
   this.token = undefined;
 }
 
@@ -27,6 +28,10 @@ constructor(private userService: UserService, private router: Router, private re
   });
 
   public log: string[] = [];
+
+  ngOnInit() {
+    this.viewportScroller.scrollToPosition([0,0]);
+  }
 
   onSubmitForm() {
     this.recaptchaV3Service.execute('myAction').subscribe(
