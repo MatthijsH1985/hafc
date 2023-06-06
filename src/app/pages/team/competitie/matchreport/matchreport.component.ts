@@ -3,6 +3,7 @@ import {Subscription} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FixturesService} from "../../../../services/fixtures.service";
 import {ViewportScroller} from "@angular/common";
+import {faLongArrowLeft, faLongArrowRight} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-matchreport',
@@ -13,6 +14,8 @@ export class MatchreportComponent implements OnInit {
   loading = true;
   matchReportSub: Subscription | undefined;
   matchReportResult: any;
+  longArrowRight = faLongArrowRight;
+  longArrowLeft = faLongArrowLeft;
   matchReport = {
     time: {
       status: '',

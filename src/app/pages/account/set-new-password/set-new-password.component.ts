@@ -14,7 +14,7 @@ export class SetNewPasswordComponent {
     password: new FormControl('', Validators.required),
     authorizationcode: new FormControl('', Validators.required)
   });
-  feedbackMessage: any;
+  feedbackMessage: any = '';
 
   onSubmitForm() {
     const emailAddress = this.userData.get('email')?.value;

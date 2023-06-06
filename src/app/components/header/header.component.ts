@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {MenuService} from "../../services/menu.service";
+import {faStream} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-header',
@@ -7,6 +8,7 @@ import {MenuService} from "../../services/menu.service";
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
+  faStream = faStream;
   constructor(public menuService: MenuService) {
   }
 }

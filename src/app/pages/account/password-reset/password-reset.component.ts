@@ -3,6 +3,7 @@ import {UserService} from "../../../services/user.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {environment} from "../../../../environments/environment";
 import {ReCaptchaV3Service} from "ng-recaptcha";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-password-reset',
@@ -10,14 +11,15 @@ import {ReCaptchaV3Service} from "ng-recaptcha";
   styleUrls: ['./password-reset.component.scss']
 })
 export class PasswordResetComponent {
-constructor(private userService: UserService, private recaptchaV3Service: ReCaptchaV3Service,) {
+constructor(private userService: UserService, private router: Router, private recaptchaV3Service: ReCaptchaV3Service,) {
   this.token = undefined;
 }
 
   feedbackMessage: any;
-  errorMessage: any;
+  errorMessage: any = '';
   token: string|undefined;
   key: any = environment.recaptcha.siteKey;
+  message = ''
 
   userData: FormGroup = new FormGroup({
     recaptchaReactive: new FormControl(null, Validators.required),
@@ -66,16 +68,17 @@ constructor(private userService: UserService, private recaptchaV3Service: ReCapt
     const email = JSON.stringify({
       email: formData
     });
-    console.log(email)
     this.userService.forgetPassWord(email).subscribe({
       next: (result: any) => {
         console.log(result);
-        this.feedbackMessage = result.message;
+        this.message = 'Moment, je wordt automatisch doorgestuurd.';
+        setTimeout(() => {
+          return this.router.navigate(['/account', 'set-new-password']);
+        }, 3000);
       },
       error: error => {
-        console.log(error);
         this.errorMessage = error.error.message
-      }
+      },
     });
   }
 }

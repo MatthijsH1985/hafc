@@ -5,8 +5,8 @@
   }
 }
 .modal-comment {
-  @apply h-0 px-10 transition-all;
   &.active {
-    @apply h-[80vh] p-10
+    @apply h-[90vh]
   }
+  @apply left-0 w-full p-0 xl:w-[1000px] p-4 h-0 bg-white z-40 overflow-auto fixed bottom-0 w-full right-0 left-0 md:left-1/2 transform md:-translate-x-1/2;
 }

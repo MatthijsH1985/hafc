@@ -4,14 +4,15 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build-dev": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve": "serve -s dist/hafc -l 3000",
     "dev:ssr": "ng run hafc:serve-ssr",
     "serve:ssr": "node dist/hafc/server/main.js",
     "build:ssr": "ng build && ng run hafc:server",
-    "prerender": "ng run hafc:prerender"
+    "prerender": "ng run hafc:prerender",
+    "vercel-build": "npm run build:ssr"
   },
   "private": true,
   "dependencies": {

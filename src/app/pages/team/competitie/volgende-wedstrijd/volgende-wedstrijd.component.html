@@ -1,5 +1,5 @@
 <div class="p-4 md:p-0" *ngIf="nextMatch?.localteam_id || nextMatch?.length > 0; else noMatch">
-  <div class="-mt-[70px] md:-mt-[60px] max-w-full relative m-auto z-10 text-center bg-black">
+  <div class=" max-w-full relative m-auto z-10 text-center bg-black">
     <div class="bg-black">
       <div [ngClass]="['matches next-match']" class="p-4">
         <a (click)="onOpenMatch(nextMatch?.id)">
@@ -23,7 +23,7 @@
 </div>
 <ng-template #noMatch>
   <div class="p-0 bg-black">
-    <div class="md:-mt-[64px] max-w-full relative m-auto z-10 text-center">
+    <div class="max-w-full relative m-auto z-10 text-center">
       <div class="flex items-center justify-center flex-wrap text-white">
         <h3 class="p-5 block">Geen wedstrijden te spelen</h3>
       </div>
