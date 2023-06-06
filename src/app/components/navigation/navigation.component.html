@@ -13,7 +13,7 @@
       </li>
       <li class="has-sub-menu group" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
         <a (click)="menuService.close()" [routerLink]="['club']" class="button button-black">Club <fa-icon [icon]="faChevronDown"></fa-icon></a>
-        <div class="sub-menu absolute w-full left-0 pt-8 group-hover:flex">
+        <div class="sub-menu absolute md:hidden w-full left-0 pt-8 group-hover:flex">
           <div class="bg-black md:bg-white sub-menu-inner p-8 w-full h-[300px] md:flex">
             <div class="md:p-4">
               <h4 class="my-4 text-black">Eerste elftal</h4>
