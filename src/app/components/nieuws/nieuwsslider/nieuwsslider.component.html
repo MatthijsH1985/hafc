@@ -11,7 +11,7 @@
 <!--</swiper-container>-->
 <div *ngIf="headline" class="overflow-hidden">
   <a class="relative xl:w-[1200px] flex items-center flex-col justify-center h-[500px]] md:h-[450px] group" [routerLink]="['nieuws', headline?.id, headline?.slug]">
-    <img [src]="headline?.better_featured_image?.source_url" class="absolute object-cover w-full h-[500px] md:h-[450px] object-cover transition-all w-full block opacity-60 group-hover:scale-105 group-hover:opacity-100" />
+    <img [src]="headline?.better_featured_image?.source_url" class="absolute object-cover object-top w-full h-[500px] md:h-[450px] object-cover transition-all w-full block opacity-60 group-hover:scale-105 group-hover:opacity-100" />
     <div class="mt-4 flex flex-col justify-center md:text-left text-center m-auto z-20 h-[500px] md:bottom-32 lg:w-[50%]">
       <h1 [innerHTML]="headline?.title?.rendered" class="text-white text-center md:text-5xl text-3xl md:leading-normal leading-normal p-4"></h1>
       <span class="inline md:ml-4 text-white mb-4 text-center">{{ validDateFormat(headline?.date)  | date: 'd MMMM' }}</span>
