@@ -40,7 +40,9 @@ export class LoginFormComponent implements OnInit {
           })
         ).subscribe((result) => {
           if (result) {
-            timer(1000).subscribe(() => {
+            console.log(result);
+            timer(2000).subscribe(() => {
+              console.log(result);
               this.router.navigate(['account/details/mijn-gegevens']);
             });
           }
