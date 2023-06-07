@@ -1,37 +1,41 @@
 <div class="fixed z-30 bg-black opacity-80 w-full h-full bottom-0 overlay" [ngClass]="{'show-overlay': modalStatus === true}"></div>
 <div class="modal-comment" [ngClass]="{'active': modalStatus === true}">
   <div class="flex flex-col relative">
-    <h3 class="text-4xl">Reactie plaatsen</h3> <button class="ml-auto absolute right-0 text-4xl" (click)="onCloseModal()">X</button>
-    <form [formGroup]="commentForm" (ngSubmit)="onPostComment(commentForm)">
-      <div *ngIf="!isLoggedIn(); else loggedIn">
-        <div class="mb-4">
-          <label for="name">
-            Je naam
-          </label>
-          <input formControlName="name" id="name" type="text" />
+    <div class="bg-gray-100 p-4 border-b border-gray-300p-4 flex items-center">
+      <h3 class="text-3xl">Reactie plaatsen</h3> <button class="ml-auto text-gray-800 text-3xl hover:text-black" (click)="onCloseModal()">X</button>
+    </div>
+    <div class="modal-content">
+      <form [formGroup]="commentForm" (ngSubmit)="onPostComment(commentForm)">
+        <div *ngIf="!isLoggedIn(); else loggedIn">
+          <div class="mb-4">
+            <label for="name">
+              Je naam
+            </label>
+            <input formControlName="name" id="name" type="text" />
+          </div>
+          <div class="mb-4">
+            <label for="email">
+              Je e-mailadres
+            </label>
+            <input formControlName="email" id="email" type="email" />
+          </div>
         </div>
+        <ng-template #loggedIn>
+          <p class="text-base pl-4 mb-8">
+            Je bent ingelogd als {{ getUserName() }} Ben jij dit niet? <button (click)="logOut()" class="underline">Meld je dan af.</button>
+          </p>
+        </ng-template>
         <div class="mb-4">
-          <label for="email">
-            Je e-mailadres
+          <label for="comment">
+            Je bericht
           </label>
-          <input formControlName="email" id="email" type="email" />
+          <textarea formControlName="comment" id="comment" placeholder="Voer hier je bericht in"></textarea>
         </div>
-      </div>
-      <ng-template #loggedIn>
-        <p class="text-base pl-4 mb-8">
-          Je bent ingelogd als {{ getUserName() }} Ben jij dit niet? <button (click)="logOut()" class="underline">Meld je dan af.</button>
-        </p>
-      </ng-template>
-      <div class="mb-4">
-        <label for="comment">
-          Je bericht
-        </label>
-        <textarea formControlName="comment" id="comment" placeholder="Voer hier je bericht in"></textarea>
-      </div>
-      <div class="flex items-center justify-between">
-        <button type="submit" class="button button-black">Reactie plaatsen</button>
-      </div>
-    </form>
+        <div class="flex items-center justify-between">
+          <button type="submit" class="button button-black">Reactie plaatsen</button>
+        </div>
+      </form>
+    </div>
   </div>
   <p *ngIf="errorMessage" class="bg-red-200 text-red-800 p-4 rounded-md">{{ errorMessage }}</p>
 </div>

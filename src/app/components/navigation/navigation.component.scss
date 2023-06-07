@@ -26,6 +26,12 @@
             .button {
               @apply block
             }
+            button:focus {
+              color: rgba(255,255,255,1);
+              background-position: right;
+              outline: none;
+              outline-offset: 4px;
+            }
             .sub-menu {
               @apply pt-0
             }

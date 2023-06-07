@@ -9,13 +9,13 @@
 <!--    </a>-->
 <!--  </swiper-slide>-->
 <!--</swiper-container>-->
-<div *ngIf="headline">
-  <a class="relative xl:w-[1200px] flex items-center flex-col justify-center md:h-[450px] bg-black group" [routerLink]="['nieuws', headline?.id, headline?.slug]">
-    <img [src]="headline?.better_featured_image?.source_url" class="absolute object-cover w-full h-[500px] md:h-[450px] object-top transition-all w-full block opacity-60 group-hover:scale-105 group-hover:opacity-100" />
+<div *ngIf="headline" class="overflow-hidden">
+  <a class="relative xl:w-[1200px] flex items-center flex-col justify-center h-[500px]] md:h-[450px] group" [routerLink]="['nieuws', headline?.id, headline?.slug]">
+    <img [src]="headline?.better_featured_image?.source_url" class="absolute object-cover w-full h-[500px] md:h-[450px] object-cover transition-all w-full block opacity-60 group-hover:scale-105 group-hover:opacity-100" />
     <div class="mt-4 flex flex-col justify-center md:text-left text-center m-auto z-20 h-[500px] md:bottom-32 lg:w-[50%]">
-      <h1 [innerHTML]="headline?.title?.rendered" class="text-white text-center md:text-left md:text-4xl text-2xl leading-10 p-4"></h1>
-      <span class="inline md:ml-4 text-white mb-4 text-center md:text-left">{{ validDateFormat(headline?.date)  | date: 'd MMMM' }}</span>
-      <span class="inline md:ml-4 text-white text-center md:text-left">{{ headline.comments_count }} reacties</span>
+      <h1 [innerHTML]="headline?.title?.rendered" class="text-white text-center md:text-5xl text-3xl md:leading-normal leading-normal p-4"></h1>
+      <span class="inline md:ml-4 text-white mb-4 text-center">{{ validDateFormat(headline?.date)  | date: 'd MMMM' }}</span>
+      <span class="inline md:ml-4 text-white text-center">{{ headline.comments_count }} reacties</span>
     </div>
   </a>
 </div>

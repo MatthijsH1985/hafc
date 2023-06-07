@@ -6,7 +6,10 @@
 }
 .modal-comment {
   &.active {
-    @apply h-[95%] p-4
+    @apply h-[95%]
+  }
+  .modal-content {
+    @apply p-8
   }
   @apply left-0 w-full p-0 xl:w-[1000px] h-0 bg-white z-40 overflow-auto fixed bottom-0 w-full right-0 left-0 md:left-1/2 transform md:-translate-x-1/2;
 }

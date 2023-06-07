@@ -35,12 +35,9 @@ body {
   ) right;
   background-size: 201%;
 
-  &:focus {
-    outline: 2px dotted var(--green);
-    outline-offset: 4px;
-  }
+
   &:active {
-    box-shadow: 0 0 0 1px var(--white), 0 0 0 1px var(--green);
+    box-shadow: 0 0 0 1px rgba(255,255,255,1), 0 0 0 1px rgba(0,0,0,1);
   }
   &.button-black {
     background: linear-gradient(
@@ -56,11 +53,29 @@ body {
         background-position: left;
       }
     }
+    &.active {
+      &:focus {
+        color: rgba(0,0,0,1);
+      }
+    }
     &[disabled] {
       opacity: 0.4;
       cursor: not-allowed;
       background: #000;
       color: white;
+    }
+    &:active {
+      background-position: right;
+      color: rgba(0,0,0,1);
+    }
+    &:focus {
+      color: rgba(255,255,255,1);
+      background-position: right;
+      outline: 2px solid rgba(0,0,0, 1);
+      outline-offset: 4px;
+    }
+    &:hover {
+      color: rgba(0,0,0,1);
     }
   }
   &.button-white {
