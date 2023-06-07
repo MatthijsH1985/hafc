@@ -17,10 +17,9 @@ export class UserCommentsComponent implements OnInit{
     this.commentsService.getCommentsByUserId(userID).subscribe({
       next: comments => {
         this.comments = comments;
-        console.log(comments);
       },
       error:error => {
-
+        console.log('error');
       }
     })
   }

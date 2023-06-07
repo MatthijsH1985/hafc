@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {AuthService} from "../../services/auth/auth-service";
 import {Router} from "@angular/router";
-import {catchError, of} from "rxjs";
+import {catchError, of, timer} from "rxjs";
 
 @Component({
   selector: 'app-login-form',
@@ -40,8 +40,9 @@ export class LoginFormComponent implements OnInit {
           })
         ).subscribe((result) => {
           if (result) {
-            console.log(result);
-            this.router.navigate(['account/details/mijn-gegevens']);
+            timer(1000).subscribe(() => {
+              this.router.navigate(['account/details/mijn-gegevens']);
+            });
           }
         });
       }

@@ -27,13 +27,10 @@ export class UserConfigComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('Koekoek')
-    console.log(this.authService.isAuthenticated());
     if (this.authService.isAuthenticated()) {
       this.authService.getUserInfo().subscribe({
         next: (user: any) => {
           this.userID = user.id;
-          console.log(user);
           this.userForm = new FormGroup({
             username: new FormControl({
               value: user.username,

@@ -109,8 +109,6 @@ export class AuthService {
   }
 
   public getToken(): any | null {
-    console.log(this._platform.isBrowser);
-    console.log(this.storage.getItem(this.JWT_TOKEN));
     if (this._platform.isBrowser) {
       return this.storage.getItem(this.JWT_TOKEN);
     }
