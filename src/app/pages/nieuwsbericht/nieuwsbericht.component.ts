@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit, Output} from '@angular/core';
+import {Component, HostListener, OnDestroy, OnInit, Output} from '@angular/core';
 import {Subscription} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 import {PostsService} from "../../services/posts.service";
@@ -20,6 +20,13 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy {
   modalCommentsOpen: boolean = false;
   categoryName: any;
   @Output() reloadComments: any;
+  buttonVisible: boolean = false;
+
+  @HostListener('window:scroll', ['$event']) onScroll(event: any) {
+    const winScroll = event.target.documentElement.scrollTop || event.currentTarget.scrollTop || document.body.scrollTop;
+
+    this.isButtonVisible(winScroll);
+  }
 
   constructor(private activatedRoute: ActivatedRoute,
               private postService: PostsService,
@@ -32,6 +39,13 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy {
     this.loading = true;
     this.currentRoute = this.route.url;
     this.loadPost();
+  }
+
+  isButtonVisible(scrollHeight: number): void {
+    this.buttonVisible = (scrollHeight > 1000) ? true : false
+  }
+  toTop(): void {
+    this.viewportScroller.scrollToPosition([0, 0]);
   }
 
   loadPost() {

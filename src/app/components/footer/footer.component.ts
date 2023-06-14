@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, Component, HostListener, OnInit} from '@angular/core';
 import {ViewportScroller} from "@angular/common";
 import {AdsService} from "../../services/ads.service";
+import {faArrowUp} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-footer',
@@ -11,6 +12,7 @@ import {AdsService} from "../../services/ads.service";
 export class FooterComponent implements OnInit {
   buttonVisible: boolean = false;
   links: any = [];
+  faArrowUp: any = faArrowUp;
   @HostListener('window:scroll', ['$event']) onScroll(event: any) {
     const winScroll = event.target.documentElement.scrollTop || event.currentTarget.scrollTop || document.body.scrollTop;
 
