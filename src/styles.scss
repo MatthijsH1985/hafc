@@ -240,3 +240,7 @@ form {
 .player-of-the-week-background {
   background: linear-gradient(#ffffff 50%, #333333 50%);
 }
+
+app-nieuwsbericht {
+  @apply min-h-screen block
+}
