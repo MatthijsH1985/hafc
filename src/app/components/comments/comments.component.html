@@ -5,7 +5,7 @@
       <h3 class="text-4xl pt-4 ml-16">Reacties</h3>
       <li *ngFor="let comment of comments" class="p-8" [ngClass]="{'opacity-60': comment.author === 0}">
         <div class="author-name p-4 ml-4 text-xl">
-          <h3 class="text-xl relative" [ngClass]="{'font-bold': comment.author !== 0}">{{ comment.author_name }} </h3>
+          <h3 class="text-xl relative" [ngClass]="{'font-bold': comment.author !== 0}">{{ comment.author_name }} <fa-icon [icon]="faCheck" class="text-green-800" *ngIf="comment.author !== 0"></fa-icon></h3>
         </div>
         <div class="comment-content p-8 bg-white break-words">
           <p [innerHTML]="comment.content.rendered" class="text-black"></p>

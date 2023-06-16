@@ -10,7 +10,7 @@ import {Router} from "@angular/router";
 })
 export class SpecialsComponent implements OnInit {
   posts: any = [];
-  headlines: any;
+  headline: any;
   postPage = 1;
   loading = true;
   postsSub: Subscription | undefined;
@@ -35,7 +35,7 @@ export class SpecialsComponent implements OnInit {
           // @ts-ignore
           this.posts.push(data[i]);
         }
-        this.headlines = this.posts.slice(0,3);
+        this.headline = this.posts[0];
         this.loading = false;
         this.postPage++;
       },

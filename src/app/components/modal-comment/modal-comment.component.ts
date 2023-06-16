@@ -22,6 +22,7 @@ export class ModalCommentComponent {
   errorMessage: string | undefined;
   @Output() commentSuccesful = new EventEmitter();
   token: string|undefined;
+  loading: boolean= false;
 
   commentForm: FormGroup;
 
@@ -80,16 +81,15 @@ export class ModalCommentComponent {
   }
 
   postComment(commentData: any) {
-    this.commentService.postComment(commentData).pipe(
-      catchError((error: any) => {
+    this.commentService.postComment(commentData).subscribe({
+      next: result => {
+        if (result) {
+          this.onCommentSuccesfull(result);
+        }
+      },
+      error: error => {
         this.errorMessage = error.error.message;
-        this.toastrService.error(error.error.message, 'Oeps!');
-        return of(null);
-      })
-    ).subscribe((result) => {
-      if (result) {
-        this.onCommentSuccesfull(result);
-        this.toastrService.success('Je reactie wordt geplaatst', 'Gelukt!');
+        this.loading = false;
       }
     });
   }

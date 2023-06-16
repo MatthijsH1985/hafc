@@ -1,6 +1,7 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {CommentsService} from "../../services/comments.service";
 import {Subscription} from "rxjs";
+import {faCheck} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-comments',
@@ -16,6 +17,7 @@ export class CommentsComponent implements OnInit, OnChanges {
   noCommentsMessage = 'Er is (nog) niet gereageerd op dit artikel';
   loadingComments: boolean = true;
   noCommentsLoaded = true;
+  faCheck = faCheck;
 
   constructor(private commentsService: CommentsService) {
 

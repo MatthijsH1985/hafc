@@ -244,3 +244,7 @@ form {
 app-nieuwsbericht {
   @apply min-h-screen block
 }
+
+.grecaptcha-badge {
+  right: -50%;
+}
