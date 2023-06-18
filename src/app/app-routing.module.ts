@@ -23,6 +23,7 @@ import {SpecialsComponent} from "./pages/specials/specials.component";
 import {TeamstatsComponent} from "./pages/team/teamstats/teamstats.component";
 import {PasswordResetComponent} from "./pages/account/password-reset/password-reset.component";
 import {SetNewPasswordComponent} from "./pages/account/set-new-password/set-new-password.component";
+import {UserConfigEditableComponent} from "./pages/account/user-config-editable/user-config-editable.component";
 
 const routes: Routes = [
 
@@ -114,6 +115,10 @@ const routes: Routes = [
       {
         path: 'mijn-gegevens',
         component: UserConfigComponent
+      },
+      {
+        path: 'mijn-gegevens/edit',
+        component: UserConfigEditableComponent
       },
       {
         path: 'mijn-reacties',

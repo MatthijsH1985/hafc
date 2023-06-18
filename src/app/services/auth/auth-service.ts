@@ -50,6 +50,10 @@ export class AuthService {
   }
 
   getUserInfo(): Observable<any>  {
+    return this.http.get<any>(`${this.apiUrl}` + 'wp/v2/users/me', this.httpOptions)
+  }
+
+  getUserInfoEditable(): Observable<any>  {
     return this.http.get<any>(`${this.apiUrl}` + 'wp/v2/users/me?context=edit', this.httpOptions)
   }
 

@@ -71,6 +71,7 @@ import {NieuwssliderModule} from "./components/nieuws/nieuwsslider/nieuwsslider.
 import {PasswordResetComponent} from "./pages/account/password-reset/password-reset.component";
 import {SetNewPasswordComponent} from "./pages/account/set-new-password/set-new-password.component";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import {UserConfigEditableComponent} from "./pages/account/user-config-editable/user-config-editable.component";
 // register()
 registerLocaleData(localeNl);
 
@@ -108,6 +109,7 @@ registerLocaleData(localeNl);
     LoginComponent,
     UserCommentsComponent,
     UserConfigComponent,
+    UserConfigEditableComponent,
     RegisterComponent,
     NavigationComponent,
     SpecialsComponent,
