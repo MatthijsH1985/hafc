@@ -28,7 +28,7 @@ export class CommentsService {
   }
 
   getComments(post:any, page = 1, order = 'desc'): Observable<Config[]> {
-    return this.http.get<Config[]>(this.configService.config.apiEndpoint + '/comments?post='+ post + '&per_page=100&page='+ page + '&order='+ order + '', this.httpOptions);
+    return this.http.get<Config[]>(this.configService.config.apiEndpoint + '/comments?post='+ post + '&per_page=10&page='+ page + '&order='+ order + '', this.httpOptions);
   }
 
   getCommentsByUserId(userId: number | undefined):Observable<any> {

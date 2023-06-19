@@ -17,6 +17,9 @@
         </div>
       </li>
     </ul>
+    <div class="mx-4 my-8 flex items-center justify-center">
+      <button class="button button-black" (click)="onLoadMoreComments()">Meer reacties tonen</button>
+    </div>
   </div>
   <div *ngIf="loadingComments">
     <p class="text-black p-8 xl:w-[1100px] ml-auto mr-auto">Reacties ophalen</p>

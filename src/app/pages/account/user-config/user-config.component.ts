@@ -20,9 +20,10 @@ export class UserConfigComponent implements OnInit {
     if (this.authService.isAuthenticated()) {
       this.authService.getUserInfo().subscribe({
         next: (user: any) => {
-          this.user = user;
-          console.log(user);
-          this.loadingUser = false;
+          setTimeout(() => {
+            this.user = user;
+            this.loadingUser = false;
+          }, 1000);
         },
         error: (err: any) => {
           console.log(err);

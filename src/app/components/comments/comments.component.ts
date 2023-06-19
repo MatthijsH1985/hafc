@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
 import {CommentsService} from "../../services/comments.service";
 import {Subscription} from "rxjs";
 import {faCheck} from "@fortawesome/free-solid-svg-icons";
@@ -8,7 +8,7 @@ import {faCheck} from "@fortawesome/free-solid-svg-icons";
   templateUrl: './comments.component.html',
   styleUrls: ['./comments.component.scss']
 })
-export class CommentsComponent implements OnInit, OnChanges {
+export class CommentsComponent implements OnInit, OnChanges, OnDestroy {
   commentsSub: Subscription | undefined;
   @Input() postId: string | undefined;
   @Input() onReloadComments: boolean = false;
@@ -18,27 +18,31 @@ export class CommentsComponent implements OnInit, OnChanges {
   loadingComments: boolean = true;
   noCommentsLoaded = true;
   faCheck = faCheck;
+  commentPage: number = 1;
 
   constructor(private commentsService: CommentsService) {
 
   }
 
   ngOnInit() {
-    this.getComments();
+    this.getComments(1);
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['onReloadComments'] && !changes['onReloadComments'].firstChange) {
-      this.getComments();
+      this.getComments(this.commentPage);
     }
   }
 
-  getComments() {
-    this.commentsService.getComments(this.postId).subscribe({
+  getComments(page: number) {
+    this.commentsSub = this.commentsService.getComments(this.postId, this.commentPage).subscribe({
       next: comments => {
-        this.comments = comments;
+        for (let i = 0; i < comments.length; i++) {
+          this.comments.push(comments[i]);
+        }
         this.loadingComments = false;
         this.noCommentsLoaded = false;
+        this.commentPage++;
       },
       error:error => {
         this.loadingComments = false;
@@ -53,4 +57,13 @@ export class CommentsComponent implements OnInit, OnChanges {
     }
     return null;
   }
+
+  onLoadMoreComments() {
+    this.getComments(this.commentPage);
+  }
+
+  ngOnDestroy() {
+    this.commentsSub?.unsubscribe();
+  }
+
 }
