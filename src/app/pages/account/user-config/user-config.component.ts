@@ -1,16 +1,18 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthService} from "../../../services/auth/auth-service";
 import {UserService} from "../../../services/user.service";
 import {ToastrService} from "ngx-toastr";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-user-config',
   templateUrl: './user-config.component.html',
   styleUrls: ['./user-config.component.scss']
 })
-export class UserConfigComponent implements OnInit {
+export class UserConfigComponent implements OnInit, OnDestroy {
   loadingUser = true;
   user: any;
+  authSub: Subscription | undefined;
   errorMessage: string | undefined;
   constructor(private authService: AuthService, private userService: UserService, private toastrService: ToastrService) {
 
@@ -18,7 +20,7 @@ export class UserConfigComponent implements OnInit {
 
   ngOnInit() {
     if (this.authService.isAuthenticated()) {
-      this.authService.getUserInfo().subscribe({
+      this.authSub = this.authService.getUserInfo().subscribe({
         next: (user: any) => {
           setTimeout(() => {
             this.user = user;
@@ -29,6 +31,11 @@ export class UserConfigComponent implements OnInit {
           console.log(err);
         }
       })
+    }
+  }
+  ngOnDestroy() {
+    if (this.authSub !== undefined) {
+      this.authSub.unsubscribe();
     }
   }
 }
