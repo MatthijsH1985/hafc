@@ -15,6 +15,7 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy {
   postId: any = this.activatedRoute.snapshot.paramMap.get('id')
   post: any;
   name: string = '';
+  direction: string | undefined;
   loading: boolean = true;
   currentRoute: any;
   modalCommentsOpen: boolean = false;

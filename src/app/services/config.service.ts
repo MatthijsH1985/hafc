@@ -14,7 +14,7 @@ export class ConfigService {
     }
   };
 
-  constructor(private readonly http: HttpClient) {
+  constructor() {
   }
 
 }

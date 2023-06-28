@@ -16,6 +16,6 @@
     </li>
   </ul>
   <div class="flex justify-center my-8">
-    <button (click)="onLoadMorePosts()" class="button button-black">Meer nieuws</button>
+    <button (click)="onLoadMorePosts()" *ngIf="posts.length > 10" class="button button-black">Meer nieuws</button>
   </div>
 </div>

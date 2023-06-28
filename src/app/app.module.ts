@@ -72,6 +72,7 @@ import {PasswordResetComponent} from "./pages/account/password-reset/password-re
 import {SetNewPasswordComponent} from "./pages/account/set-new-password/set-new-password.component";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {UserConfigEditableComponent} from "./pages/account/user-config-editable/user-config-editable.component";
+import {AddsComponent} from "./components/adds/adds.component";
 // register()
 registerLocaleData(localeNl);
 
@@ -115,7 +116,8 @@ registerLocaleData(localeNl);
     SpecialsComponent,
     TeamstatsComponent,
     PasswordResetComponent,
-    SetNewPasswordComponent
+    SetNewPasswordComponent,
+    AddsComponent
   ],
   imports: [
     CommonModule,
