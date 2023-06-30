@@ -63,18 +63,6 @@ export class NieuwssliderComponent implements AfterViewInit {
         // this.swiper.nativeElement.initialize();
       }
     }
-    this.getHeadline();
-  }
-
-  getHeadline(): void {
-    this.postsSub = this.postsService.getPosts(1).subscribe({
-      next: (data: any) => {
-        this.headline = data[0];
-      },
-      error: (error: any) => {
-        console.log(error);
-      }
-    });
   }
 
   onSlideChange(event: any) {

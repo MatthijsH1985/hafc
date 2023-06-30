@@ -9,11 +9,13 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
   templateUrl: './nieuwsarchief.component.html',
   styleUrls: ['./nieuwsarchief.component.scss']
 })
-export class NieuwsarchiefComponent {
+export class NieuwsarchiefComponent implements OnInit{
   posts: any = [];
   loading = true;
   @Output() searchTerms: any;
   reloadItems: boolean = false;
+  postsSub: Subscription | undefined;
+  postPage: any;
 
   searchForm: FormGroup = new FormGroup({
     searchTerm: new FormControl('', [Validators.required])
@@ -23,16 +25,24 @@ export class NieuwsarchiefComponent {
 
   }
 
-  async onSearch() {
-    this.posts = [];
-    if (this.searchForm.valid) {
-      const searchTerm = this.searchForm.get('searchTerm')?.value;
-      if (searchTerm) {
-        this.reloadItems = true;
-        this.searchTerms = searchTerm;
-        this.loading = false;
-      }
-    }
-    this.reloadItems = false;
+  ngOnInit() {
+    this.getPosts();
   }
+
+  getPosts() {
+    this.loading = true;
+    this.postsSub = this.postsService.getPosts(this.postPage).subscribe({
+      next: data => {
+        for (let i = 0; i < data.length; i++) {
+          this.posts.push(data[i]);
+        }
+        this.loading = false;
+        this.postPage++;
+      },
+      error: error => {
+        console.log(error);
+      }
+    });
+  }
+
 }

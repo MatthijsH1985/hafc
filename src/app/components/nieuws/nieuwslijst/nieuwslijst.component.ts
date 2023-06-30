@@ -12,7 +12,7 @@ export class NieuwslijstComponent implements OnChanges, OnInit {
   @Input('compact') compact: boolean = false;
   @Input('searchTerms') searchTerms: any | undefined;
   @Input() reloadItemsBySearch: boolean = false;
-  posts: any = [];
+  @Input() posts: any = [];
   postsFound: any = [];
   postsSub: Subscription | undefined;
   loading: boolean = true;
@@ -29,7 +29,7 @@ export class NieuwslijstComponent implements OnChanges, OnInit {
   }
 
   ngOnInit() {
-    this.getPosts(1);
+    // this.getPosts(1);
   }
 
   getPosts(page: number): void {

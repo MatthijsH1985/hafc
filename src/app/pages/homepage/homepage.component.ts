@@ -30,6 +30,24 @@ export class HomepageComponent implements OnInit {
   ngOnInit() {
     this.titleService.setTitle('HAFC - Wij zijn Heracles!');
     this.viewportScroller.scrollToPosition([0, 0]);
+    this.getPosts();
+  }
+
+  getPosts() {
+    this.loading = true;
+    this.postsSub = this.postsService.getPosts(this.postPage).subscribe({
+      next: data => {
+        for (let i = 0; i < data.length; i++) {
+          this.posts.push(data[i]);
+        }
+        this.headline = this.posts[0];
+        this.loading = false;
+        this.postPage++;
+      },
+      error: error => {
+        console.log(error);
+      }
+    });
   }
 
   validDateFormat(dateString: any) {
@@ -38,9 +56,5 @@ export class HomepageComponent implements OnInit {
       return newDate.toISOString();
     }
     return null;
-  }
-
-  openPost(post: any): void {
-    this.router.navigateByUrl(`nieuws/${post.id}`);
   }
 }

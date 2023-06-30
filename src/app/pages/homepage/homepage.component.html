@@ -1,12 +1,12 @@
 <div class="flex flex-col min-h-screen">
   <div class="container max-w-[1200px] relative z-10 ml-auto mr-auto">
     <div class="md:h-[550px] m-h-[450px] overflow-hidden relative bg-black min-h-[550px]">
-     <app-nieuwsslider></app-nieuwsslider>
+     <app-nieuwsslider [headline]="headline"></app-nieuwsslider>
     </div>
     <div class="flex flex-col md:flex-row md:flex-row flex-col-reverse">
       <div class="w-full md:w-2/3 ">
         <div class="md:ml-0 px-4 md:mr-4 md:px-0 md:mt-4">
-          <app-nieuwslijst [compact]="true" [pagination]="false"></app-nieuwslijst>
+          <app-nieuwslijst [posts]="posts" [compact]="true" [pagination]="false"></app-nieuwslijst>
         </div>
       </div>
       <div class="w-full md:p-0 md:w-1/3">
