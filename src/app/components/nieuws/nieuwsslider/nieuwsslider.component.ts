@@ -49,7 +49,7 @@ export class NieuwssliderComponent implements AfterViewInit {
   //     },
   //   },
   // }
-  @Input('headline') headline: any;
+  @Input('headline') headline: any | undefined;
   // @ViewChild('swiper') swiper: ElementRef | undefined
 
   constructor(@Inject('isBrowser') private isBrowser: boolean, private postsService: PostsService) {

@@ -6,4 +6,5 @@ export const environment = {
   recaptcha: {
     siteKey: '6LdyyrcUAAAAAB81RMMORr90yBEMcYN_omdANSEe',
   },
+  sportmonks: "gFPh2F6EuJvjzcKIuj0keZfp0vhlUVRWPR0H0qmg0Dt1vYNYlVUvr4oYGQD8",
 };
