@@ -4,6 +4,7 @@ module.exports = {
     "./src/**/*.{html,scss,ts}",
   ],
   theme: {
+    darkMode: 'media',
     colors: {
       white: '#FFF',
       black: '#000',

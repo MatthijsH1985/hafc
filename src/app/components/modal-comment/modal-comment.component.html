@@ -1,8 +1,8 @@
 <div class="fixed z-30 bg-black opacity-80 w-full h-full bottom-0 overlay" [ngClass]="{'show-overlay': modalStatus === true}"></div>
 <div class="modal-comment" [ngClass]="{'active': modalStatus === true}">
   <div class="flex flex-col relative">
-    <div class="bg-gray-100 p-4 border-b border-gray-300 p-4 flex items-center">
-      <h3 class="text-3xl">Reactie plaatsen</h3> <button class="ml-auto text-gray-800 text-3xl hover:text-black" (click)="onCloseModal()">X</button>
+    <div class="bg-gray-100 dark:bg-gray-900 p-4 border-b border-gray-300 p-4 flex items-center">
+      <h3 class="text-3xl dark:text-white">Reactie plaatsen</h3> <button class="ml-auto text-gray-800 text-3xl hover:text-black dark:text-white" (click)="onCloseModal()">X</button>
     </div>
     <div class="modal-content">
       <form [formGroup]="commentForm" (ngSubmit)="onPostComment(commentForm)">
@@ -11,13 +11,13 @@
             <label for="name">
               Je naam
             </label>
-            <input formControlName="name" id="name" type="text" />
+            <input class="dark:bg-gray-800" formControlName="name" id="name" type="text" />
           </div>
           <div class="mb-4">
             <label for="email">
               Je e-mailadres
             </label>
-            <input formControlName="email" id="email" type="email" />
+            <input class="dark:bg-gray-800" formControlName="email" id="email" type="email" />
           </div>
         </div>
         <ng-template #loggedIn>
@@ -29,7 +29,7 @@
           <label for="comment">
             Je bericht
           </label>
-          <textarea formControlName="comment" id="comment" placeholder="Voer hier je bericht in"></textarea>
+          <textarea class="dark:bg-gray-800" formControlName="comment" id="comment" placeholder="Voer hier je bericht in"></textarea>
         </div>
         <div class="flex items-center justify-between">
           <button type="submit" class="button button-black" [disabled]="loading" [className]="{'opacity-50 not-allowed': !loading}">Reactie plaatsen</button>

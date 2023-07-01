@@ -1,17 +1,12 @@
 <div class="recent-comments">
   <h3 class="pl-4 text-xl mb-4">Mijn recente comments</h3>
   <ul>
-    <li *ngFor="let comment of comments;" class="border-b border-gray-100 p-4">
+    <li *ngFor="let comment of comments;" class="border-b border-gray-100 dark:border-black p-4">
       <a [href]="[comment.post_permalink]" class="flex items-center group">
         <div class="pr-8">
-          <span class="date">{{ validDateFormat(comment.date) | date: 'EEEE, d MMMM, y' }}</span>
-          <div [innerHTML]="comment.content.rendered"></div>
-          <a >
-            <span class="block mt-2 text-sm">{{ comment.post_title }}</span>
-          </a>
-        </div>
-        <div class="ml-auto opacity-20 group-hover:opacity-100">
-          >
+          <span class="date" class="dark:text-white">{{ validDateFormat(comment.date) | date: 'EEEE, d MMMM, y' }}</span>
+          <div [innerHTML]="comment.content.rendered" class="dark:text-white"></div>
+          <span class="block mt-2 text-sm dark:text-white">{{ comment.post_title }}</span>
         </div>
       </a>
     </li>
