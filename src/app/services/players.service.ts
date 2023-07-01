@@ -3,6 +3,7 @@ import {Observable} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Config} from '../model/config';
 import {ConfigService} from './config.service';
+import {environment} from "../../environments/environment";
 
 @Injectable()
 
@@ -27,7 +28,7 @@ export class PlayersService {
   }
 
   getPlayerStats(playerId: number): Observable<any> {
-    return this.http.get<Config[]>(this.configService.config.sportmonks.apiEndpointSportmonks + '/players/' + playerId + '?include=stats&seasons=19727&api_token=' + this.configService.config.sportmonks.token + '', this.httpOptions);
+    return this.http.get<Config[]>(environment.sportmonks.url + '/players/' + playerId + '?include=stats&seasons=19727&api_token=' + environment.sportmonks.apiKey + '', this.httpOptions);
   }
 
 }

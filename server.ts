@@ -7,8 +7,6 @@ import { existsSync } from 'fs';
 import { join } from 'path';
 
 import { AppServerModule } from './src/main.server';
-import axios from "axios";
-
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
