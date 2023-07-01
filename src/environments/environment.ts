@@ -10,7 +10,7 @@ export const environment = {
   recaptcha: {
     siteKey: '6LfEKGImAAAAACNlgj6_ompIBaRy_e4sulh4Axgu',
   },
-  sportmonks: process.env['sportmonks']
+  sportmonks: "gFPh2F6EuJvjzcKIuj0keZfp0vhlUVRWPR0H0qmg0Dt1vYNYlVUvr4oYGQD8",
 };
 
 

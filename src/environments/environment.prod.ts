@@ -6,5 +6,5 @@ export const environment = {
   recaptcha: {
     siteKey: '6LdyyrcUAAAAAB81RMMORr90yBEMcYN_omdANSEe',
   },
-  sportmonks: process.env.sportmonks
+  sportmonks: process.env['sportmonks']
 };
