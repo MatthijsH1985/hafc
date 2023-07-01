@@ -5,6 +5,5 @@ export const environment = {
   userServiceUrl: 'userservice',
   recaptcha: {
     siteKey: '6LdyyrcUAAAAAB81RMMORr90yBEMcYN_omdANSEe',
-  },
-  sportmonks: process.env['sportmonks']
+  }
 };

@@ -37,7 +37,7 @@ export class StandComponent implements OnInit, OnDestroy {
         this.ranking = this.selectieRijen(this.ranking, club);
       }
     }, (error) => {
-      console.log('Er is iets mis gegaan: ' + error);
+      console.log('Er is iets mis gegaan: ' + error.error);
     });
   }
 

@@ -27,6 +27,7 @@ export class ProgrammaComponent implements OnInit{
   getFixtures() {
     this.fixturesService.getFixtures(this.teamId).subscribe( {
       next: data => {
+        console.log(data);
         this.teamFixtures = data.data.upcoming.data;
         this.nextMatch = data.data.upcoming.data[0];
         this.loading = false;

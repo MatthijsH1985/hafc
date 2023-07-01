@@ -4,5 +4,6 @@ export interface Config {
   apiEndPointDev: string;
   sportmonks: {
     apiEndpointSportmonks: string;
+    token: string;
   };
 }
