@@ -78,6 +78,46 @@ body {
     }
     @apply dark:bg-blue-500 dark:text-white
   }
+  &.button-blue {
+    background: linear-gradient(
+        to left,
+        rgb(0,158,226) 50%,
+        rgb(255,255,255) 50%
+    ) right;
+    color: rgba(255,255,255, 1);
+    background-size: 202%;
+    &:hover, &.active {
+      color: rgba(0,0,0,1);
+      &:not([disabled]) {
+        background-position: left;
+      }
+    }
+    &.active {
+      &:focus {
+        color: rgba(0,0,0,1);
+      }
+    }
+    &[disabled] {
+      opacity: 0.4;
+      cursor: not-allowed;
+      background: rgb(0,158,126);
+      color: white;
+    }
+    &:active {
+      background-position: right;
+      color: rgba(0,158,126,1);
+    }
+    &:focus {
+      color: rgba(255,255,255,1);
+      background-position: right;
+      outline: 2px solid rgba(0,158,126, 1);
+      outline-offset: 4px;
+    }
+    &:hover {
+      color: rgba(0,0,0,1);
+    }
+    @apply dark:bg-blue-500 dark:text-white
+  }
   &.button-white {
     background: linear-gradient(
         to left,

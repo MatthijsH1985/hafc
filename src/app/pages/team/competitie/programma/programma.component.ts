@@ -46,6 +46,6 @@ export class ProgrammaComponent implements OnInit{
   }
 
   onOpenMatchReport(matchId: number) {
-    this.router.navigateByUrl('wedstrijden/' + matchId);
+    this.router.navigateByUrl('wedstrijdprogramma/' + matchId);
   }
 }

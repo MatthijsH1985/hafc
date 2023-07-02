@@ -28,7 +28,7 @@
     <input type="password" formControlName="user_password_repeat" placeholder="Herhaal je wachtwoord"  id="password_repeat">
   </div>
   <div class="flex items-center justify-between">
-    <button class="button button-black" type="submit" [disabled]="!userFormData.valid">Registreer</button>
+    <button class="button button-blue" type="submit" [disabled]="!userFormData.valid">Registreer</button>
   </div>
   <div class="mt-4">
     <re-captcha id="recaptcha" name="recaptcha" #recaptcha="ngModel" [(ngModel)]="token" required [class.is-invalid]="recaptcha.invalid && (recaptcha.dirty || recaptcha.touched)"></re-captcha>

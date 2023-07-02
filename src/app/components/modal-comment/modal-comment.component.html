@@ -21,7 +21,7 @@
           </div>
         </div>
         <ng-template #loggedIn>
-          <p class="text-base pl-4 mb-8">
+          <p class="text-base pl-4 mb-8 dark:text-white">
             Je bent ingelogd als {{ getUserName() }} Ben jij dit niet? <button (click)="logOut()" class="underline">Meld je dan af.</button>
           </p>
         </ng-template>
@@ -32,7 +32,7 @@
           <textarea class="dark:bg-gray-800" formControlName="comment" id="comment" placeholder="Voer hier je bericht in"></textarea>
         </div>
         <div class="flex items-center justify-between">
-          <button type="submit" class="button button-black" [disabled]="loading" [className]="{'opacity-50 not-allowed': !loading}">Reactie plaatsen</button>
+          <button type="submit" class="button button-blue" [disabled]="loading" [className]="{'opacity-50 not-allowed': !loading}">Reactie plaatsen</button>
         </div>
       </form>
     </div>

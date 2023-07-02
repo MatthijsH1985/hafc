@@ -61,29 +61,29 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="flex flex-col mt-8">
-    <div class="flex p-8 bg-white">
-      <div class="w-1/2 items-end text-right flex flex-col">
-        <div class="p-1" *ngFor="let player of substitutions[localTeamId]">
-          <span class="player-name"><span class="minute">({{ player.minute }})</span>{{ player.player_in_name }} <fa-icon class="mx-2 text-green-800" [icon]="longArrowRight"></fa-icon></span>
-          <span class="ml-4">{{ player.player_out_name }} <fa-icon class="mx-2 text-red-800" [icon]="longArrowLeft"></fa-icon> <span class="minute">({{ player.minute }})</span></span>
+    <div class="flex flex-col mt-8">
+      <div class="flex p-8 bg-white">
+        <div class="w-1/2 items-end text-right flex flex-col">
+          <div class="p-1" *ngFor="let player of substitutions[localTeamId]">
+            <span class="player-name"><span class="minute">({{ player.minute }})</span>{{ player.player_in_name }} <fa-icon class="mx-2 text-green-800" [icon]="longArrowRight"></fa-icon></span>
+            <span class="ml-4">{{ player.player_out_name }} <fa-icon class="mx-2 text-red-800" [icon]="longArrowLeft"></fa-icon> <span class="minute">({{ player.minute }})</span></span>
+          </div>
         </div>
-      </div>
-      <div class="w-1/2">
-        <div class="p-1 flex flex-col" *ngFor="let player of substitutions[visitorTeamId]">
-          <span class="mr-2"><span class="minute">({{ player.minute }})</span><fa-icon class="mx-2 text-green-800" [icon]="longArrowRight"></fa-icon> {{ player.player_in_name }}</span>
-          <span class="player-name"><fa-icon class="mx-2 text-red-800" [icon]="longArrowLeft"></fa-icon> {{ player.player_out_name }}</span>
+        <div class="w-1/2">
+          <div class="p-1 flex flex-col" *ngFor="let player of substitutions[visitorTeamId]">
+            <span class="mr-2"><span class="minute">({{ player.minute }})</span><fa-icon class="mx-2 text-green-800" [icon]="longArrowRight"></fa-icon> {{ player.player_in_name }}</span>
+            <span class="player-name"><fa-icon class="mx-2 text-red-800" [icon]="longArrowLeft"></fa-icon> {{ player.player_out_name }}</span>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="countdown-container" *ngIf="matchReport.time?.status === 'NS'">
-    <a class="kaartverkoop" href="https://www.heracles.nl" target="_blank">
+  <div class="dark:text-white text-center" *ngIf="matchReport.time?.status === 'NS'">
+    <a class="button button-blue mb-8" href="https://www.heracles.nl" target="_blank">
       Kaartverkoop
     </a>
     <h2>Aftellen</h2>
-    <div class="countdown-to-match">
+    <div class="py-16">
       <div class="time-block time-block-days">
         <div class="amount">
           {{ days }}

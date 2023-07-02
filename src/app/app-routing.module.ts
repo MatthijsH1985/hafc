@@ -52,6 +52,10 @@ const routes: Routes = [
             path: 'wedstrijdprogramma'
           },
           {
+            component: MatchreportComponent,
+            path: 'wedstrijdprogramma/:matchId'
+          },
+          {
             component: StandComponent,
             path: 'stand'
           },
