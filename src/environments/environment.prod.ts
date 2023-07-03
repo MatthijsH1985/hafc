@@ -10,5 +10,5 @@ export const environment = {
     url: "https://soccer.sportmonks.com/api/v2.0",
     apiKey: "gFPh2F6EuJvjzcKIuj0keZfp0vhlUVRWPR0H0qmg0Dt1vYNYlVUvr4oYGQD8"
   },
-  customApi: 'http://localhost:4000/api'
+  customApi: 'https://hafc.vercel.app/api'
 };
