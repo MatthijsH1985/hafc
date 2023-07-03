@@ -24,8 +24,9 @@
           <div class="table-cell rank-logo dark:text-white py-2 align-middle">
             <img [src]="[club?.participant?.id | generateLogoUrl]" class="w-8" />
           </div>
-          <div class="table-cell rank-clubname py-2 align-middle">
-            <a class="hover:text-blue-500 dark:text-white hover:underline" [routerLink]="['/', 'club', 'teamstats', club?.participant?.name]" [title]="club?.participant?.name">{{ club?.participant?.name }}</a>
+          <div class="table-cell rank-clubname py-2 align-middle dark:text-white">
+<!--            <a class="hover:text-blue-500 dark:text-white hover:underline" [routerLink]="['/', 'club', 'teamstats', club?.participant?.name]" [title]="club?.participant?.name">{{ club?.participant?.name }}</a>-->
+            {{ club?.participant?.name }}
           </div>
           <div class="table-cell left-auto dark:text-white py-2 align-middle">
             {{ getDetailValue(club, 'overall-matches-played') }}
