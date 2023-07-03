@@ -11,7 +11,7 @@
         <a routerLink="/" class="hover:underline dark:text-white">Home</a> > <a routerLink="/nieuws" class="hover:underline">Nieuws</a> <span [innerHTML]="post?.title.rendered" class="dark:text-white"></span>
       </div>
       <div class="flex w-full md:w-auto items-center md:space-x-2 mr-0 md:ml-auto">
-        <span class="font-bold">{{ post.date | date }}</span> <span class="inline-block md:hidden ml-5">{{ categoryName }}</span>
+        <span class="font-bold dark:text-white">{{ post.date | date }}</span> <span class="dark:text-white inline-block md:hidden ml-5">{{ categoryName }}</span>
         <button class="button button-blue text-xl ml-auto" (click)="onOpenCommentModal()">Reageer</button>
       </div>
     </div>
