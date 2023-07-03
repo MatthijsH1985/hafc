@@ -11,5 +11,5 @@ export const environment = {
     apiKey: "gFPh2F6EuJvjzcKIuj0keZfp0vhlUVRWPR0H0qmg0Dt1vYNYlVUvr4oYGQD8"
   },
   // customApi: 'https://hafc.vercel.app/api'
-  customApi: 'https://stats.hafc.nl'
+  customApi: 'https://stats.hafc.nl/v3/football'
 };
