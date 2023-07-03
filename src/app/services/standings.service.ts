@@ -7,15 +7,9 @@ import {environment} from "../../environments/environment";
 @Injectable()
 
 export class StandingsService{
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    }),
-    params: new HttpParams().set('include', 'participant,details')
-  };
   constructor(private http: HttpClient) {}
 
   getStandings(seasonId: any): Observable<any> {
-    return this.http.get<Config[]>(environment.customApi + '/standings/seasons/21730', this.httpOptions );
+    return this.http.get<Config[]>(environment.customApi + '/standings/seasons/21730' );
   }
 }
