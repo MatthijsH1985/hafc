@@ -1,22 +1,26 @@
-<div class="p-4 md:p-0" *ngIf="nextMatch?.localteam_id || nextMatch?.length > 0; else noMatch">
+<div class="p-4 md:p-0" *ngIf="nextMatch?.fixtures || nextMatch?.length > 0; else noMatch">
   <div class=" max-w-full relative m-auto z-10 text-center bg-black">
     <div class="bg-black">
       <div [ngClass]="['matches next-match']" class="p-4">
-        <a (click)="onOpenMatch(nextMatch?.id)">
-          <div class="flex items-center justify-center flex-wrap text-white">
-            <div class="w-[70px] md:w-[60px] md:w-[80px]">
-              <img [src]="nextMatch?.localteam_id | generateLogoUrl" />
+        <div class="flex items-center text-center justify-center">
+          <div class="flex">
+            <div class="text-white flex items-center justify-center space-x-4">
+              <div class="text-center items-center justify-center">
+                <img src="{{ nextMatch?.fixtures[0].participants[0].id | generateLogoUrl }}" class="w-[80px] m-auto h-auto" />
+              </div>
             </div>
-            <div class="match-divider mx-8">
-              <div class="text-sm md:text-base">{{ validDateFormat(nextMatch?.time.starting_at.date_time) | date: 'EEEE'}}</div>
-              <div class="text-sm md:text-base">{{ validDateFormat(nextMatch?.time.starting_at.date_time) | date: 'd MMMM'}}</div>
-              <div class="text-sm md:text-base">{{ validDateFormat(nextMatch?.time.starting_at.date_time) | date: 'HH:mm' }}</div>
+            <div class="px-4">
+              <div class="text-base dark:text-white">{{ validDateFormat(nextMatch?.fixtures[0].starting_at) | date: 'EEEE'}}</div>
+              <div class="text-base dark:text-white">{{ validDateFormat(nextMatch?.fixtures[0].starting_at) | date: 'd MMMM'}}</div>
+              <div class="text-base dark:text-white">{{ validDateFormat(nextMatch?.fixtures[0].starting_at) | date: 'HH:mm' }}</div>
             </div>
-            <div class="w-[70px] md:w-[60px] md:w-[80px]">
-              <img [src]="nextMatch?.visitorteam_id | generateLogoUrl" />
+            <div class="text-white flex items-center justify-center space-x-4">
+              <div class="text-center items-center justify-center">
+                <img src="{{ nextMatch?.fixtures[0].participants[1].id | generateLogoUrl }}" class="w-[80px] m-auto h-auto" />
+              </div>
             </div>
           </div>
-        </a>
+        </div>
       </div>
     </div>
   </div>

@@ -3,11 +3,6 @@ import {Subscription} from "rxjs";
 import {StandingsService} from "../../../../services/standings.service";
 import {ViewportScroller} from "@angular/common";
 
-interface RankingRow {
-  team_name: string;
-  // voeg hier andere eigenschappen van de ranking rij toe, indien nodig
-}
-
 @Component({
   selector: 'app-stand',
   templateUrl: './stand.component.html',
@@ -19,34 +14,39 @@ export class StandComponent implements OnInit, OnDestroy {
   ranking: any = [];
   loading = true;
   teamId: number = 0;
-  mainClub: any;
-  position: any;
-  compactRanking: any = [];
   @Input('compact') compact: boolean = false;
 
   constructor(private standingsService: StandingsService, private viewportScroller: ViewportScroller) {}
 
   ngOnInit() {
     this.viewportScroller.scrollToPosition([0,0]);
-    this.rankingSub = this.standingsService.getStandings(this.currentSeasonId).subscribe((data) => {
-      this.loading = false;
-      this.ranking = data.data[0].standings.data;
-
-      if(this.compact) {
-        const club = 'Heracles Almelo';
-        this.ranking = this.selectieRijen(this.ranking, club);
+    this.rankingSub = this.standingsService.getStandings(this.currentSeasonId).subscribe({
+      next: (data: any) => {
+        this.loading = false;
+        this.ranking = data.data;
+        if(this.compact) {
+          const club = 'Heracles Almelo';
+          this.ranking = this.selectieRijen(this.ranking, club);
+        }
+      },
+      error: (error) => {
+        console.log(error);
       }
-    }, (error) => {
-      console.log('Er is iets mis gegaan: ' + error.error);
     });
   }
 
-  calculateGoalDifference(goalDifference: number) :any {
-    return (goalDifference > 0 ? '+' + goalDifference : goalDifference);
+  getDetailValue(club: any, code: string): number {
+    const detail = club?.details?.find((d: any) => d?.type?.code === code);
+    return detail?.value || 0;
   }
 
-  selectieRijen(ranking: RankingRow[], club: string): RankingRow[] {
-    const index = ranking.findIndex((row: RankingRow) => row.team_name === club);
+  calculateGoalDifference(goalsFor: number, goalsAgainst: number) :any {
+    return goalsFor - goalsAgainst
+    // return (goalDifference > 0 ? '+' + goalDifference : goalDifference);
+  }
+
+  selectieRijen(ranking: any[], club: string): any[] {
+    const index = ranking.findIndex((row: any) => row.participant.name === club);
 
     if (index === -1) {
       throw new Error(`Team ${club} niet gevonden in ranglijst.`);

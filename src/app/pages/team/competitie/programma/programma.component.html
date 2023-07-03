@@ -1,20 +1,26 @@
 <div class="relative z-20">
   <div class="container ml-auto mr-auto xl:w-[1100px]">
     <div *ngIf="teamFixtures.length > 0; else noMatches">
-      <div class="mb-8 block p-8 bg-white dark:bg-gray-800 hover:dark:bg-black" *ngFor="let match of teamFixtures">
-        <a class="flex items-center text-center justify-center" [routerLink]="[match?.id]">
-          <div class="">
-            <img src="{{ match.localteam_id | generateLogoUrl }}" class="w-[80px] h-auto" />
+      <div class="mb-8 block p-8 bg-white dark:bg-gray-800" *ngFor="let match of teamFixtures">
+        <div class="flex items-center text-center justify-center">
+          <div *ngFor="let fixture of match.fixtures" class="flex">
+            <div class="text-white flex items-center justify-center space-x-4">
+              <div class="text-center items-center justify-center">
+                <img src="{{ fixture.participants[0].id | generateLogoUrl }}" class="w-[80px] m-auto h-auto" />
+              </div>
+            </div>
+            <div class="px-4">
+              <div class="text-base dark:text-white">{{ validDateFormat(fixture.starting_at) | date: 'EEEE'}}</div>
+              <div class="text-base dark:text-white">{{ validDateFormat(fixture.starting_at) | date: 'd MMMM'}}</div>
+              <div class="text-base dark:text-white">{{ validDateFormat(fixture.starting_at) | date: 'HH:mm' }}</div>
+            </div>
+            <div class="text-white flex items-center justify-center space-x-4">
+              <div class="text-center items-center justify-center">
+                <img src="{{ fixture.participants[1].id | generateLogoUrl }}" class="w-[80px] m-auto h-auto" />
+              </div>
+            </div>
           </div>
-          <div class="px-4">
-            <div class="text-base dark:text-white">{{ validDateFormat(nextMatch.time.starting_at.date_time) | date: 'EEEE'}}</div>
-            <div class="text-base dark:text-white">{{ validDateFormat(nextMatch.time.starting_at.date_time) | date: 'd MMMM'}}</div>
-            <div class="text-base dark:text-white">{{ validDateFormat(nextMatch.time.starting_at.date_time) | date: 'HH:mm' }}</div>
-          </div>
-          <div class="">
-            <img src="{{ match.visitorteam_id | generateLogoUrl }}" class="w-[80px] h-auto" />
-          </div>
-        </a>
+        </div>
       </div>
     </div>
     <ng-template #noMatches>

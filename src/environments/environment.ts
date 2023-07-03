@@ -10,10 +10,7 @@ export const environment = {
   recaptcha: {
     siteKey: '6LfEKGImAAAAACNlgj6_ompIBaRy_e4sulh4Axgu',
   },
-  sportmonks: {
-    url: "https://soccer.sportmonks.com/api/v2.0",
-    apiKey: "gFPh2F6EuJvjzcKIuj0keZfp0vhlUVRWPR0H0qmg0Dt1vYNYlVUvr4oYGQD8"
-  }
+  customApi: 'http://localhost:4200/api'
 };
 
 

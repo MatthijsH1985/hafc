@@ -34,12 +34,16 @@ export class SpelerComponent implements OnInit {
   }
 
   getPlayerStats(player: any) {
-    this.playerStatsSub = this.playersService.getPlayerStats(player.acf.sportmonks_player_id).subscribe((data) => {
-      this.playerStats = data.data.stats.data[0];
-      this.playerInfo = data.data;
-      this.loading = false;
-    }, (error) => {
-      console.log(error);
+    this.playerStatsSub = this.playersService.getPlayerStats(player.acf.sportmonks_player_id).subscribe({
+      next: (data) => {
+        this.playerStats = data.data.stats.data[0];
+        this.playerInfo = data.data;
+        console.log(this.playerStats);
+        console.log(this.playerInfo);
+        this.loading = false;      },
+      error: (error) => {
+        console.log(error);
+      }
     });
   }
 

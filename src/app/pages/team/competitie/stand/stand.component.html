@@ -1,7 +1,7 @@
 <div class="relative w-full z-20 bg-white dark:bg-gray-800 p-4">
   <div class="container ml-auto mr-auto" [ngClass]="{'xl:w-[1100px]': !compact}">
     <div class="o-table">
-      <div class="o-table-header" *ngIf="ranking.length > 0">
+      <div class="o-table-header" *ngIf="ranking?.data?.length > 0">
         <div class="o-table-row" *ngIf="!compact">
           <div class="table-cell align-middle dark:text-white"></div>
           <div class="table-cell align-middle dark:text-white"></div>
@@ -17,36 +17,36 @@
         </div>
       </div>
       <div class="o-table-body">
-        <div class="table-row" *ngFor="let club of ranking; let i = index;" [ngClass]="{'font-bold': club.team_name === 'Heracles Almelo'}">
+        <div class="table-row" *ngFor="let club of ranking; let i = index;" [ngClass]="{'font-bold': club.participant?.name === 'Heracles Almelo'}">
           <div class="table-cell rank-position dark:text-white py-2 align-middle">
             {{ club?.position }}
           </div>
           <div class="table-cell rank-logo dark:text-white py-2 align-middle">
-            <img [src]="[club?.team_id | generateLogoUrl]" class="w-8" />
+            <img [src]="[club?.participant?.id | generateLogoUrl]" class="w-8" />
           </div>
           <div class="table-cell rank-clubname py-2 align-middle">
-            <a class="hover:text-blue-500 dark:text-white hover:underline" [routerLink]="['/', 'club', 'teamstats', club.team_id]" [title]="club?.team_name">{{ club?.team_name }}</a>
+            <a class="hover:text-blue-500 dark:text-white hover:underline" [routerLink]="['/', 'club', 'teamstats', club?.participant?.name]" [title]="club?.participant?.name">{{ club?.participant?.name }}</a>
           </div>
           <div class="table-cell left-auto dark:text-white py-2 align-middle">
-            {{ club?.overall.games_played }}
+            {{ getDetailValue(club, 'overall-matches-played') }}
           </div>
           <div class="hidden md:table-cell dark:text-white py-2 align-middle" *ngIf="!compact">
-            {{ club?.overall.won }}
+            {{ getDetailValue(club, 'overall-matches-won') }}
           </div>
           <div class="hidden md:table-cell dark:text-white py-2 align-middle" *ngIf="!compact">
-            {{ club?.overall.draw }}
+            {{ getDetailValue(club, 'overall-matches-draw') }}
           </div>
           <div class="hidden md:table-cell dark:text-white py-2 align-middle" *ngIf="!compact">
-            {{ club?.overall.lost }}
+            {{ getDetailValue(club, 'overall-matches-lost') }}
           </div>
           <div class="hidden md:table-cell dark:text-white py-2 align-middle" *ngIf="!compact">
-            {{ club?.overall.goals_scored }}
+            {{ getDetailValue(club, 'overall-goals-for') }}
           </div>
           <div class="hidden md:table-cell dark:text-white py-2 align-middle" *ngIf="!compact">
-            {{ club?.overall.goals_against }}
+            {{ getDetailValue(club, 'overall-goals-against') }}
           </div>
           <div class="table-cell py-2 dark:text-white align-middle" *ngIf="!compact">
-            {{ calculateGoalDifference(club?.total.goal_difference) }}
+            {{ calculateGoalDifference(getDetailValue(club, 'overall-goals-for'), getDetailValue(club, 'overall-goals-against')) }}
           </div>
           <div class="table-cell dark:text-white py-2 align-middle">
             {{ club?.points }}

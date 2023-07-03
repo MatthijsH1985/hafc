@@ -1,22 +1,25 @@
 
 <div class="relative z-20">
   <div class="container ml-auto mr-auto xl:w-[1100px]">
-    <a class="mb-8 block p-8 bg-white dark:bg-gray-800 hover:dark:bg-black" (click)="onOpenMatchReport(matchResult?.id)" *ngFor="let matchResult of teamResults">
-      <div class="flex items-center justify-center">
-        <div class="">
-          <img src="{{ matchResult?.localteam_id | generateLogoUrl }}" class="w-[80px] h-auto" />
-        </div>
-        <div class="text-3xl mx-4 dark:text-white">{{ matchResult?.scores?.localteam_score }}</div>
-        <div class="px-4">
-          <div class="text-base dark:text-white">{{ validDateFormat(matchResult.time.starting_at.date_time) | date: 'EEEE'}}</div>
-          <div class="text-base dark:text-white">{{ validDateFormat(matchResult.time.starting_at.date_time) | date: 'd MMMM'}}</div>
-          <div class="text-base dark:text-white">{{ validDateFormat(matchResult.time.starting_at.date_time) | date: 'HH:mm' }}</div>
-        </div>
-        <div class="text-3xl mx-4 dark:text-white">{{ matchResult?.scores?.visitorteam_score }}</div>
-        <div class="">
-          <img src="{{ matchResult?.visitorteam_id | generateLogoUrl }}" class="w-[80px] h-auto" />
-        </div>
-      </div>
-    </a>
+<!--    <a class="mb-8 block p-8 bg-white dark:bg-gray-800 hover:dark:bg-black" (click)="onOpenMatchReport(matchResult?.id)" *ngFor="let matchResult of teamResults">-->
+<!--      <div class="flex items-center justify-center">-->
+<!--        <div class="">-->
+<!--          <img src="{{ matchResult?.localteam_id | generateLogoUrl }}" class="w-[80px] h-auto" />-->
+<!--        </div>-->
+<!--        <div class="text-3xl mx-4 dark:text-white">{{ matchResult?.scores?.localteam_score }}</div>-->
+<!--        <div class="px-4">-->
+<!--          <div class="text-base dark:text-white">{{ validDateFormat(matchResult.time.starting_at.date_time) | date: 'EEEE'}}</div>-->
+<!--          <div class="text-base dark:text-white">{{ validDateFormat(matchResult.time.starting_at.date_time) | date: 'd MMMM'}}</div>-->
+<!--          <div class="text-base dark:text-white">{{ validDateFormat(matchResult.time.starting_at.date_time) | date: 'HH:mm' }}</div>-->
+<!--        </div>-->
+<!--        <div class="text-3xl mx-4 dark:text-white">{{ matchResult?.scores?.visitorteam_score }}</div>-->
+<!--        <div class="">-->
+<!--          <img src="{{ matchResult?.visitorteam_id | generateLogoUrl }}" class="w-[80px] h-auto" />-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </a>-->
+    <div class="p-16 text-center">
+      <p class="dark:text-white">Nog geen uitslagen om weer te geven</p>
+    </div>
   </div>
 </div>

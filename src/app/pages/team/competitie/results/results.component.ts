@@ -25,7 +25,8 @@ export class ResultsComponent implements OnInit {
   getResults() {
     this.fixturesService.getResults(this.teamId, this.currentSeason).subscribe({
       next: results => {
-        this.teamResults = results.data.latest.data;
+        this.teamResults = results;
+        console.log(this.teamResults);
         this.loading = false;
         this.viewportScroller.scrollToPosition([0, 0]);
       },

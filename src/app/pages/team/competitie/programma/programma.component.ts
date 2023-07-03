@@ -27,9 +27,13 @@ export class ProgrammaComponent implements OnInit{
   getFixtures() {
     this.fixturesService.getFixtures(this.teamId).subscribe( {
       next: data => {
-        console.log(data);
-        this.teamFixtures = data.data.upcoming.data;
-        this.nextMatch = data.data.upcoming.data[0];
+        const { rounds } = data.data[0];
+
+        this.teamFixtures =  rounds;
+        this.nextMatch = this.getFirstParticipant(rounds);
+
+        console.log(this.teamFixtures);
+        console.log(this.nextMatch);
         this.loading = false;
         this.viewportScroller.scrollToPosition([0, 0]);
       },
@@ -39,13 +43,17 @@ export class ProgrammaComponent implements OnInit{
     });
   }
 
+  getFirstParticipant(rounds: any[]): any {
+    const firstRound = rounds[0];
+    const firstFixture = firstRound?.fixtures[0];
+    const firstParticipant = firstFixture?.participants[0];
+
+    return firstParticipant;
+  }
+
   validDateFormat(dateString: Date): any {
     if(dateString) {
       return moment.utc(dateString);
     }
-  }
-
-  onOpenMatchReport(matchId: number) {
-    this.router.navigateByUrl('wedstrijdprogramma/' + matchId);
   }
 }

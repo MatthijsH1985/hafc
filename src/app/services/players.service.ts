@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Config} from '../model/config';
 import {ConfigService} from './config.service';
 import {environment} from "../../environments/environment";
@@ -12,7 +12,8 @@ export class PlayersService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json;charset=UTF-8'
-    })
+    }),
+    params: new HttpParams().set('include', 'stats,seasons')
   };
 
   constructor(private http: HttpClient,
@@ -20,7 +21,7 @@ export class PlayersService {
   }
 
   getPlayers(): Observable<Config[]> {
-    return this.http.get<Config[]>(this.configService.config.apiEndpoint + '/pages?parent=23380&per_page=50', this.httpOptions);
+    return this.http.get<Config[]>(this.configService.config.apiEndpoint + '/pages?parent=23380&per_page=50');
   }
 
   getPlayer(playerId: number): Observable<Config[]> {
@@ -28,7 +29,7 @@ export class PlayersService {
   }
 
   getPlayerStats(playerId: number): Observable<any> {
-    return this.http.get<Config[]>(environment.sportmonks.url + '/players/' + playerId + '?include=stats&seasons=19727&api_token=' + environment.sportmonks.apiKey + '', this.httpOptions);
+    return this.http.get<Config[]>(environment.customApi + '/players/' + playerId + '', this.httpOptions);
   }
 
 }

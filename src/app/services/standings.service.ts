@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Config} from '../model/config';
-import {ConfigService} from './config.service';
 import {environment} from "../../environments/environment";
 
 @Injectable()
@@ -10,12 +9,13 @@ import {environment} from "../../environments/environment";
 export class StandingsService{
   httpOptions = {
     headers: new HttpHeaders({
-      'content-type': 'application/json'
-    })
+      'Content-Type': 'application/json'
+    }),
+    params: new HttpParams().set('include', 'participant,details')
   };
-  constructor(private http: HttpClient, private configService: ConfigService) {}
+  constructor(private http: HttpClient) {}
 
   getStandings(seasonId: any): Observable<any> {
-    return this.http.get<Config[]>(environment.sportmonks.url + '/standings/season/21730?include=team&api_token=' + environment.sportmonks.apiKey+ '', this.httpOptions );
+    return this.http.get<Config[]>(environment.customApi + '/standings/seasons/21730', this.httpOptions );
   }
 }

@@ -17,6 +17,6 @@ export class TeamService{
   constructor(private http: HttpClient, private configService: ConfigService) {}
 
   getTeamInfo(teamId: any): Observable<any> {
-    return this.http.get<Config[]>(environment.sportmonks.url + '/teams/' + teamId + '?include=stats,venue,squad&seasons=' + this.season + '&api_token=' + environment.sportmonks.apiKey + '', this.httpOptions );
+    return this.http.get<Config[]>(environment.customApi + '/teams/' + teamId + '?include=stats,venue,squad&seasons=' + this.season + '&api_token=' + environment.customApi + '', this.httpOptions );
   }
 }

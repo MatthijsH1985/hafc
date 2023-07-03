@@ -6,7 +6,11 @@ import * as express from 'express';
 import { existsSync } from 'fs';
 import { join } from 'path';
 
+import { ParsedQs } from 'qs';
+
 import { AppServerModule } from './src/main.server';
+import axios from "axios";
+
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
@@ -22,23 +26,39 @@ export function app(): express.Express {
   server.set('view engine', 'html');
   server.set('views', distFolder);
 
-  // server.get('/api/*', async (req: express.Request, res: express.Response) => {
-  //   const sportmonksToken = 'gFPh2F6EuJvjzcKIuj0keZfp0vhlUVRWPR0H0qmg0Dt1vYNYlVUvr4oYGQD8';
-  //   const apiUrl = `https://soccer.sportmonks.com/api/v2.0/${req.params[0]}`;
-  //
-  //   try {
-  //     const response = await axios.get(apiUrl, {
-  //       headers: {
-  //         Authorization: sportmonksToken
-  //       }
-  //     });
-  //
-  //     const data = response.data;
-  //     res.json(data);
-  //   } catch (error: any) {
-  //     res.status(500).json({ error: error.message });
-  //   }
-  // });
+  server.get('/api/*', async (req: express.Request, res: express.Response) => {
+    const params = req.query;
+    const includesParam = params['include'];
+    let includesString = '';
+    if (includesParam) {
+      if (Array.isArray(includesParam)) {
+        includesString = includesParam.join(',');
+      } else if (typeof includesParam === 'string') {
+        includesString = '?include=' + includesParam;
+      }
+    }
+
+    const modifiedIncludes = includesString.replace(/,/g, ';');
+
+    const sportmonksToken = 'gFPh2F6EuJvjzcKIuj0keZfp0vhlUVRWPR0H0qmg0Dt1vYNYlVUvr4oYGQD8';
+    const apiUrl = `https://api.sportmonks.com/v3/football/${req.params[0]}${modifiedIncludes}`;
+
+    console.log(apiUrl);
+
+    try {
+      const response = await axios.get(apiUrl, {
+        headers: {
+          Authorization: sportmonksToken
+        }
+      });
+
+      const data = response.data;
+      // console.log(data);
+      res.json(data);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
 
   // Example Express Rest API endpoints
   // server.get('/api/**', (req, res) => { });

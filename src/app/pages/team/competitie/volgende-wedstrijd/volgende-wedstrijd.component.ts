@@ -11,20 +11,36 @@ import * as moment from 'moment';
 export class VolgendeWedstrijdComponent implements OnInit{
 
   nextMatch: any = [];
+  teamId = 1403;
+  teamFixtures: any = [];
 
   constructor(private fixturesService: FixturesService, private router: Router) {
 
   }
 
   ngOnInit() {
-    this.fixturesService.getFixtures(1403).subscribe({
+    this.getFixtures();
+  }
+
+  getFixtures() {
+    this.fixturesService.getFixtures(this.teamId).subscribe( {
       next: data => {
-        this.nextMatch = data.data.upcoming.data[0];
+        const { rounds } = data.data[0];
+        this.nextMatch =  rounds[0];
+        console.log(this.nextMatch);
       },
       error: error => {
-        console.error(error);
+        console.error(error)
       }
     });
+  }
+
+  getFirstParticipant(rounds: any[]): any {
+    const firstRound = rounds[0];
+    const firstFixture = firstRound?.fixtures[0];
+    const firstParticipant = firstFixture?.participants[0];
+
+    return firstParticipant;
   }
 
   validDateFormat(dateString: Date): any {
