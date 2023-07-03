@@ -10,7 +10,7 @@ export const environment = {
   recaptcha: {
     siteKey: '6LfEKGImAAAAACNlgj6_ompIBaRy_e4sulh4Axgu',
   },
-  customApi: 'https://stats.hafc.nl'
+  customApi: 'https://stats.hafc.nl/v3/football'
 };
 
 
