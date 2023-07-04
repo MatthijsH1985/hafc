@@ -76,7 +76,7 @@ body {
     &:hover {
       color: rgba(0,0,0,1);
     }
-    @apply dark:bg-blue-500 dark:text-white
+    @apply dark:bg-blue-black dark:text-white
   }
   &.button-blue {
     background: linear-gradient(
