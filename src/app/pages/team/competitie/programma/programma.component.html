@@ -1,7 +1,7 @@
 <div class="relative z-20">
   <div class="container ml-auto mr-auto xl:w-[1100px]">
     <div *ngIf="teamFixtures.length > 0; else noMatches">
-      <div class="mb-8 block p-8 bg-white dark:bg-gray-800" *ngFor="let match of teamFixtures">
+      <div class="mb-8 block p-8 bg-white dark:bg-gray-700" *ngFor="let match of teamFixtures">
         <div class="flex items-center text-center justify-center">
           <div *ngFor="let fixture of match.fixtures" class="flex">
             <div class="text-white flex items-center justify-center space-x-4">
@@ -24,7 +24,7 @@
       </div>
     </div>
     <ng-template #noMatches>
-      <div class="mb-8 block p-8 bg-white dark:bg-gray-800 text-center">
+      <div class="mb-8 block p-8 bg-white dark:bg-gray-700 text-center">
         <p class="dark:text-white">Geen wedstrijden om te tonen</p>
       </div>
     </ng-template>

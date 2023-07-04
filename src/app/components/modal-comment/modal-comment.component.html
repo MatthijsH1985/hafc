@@ -11,13 +11,13 @@
             <label for="name">
               Je naam
             </label>
-            <input class="dark:bg-gray-800 dark:text-white" formControlName="name" id="name" type="text" />
+            <input class="dark:bg-gray-700 dark:text-white" formControlName="name" id="name" type="text" />
           </div>
           <div class="mb-4">
             <label for="email">
               Je e-mailadres
             </label>
-            <input class="dark:bg-gray-800 dark:text-white" formControlName="email" id="email" type="email" />
+            <input class="dark:bg-gray-700 dark:text-white" formControlName="email" id="email" type="email" />
           </div>
         </div>
         <ng-template #loggedIn>
@@ -29,10 +29,10 @@
           <label for="comment">
             Je bericht
           </label>
-          <textarea class="dark:bg-gray-800 dark:text-white" formControlName="comment" id="comment" placeholder="Voer hier je bericht in"></textarea>
+          <textarea class="dark:bg-gray-700 dark:text-white" formControlName="comment" id="comment" placeholder="Voer hier je bericht in"></textarea>
         </div>
         <div class="flex items-center justify-between">
-          <button type="submit" class="button button-blue" [disabled]="loading" [className]="{'opacity-50 not-allowed': !loading}">Reactie plaatsen</button>
+          <button type="submit" class="button button-blue" [disabled]="loading">Reactie plaatsen</button>
         </div>
       </form>
     </div>

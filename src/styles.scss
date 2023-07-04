@@ -194,13 +194,13 @@ form {
     @apply block mb-2 ml-4 text-base dark:text-white;
   }
   input[type=text], input[type=email], input[type=password], textarea, input[type=number] {
-    @apply border dark:border-black p-4 border dark:bg-gray-800 rounded-md w-full
+    @apply border dark:border-black p-4 border dark:bg-gray-700 rounded-md w-full
   }
   input[disabled] {
     @apply opacity-40
   }
   textarea {
-    @apply h-[200px] dark:bg-gray-800 dark:border-black
+    @apply h-[200px] dark:bg-gray-700 dark:border-black
   }
 }
 
@@ -208,7 +208,7 @@ form {
   position: relative;
   &:before {
     content: " ";
-    @apply block absolute right-0 left-0 top-[300px] -z-10 bottom-0 dark:bg-gray-800
+    @apply block absolute right-0 left-0 top-[300px] -z-10 bottom-0 dark:bg-gray-700
   }
 }
 
