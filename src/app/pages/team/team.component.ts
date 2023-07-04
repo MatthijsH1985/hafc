@@ -12,9 +12,5 @@ export class TeamComponent implements OnInit {
   }
   ngOnInit() {
     this.viewportScroller.scrollToPosition([0,0]);
-    this.goToTeam();
-  }
-  goToTeam() {
-    this.router.navigate(['club', 'selectie']);
   }
 }

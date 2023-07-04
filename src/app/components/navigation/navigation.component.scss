@@ -27,7 +27,7 @@
           }
           &:hover {
             .button {
-              @apply block
+              @apply md:block
             }
             button:focus {
               color: rgba(255,255,255,1);
