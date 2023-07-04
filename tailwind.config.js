@@ -4,7 +4,7 @@ module.exports = {
     "./src/**/*.{html,scss,ts}",
   ],
   theme: {
-    darkMode: 'media',
+    darkMode: '',
     colors: {
       white: '#FFF',
       black: '#000',
@@ -38,7 +38,7 @@ module.exports = {
         'sans': ['Lato', 'Avenir', 'Verdana']
       },
       fontSize: {
-        sm: '0.8rem'
+        sm: '0.85rem'
       }
     },
   },

@@ -100,12 +100,12 @@ body {
     &[disabled] {
       opacity: 0.4;
       cursor: not-allowed;
-      background: rgb(0,158,126);
+      background: rgb(0,158,226);
       color: white;
     }
     &:active {
       background-position: right;
-      color: rgba(0,158,126,1);
+      color: rgba(0,158,226,1);
     }
     &:focus {
       color: rgba(255,255,255,1);
