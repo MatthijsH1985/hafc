@@ -11,25 +11,25 @@
             <label for="name">
               Je naam
             </label>
-            <input class="dark:bg-gray-800" formControlName="name" id="name" type="text" />
+            <input class="dark:bg-gray-800 dark:text-white" formControlName="name" id="name" type="text" />
           </div>
           <div class="mb-4">
             <label for="email">
               Je e-mailadres
             </label>
-            <input class="dark:bg-gray-800" formControlName="email" id="email" type="email" />
+            <input class="dark:bg-gray-800 dark:text-white" formControlName="email" id="email" type="email" />
           </div>
         </div>
         <ng-template #loggedIn>
           <p class="text-base pl-4 mb-8 dark:text-white">
-            Je bent ingelogd als {{ getUserName() }} Ben jij dit niet? <button (click)="logOut()" class="underline">Meld je dan af.</button>
+            Je bent ingelogd als {{ getUserName() }} Ben jij dit niet? <button (click)="logOut()" class="underline dark:text-white">Meld je dan af.</button>
           </p>
         </ng-template>
         <div class="mb-4">
           <label for="comment">
             Je bericht
           </label>
-          <textarea class="dark:bg-gray-800" formControlName="comment" id="comment" placeholder="Voer hier je bericht in"></textarea>
+          <textarea class="dark:bg-gray-800 dark:text-white" formControlName="comment" id="comment" placeholder="Voer hier je bericht in"></textarea>
         </div>
         <div class="flex items-center justify-between">
           <button type="submit" class="button button-blue" [disabled]="loading" [className]="{'opacity-50 not-allowed': !loading}">Reactie plaatsen</button>
@@ -39,10 +39,10 @@
   </div>
   <p *ngIf="errorMessage" class="bg-red-200 text-red-800 p-4 rounded-md mx-8">{{ errorMessage }}</p>
   <div class="p-8">
-    <p class="mb-4 text-sm text-gray-800">This site is protected by reCAPTCHA and the Google</p>
-    <p class="text-sm text-gray-800">
-      <a href="https://policies.google.com/privacy">Privacy Policy</a> and<br>
-      <a href="https://policies.google.com/terms">Terms of Service</a> apply.
+    <p class="mb-4 text-sm text-gray-800 dark:text-white">This site is protected by reCAPTCHA and the Google</p>
+    <p class="text-sm text-gray-800 dark:text-white">
+      <a href="https://policies.google.com/privacy" class="dark:text-white">Privacy Policy</a> and<br>
+      <a href="https://policies.google.com/terms" class="dark:text-white">Terms of Service</a> apply.
     </p>
   </div>
 </div>
