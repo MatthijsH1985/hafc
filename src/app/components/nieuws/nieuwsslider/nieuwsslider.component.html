@@ -4,10 +4,10 @@
       <a class="relative xl:w-[1200px] flex items-center flex-col justify-center w-full h-[500px]] md:h-[550px] group" [routerLink]="['nieuws', headline.id, headline.slug]">
         <div class="h-450px relative w-full">
           <img [src]="headline.better_featured_image.source_url" class=" object-cover object-center w-full h-[550px] object-cover transition-all w-full block" />
-            <div class="mt-4 flex flex-col absolute bottom-24 w-full justify-center md:text-left text-center m-auto z-20 md:bottom-32 lg:w-[50%]">
-              <h1 [innerHTML]="headline?.title?.rendered" class="text-white text-center md:text-5xl text-3xl md:leading-normal leading-normal p-4"></h1>
-              <span class="inline md:ml-4 text-white mb-4 text-center">{{ validDateFormat(headline?.date)  | date: 'd MMMM' }}</span>
-              <span class="inline md:ml-4 text-white text-center">{{ headline.comments_count }} reacties</span>
+            <div class="mt-4 flex flex-col absolute bottom-24 w-full justify-center md:text-left text-center m-auto z-20 md:bottom-32 lg:w-[50%] md:pl-16">
+              <h1 [innerHTML]="headline?.title?.rendered" class="text-white md:text-3xl text-3xl md:leading-normal leading-normal p-4"></h1>
+              <span class="inline md:ml-4 text-white mb-4">{{ validDateFormat(headline?.date)  | date: 'd MMMM' }}</span>
+              <span class="inline md:ml-4 text-white">{{ headline.comments_count }} reacties</span>
             </div>
         </div>
       </a>
