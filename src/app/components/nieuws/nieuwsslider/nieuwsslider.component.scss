@@ -5,3 +5,13 @@
 swiper-slide {
 
 }
+.custom-pagination {
+  @apply flex justify-center md:justify-start md:pl-20 items-center md:items-start absolute left-0 bottom-[72px] z-50
+}
+
+.custom-pagination .swiper-pagination-line {
+  &.active {
+    @apply bg-blue-500
+  }
+  @apply w-[100px] h-[5px] bg-white mr-[5px] ml-[5px]
+}

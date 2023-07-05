@@ -46,9 +46,22 @@ export class NieuwssliderComponent implements AfterViewInit {
         translate: ["100%", 0, 0],
       },
     },
+    pagination: {
+      el: '.custom-pagination',
+      type: 'custom',
+      renderCustom: function (swiper: any, current: any, total: any) {
+        let paginationHTML = '';
+
+        for (let i = 0; i < total; i++) {
+          paginationHTML += `<span class="swiper-pagination-line ${current - 1 === i ? 'active' : ''}"></span>`;
+        }
+        return paginationHTML;
+      },
+    }
   }
   @Input('headlines') headlines: any | undefined;
-  @ViewChild('swiper') swiper: ElementRef | undefined
+  @ViewChild('swiper') swiper: ElementRef | undefined;
+  public activeSlideIndex: number = 0;
 
   constructor(
     @Inject('isBrowser') @Inject(PLATFORM_ID) private platformId: Object,
@@ -66,8 +79,10 @@ export class NieuwssliderComponent implements AfterViewInit {
     }
   }
 
-  onSlideChange(event: any) {
-    console.log(event);
+  public onSwiper(swiper: any) {
+    swiper.on('slideChange', () => {
+      this.activeSlideIndex = swiper.activeIndex;
+    });
   }
 
   validDateFormat(dateString: any) {
