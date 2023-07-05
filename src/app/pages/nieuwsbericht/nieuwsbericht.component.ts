@@ -4,6 +4,8 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {PostsService} from "../../services/posts.service";
 import {Title} from "@angular/platform-browser";
 import {ViewportScroller} from "@angular/common";
+import {faComment} from "@fortawesome/free-solid-svg-icons";
+
 
 @Component({
   selector: 'app-nieuwsbericht',
@@ -22,6 +24,7 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy {
   categoryName: any;
   @Output() reloadComments: any;
   buttonVisible: boolean = false;
+  faComment = faComment;
 
   @HostListener('window:scroll', ['$event']) onScroll(event: any) {
     const winScroll = event.target.documentElement.scrollTop || event.currentTarget.scrollTop || document.body.scrollTop;

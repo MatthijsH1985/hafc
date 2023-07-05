@@ -2,14 +2,13 @@
 <div class="comments-section">
   <div *ngIf="!loadingComments;">
     <ul *ngIf="comments.length > 0;" class="xl:w-[1100px] container ml-auto mr-auto">
-      <h3 class="text-4xl pt-4 ml-16 dark:text-white">Reacties</h3>
-      <li *ngFor="let comment of comments" class="p-8" [ngClass]="{'opacity-60': comment.author === 0}">
-        <div class="author-name p-4 ml-4 text-xl">
-          <h3 class="text-xl relative dark:text-white" [ngClass]="{'font-bold': comment.author !== 0}">{{ comment.author_name }} <fa-icon [icon]="faCheck" class="text-green-800" *ngIf="comment.author !== 0"></fa-icon></h3>
+      <li *ngFor="let comment of comments" class="p-8 w-[600px]">
+        <div class="author-name p-2 inline-block text-white -ml-[1rem] relative">
+          <h3 class="text-xl text-black relative dark:text-white pr-[1rem]" [ngClass]="{'font-bold': comment.author !== 0}">{{ comment.author_name }} <fa-icon [icon]="faCheck" class="text-green-800 absolute -right-[.5rem] -top-[5px] text-sm" *ngIf="comment.author !== 0" title="Geregistreerde gebruiker"></fa-icon></h3>
         </div>
-        <div class=" p-8 bg-white dark:bg-black break-words">
+        <div class="p-4 bg-white dark:bg-black break-words">
           <p [innerHTML]="comment.content.rendered" class="text-black dark:text-white"></p>
-          <div class="text-sm ">
+          <div class="text-sm mt-4">
             <h4>
               <span class="date">{{ validDateFormat(comment.date) | date: 'EEEE, d MMMM, y' }}</span> <span class="time">{{ validDateFormat(comment.date) | date: 'HH:mm' }}</span>
             </h4>

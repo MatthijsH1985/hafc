@@ -17,7 +17,7 @@ export class AdsService {
   constructor(private http: HttpClient, private configService: ConfigService) {}
 
   getAds(category = 804): Observable<Config[]> {
-    return this.http.get<Config[]>(this.configService.config.apiEndpoint + '/advertenties', this.httpOptions);
+    return this.http.get<Config[]>(this.configService.config.apiEndpoint + '/advertenties?per_page=50', this.httpOptions);
   }
 
   getLinks(category = 809): Observable<Config[]> {
