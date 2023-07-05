@@ -5,8 +5,6 @@ import {Router} from "@angular/router";
 import {Title} from "@angular/platform-browser";
 import {ViewportScroller} from "@angular/common";
 import {AdsService} from "../../services/ads.service";
-import { Platform } from '@angular/cdk/platform';
-import {MenuService} from "../../services/menu.service";
 
 @Component({
   selector: 'app-homepage',
@@ -17,7 +15,7 @@ export class HomepageComponent implements OnInit {
   posts: any = [];
   postPage = 1;
   loading = true;
-  headline: any = [];
+  headlines: any = [];
   postsSub: Subscription | undefined;
 
   constructor(private postsService: PostsService,
@@ -40,7 +38,7 @@ export class HomepageComponent implements OnInit {
         for (let i = 0; i < data.length; i++) {
           this.posts.push(data[i]);
         }
-        this.headline = this.posts[0];
+        this.headlines = this.posts.slice(0,3);
         this.loading = false;
         this.postPage++;
       },

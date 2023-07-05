@@ -1,22 +1,23 @@
-<!--<swiper-container config="config" init="false" #swiper>-->
-<!--  <swiper-slide *ngFor="let headline of headlines">-->
-<!--    <a class="relative xl:w-[1200px] flex items-center block xl:h-[600px] block bg-black group" [routerLink]="['nieuws', headline.id, headline.slug]">-->
-<!--      <img [src]="headline.better_featured_image.source_url" class="object-cover w-full h-[400px] md:h-[600px] object-top h-full transition-all w-full block opacity-80 group-hover:scale-105 group-hover:opacity-100" />-->
-<!--      <div class="absolute z-20 left-8 bottom-8 md:block flex-col md:bottom-32 lg:w-[33.3%]">-->
-<!--        <h1 [innerHTML]="headline.title.rendered" class="text-white text-2xl p-4"></h1>-->
-<!--        <span class="block ml-4 text-white">{{ validDateFormat(headline.date)  | date: 'd MMMM' }}</span>-->
-<!--      </div>-->
-<!--    </a>-->
-<!--  </swiper-slide>-->
-<!--</swiper-container>-->
-<div *ngIf="headline.length !== 0" class="overflow-hidden">
-  <a class="relative xl:w-[1200px] flex items-center flex-col justify-center h-[500px]] md:h-[550px] group" [routerLink]="['nieuws', headline?.id, headline?.slug]">
-    <img [alt]="headline?.title?.rendered" [src]="headline?.better_featured_image?.source_url" class="absolute object-cover object-center w-full h-[550px] object-cover transition-all w-full block opacity-60 group-hover:scale-105 group-hover:opacity-100" />
-    <div class="mt-4 flex flex-col justify-center md:text-left text-center m-auto z-20 h-[550px] md:bottom-32 lg:w-[50%]">
-      <h1 [innerHTML]="headline?.title?.rendered" class="text-white text-center md:text-5xl text-3xl md:leading-normal leading-normal p-4"></h1>
-      <span class="inline md:ml-4 text-white mb-4 text-center">{{ validDateFormat(headline?.date)  | date: 'd MMMM' }}</span>
-      <span class="inline md:ml-4 text-white text-center">{{ headline.comments_count }} reacties</span>
-    </div>
-  </a>
+<div *ngIf="headlines.length !== 0" class="overflow-hidden">
+  <swiper-container fmSwiper [config]="config" init="false" >
+    <swiper-slide *ngFor="let headline of headlines">
+      <a class="relative xl:w-[1200px] flex items-center h-[500px] block xl:h-[600px] block bg-black group" [routerLink]="['nieuws', headline.id, headline.slug]">
+        <img [src]="headline.better_featured_image.source_url" class="object-cover w-full h-[400px] md:h-[600px] object-top h-full transition-all w-full block opacity-80 group-hover:scale-105 group-hover:opacity-100" />
+        <div class="absolute z-20 left-8 bottom-8 md:block flex-col md:bottom-32 lg:w-[33.3%]">
+          <h1 [innerHTML]="headline.title.rendered" class="text-white text-2xl p-4"></h1>
+          <span class="block ml-4 text-white">{{ validDateFormat(headline.date)  | date: 'd MMMM' }}</span>
+        </div>
+      </a>
+    </swiper-slide>
+  </swiper-container>
 </div>
-
+<!--<div *ngIf="headline.length !== 0" class="overflow-hidden">-->
+<!--  <a class="relative xl:w-[1200px] flex items-center flex-col justify-center h-[500px]] md:h-[550px] group" [routerLink]="['nieuws', headline?.id, headline?.slug]">-->
+<!--    <img [alt]="headline?.title?.rendered" [src]="headline?.better_featured_image?.source_url" class="absolute object-cover object-center w-full h-[550px] object-cover transition-all w-full block opacity-60 group-hover:scale-105 group-hover:opacity-100" />-->
+<!--    <div class="mt-4 flex flex-col justify-center md:text-left text-center m-auto z-20 h-[550px] md:bottom-32 lg:w-[50%]">-->
+<!--      <h1 [innerHTML]="headline?.title?.rendered" class="text-white text-center md:text-5xl text-3xl md:leading-normal leading-normal p-4"></h1>-->
+<!--      <span class="inline md:ml-4 text-white mb-4 text-center">{{ validDateFormat(headline?.date)  | date: 'd MMMM' }}</span>-->
+<!--      <span class="inline md:ml-4 text-white text-center">{{ headline.comments_count }} reacties</span>-->
+<!--    </div>-->
+<!--  </a>-->
+<!--</div>-->

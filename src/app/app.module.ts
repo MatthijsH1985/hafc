@@ -1,4 +1,4 @@
-import {LOCALE_ID, NgModule} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, LOCALE_ID, NgModule} from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -43,8 +43,7 @@ import {
 } from 'ng-recaptcha';
 import {environment} from "../environments/environment";
 
-// import { register } from 'swiper/element/bundle'
-// import {NieuwssliderModule} from "./components/nieuws/nieuwsslider/nieuwsslider.module";
+import { register } from 'swiper/element/bundle'
 
 import {JWT_OPTIONS, JwtHelperService} from "@auth0/angular-jwt";
 import {UserCommentsComponent} from "./pages/account/user-comments/user-comments.component";
@@ -67,14 +66,15 @@ import {PlayerOfTheWeekComponent} from "./pages/team/player-of-the-week/player-o
 import {CompetitieComponent} from "./pages/team/competitie/competitie.component";
 import {SpecialsComponent} from "./pages/specials/specials.component";
 import {TeamstatsComponent} from "./pages/team/teamstats/teamstats.component";
-import {NieuwssliderModule} from "./components/nieuws/nieuwsslider/nieuwsslider.module";
 import {PasswordResetComponent} from "./pages/account/password-reset/password-reset.component";
 import {SetNewPasswordComponent} from "./pages/account/set-new-password/set-new-password.component";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {UserConfigEditableComponent} from "./pages/account/user-config-editable/user-config-editable.component";
 import {AddsComponent} from "./components/adds/adds.component";
 import {NotFoundComponent} from "./pages/not-found/not-found.component";
-// register()
+import {NieuwssliderModule} from "./components/nieuws/nieuwsslider/nieuwsslider.module";
+import {NieuwssliderComponent} from "./components/nieuws/nieuwsslider/nieuwsslider.component";
+register()
 registerLocaleData(localeNl);
 
 @NgModule({
@@ -129,11 +129,12 @@ registerLocaleData(localeNl);
     ToastrModule.forRoot(),
     ReactiveFormsModule,
     FormsModule,
-    NieuwssliderModule,
     FontAwesomeModule,
     RecaptchaModule,
     RecaptchaFormsModule,
-    RecaptchaV3Module
+    RecaptchaV3Module,
+    NieuwssliderModule,
+    NieuwssliderComponent
   ],
   exports: [
     HomepageComponent
@@ -162,6 +163,7 @@ registerLocaleData(localeNl);
     JwtHelperService, {
       provide: JWT_OPTIONS, useValue: JWT_OPTIONS
     }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

@@ -5,12 +5,12 @@ import {RouterModule} from "@angular/router";
 
 @NgModule({
   imports: [CommonModule, RouterModule],
-  declarations: [NieuwssliderComponent],
+  declarations: [],
   providers: [{
     provide: 'isBrowser',
     useValue: true
   }],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  exports: [NieuwssliderComponent]
+  exports: []
 })
 export class NieuwssliderModule {}

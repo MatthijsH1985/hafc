@@ -1,9 +1,9 @@
 import {
   AfterViewInit,
-  Component,
+  Component, CUSTOM_ELEMENTS_SCHEMA,
   ElementRef, Inject,
-  Input,
-  ViewChild,
+  Input, OnInit, PLATFORM_ID,
+  ViewChild, ViewEncapsulation,
 } from '@angular/core';
 import Swiper, {
   A11y,
@@ -14,54 +14,54 @@ import Swiper, {
 } from 'swiper'
 import {Subscription} from "rxjs";
 import {PostsService} from "../../../services/posts.service";
+import {CommonModule, isPlatformBrowser} from "@angular/common";
+import {SwiperDirective} from "../../../shared/slider.directive";
+import {RouterModule} from "@angular/router";
 
 @Component({
   selector: 'app-nieuwsslider',
   templateUrl: './nieuwsslider.component.html',
-  styleUrls: ['./nieuwsslider.component.scss']
+  styleUrls: ['./nieuwsslider.component.scss'],
+  standalone: true,
+  encapsulation: ViewEncapsulation.None,
+  imports: [
+    CommonModule,
+    RouterModule,
+    SwiperDirective
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 
 export class NieuwssliderComponent implements AfterViewInit {
   postsSub: Subscription;
-  // public config: SwiperOptions = {
-  //   modules: [Navigation, Pagination, A11y, Mousewheel],
-  //   zoom: {
-  //     maxRatio: 5,
-  //   },
-  //   autoHeight: false,
-  //   spaceBetween: 20,
-  //   navigation: {
-  //     prevEl: '.prev-button',
-  //     nextEl: '.next-button',
-  //   },
-  //   pagination: false,
-  //   slidesPerView: 1,
-  //   centeredSlides: true,
-  //   grabCursor: true,
-  //   effect: "creative",
-  //   creativeEffect: {
-  //     prev: {
-  //       shadow: true,
-  //       translate: ["-20%", 0, -1],
-  //     },
-  //     next: {
-  //       translate: ["100%", 0, 0],
-  //     },
-  //   },
-  // }
-  @Input('headline') headline: any | undefined;
-  // @ViewChild('swiper') swiper: ElementRef | undefined
+  public config: SwiperOptions = {
+    grabCursor: true,
+    effect: "creative",
+    creativeEffect: {
+      prev: {
+        shadow: true,
+        translate: ["-20%", 0, -1],
+      },
+      next: {
+        translate: ["100%", 0, 0],
+      },
+    },
+  }
+  @Input('headlines') headlines: any | undefined;
+  @ViewChild('swiper') swiper: ElementRef | undefined
 
-  constructor(@Inject('isBrowser') private isBrowser: boolean, private postsService: PostsService) {
+  constructor(@Inject('isBrowser') private isBrowser: boolean) {
     this.postsSub = new Subscription()
   }
 
   ngAfterViewInit() {
+    // @ts-ignore
+    new Swiper(this.swiper.nativeElement, this.config);
     // Object.assign(this.swiper.nativeElement, this.config)
-    if(this.isBrowser) {
-      if (this.isBrowser) {
-        // this.swiper.nativeElement.initialize();
-      }
+    if (this.isBrowser) {
+      console.log(this.swiper);
+      // @ts-ignore
+      this.swiper.nativeElement.initialize();
     }
   }
 
