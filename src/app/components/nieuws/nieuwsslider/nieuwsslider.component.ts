@@ -33,7 +33,7 @@ import {RouterModule} from "@angular/router";
 })
 
 export class NieuwssliderComponent implements AfterViewInit {
-  postsSub: Subscription;
+  postsSub: Subscription = new Subscription();
   public config: SwiperOptions = {
     grabCursor: true,
     effect: "creative",
@@ -50,18 +50,19 @@ export class NieuwssliderComponent implements AfterViewInit {
   @Input('headlines') headlines: any | undefined;
   @ViewChild('swiper') swiper: ElementRef | undefined
 
-  constructor(@Inject('isBrowser') private isBrowser: boolean) {
-    this.postsSub = new Subscription()
+  constructor(
+    @Inject('isBrowser') @Inject(PLATFORM_ID) private platformId: Object,
+    @Inject('isBrowser') private isBrowser: boolean
+  ) {
+    // ...
   }
 
   ngAfterViewInit() {
-    // @ts-ignore
-    new Swiper(this.swiper.nativeElement, this.config);
-    // Object.assign(this.swiper.nativeElement, this.config)
-    if (this.isBrowser) {
-      console.log(this.swiper);
-      // @ts-ignore
-      this.swiper.nativeElement.initialize();
+    if (isPlatformBrowser(this.platformId) && this.swiper?.nativeElement) {
+      new Swiper(this.swiper.nativeElement, this.config);
+      if (this.isBrowser) {
+        this.swiper.nativeElement.initialize();
+      }
     }
   }
 
