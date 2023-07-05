@@ -1,8 +1,8 @@
 <div *ngIf="headlines.length !== 0" class="overflow-hidden">
   <swiper-container fmSwiper [config]="config" init="false" >
     <swiper-slide *ngFor="let headline of headlines">
-      <a class="relative xl:w-[1200px] flex items-center h-[450px] block xl:h-[600px] block bg-black group" [routerLink]="['nieuws', headline.id, headline.slug]">
-        <img [src]="headline.better_featured_image.source_url" class="object-cover w-full h-[450px] md:h-[600px] object-top h-full transition-all w-full block opacity-80 group-hover:opacity-100" />
+      <a class="relative xl:w-[1200px] flex items-center h-[450px] md:h-[500px] block xl:h-[600px] block bg-black group" [routerLink]="['nieuws', headline.id, headline.slug]">
+        <img [src]="headline.better_featured_image.source_url" class="object-cover w-full h-[450px] md:h-[500px] object-top h-full transition-all w-full block opacity-80 group-hover:opacity-100" />
         <div class="absolute z-20 left-8 bottom-8 md:block flex-col md:bottom-32 lg:w-[33.3%]">
           <h1 [innerHTML]="headline.title.rendered" class="text-white text-2xl p-4"></h1>
           <span class="block ml-4 text-white">{{ validDateFormat(headline.date)  | date: 'd MMMM' }}</span>
