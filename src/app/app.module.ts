@@ -74,6 +74,7 @@ import {AddsComponent} from "./components/adds/adds.component";
 import {NotFoundComponent} from "./pages/not-found/not-found.component";
 import {NieuwssliderModule} from "./components/nieuws/nieuwsslider/nieuwsslider.module";
 import {NieuwssliderComponent} from "./components/nieuws/nieuwsslider/nieuwsslider.component";
+import {SinglePageComponent} from "./pages/single-page/single-page.component";
 register()
 registerLocaleData(localeNl);
 
@@ -119,7 +120,8 @@ registerLocaleData(localeNl);
     PasswordResetComponent,
     SetNewPasswordComponent,
     AddsComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    SinglePageComponent
   ],
   imports: [
     CommonModule,

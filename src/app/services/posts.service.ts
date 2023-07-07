@@ -17,7 +17,6 @@ export class PostsService {
   constructor(private http: HttpClient, private configService: ConfigService) {}
 
   getPosts(page = 1, category = [3]): Observable<Config[]> {
-    // @ts-ignore
     return this.http.get<Config[]>(this.configService.config.apiEndpoint + '/posts?page='+ page + '&per_page=12&categories=' + category + '', this.httpOptions);
   }
 
@@ -26,8 +25,11 @@ export class PostsService {
   }
 
   getPost(postId: any | null): Observable<Config[]> {
-    // @ts-ignore
     return this.http.get<Config[]>(this.configService.config.apiEndpoint + '/posts/'+ postId + '', this.httpOptions);
+  }
+
+  getSinglePage(postId: any | null): Observable<Config[]> {
+    return this.http.get<Config[]>(this.configService.config.apiEndpoint + '/pages/'+ postId + '', this.httpOptions);
   }
 
 }

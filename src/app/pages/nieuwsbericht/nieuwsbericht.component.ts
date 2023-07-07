@@ -34,14 +34,14 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy {
 
   constructor(private activatedRoute: ActivatedRoute,
               private postService: PostsService,
-              private route: Router,
+              private router: Router,
               private titleService: Title,
               private viewportScroller: ViewportScroller) {
   }
 
   ngOnInit() {
     this.loading = true;
-    this.currentRoute = this.route.url;
+    this.currentRoute = this.router.url;
     this.loadPost();
   }
 

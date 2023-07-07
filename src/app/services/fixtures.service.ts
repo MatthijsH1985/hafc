@@ -10,7 +10,7 @@ export class FixturesService {
   constructor(private http: HttpClient) {}
 
   getFixtures(teamId: number): Observable<any> {
-    return this.http.get<Config[]>(environment.customApi + '/schedules/teams/' + teamId + '' );
+    return this.http.get<Config[]>(environment.customApi + '/schedules/seasons/21730/teams/' + teamId + '' );
   }
 
   getResults(teamId: number, seasonId: number): Observable<any> {

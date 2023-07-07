@@ -12,7 +12,7 @@ export class VolgendeWedstrijdComponent implements OnInit{
 
   nextMatch: any = [];
   teamId = 1403;
-  teamFixtures: any = [];
+  teamFixtures: any;
 
   constructor(private fixturesService: FixturesService, private router: Router) {
 
@@ -26,8 +26,14 @@ export class VolgendeWedstrijdComponent implements OnInit{
     this.fixturesService.getFixtures(this.teamId).subscribe( {
       next: data => {
         const { rounds } = data.data[0];
-        this.nextMatch =  rounds[0];
-        console.log(this.nextMatch);
+        this.teamFixtures =  rounds;
+        this.teamFixtures.sort((a: any, b: any) => {
+          const dateA = new Date(a.starting_at);
+          const dateB = new Date(b.starting_at);
+          return dateA.getTime() - dateB.getTime();
+        });
+        this.nextMatch = this.teamFixtures[0];
+        console.log(this.nextMatch)
       },
       error: error => {
         console.error(error)

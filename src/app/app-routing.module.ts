@@ -25,6 +25,7 @@ import {PasswordResetComponent} from "./pages/account/password-reset/password-re
 import {SetNewPasswordComponent} from "./pages/account/set-new-password/set-new-password.component";
 import {UserConfigEditableComponent} from "./pages/account/user-config-editable/user-config-editable.component";
 import {NotFoundComponent} from "./pages/not-found/not-found.component";
+import {SinglePageComponent} from "./pages/single-page/single-page.component";
 
 const routes: Routes = [
 
@@ -130,6 +131,10 @@ const routes: Routes = [
         component: UserCommentsComponent
       }
     ]
+  },
+  {
+    path: 'page/:id/:title',
+    component: SinglePageComponent
   },
   {
     component: NotFoundComponent,

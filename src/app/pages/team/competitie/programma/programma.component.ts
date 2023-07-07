@@ -28,14 +28,14 @@ export class ProgrammaComponent implements OnInit{
     this.fixturesService.getFixtures(this.teamId).subscribe( {
       next: data => {
         const { rounds } = data.data[0];
-
         this.teamFixtures =  rounds;
-        this.nextMatch = this.getFirstParticipant(rounds);
-
-        console.log(this.teamFixtures);
-        console.log(this.nextMatch);
         this.loading = false;
         this.viewportScroller.scrollToPosition([0, 0]);
+        this.teamFixtures.sort((a: any, b: any) => {
+          const dateA = new Date(a.starting_at);
+          const dateB = new Date(b.starting_at);
+          return dateA.getTime() - dateB.getTime();
+        });
       },
       error: error => {
         console.error(error)

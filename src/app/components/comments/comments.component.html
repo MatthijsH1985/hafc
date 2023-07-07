@@ -1,23 +1,29 @@
-
-<div class="comments-section">
-  <div *ngIf="!loadingComments;">
-    <ul *ngIf="comments.length > 0;" class="xl:w-[1100px] container ml-auto mr-auto">
-      <li *ngFor="let comment of comments" class="p-8 w-[600px]">
-        <div class="author-name p-2 inline-block text-white -ml-[1rem] relative">
-          <h3 class="text-xl text-black relative dark:text-white pr-[1rem]" [ngClass]="{'font-bold': comment.author !== 0}">{{ comment.author_name }} <fa-icon [icon]="faCheck" class="text-green-800 absolute -right-[.5rem] -top-[5px] text-sm" *ngIf="comment.author !== 0" title="Geregistreerde gebruiker"></fa-icon></h3>
-        </div>
-        <div class="p-4 bg-white dark:bg-black break-words">
-          <p [innerHTML]="comment.content.rendered" class="text-black dark:text-white"></p>
-          <div class="text-sm mt-4">
-            <h4>
-              <span class="date">{{ validDateFormat(comment.date) | date: 'EEEE, d MMMM, y' }}</span> <span class="time">{{ validDateFormat(comment.date) | date: 'HH:mm' }}</span>
-            </h4>
+<div class="comments-section flex flex-col">
+  <div class="flex md:flex-row md:w-[1100px] container ml-auto mr-auto">
+    <div *ngIf="!loadingComments;">
+      <ul *ngIf="comments.length > 0;" class="">
+        <li *ngFor="let comment of comments" class="p-8 w-[600px]">
+          <div class="author-name p-2 inline-block text-white -ml-[1rem] relative">
+            <h3 class="text-xl text-black relative dark:text-white pr-[1rem]" [ngClass]="{'font-bold': comment.author !== 0}">{{ comment.author_name }} <fa-icon [icon]="faCheck" class="text-green-800 absolute -right-[.5rem] -top-[5px] text-sm" *ngIf="comment.author !== 0" title="Geregistreerde gebruiker"></fa-icon></h3>
           </div>
-        </div>
-      </li>
-    </ul>
-    <div class="mx-4 my-8 flex items-center justify-center">
-      <button class="button button-blue" (click)="onLoadMoreComments()">Meer reacties tonen</button>
+          <div class="p-4 bg-white dark:bg-black break-words">
+            <p [innerHTML]="comment.content.rendered" class="text-black dark:text-white"></p>
+            <div class="text-sm mt-4">
+              <h4>
+                <span class="date">{{ validDateFormat(comment.date) | date: 'EEEE, d MMMM, y' }}</span> <span class="time">{{ validDateFormat(comment.date) | date: 'HH:mm' }}</span>
+              </h4>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <div class="mx-4 my-8 flex items-center justify-center">
+        <button class="button button-blue" (click)="onLoadMoreComments()">Meer reacties tonen</button>
+      </div>
+    </div>
+    <div class="flex-1">
+      <div class="sticky top-[130px] z-50 bg-white dark:gray-900 px-4 py-8">
+        <app-adds [layout]="'square'"></app-adds>
+      </div>
     </div>
   </div>
   <div *ngIf="loadingComments">
