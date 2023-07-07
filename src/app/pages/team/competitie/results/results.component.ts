@@ -13,7 +13,7 @@ export class ResultsComponent implements OnInit {
   teamResults: any;
   loading: boolean = true;
   teamId = 1403;
-  currentSeason = 19727;
+  teamFixtures:any;
 
   constructor(private fixturesService: FixturesService, private viewportScroller: ViewportScroller, private router: Router) {}
 
@@ -23,11 +23,23 @@ export class ResultsComponent implements OnInit {
   }
 
   getResults() {
-    this.fixturesService.getResults(this.teamId, this.currentSeason).subscribe({
-      next: results => {
-        this.teamResults = results;
-        console.log(this.teamResults);
+    this.fixturesService.getFixtures(this.teamId).subscribe({
+      next: data => {
+        const { rounds } = data.data[0];
+        this.teamFixtures =  rounds;
         this.loading = false;
+        this.viewportScroller.scrollToPosition([0, 0]);
+
+        this.teamFixtures = this.teamFixtures.filter((fixture: any) => fixture.finished);
+
+        if (this.teamFixtures.length > 0) {
+          this.teamFixtures.sort((a: any, b: any) => {
+            const dateA = new Date(a.fixtures[0].starting_at);
+            const dateB = new Date(b.fixtures[0].starting_at);
+            return dateA.getTime() - dateB.getTime();
+          });
+          console.log(this.teamFixtures);
+        }
         this.viewportScroller.scrollToPosition([0, 0]);
       },
       error: error => {

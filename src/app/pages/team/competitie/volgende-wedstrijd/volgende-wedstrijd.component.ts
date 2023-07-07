@@ -27,13 +27,14 @@ export class VolgendeWedstrijdComponent implements OnInit{
       next: data => {
         const { rounds } = data.data[0];
         this.teamFixtures =  rounds;
-        this.teamFixtures.sort((a: any, b: any) => {
-          const dateA = new Date(a.starting_at);
-          const dateB = new Date(b.starting_at);
-          return dateA.getTime() - dateB.getTime();
-        });
+        if (this.teamFixtures.length > 0) {
+          this.teamFixtures.sort((a: any, b: any) => {
+            const dateA = new Date(a.fixtures[0].starting_at);
+            const dateB = new Date(b.fixtures[0].starting_at);
+            return dateA.getTime() - dateB.getTime();
+          });
+        }
         this.nextMatch = this.teamFixtures[0];
-        console.log(this.nextMatch)
       },
       error: error => {
         console.error(error)
