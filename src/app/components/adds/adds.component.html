@@ -1,4 +1,4 @@
-<div class="grid gap-4" [ngClass]="{'md:grid-cols-2 grid-cols-4' : layout === 'square', 'grid-cols-2 md:grid-cols-4': layout === 'horizontal'}">
+<div class="grid gap-4" [ngClass]="{'grid-cols-2' : layout === 'square', '': layout === 'horizontal'}">
   <a *ngFor="let ad of randomizedAds" [href]="ad.acf.link" [target]="ad.acf.target">
     <img [src]="ad.acf.banner.url" class="block m-auto" />
   </a>

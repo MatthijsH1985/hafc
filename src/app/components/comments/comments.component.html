@@ -1,5 +1,5 @@
 <div class="comments-section flex flex-col">
-  <div class="flex md:flex-row md:w-[1100px] container ml-auto mr-auto">
+  <div class="flex md:flex-row flex-col-reverse md:w-[1100px] container ml-auto mr-auto">
     <div *ngIf="!loadingComments;">
       <ul *ngIf="comments.length > 0;" class="">
         <li *ngFor="let comment of comments" class="p-8 w-[600px]">
