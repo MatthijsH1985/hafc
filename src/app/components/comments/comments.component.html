@@ -9,7 +9,7 @@
           <div class="p-4 bg-white dark:bg-black break-words">
             <p [innerHTML]="comment.content.rendered" class="text-black dark:text-white"></p>
             <div class="text-sm mt-4">
-              <h4>
+              <h4 class="dark:text-white">
                 <span class="date">{{ validDateFormat(comment.date) | date: 'EEEE, d MMMM, y' }}</span> <span class="time">{{ validDateFormat(comment.date) | date: 'HH:mm' }}</span>
               </h4>
             </div>
