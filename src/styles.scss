@@ -121,7 +121,6 @@ body {
         rgba(255,255,255, var(--tw-bg-opacity)) 50%,
         rgba(0,0,0, var(--tw-bg-opacity)) 50%
     ) right;
-    color: rgba(0,0,0,var(--tw-text-opacity));
     background-size: 201%;
     &:hover {
       color: rgba(255,255,255,1);
@@ -144,6 +143,22 @@ body {
         background-position: left;
       }
     }
+  }
+  &.button-transparent {
+    &:active {
+      @apply text-black dark:text-white;
+    }
+    &:focus {
+      color: rgba(255,255,255,1);
+      background-position: right;
+      outline: 2px solid rgba(0,158,226, 1);
+      outline-offset: 4px;
+      @apply text-black dark:text-white;
+    }
+    &:hover {
+      color: rgba(0,158,226, 1);
+    }
+    @apply bg-none dark:text-white text-black;
   }
   &.button-primary, &.button-menu {
     background: linear-gradient(
