@@ -1,6 +1,6 @@
 
 <div class="relative z-20">
-  <div class="container ml-auto mr-auto xl:w-[1100px]">
+  <div class="container ml-auto mr-auto xl:w-[1100px]" *ngIf="teamFixtures.length > 0; else noMatches">
     <a class="mb-8 block p-8 bg-white dark:bg-gray-700 hover:dark:bg-black" (click)="onOpenMatchReport(match?.id)" *ngFor="let match of teamFixtures">
       <div *ngFor="let fixture of match.fixtures" class="flex justify-center items-center">
         <div class="text-white flex items-center justify-center space-x-4">
@@ -21,4 +21,9 @@
       </div>
     </a>
   </div>
+  <ng-template #noMatches>
+    <p class="text-black text-center dark:text-white p-16">
+      Er zijn nog geen wedstrijden gespeeld
+    </p>
+  </ng-template>
 </div>
