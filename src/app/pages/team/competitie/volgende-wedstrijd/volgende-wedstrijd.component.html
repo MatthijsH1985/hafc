@@ -1,22 +1,24 @@
-<div class="p-4 md:p-0" *ngIf="nextMatch?.fixtures || nextMatch?.length > 0; else noMatch">
-  <div class=" max-w-full relative m-auto z-10 text-center bg-black">
-    <div class="bg-black">
-      <div [ngClass]="['matches next-match']" class="p-4">
-        <div class="flex items-center text-center justify-center">
-          <div class="flex">
-            <div class="text-white flex items-center justify-center space-x-4">
-              <div class="text-center items-center justify-center">
-                <img src="{{ nextMatch?.fixtures[0].participants[0].id | generateLogoUrl }}" class="w-[80px] m-auto h-auto" />
+<div *ngIf="!loading;">
+  <div class="p-4 md:p-0" *ngIf="nextMatch?.fixtures || nextMatch?.length > 0;">
+    <div class=" max-w-full relative m-auto z-10 text-center bg-black">
+      <div class="bg-black">
+        <div [ngClass]="['matches next-match']" class="p-4">
+          <div class="flex items-center text-center justify-center">
+            <div class="flex">
+              <div class="text-white flex items-center justify-center space-x-4">
+                <div class="text-center items-center justify-center">
+                  <img src="{{ nextMatch?.fixtures[0].participants[0].id | generateLogoUrl }}" class="w-[80px] m-auto h-auto" />
+                </div>
               </div>
-            </div>
-            <div class="px-4">
-              <div class="text-base text-white dark:text-white">{{ validDateFormat(nextMatch?.fixtures[0].starting_at) | date: 'EEEE'}}</div>
-              <div class="text-base text-white dark:text-white">{{ validDateFormat(nextMatch?.fixtures[0].starting_at) | date: 'd MMMM'}}</div>
-              <div class="text-base text-white dark:text-white">{{ validDateFormat(nextMatch?.fixtures[0].starting_at) | date: 'HH:mm' }}</div>
-            </div>
-            <div class="text-white flex items-center justify-center space-x-4">
-              <div class="text-center items-center justify-center">
-                <img src="{{ nextMatch?.fixtures[0].participants[1].id | generateLogoUrl }}" class="w-[80px] m-auto h-auto" />
+              <div class="px-4">
+                <div class="text-base text-white dark:text-white">{{ validDateFormat(nextMatch?.fixtures[0].starting_at) | date: 'EEEE'}}</div>
+                <div class="text-base text-white dark:text-white">{{ validDateFormat(nextMatch?.fixtures[0].starting_at) | date: 'd MMMM'}}</div>
+                <div class="text-base text-white dark:text-white">{{ validDateFormat(nextMatch?.fixtures[0].starting_at) | date: 'HH:mm' }}</div>
+              </div>
+              <div class="text-white flex items-center justify-center space-x-4">
+                <div class="text-center items-center justify-center">
+                  <img src="{{ nextMatch?.fixtures[0].participants[1].id | generateLogoUrl }}" class="w-[80px] m-auto h-auto" />
+                </div>
               </div>
             </div>
           </div>
@@ -25,13 +27,6 @@
     </div>
   </div>
 </div>
-<ng-template #noMatch>
-  <div class="p-0 bg-black">
-    <div class="max-w-full relative m-auto z-10 text-center">
-      <div class="flex items-center justify-center flex-wrap text-white">
-        <h3 class="p-5 block">Geen wedstrijden te spelen</h3>
-      </div>
-    </div>
-  </div>
-</ng-template>
-
+<div *ngIf="loading" class="flex flex=col items-center justify-center">
+  <p class="text-white">Wedstrijd ophalen</p>
+</div>

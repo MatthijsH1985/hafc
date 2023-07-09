@@ -13,6 +13,7 @@ export class VolgendeWedstrijdComponent implements OnInit{
   nextMatch: any = [];
   teamId = 1403;
   teamFixtures: any;
+  loading: boolean = true;
 
   constructor(private fixturesService: FixturesService, private router: Router) {
 
@@ -35,19 +36,13 @@ export class VolgendeWedstrijdComponent implements OnInit{
           });
         }
         this.nextMatch = this.teamFixtures[0];
+        this.loading = false;
       },
       error: error => {
         console.error(error)
+        this.loading = false;
       }
     });
-  }
-
-  getFirstParticipant(rounds: any[]): any {
-    const firstRound = rounds[0];
-    const firstFixture = firstRound?.fixtures[0];
-    const firstParticipant = firstFixture?.participants[0];
-
-    return firstParticipant;
   }
 
   validDateFormat(dateString: Date): any {
