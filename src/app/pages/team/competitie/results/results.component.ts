@@ -13,7 +13,7 @@ export class ResultsComponent implements OnInit {
   teamResults: any;
   loading: boolean = true;
   teamId = 1403;
-  teamFixtures:any;
+  teamFixtures: any = [];
 
   constructor(private fixturesService: FixturesService, private viewportScroller: ViewportScroller, private router: Router) {}
 
