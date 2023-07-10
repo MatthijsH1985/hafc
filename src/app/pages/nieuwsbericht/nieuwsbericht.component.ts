@@ -38,8 +38,7 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy {
               private router: Router,
               private titleService: Title,
               private toast: ToastrService,
-              private viewportScroller: ViewportScroller,
-              private gtmService: GoogleTagManagerService) {
+              private viewportScroller: ViewportScroller) {
   }
 
 
@@ -47,15 +46,6 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy {
     this.loading = true;
     this.currentRoute = this.router.url;
     this.loadPost();
-    this.router.events.forEach(item => {
-      if (item instanceof NavigationEnd) {
-        const gtmTag = {
-          page_title: this.titleService.getTitle(),
-          page_location: item.url
-        };
-        this.gtmService.pushTag(gtmTag);
-      }
-    });
   }
 
   isButtonVisible(scrollHeight: number): void {
@@ -66,6 +56,7 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy {
     this.currentPostSub = this.postService.getPost(this.postId).subscribe({
       next: post => {
         this.post = post;
+        console.log(this.post);
         this.categoryName = this.post.category_name[0].cat_name;
         this.loading = false;
         this.titleService.setTitle(this.post.title.rendered);
