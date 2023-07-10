@@ -21,6 +21,7 @@ export class AppComponent {
           page_title: this.titleService.getTitle(),
           page_location: item.url
         };
+        console.log(gtmTag);
         try {
           await this.gtmService.pushTag(gtmTag);
         } catch (error) {
