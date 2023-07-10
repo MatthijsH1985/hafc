@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
 import {PostsService} from "../../services/posts.service";
-import {Router} from "@angular/router";
+import {NavigationEnd, Router} from "@angular/router";
 import {Title} from "@angular/platform-browser";
 import {ViewportScroller} from "@angular/common";
 import {AdsService} from "../../services/ads.service";
+import {GoogleTagManagerService} from "angular-google-tag-manager";
 
 @Component({
   selector: 'app-homepage',

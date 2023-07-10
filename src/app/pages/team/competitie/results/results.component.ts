@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FixturesService} from "../../../../services/fixtures.service";
-import {Router} from "@angular/router";
+import {NavigationEnd, Router} from "@angular/router";
 import * as moment from "moment/moment";
 import {ViewportScroller} from "@angular/common";
+import {Title} from "@angular/platform-browser";
+import {GoogleTagManagerService} from "angular-google-tag-manager";
 
 @Component({
   selector: 'app-results',
@@ -15,7 +17,9 @@ export class ResultsComponent implements OnInit {
   teamId = 1403;
   teamFixtures: any = [];
 
-  constructor(private fixturesService: FixturesService, private viewportScroller: ViewportScroller, private router: Router) {}
+  constructor(private fixturesService: FixturesService, private titleService: Title, private viewportScroller: ViewportScroller, private router: Router) {
+
+  }
 
   ngOnInit() {
   this.viewportScroller.scrollToPosition([0,0]);

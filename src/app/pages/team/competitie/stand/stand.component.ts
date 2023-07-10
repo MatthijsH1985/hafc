@@ -2,6 +2,9 @@ import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
 import {StandingsService} from "../../../../services/standings.service";
 import {ViewportScroller} from "@angular/common";
+import {NavigationEnd, Router} from "@angular/router";
+import {GoogleTagManagerService} from "angular-google-tag-manager";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-stand',
@@ -16,7 +19,9 @@ export class StandComponent implements OnInit, OnDestroy {
   teamId: number = 0;
   @Input('compact') compact: boolean = false;
 
-  constructor(private standingsService: StandingsService, private viewportScroller: ViewportScroller) {}
+  constructor(private standingsService: StandingsService, private router: Router, private titleService: Title, private viewportScroller: ViewportScroller) {
+
+  }
 
   ngOnInit() {
     this.viewportScroller.scrollToPosition([0,0]);

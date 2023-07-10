@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {PostsService} from "../../services/posts.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
+import {GoogleTagManagerService} from "angular-google-tag-manager";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-single-page',
@@ -14,9 +16,9 @@ export class SinglePageComponent implements OnInit{
   postId: any = this.activatedRoute.snapshot.paramMap.get('id');
   page: any;
 
-  constructor(private postsService: PostsService, private router: Router, private activatedRoute: ActivatedRoute) {
-  }
+  constructor(private postsService: PostsService, private titleService: Title, private router: Router, private activatedRoute: ActivatedRoute) {
 
+  }
   ngOnInit() {
     this.currentRoute = this.router.url;
     this.postsService.getSinglePage(this.postId).subscribe({
