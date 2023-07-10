@@ -20,7 +20,7 @@ export class LoginFormComponent implements OnInit {
 
   ngOnInit() {
     if (this.isLoggedIn()) {
-      this.router.navigate(['account/details']);
+      this.router.navigate(['/']);
     }
   }
 
