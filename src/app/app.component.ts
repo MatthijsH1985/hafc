@@ -15,13 +15,20 @@ import {GoogleTagManagerService} from "angular-google-tag-manager";
 export class AppComponent {
 
   constructor(private contexts: ChildrenOutletContexts, private router: Router, private titleService: Title, private gtmService: GoogleTagManagerService) {
-    this.router.events.forEach(item => {
+    this.router.events.forEach(async (item) => {
       if (item instanceof NavigationEnd) {
         const gtmTag = {
           page_title: this.titleService.getTitle(),
           page_location: item.url
         };
-        this.gtmService.pushTag(gtmTag);
+
+        console.log(gtmTag);
+
+        try {
+          await this.gtmService.pushTag(gtmTag);
+        } catch (error) {
+          console.error('Er is een fout opgetreden bij het pushen van de tag:', error);
+        }
       }
     });
   }
