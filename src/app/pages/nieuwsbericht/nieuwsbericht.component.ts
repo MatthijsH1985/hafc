@@ -1,10 +1,12 @@
 import {Component, HostListener, OnDestroy, OnInit, Output} from '@angular/core';
 import {Subscription} from "rxjs";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {PostsService} from "../../services/posts.service";
 import {Title} from "@angular/platform-browser";
 import {ViewportScroller} from "@angular/common";
 import {faComment} from "@fortawesome/free-solid-svg-icons";
+import {ToastrService} from "ngx-toastr";
+import {GoogleTagManagerService} from "angular-google-tag-manager";
 
 
 @Component({
@@ -17,7 +19,6 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy {
   postId: any = this.activatedRoute.snapshot.paramMap.get('id')
   post: any;
   name: string = '';
-  direction: string | undefined;
   loading: boolean = true;
   currentRoute: any;
   modalCommentsOpen: boolean = false;
@@ -36,20 +37,29 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy {
               private postService: PostsService,
               private router: Router,
               private titleService: Title,
-              private viewportScroller: ViewportScroller) {
+              private toast: ToastrService,
+              private viewportScroller: ViewportScroller,
+              private gtmService: GoogleTagManagerService) {
   }
+
 
   ngOnInit() {
     this.loading = true;
     this.currentRoute = this.router.url;
     this.loadPost();
+    this.router.events.forEach(item => {
+      if (item instanceof NavigationEnd) {
+        const gtmTag = {
+          page_title: this.titleService.getTitle(),
+          page_location: item.url
+        };
+        this.gtmService.pushTag(gtmTag);
+      }
+    });
   }
 
   isButtonVisible(scrollHeight: number): void {
     this.buttonVisible = (scrollHeight > 1000) ? true : false
-  }
-  toTop(): void {
-    this.viewportScroller.scrollToPosition([0, 0]);
   }
 
   loadPost() {
@@ -68,6 +78,7 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy {
   }
 
   addComment(comment: any) {
+    this.toast.success('Reactie wordt geplaatst', 'Succes');
     this.reloadComments = true;
     this.onModalClose();
   }

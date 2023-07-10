@@ -146,9 +146,14 @@ registerLocaleData(localeNl);
     useValue: 'nl',
   },
     {
+      provide: 'googleTagManagerId',
+      useValue: 'GTM-NC42PW4'
+    },
+    {
       provide: RECAPTCHA_V3_SITE_KEY,
       useValue: environment.recaptcha.siteKey
     },
+
     PostsService,
     ConfigService,
     CommentsService,

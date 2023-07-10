@@ -35,6 +35,7 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   getComments(page: number) {
+    console.log('Hoi')
     this.commentsSub = this.commentsService.getComments(this.postId, this.commentPage).subscribe({
       next: comments => {
         for (let i = 0; i < comments.length; i++) {
