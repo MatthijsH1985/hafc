@@ -35,7 +35,7 @@ export class HomepageComponent implements OnInit {
     this.viewportScroller.scrollToPosition([0, 0]);
     this.getPosts();
     this.gtmService.startTrackingTags();
-    this.metaService.setMetaTag();
+    this.metaService.setMetaTag('HAFC.nl - Wij Zij Heracles', 'HAFC.nl is de grootste Heracles community voor en door supporters');
   }
 
   getPosts() {
