@@ -6,22 +6,13 @@ import {Meta, Title} from '@angular/platform-browser';
 export class MetaService {
   constructor(private router: Router, private titleService: Title, private metaService: Meta) {}
 
-  setMetaTag() {
+  setMetaTag(metaUrl: string = '/', description: string = 'HAFC.nl is de grootste Heracles community voor en door supporters') {
     this.metaService.addTag({property: 'og:title', content: 'HAFC.nl - Wij Zij Heracles'});
     this.metaService.addTag({property: 'og:locale', content: 'nl_NL'});
     this.metaService.addTag({property: 'og:type', content: 'website'});
     this.metaService.addTag({property: 'og:description', content: 'HAFC.nl is de grootste Heracles community voor en door supporters'});
-    this.metaService.addTag({property: 'og:url', content: this.router.url});
-    this.metaService.addTag({property: 'og:site_name', content: 'HAFC.nl'});
-    this.metaService.addTag({property: 'twitter:site', content: 'heracles1903'});
-  }
-
-  updateMetaTag(metaUrl: any, description: any) {
-    this.metaService.addTag({property: 'og:title', content: this.titleService.getTitle()});
-    this.metaService.addTag({property: 'og:locale', content: 'nl_NL'});
-    this.metaService.addTag({property: 'og:type', content: 'website'});
-    this.metaService.addTag({property: 'og:description', content: description});
     this.metaService.addTag({property: 'og:url', content: metaUrl});
     this.metaService.addTag({property: 'og:site_name', content: 'HAFC.nl'});
+    this.metaService.addTag({property: 'twitter:site', content: 'heracles1903'});
   }
 }
