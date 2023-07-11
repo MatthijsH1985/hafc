@@ -75,6 +75,7 @@ import {NotFoundComponent} from "./pages/not-found/not-found.component";
 import {NieuwssliderModule} from "./components/nieuws/nieuwsslider/nieuwsslider.module";
 import {NieuwssliderComponent} from "./components/nieuws/nieuwsslider/nieuwsslider.component";
 import {SinglePageComponent} from "./pages/single-page/single-page.component";
+import {GtmService} from "./services/gtm.service";
 register()
 registerLocaleData(localeNl);
 
@@ -167,6 +168,7 @@ registerLocaleData(localeNl);
     MemoryStorage,
     UserService,
     MenuService,
+    GtmService,
     JwtHelperService, {
       provide: JWT_OPTIONS, useValue: JWT_OPTIONS
     }],

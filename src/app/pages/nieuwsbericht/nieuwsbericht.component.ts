@@ -1,12 +1,12 @@
 import {Component, HostListener, OnDestroy, OnInit, Output} from '@angular/core';
 import {Subscription} from "rxjs";
-import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {PostsService} from "../../services/posts.service";
 import {Title} from "@angular/platform-browser";
 import {ViewportScroller} from "@angular/common";
 import {faComment} from "@fortawesome/free-solid-svg-icons";
 import {ToastrService} from "ngx-toastr";
-import {GoogleTagManagerService} from "angular-google-tag-manager";
+import {GtmService} from "../../services/gtm.service";
 
 
 @Component({
@@ -39,16 +39,7 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy {
               private titleService: Title,
               private toast: ToastrService,
               private viewportScroller: ViewportScroller,
-              private gtmService: GoogleTagManagerService) {
-    this.router.events.forEach(async (item) => {
-      if (item instanceof NavigationEnd) {
-        const gtmTag = {
-          page_title: this.titleService.getTitle(),
-          page_location: item.url
-        };
-        this.gtmService.pushTag(gtmTag);
-      }
-    });
+              private gtmService: GtmService) {
   }
 
 
@@ -56,6 +47,7 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy {
     this.loading = true;
     this.currentRoute = this.router.url;
     this.loadPost();
+
   }
 
   isButtonVisible(scrollHeight: number): void {
@@ -70,6 +62,7 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy {
         this.loading = false;
         this.titleService.setTitle(this.post.title.rendered);
         this.viewportScroller.scrollToPosition([0, 0]);
+        this.gtmService.startTrackingTags();
       },
       error: error => {
         console.log(error);

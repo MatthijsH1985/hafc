@@ -5,6 +5,7 @@ import * as moment from "moment/moment";
 import {ViewportScroller} from "@angular/common";
 import {Title} from "@angular/platform-browser";
 import {GoogleTagManagerService} from "angular-google-tag-manager";
+import {GtmService} from "../../../../services/gtm.service";
 
 @Component({
   selector: 'app-results',
@@ -17,21 +18,14 @@ export class ResultsComponent implements OnInit {
   teamId = 1403;
   teamFixtures: any = [];
 
-  constructor(private fixturesService: FixturesService, private titleService: Title, private gtmService: GoogleTagManagerService, private viewportScroller: ViewportScroller, private router: Router) {
-    this.router.events.forEach(async (item) => {
-      if (item instanceof NavigationEnd) {
-        const gtmTag = {
-          page_title: this.titleService.getTitle(),
-          page_location: item.url
-        };
-        this.gtmService.pushTag(gtmTag);
-      }
-    });
+  constructor(private fixturesService: FixturesService, private gtmService: GtmService, private titleService: Title, private viewportScroller: ViewportScroller, private router: Router) {
+
   }
 
   ngOnInit() {
-  this.viewportScroller.scrollToPosition([0,0]);
+    this.viewportScroller.scrollToPosition([0,0]);
     this.getResults();
+    this.gtmService.startTrackingTags();
   }
 
   getResults() {

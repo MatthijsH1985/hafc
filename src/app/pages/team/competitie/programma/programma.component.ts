@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {FixturesService} from "../../../../services/fixtures.service";
 import * as moment from 'moment';
 import {ViewportScroller} from "@angular/common";
+import {GtmService} from "../../../../services/gtm.service";
 
 @Component({
   selector: 'app-programma',
@@ -16,12 +17,13 @@ export class ProgrammaComponent implements OnInit{
   nextMatch: any = [];
   loading: boolean = true;
 
-  constructor(private router: Router, private fixturesService: FixturesService, private viewportScroller: ViewportScroller) {
+  constructor(private router: Router, private fixturesService: FixturesService, private gtmService: GtmService, private viewportScroller: ViewportScroller) {
   }
 
   ngOnInit() {
     this.viewportScroller.scrollToPosition([0,0]);
     this.getFixtures();
+    this.gtmService.startTrackingTags();
   }
 
   getFixtures() {

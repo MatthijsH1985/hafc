@@ -3,6 +3,7 @@ import {catchError, of, Subscription} from "rxjs";
 import {PostsService} from "../../services/posts.service";
 import {Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {GtmService} from "../../services/gtm.service";
 
 @Component({
   selector: 'app-nieuwsarchief',
@@ -21,12 +22,13 @@ export class NieuwsarchiefComponent implements OnInit{
     searchTerm: new FormControl('', [Validators.required])
   });
 
-  constructor(private postsService: PostsService, private router: Router) {
+  constructor(private postsService: PostsService, private router: Router, private gtmService: GtmService) {
 
   }
 
   ngOnInit() {
     this.getPosts();
+    this.gtmService.startTrackingTags();
   }
 
   getPosts() {

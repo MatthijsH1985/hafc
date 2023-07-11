@@ -5,6 +5,7 @@ import {ViewportScroller} from "@angular/common";
 import {NavigationEnd, Router} from "@angular/router";
 import {GoogleTagManagerService} from "angular-google-tag-manager";
 import {Title} from "@angular/platform-browser";
+import {GtmService} from "../../../../services/gtm.service";
 
 @Component({
   selector: 'app-stand',
@@ -19,12 +20,13 @@ export class StandComponent implements OnInit, OnDestroy {
   teamId: number = 0;
   @Input('compact') compact: boolean = false;
 
-  constructor(private standingsService: StandingsService, private router: Router, private titleService: Title, private viewportScroller: ViewportScroller) {
+  constructor(private standingsService: StandingsService, private gtmService: GtmService, private router: Router, private titleService: Title, private viewportScroller: ViewportScroller) {
 
   }
 
   ngOnInit() {
     this.viewportScroller.scrollToPosition([0,0]);
+    this.gtmService.startTrackingTags();
     this.rankingSub = this.standingsService.getStandings(this.currentSeasonId).subscribe({
       next: (data: any) => {
         this.loading = false;

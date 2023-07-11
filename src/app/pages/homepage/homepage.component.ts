@@ -6,6 +6,7 @@ import {Title} from "@angular/platform-browser";
 import {ViewportScroller} from "@angular/common";
 import {AdsService} from "../../services/ads.service";
 import {GoogleTagManagerService} from "angular-google-tag-manager";
+import {GtmService} from "../../services/gtm.service";
 
 @Component({
   selector: 'app-homepage',
@@ -24,22 +25,14 @@ export class HomepageComponent implements OnInit {
               private router: Router,
               private titleService: Title,
               private viewportScroller: ViewportScroller,
-              private gtmService: GoogleTagManagerService) {
-    this.router.events.forEach(async (item) => {
-      if (item instanceof NavigationEnd) {
-        const gtmTag = {
-          page_title: this.titleService.getTitle(),
-          page_location: item.url
-        };
-        this.gtmService.pushTag(gtmTag);
-      }
-    });
+              private gtmService: GtmService) {
   }
 
   ngOnInit() {
     this.titleService.setTitle('HAFC - Wij zijn Heracles!');
     this.viewportScroller.scrollToPosition([0, 0]);
     this.getPosts();
+    this.gtmService.startTrackingTags();
   }
 
   getPosts() {
