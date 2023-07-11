@@ -19,13 +19,14 @@ export class ResultsComponent implements OnInit {
   teamId = 1403;
   teamFixtures: any = [];
 
-  constructor(private fixturesService: FixturesService, private metaService: MetaService, private gtmService: GtmService, private titleService: Title, private viewportScroller: ViewportScroller, private router: Router) {
+  constructor(private fixturesService: FixturesService, private metaService: MetaService, private title: Title,private gtmService: GtmService, private titleService: Title, private viewportScroller: ViewportScroller, private router: Router) {
 
   }
 
   ngOnInit() {
     this.viewportScroller.scrollToPosition([0,0]);
     this.getResults();
+    this.title.setTitle('Uitslagen - HAFC.nl')
     this.gtmService.startTrackingTags();
     this.metaService.setMetaTag(this.router.url, 'Alle uitslagen van Heracles in de Eredivisie');
   }

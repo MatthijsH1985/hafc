@@ -21,7 +21,7 @@ export class StandComponent implements OnInit, OnDestroy {
   teamId: number = 0;
   @Input('compact') compact: boolean = false;
 
-  constructor(private standingsService: StandingsService, private metaService: MetaService, private gtmService: GtmService, private router: Router, private titleService: Title, private viewportScroller: ViewportScroller) {
+  constructor(private standingsService: StandingsService, private metaService: MetaService, private title: Title, private gtmService: GtmService, private router: Router, private titleService: Title, private viewportScroller: ViewportScroller) {
 
   }
 
@@ -29,6 +29,7 @@ export class StandComponent implements OnInit, OnDestroy {
     this.viewportScroller.scrollToPosition([0,0]);
     this.metaService.setMetaTag(this.router.url, 'De stand van de Eredivisie');
     this.gtmService.startTrackingTags();
+    this.title.setTitle('Stand - HAFC.nl')
     this.rankingSub = this.standingsService.getStandings(this.currentSeasonId).subscribe({
       next: (data: any) => {
         this.loading = false;
