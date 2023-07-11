@@ -6,6 +6,7 @@ import {ViewportScroller} from "@angular/common";
 import {Title} from "@angular/platform-browser";
 import {GoogleTagManagerService} from "angular-google-tag-manager";
 import {GtmService} from "../../../../services/gtm.service";
+import {MetaService} from "../../../../services/meta.service";
 
 @Component({
   selector: 'app-results',
@@ -18,7 +19,7 @@ export class ResultsComponent implements OnInit {
   teamId = 1403;
   teamFixtures: any = [];
 
-  constructor(private fixturesService: FixturesService, private gtmService: GtmService, private titleService: Title, private viewportScroller: ViewportScroller, private router: Router) {
+  constructor(private fixturesService: FixturesService, private metaService: MetaService, private gtmService: GtmService, private titleService: Title, private viewportScroller: ViewportScroller, private router: Router) {
 
   }
 
@@ -26,6 +27,7 @@ export class ResultsComponent implements OnInit {
     this.viewportScroller.scrollToPosition([0,0]);
     this.getResults();
     this.gtmService.startTrackingTags();
+    this.metaService.setMetaTag(this.router.url, 'Alle uitslagen van Heracles in de Eredivisie');
   }
 
   getResults() {

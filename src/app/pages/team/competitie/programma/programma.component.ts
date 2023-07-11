@@ -4,6 +4,7 @@ import {FixturesService} from "../../../../services/fixtures.service";
 import * as moment from 'moment';
 import {ViewportScroller} from "@angular/common";
 import {GtmService} from "../../../../services/gtm.service";
+import {MetaService} from "../../../../services/meta.service";
 
 @Component({
   selector: 'app-programma',
@@ -17,13 +18,14 @@ export class ProgrammaComponent implements OnInit{
   nextMatch: any = [];
   loading: boolean = true;
 
-  constructor(private router: Router, private fixturesService: FixturesService, private gtmService: GtmService, private viewportScroller: ViewportScroller) {
+  constructor(private router: Router, private fixturesService: FixturesService, private metaService: MetaService, private gtmService: GtmService, private viewportScroller: ViewportScroller) {
   }
 
   ngOnInit() {
     this.viewportScroller.scrollToPosition([0,0]);
     this.getFixtures();
     this.gtmService.startTrackingTags();
+    this.metaService.setMetaTag(this.router.url, 'Het wedstrijdprogramma van Heracles in de Eredivisie');
   }
 
   getFixtures() {

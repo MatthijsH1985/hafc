@@ -6,6 +6,7 @@ import {NavigationEnd, Router} from "@angular/router";
 import {GoogleTagManagerService} from "angular-google-tag-manager";
 import {Title} from "@angular/platform-browser";
 import {GtmService} from "../../../../services/gtm.service";
+import {MetaService} from "../../../../services/meta.service";
 
 @Component({
   selector: 'app-stand',
@@ -20,12 +21,13 @@ export class StandComponent implements OnInit, OnDestroy {
   teamId: number = 0;
   @Input('compact') compact: boolean = false;
 
-  constructor(private standingsService: StandingsService, private gtmService: GtmService, private router: Router, private titleService: Title, private viewportScroller: ViewportScroller) {
+  constructor(private standingsService: StandingsService, private metaService: MetaService, private gtmService: GtmService, private router: Router, private titleService: Title, private viewportScroller: ViewportScroller) {
 
   }
 
   ngOnInit() {
     this.viewportScroller.scrollToPosition([0,0]);
+    this.metaService.setMetaTag(this.router.url, 'De stand van de Eredivisie');
     this.gtmService.startTrackingTags();
     this.rankingSub = this.standingsService.getStandings(this.currentSeasonId).subscribe({
       next: (data: any) => {
