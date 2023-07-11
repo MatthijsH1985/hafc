@@ -3,7 +3,7 @@ import {PlayersService} from "../../../services/players.service";
 import {TeamService} from "../../../services/team.service";
 import {Router} from "@angular/router";
 import {MetaService} from "../../../services/meta.service";
-import {Title} from "@angular/platform-browser";
+import {Meta, Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-selectie',
@@ -27,10 +27,12 @@ export class SelectieComponent implements OnInit{
               private teamService: TeamService,
               private router: Router,
               private metaService: MetaService,
-              private title: Title) {}
+              private title: Title,
+              private meta: Meta) {}
 
   ngOnInit() {
-    this.metaService.updateMetaTag(this.router.url, 'Bekijk hier de complete selectie van Heracles Almelo');
+    // this.metaService.updateMetaTag(this.router.url, 'Bekijk hier de complete selectie van Heracles Almelo');
+    this.meta.getTag("name='description'")
     this.title.setTitle('Selectie - HAFC.nl')
     this.loading = true;
     this.playerService.getPlayers().subscribe( {

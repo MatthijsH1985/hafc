@@ -24,7 +24,7 @@ export class UserService {
   }
 
   createUser(user: any): Observable<Config[]> {
-    return this.http.post<Config[]>(`${this.apiUrl}` + `${this.userServiceUrl}`  + 'create/', user, this.httpOptions);
+    return this.http.post<Config[]>(`${this.apiUrl}` + `${this.userServiceUrl}/`  + 'create/', user, this.httpOptions);
   }
 
   forgetPassWord(userEmail: any) {
