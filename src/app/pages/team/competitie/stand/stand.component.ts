@@ -27,7 +27,7 @@ export class StandComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.viewportScroller.scrollToPosition([0,0]);
-    this.metaService.setMetaTag(this.router.url, 'De stand van de Eredivisie');
+    this.metaService.updateMetaTag(this.router.url, 'De stand van de Eredivisie');
     this.gtmService.startTrackingTags();
     this.title.setTitle('Stand - HAFC.nl')
     this.rankingSub = this.standingsService.getStandings(this.currentSeasonId).subscribe({

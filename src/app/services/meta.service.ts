@@ -18,4 +18,13 @@ export class MetaService {
     this.metaService.addTag({property: 'twitter:description', content: description});
     this.metaService.addTag({property: 'twitter:image', content: image});
   }
+
+  updateMetaTag(metaUrl: string = '/', description: string = 'HAFC.nl is de grootste Heracles community voor en door supporters', image: string = '') {
+    this.metaService.updateTag({property: 'og:title', content: 'HAFC.nl - Wij Zij Heracles'});
+    this.metaService.updateTag({property: 'og:image', content: image});
+    this.metaService.updateTag({property: 'og:description', content: description});
+    this.metaService.updateTag({property: 'og:url', content: metaUrl});
+    this.metaService.updateTag({property: 'twitter:description', content: description});
+    this.metaService.updateTag({property: 'twitter:image', content: image});
+  }
 }

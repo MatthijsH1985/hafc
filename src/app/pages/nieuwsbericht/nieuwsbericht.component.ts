@@ -68,7 +68,7 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy {
         const metaUrl = this.post.yoast_head_json.og_url.replace('backend', 'www');
         const description = this.post.yoast_head_json.og_description;
         const image = this.post.better_featured_image.source_url;
-        this.metaService.setMetaTag(metaUrl, description, image);
+        this.metaService.updateMetaTag(metaUrl, description, image);
       },
       error: error => {
         console.log(error);

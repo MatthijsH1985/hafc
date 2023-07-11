@@ -28,7 +28,7 @@ export class ResultsComponent implements OnInit {
     this.getResults();
     this.title.setTitle('Uitslagen - HAFC.nl')
     this.gtmService.startTrackingTags();
-    this.metaService.setMetaTag(this.router.url, 'Alle uitslagen van Heracles in de Eredivisie');
+    this.metaService.updateMetaTag(this.router.url, 'Alle uitslagen van Heracles in de Eredivisie');
   }
 
   getResults() {

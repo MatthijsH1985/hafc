@@ -27,7 +27,7 @@ export class ProgrammaComponent implements OnInit{
     this.getFixtures();
     this.title.setTitle('Programma - HAFC.nl')
     this.gtmService.startTrackingTags();
-    this.metaService.setMetaTag(this.router.url, 'Het wedstrijdprogramma van Heracles in de Eredivisie');
+    this.metaService.updateMetaTag(this.router.url, 'Het wedstrijdprogramma van Heracles in de Eredivisie');
   }
 
   getFixtures() {

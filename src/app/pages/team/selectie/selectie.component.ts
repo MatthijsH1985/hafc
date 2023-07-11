@@ -30,7 +30,7 @@ export class SelectieComponent implements OnInit{
               private title: Title) {}
 
   ngOnInit() {
-    this.metaService.setMetaTag(this.router.url, 'Bekijk hier de complete selectie van Heracles Almelo');
+    this.metaService.updateMetaTag(this.router.url, 'Bekijk hier de complete selectie van Heracles Almelo');
     this.title.setTitle('Selectie - HAFC.nl')
     this.loading = true;
     this.playerService.getPlayers().subscribe( {
