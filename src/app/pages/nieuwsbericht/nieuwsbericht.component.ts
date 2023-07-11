@@ -7,6 +7,7 @@ import {ViewportScroller} from "@angular/common";
 import {faComment} from "@fortawesome/free-solid-svg-icons";
 import {ToastrService} from "ngx-toastr";
 import {GtmService} from "../../services/gtm.service";
+import {MetaService} from "../../services/meta.service";
 
 
 @Component({
@@ -39,7 +40,8 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy {
               private titleService: Title,
               private toast: ToastrService,
               private viewportScroller: ViewportScroller,
-              private gtmService: GtmService) {
+              private gtmService: GtmService,
+              private metaService: MetaService) {
   }
 
 
@@ -58,11 +60,13 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy {
     this.currentPostSub = this.postService.getPost(this.postId).subscribe({
       next: post => {
         this.post = post;
+        console.log(this.post);
         this.categoryName = this.post.category_name[0].cat_name;
         this.loading = false;
         this.titleService.setTitle(this.post.title.rendered);
         this.viewportScroller.scrollToPosition([0, 0]);
         this.gtmService.startTrackingTags();
+        this.metaService.updateMetaTag(this.post.excerpt);
       },
       error: error => {
         console.log(error);

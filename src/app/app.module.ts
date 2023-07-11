@@ -76,6 +76,7 @@ import {NieuwssliderModule} from "./components/nieuws/nieuwsslider/nieuwsslider.
 import {NieuwssliderComponent} from "./components/nieuws/nieuwsslider/nieuwsslider.component";
 import {SinglePageComponent} from "./pages/single-page/single-page.component";
 import {GtmService} from "./services/gtm.service";
+import {MetaService} from "./services/meta.service";
 register()
 registerLocaleData(localeNl);
 
@@ -169,6 +170,7 @@ registerLocaleData(localeNl);
     UserService,
     MenuService,
     GtmService,
+    MetaService,
     JwtHelperService, {
       provide: JWT_OPTIONS, useValue: JWT_OPTIONS
     }],

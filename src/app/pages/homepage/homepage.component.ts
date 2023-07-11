@@ -7,6 +7,7 @@ import {ViewportScroller} from "@angular/common";
 import {AdsService} from "../../services/ads.service";
 import {GoogleTagManagerService} from "angular-google-tag-manager";
 import {GtmService} from "../../services/gtm.service";
+import {MetaService} from "../../services/meta.service";
 
 @Component({
   selector: 'app-homepage',
@@ -25,7 +26,8 @@ export class HomepageComponent implements OnInit {
               private router: Router,
               private titleService: Title,
               private viewportScroller: ViewportScroller,
-              private gtmService: GtmService) {
+              private gtmService: GtmService,
+              private metaService: MetaService) {
   }
 
   ngOnInit() {
@@ -33,6 +35,7 @@ export class HomepageComponent implements OnInit {
     this.viewportScroller.scrollToPosition([0, 0]);
     this.getPosts();
     this.gtmService.startTrackingTags();
+    this.metaService.setMetaTag();
   }
 
   getPosts() {
