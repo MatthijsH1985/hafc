@@ -17,8 +17,16 @@ export class ResultsComponent implements OnInit {
   teamId = 1403;
   teamFixtures: any = [];
 
-  constructor(private fixturesService: FixturesService, private titleService: Title, private viewportScroller: ViewportScroller, private router: Router) {
-
+  constructor(private fixturesService: FixturesService, private titleService: Title, private gtmService: GoogleTagManagerService, private viewportScroller: ViewportScroller, private router: Router) {
+    this.router.events.forEach(async (item) => {
+      if (item instanceof NavigationEnd) {
+        const gtmTag = {
+          page_title: this.titleService.getTitle(),
+          page_location: item.url
+        };
+        this.gtmService.pushTag(gtmTag);
+      }
+    });
   }
 
   ngOnInit() {

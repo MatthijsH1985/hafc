@@ -23,7 +23,17 @@ export class HomepageComponent implements OnInit {
               private adsService: AdsService,
               private router: Router,
               private titleService: Title,
-              private viewportScroller: ViewportScroller) {
+              private viewportScroller: ViewportScroller,
+              private gtmService: GoogleTagManagerService) {
+    this.router.events.forEach(async (item) => {
+      if (item instanceof NavigationEnd) {
+        const gtmTag = {
+          page_title: this.titleService.getTitle(),
+          page_location: item.url
+        };
+        this.gtmService.pushTag(gtmTag);
+      }
+    });
   }
 
   ngOnInit() {
