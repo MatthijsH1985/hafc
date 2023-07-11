@@ -66,7 +66,8 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy {
         this.titleService.setTitle(this.post.title.rendered);
         this.viewportScroller.scrollToPosition([0, 0]);
         this.gtmService.startTrackingTags();
-        this.metaService.updateMetaTag(this.post.excerpt);
+        const metaUrl = this.post.yoast_head_json.og_url.replace('backend', 'www');
+        this.metaService.updateMetaTag(metaUrl, this.post.yoast_head_json.og_description);
       },
       error: error => {
         console.log(error);

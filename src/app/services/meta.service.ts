@@ -16,12 +16,12 @@ export class MetaService {
     this.metaService.addTag({property: 'twitter:site', content: 'heracles1903'});
   }
 
-  updateMetaTag(description: any) {
+  updateMetaTag(metaUrl: any, description: any) {
     this.metaService.addTag({property: 'og:title', content: this.titleService.getTitle()});
     this.metaService.addTag({property: 'og:locale', content: 'nl_NL'});
     this.metaService.addTag({property: 'og:type', content: 'website'});
     this.metaService.addTag({property: 'og:description', content: description});
-    this.metaService.addTag({property: 'og:url', content: this.router.url});
+    this.metaService.addTag({property: 'og:url', content: metaUrl});
     this.metaService.addTag({property: 'og:site_name', content: 'HAFC.nl'});
   }
 }
