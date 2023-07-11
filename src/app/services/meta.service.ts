@@ -14,5 +14,6 @@ export class MetaService {
     this.metaService.addTag({property: 'og:url', content: metaUrl});
     this.metaService.addTag({property: 'og:site_name', content: 'HAFC.nl'});
     this.metaService.addTag({property: 'twitter:site', content: 'heracles1903'});
+    this.metaService.addTag({property: 'twitter:description', content: description});
   }
 }
