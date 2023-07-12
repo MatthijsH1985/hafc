@@ -32,6 +32,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@ng-web-apis/common": "^2.1.0",
     "@ng-web-apis/storage": "^1.0.0",
+    "@nguniversal/common": "^16.1.1",
     "@nguniversal/express-engine": "^16.0.0",
     "angular-google-tag-manager": "^1.8.0",
     "axios": "^1.4.0",
