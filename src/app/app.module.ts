@@ -78,6 +78,7 @@ import {SinglePageComponent} from "./pages/single-page/single-page.component";
 import {GtmService} from "./services/gtm.service";
 import {MetaService} from "./services/meta.service";
 import {TransferHttpCacheModule} from "@nguniversal/common";
+import {ServerModule} from "@angular/platform-server";
 register()
 registerLocaleData(localeNl);
 

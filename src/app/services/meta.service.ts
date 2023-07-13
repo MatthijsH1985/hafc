@@ -1,10 +1,11 @@
-import { Injectable } from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import {Meta, Title} from '@angular/platform-browser';
+import {DOCUMENT} from "@angular/common";
 
 @Injectable()
 export class MetaService {
-  constructor(private router: Router, private titleService: Title, private metaService: Meta) {}
+  constructor(private router: Router, @Inject(DOCUMENT) private doc: any, private titleService: Title, private metaService: Meta) {}
 
   setMetaTag(metaUrl: string = '/', description: string = 'HAFC.nl is de grootste Heracles community voor en door supporters', image: string = '') {
     this.metaService.addTags([
@@ -41,12 +42,14 @@ export class MetaService {
     ])
   }
 
-  updateMetaTag(metaUrl: string = '/', description: string = 'HAFC.nl is de grootste Heracles community voor en door supporters', image: string = '') {
+  updateMetaTag(metaUrl: string = 'https://www.hafc.nl', description: string = 'HAFC.nl is de grootste Heracles community voor en door supporters', image: string = '') {
     this.metaService.updateTag({property: 'og:title', content: 'HAFC.nl - Wij Zij Heracles'});
     this.metaService.updateTag({property: 'og:image', content: image});
     this.metaService.updateTag({property: 'og:description', content: description});
     this.metaService.updateTag({property: 'og:url', content: metaUrl});
     this.metaService.updateTag({property: 'twitter:description', content: description});
     this.metaService.updateTag({property: 'twitter:image', content: image});
+    this.metaService.updateTag({rel: 'canonical', href: metaUrl})
   }
+
 }
