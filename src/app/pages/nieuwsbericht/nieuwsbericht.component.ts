@@ -53,7 +53,7 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy {
     this.currentRoute = this.router.url;
     this.loadPost();
     const url = this.router.url;
-    this.metaService.updateCanonical(url);
+    this.metaService.addCanonical(url);
   }
 
   isButtonVisible(scrollHeight: number): void {
