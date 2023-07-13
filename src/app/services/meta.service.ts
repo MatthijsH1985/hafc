@@ -56,7 +56,7 @@ export class MetaService {
   }
 
   addCanonical(metaUrl: string) {
-    this.metaService.addTag({rel: 'canonical', href: metaUrl})
+   // this.metaService.addTag({rel: 'canonical', href: metaUrl})
   }
 
 }
