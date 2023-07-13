@@ -1,11 +1,11 @@
-import {Inject, Injectable, Renderer2} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import {Meta, Title} from '@angular/platform-browser';
 import {DOCUMENT} from "@angular/common";
 
 @Injectable()
 export class MetaService {
-  constructor(private router: Router, @Inject(DOCUMENT) private doc: any, private renderer: Renderer2, private titleService: Title, private metaService: Meta) {}
+  constructor(private router: Router, @Inject(DOCUMENT) private doc: any, private titleService: Title, private metaService: Meta) {}
 
   setMetaTag(metaUrl: string = '/', description: string = 'HAFC.nl is de grootste Heracles community voor en door supporters', image: string = '') {
     this.metaService.addTags([
@@ -53,16 +53,6 @@ export class MetaService {
 
   updateCanonical(metaUrl: string) {
     this.metaService.updateTag({rel: 'canonical', href: metaUrl})
-  }
-
-  addCanonical(url: string) {
-   // this.metaService.addTag({rel: 'canonical', href: metaUrl})
-    this.metaService.removeTag('rel="canonical"');
-    const link: HTMLLinkElement = this.renderer.createElement('link');
-    link.setAttribute('rel', 'canonical');
-    link.setAttribute('href', url);
-    this.titleService.setTitle('');
-    this.renderer.appendChild(document.head, link);
   }
 
 }
