@@ -49,6 +49,9 @@ export class MetaService {
     this.metaService.updateTag({property: 'og:url', content: metaUrl});
     this.metaService.updateTag({property: 'twitter:description', content: description});
     this.metaService.updateTag({property: 'twitter:image', content: image});
+  }
+
+  updateCanonical(metaUrl: string) {
     this.metaService.updateTag({rel: 'canonical', href: metaUrl})
   }
 
