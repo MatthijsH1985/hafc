@@ -13,7 +13,7 @@
       </div>
       <div class="flex w-full md:w-auto items-center md:space-x-2 mr-0 md:ml-auto">
         <span class="font-bold dark:text-white">{{ post.date | date }}</span> <span class="dark:text-white inline-block md:hidden ml-5">{{ categoryName }}</span>
-        <button class="button button-blue text-xl self-end" (click)="toComments()">Naar reacties <fa-icon clas="ml-2" [icon]="faArrowDown"></fa-icon></button>
+        <button class="button button-blue text-xl self-end ml-auto" (click)="toComments()">Naar reacties <fa-icon clas="ml-2" [icon]="faArrowDown"></fa-icon></button>
       </div>
     </div>
     <div class="flex flex-col xl:w-[1200px] ml-auto mr-auto relative z-20">
