@@ -3,7 +3,6 @@ import {PostsService} from "../../services/posts.service";
 import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {GoogleTagManagerService} from "angular-google-tag-manager";
 import {Title} from "@angular/platform-browser";
-import {GtmService} from "../../services/gtm.service";
 
 @Component({
   selector: 'app-single-page',
@@ -17,7 +16,7 @@ export class SinglePageComponent implements OnInit{
   postId: any = this.activatedRoute.snapshot.paramMap.get('id');
   page: any;
 
-  constructor(private postsService: PostsService, private gtmService: GtmService, private titleService: Title, private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(private postsService: PostsService, private titleService: Title, private router: Router, private activatedRoute: ActivatedRoute) {
 
   }
   ngOnInit() {
@@ -26,7 +25,6 @@ export class SinglePageComponent implements OnInit{
       next: (data) => {
         this.page = data;
         this.loading = false;
-        this.gtmService.startTrackingTags();
       },
       error: (error) => {
         console.log(error)

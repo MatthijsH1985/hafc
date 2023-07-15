@@ -1,12 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
 import {PostsService} from "../../services/posts.service";
-import {NavigationEnd, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {Title} from "@angular/platform-browser";
 import {ViewportScroller} from "@angular/common";
 import {AdsService} from "../../services/ads.service";
-import {GoogleTagManagerService} from "angular-google-tag-manager";
-import {GtmService} from "../../services/gtm.service";
 import {MetaService} from "../../services/meta.service";
 
 @Component({
@@ -26,7 +24,6 @@ export class HomepageComponent implements OnInit {
               private router: Router,
               private titleService: Title,
               private viewportScroller: ViewportScroller,
-              private gtmService: GtmService,
               private metaService: MetaService) {
   }
 
@@ -34,7 +31,6 @@ export class HomepageComponent implements OnInit {
     this.titleService.setTitle('HAFC - Wij zijn Heracles!');
     this.viewportScroller.scrollToPosition([0, 0]);
     this.getPosts();
-    this.gtmService.startTrackingTags();
     this.metaService.setMetaTag('HAFC.nl - Wij Zij Heracles', 'HAFC.nl is de grootste Heracles community voor en door supporters');
   }
 

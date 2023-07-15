@@ -31,13 +31,10 @@ export class SelectieComponent implements OnInit{
               private meta: Meta) {}
 
   ngOnInit() {
-    // this.metaService.updateMetaTag(this.router.url, 'Bekijk hier de complete selectie van Heracles Almelo');
-    this.meta.getTag("name='description'")
     this.title.setTitle('Selectie - HAFC.nl')
     this.loading = true;
     this.playerService.getPlayers().subscribe( {
       next: data => {
-        console.log(data);
         this.groupPlayers(data);
         this.loading = false;
         this.keepers = this.team.Keeper;

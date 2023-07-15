@@ -2,10 +2,8 @@ import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
 import {StandingsService} from "../../../../services/standings.service";
 import {ViewportScroller} from "@angular/common";
-import {NavigationEnd, Router} from "@angular/router";
-import {GoogleTagManagerService} from "angular-google-tag-manager";
+import {Router} from "@angular/router";
 import {Title} from "@angular/platform-browser";
-import {GtmService} from "../../../../services/gtm.service";
 import {MetaService} from "../../../../services/meta.service";
 
 @Component({
@@ -21,13 +19,12 @@ export class StandComponent implements OnInit, OnDestroy {
   teamId: number = 0;
   @Input('compact') compact: boolean = false;
 
-  constructor(private standingsService: StandingsService, private metaService: MetaService, private title: Title, private gtmService: GtmService, private router: Router, private titleService: Title, private viewportScroller: ViewportScroller) {
+  constructor(private standingsService: StandingsService, private metaService: MetaService, private title: Title, private router: Router, private titleService: Title, private viewportScroller: ViewportScroller) {
 
   }
 
   ngOnInit() {
-    this.viewportScroller.scrollToPosition([0,0]);
-    this.gtmService.startTrackingTags();
+    this.viewportScroller.scrollToPosition([0, 0]);
     this.rankingSub = this.standingsService.getStandings(this.currentSeasonId).subscribe({
       next: (data: any) => {
         this.loading = false;
@@ -36,7 +33,7 @@ export class StandComponent implements OnInit, OnDestroy {
           this.title.setTitle('Stand - HAFC.nl')
           this.metaService.updateMetaTag(this.router.url, 'De stand van de Eredivisie');
         }
-        if(this.compact) {
+        if (this.compact) {
           const club = 'Heracles Almelo';
           this.ranking = this.selectieRijen(this.ranking, club);
         }
@@ -52,7 +49,7 @@ export class StandComponent implements OnInit, OnDestroy {
     return detail?.value || 0;
   }
 
-  calculateGoalDifference(goalsFor: number, goalsAgainst: number) :any {
+  calculateGoalDifference(goalsFor: number, goalsAgainst: number): any {
     return goalsFor - goalsAgainst
     // return (goalDifference > 0 ? '+' + goalDifference : goalDifference);
   }

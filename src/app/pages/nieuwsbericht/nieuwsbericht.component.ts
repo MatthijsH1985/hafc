@@ -6,7 +6,6 @@ import { Title } from '@angular/platform-browser';
 import { ViewportScroller } from '@angular/common';
 import { faComment, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
-import { GtmService } from '../../services/gtm.service';
 import { MetaService } from '../../services/meta.service';
 import { isPlatformServer, isPlatformBrowser } from '@angular/common';
 import { TransferState } from '@angular/platform-browser';
@@ -43,7 +42,6 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy {
     private titleService: Title,
     private toast: ToastrService,
     private viewportScroller: ViewportScroller,
-    private gtmService: GtmService,
     private metaService: MetaService,
     @Inject(PLATFORM_ID) private platformId: object,
     private transferState: TransferState
@@ -74,7 +72,6 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy {
           this.loading = false;
           this.titleService.setTitle(this.post.title.rendered);
           this.viewportScroller.scrollToPosition([0, 0]);
-          this.gtmService.startTrackingTags();
           const metaUrl = this.post.yoast_head_json.og_url.replace('backend', 'www');
           const description = this.post.yoast_head_json.og_description;
           const image = this.post.better_featured_image.source_url;
@@ -95,7 +92,6 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy {
         this.loading = false;
         this.titleService.setTitle(this.post.title.rendered);
         this.viewportScroller.scrollToPosition([0, 0]);
-        this.gtmService.startTrackingTags();
         const metaUrl = this.post.yoast_head_json.og_url.replace('backend', 'www');
         const description = this.post.yoast_head_json.og_description;
         const image = this.post.better_featured_image.source_url;
@@ -108,7 +104,6 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy {
             this.loading = false;
             this.titleService.setTitle(this.post.title.rendered);
             this.viewportScroller.scrollToPosition([0, 0]);
-            this.gtmService.startTrackingTags();
             const metaUrl = this.post.yoast_head_json.og_url.replace('backend', 'www');
             const description = this.post.yoast_head_json.og_description;
             const image = this.post.better_featured_image.source_url;
