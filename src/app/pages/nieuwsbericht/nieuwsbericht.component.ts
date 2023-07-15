@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PostsService } from '../../services/posts.service';
 import { Title } from '@angular/platform-browser';
 import { ViewportScroller } from '@angular/common';
-import { faComment } from '@fortawesome/free-solid-svg-icons';
+import { faComment, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 import { GtmService } from '../../services/gtm.service';
 import { MetaService } from '../../services/meta.service';
@@ -28,6 +28,7 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy {
   reloadComments: any;
   buttonVisible: boolean = false;
   faComment = faComment;
+  faArrowDown = faArrowDown;
 
   @HostListener('window:scroll', ['$event']) onScroll(event: any) {
     const winScroll = event.target.documentElement.scrollTop || event.currentTarget.scrollTop || document.body.scrollTop;
@@ -57,6 +58,10 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy {
 
   isButtonVisible(scrollHeight: number): void {
     this.buttonVisible = scrollHeight > 1000 ? true : false;
+  }
+
+  toComments():void {
+    this.viewportScroller.scrollToAnchor('comments');
   }
 
   loadPost() {

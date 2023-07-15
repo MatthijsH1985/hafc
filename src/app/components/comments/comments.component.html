@@ -17,7 +17,7 @@
         </li>
       </ul>
       <div class="mx-4 my-8 flex items-center justify-center">
-        <button class="button button-blue" (click)="onLoadMoreComments()">Meer reacties tonen</button>
+        <button class="button button-blue" (click)="onLoadMoreComments()" *ngIf="comments.length > 20">Meer reacties tonen</button>
       </div>
     </div>
     <div class="flex-1">
