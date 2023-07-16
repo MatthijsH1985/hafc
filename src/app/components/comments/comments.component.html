@@ -1,7 +1,7 @@
 <div class="comments-section flex flex-col">
   <div class="flex md:flex-row flex-col-reverse md:w-[1100px] container ml-auto mr-auto">
     <div *ngIf="!loadingComments;">
-      <ul *ngIf="comments.length > 0;" class="">
+      <ul *ngIf="comments.length > 0; else noComments" class="">
         <li *ngFor="let comment of comments" class="p-8 md:w-[600px]">
           <div class="author-name p-2 inline-block text-white -ml-[1rem] relative">
             <h3 class="text-xl text-black relative dark:text-white pr-[1rem]" [ngClass]="{'font-bold': comment.author !== 0}">{{ comment.author_name }} <fa-icon [icon]="faCheck" class="text-green-800 absolute -right-[.5rem] -top-[5px] text-sm" *ngIf="comment.author !== 0" title="Geregistreerde gebruiker"></fa-icon></h3>
@@ -16,6 +16,11 @@
           </div>
         </li>
       </ul>
+      <ng-template #noComments>
+        <div class="p-8 md:w-[600px]">
+          <p>Er is nog niet gereageerd op dit artikel</p>
+        </div>
+      </ng-template>
       <div class="mx-4 my-8 flex items-center justify-center">
         <button class="button button-blue" (click)="onLoadMoreComments()" *ngIf="comments.length > 20">Meer reacties tonen</button>
       </div>
