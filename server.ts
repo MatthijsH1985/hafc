@@ -1,16 +1,14 @@
 import 'zone.js/node';
 
-import { APP_BASE_HREF } from '@angular/common';
+import {APP_BASE_HREF, isPlatformServer} from '@angular/common';
 import { ngExpressEngine } from '@nguniversal/express-engine';
 import * as express from 'express';
 import { existsSync } from 'fs';
 import { join } from 'path';
 
-import { ParsedQs } from 'qs';
 
 import { AppServerModule } from './src/main.server';
 import axios from "axios";
-
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
@@ -20,44 +18,28 @@ export function app(): express.Express {
 
   // Our Universal express-engine (found @ https://github.com/angular/universal/tree/main/modules/express-engine)
   server.engine('html', ngExpressEngine({
-    bootstrap: AppServerModule,
+    bootstrap: AppServerModule
   }));
 
   server.set('view engine', 'html');
   server.set('views', distFolder);
 
   server.get('/api/*', async (req: express.Request, res: express.Response) => {
+
     const params = req.query;
-    const includesParam = params['include'];
-    let includesString = '';
-    if (includesParam) {
-      if (Array.isArray(includesParam)) {
-        includesString = includesParam.join(',');
-      } else if (typeof includesParam === 'string') {
-        includesString = '?include=' + includesParam;
-      }
-    }
 
-    const modifiedIncludes = includesString.replace(/,/g, ';');
-
-    const sportmonksToken = 'gFPh2F6EuJvjzcKIuj0keZfp0vhlUVRWPR0H0qmg0Dt1vYNYlVUvr4oYGQD8';
-    const apiUrl = `https://api.sportmonks.com/v3/football/${req.params[0]}${modifiedIncludes}`;
-
-    console.log(apiUrl);
+    const apiHAFCUrl = `https://backend.hafc.nl/wp-json/wp/v2/${req.params[0]}`;
 
     try {
-      const response = await axios.get(apiUrl, {
-        headers: {
-          Authorization: sportmonksToken
-        }
+      const response = await axios.get(apiHAFCUrl, {
+        responseType: "json"
       });
-
       const data = response.data;
-      // console.log(data);
       res.json(data);
     } catch (error: any) {
-      res.status(500).json({ error: error.message });
+      res.status(500).json({error: error.message});
     }
+
   });
 
   // Example Express Rest API endpoints

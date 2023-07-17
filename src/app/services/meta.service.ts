@@ -42,7 +42,8 @@ export class MetaService {
     ])
   }
 
-  updateMetaTag(metaUrl: string = 'https://www.hafc.nl', description: string = 'HAFC.nl is de grootste Heracles community voor en door supporters', image: string = '') {
+  updateMetaTag(title: string, metaUrl: string = 'https://www.hafc.nl', description: string = 'HAFC.nl is de grootste Heracles community voor en door supporters', image: string = '') {
+    this.titleService.setTitle(title);
     this.metaService.updateTag({property: 'og:title', content: 'HAFC.nl - Wij Zij Heracles'});
     this.metaService.updateTag({property: 'og:image', content: image});
     this.metaService.updateTag({property: 'og:description', content: description});

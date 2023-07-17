@@ -1,4 +1,14 @@
-import {Component, HostListener, Inject, OnDestroy, OnInit, PLATFORM_ID, StateKey} from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  HostListener,
+  Inject,
+  makeStateKey,
+  OnDestroy,
+  OnInit,
+  PLATFORM_ID,
+  StateKey
+} from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostsService } from '../../services/posts.service';
@@ -28,6 +38,8 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy {
   buttonVisible: boolean = false;
   faComment = faComment;
   faArrowDown = faArrowDown;
+  postKey = makeStateKey<any>('post'); // Key voor het opslaan van de postgegevens in TransferState
+
 
   @HostListener('window:scroll', ['$event']) onScroll(event: any) {
     const winScroll = event.target.documentElement.scrollTop || event.currentTarget.scrollTop || document.body.scrollTop;
@@ -63,58 +75,30 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy {
   }
 
   loadPost() {
-    if (isPlatformServer(this.platformId)) {
-      // Server-side rendering
-      this.currentPostSub = this.postService.getPost(this.postId).subscribe({
-        next: (post) => {
-          this.post = post;
-          this.categoryName = this.post.category_name[0].cat_name;
-          this.loading = false;
-          this.titleService.setTitle(this.post.title.rendered);
-          this.viewportScroller.scrollToPosition([0, 0]);
-          const metaUrl = this.post.yoast_head_json.og_url.replace('backend', 'www');
-          const description = this.post.yoast_head_json.og_description;
-          const image = this.post.better_featured_image.source_url;
-          this.metaService.updateMetaTag(metaUrl, description, image);
-          this.transferState.set('post' as any, this.post);
-          const postKey = this.getPostStateKey();
-        },
-        error: (error) => {
-          console.log(error);
-        }
-      });
-    } else if (isPlatformBrowser(this.platformId)) {
-      const post = this.transferState.get<any>((this.getPostStateKey() as unknown) as StateKey<any>, null);
-      const postKey = this.getPostStateKey();
-      if (post) {
-        this.post = post;
-        this.categoryName = this.post.category_name[0].cat_name;
-        this.loading = false;
-        this.titleService.setTitle(this.post.title.rendered);
-        this.viewportScroller.scrollToPosition([0, 0]);
-        const metaUrl = this.post.yoast_head_json.og_url.replace('backend', 'www');
-        const description = this.post.yoast_head_json.og_description;
-        const image = this.post.better_featured_image.source_url;
-        this.metaService.updateMetaTag(metaUrl, description, image);
-      } else {
-        this.currentPostSub = this.postService.getPost(this.postId).subscribe({
-          next: (post) => {
+    this.currentPostSub = this.postService.getPost(this.postId).subscribe({
+      next: (post) => {
+        this.postService.getPost(this.postId).subscribe({
+          next: post => {
             this.post = post;
-            this.categoryName = this.post.category_name[0].cat_name;
-            this.loading = false;
-            this.titleService.setTitle(this.post.title.rendered);
-            this.viewportScroller.scrollToPosition([0, 0]);
-            const metaUrl = this.post.yoast_head_json.og_url.replace('backend', 'www');
-            const description = this.post.yoast_head_json.og_description;
-            const image = this.post.better_featured_image.source_url;
-            this.metaService.updateMetaTag(metaUrl, description, image);
+            this.updateMetaTags(this.post);
           },
           error: (error) => {
-            console.log(error);
+            console.error(error)
           }
         });
+      },
+      error: (error) => {
+        console.log(error);
       }
-    }
+    });
+  }
+
+  updateMetaTags(post: any) {
+    const title = post.title.rendered;
+    const metaUrl = post.yoast_head_json.og_url.replace('backend', 'www');
+    const description = post.yoast_head_json.og_description;
+    const image = post.better_featured_image.source_url;
+    this.metaService.updateMetaTag(title, metaUrl, description, image);
   }
 
   addComment(comment: any) {
@@ -133,9 +117,5 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.currentPostSub?.unsubscribe();
-  }
-
-  private getPostStateKey(): string {
-    return `post-${this.postId}`;
   }
 }

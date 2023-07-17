@@ -29,6 +29,7 @@ export class HomepageComponent implements OnInit {
 
   ngOnInit() {
     this.titleService.setTitle('HAFC - Wij zijn Heracles!');
+    this.metaService.setMetaTag('https://www.hafc.nl', 'HAFC. Al bijna 20 jaar de grootste supporterssite van Heracles Almelo')
     this.viewportScroller.scrollToPosition([0, 0]);
     this.getPosts();
     this.metaService.setMetaTag('HAFC.nl - Wij Zij Heracles', 'HAFC.nl is de grootste Heracles community voor en door supporters');
