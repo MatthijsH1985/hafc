@@ -1,7 +1,7 @@
 export const environment = {
   production: false,
   apiUrl: 'https://backend.hafc.nl/wp-json/wp/v2',
-  loginUrl: 'jwt-auth/v1/token',
+  loginUrl: 'https://backend.hafc.nl/wp-json/jwt-auth/v1/token',
   userServiceUrl: 'userservice',
   recaptcha: {
     siteKey: '6LdyyrcUAAAAAB81RMMORr90yBEMcYN_omdANSEe',
