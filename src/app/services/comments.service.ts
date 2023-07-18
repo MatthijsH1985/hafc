@@ -4,6 +4,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Config} from '../model/config';
 import {ConfigService} from './config.service';
 import {AuthService} from "./auth/auth-service";
+import {environment} from "../../environments/environment";
 
 @Injectable()
 
@@ -28,7 +29,7 @@ export class CommentsService {
   }
 
   getComments(post:any, page = 1, order = 'desc'): Observable<Config[]> {
-    return this.http.get<Config[]>(this.configService.config.apiEndpoint + '/comments?post='+ post + '&per_page=60&page='+ page + '&order='+ order + '', this.httpOptions);
+    return this.http.get<Config[]>(environment.apiUrl + '/comments?post='+ post + '&per_page=60&page='+ page + '&order='+ order + '', this.httpOptions);
   }
 
   getCommentsByUserId(userId: number | undefined):Observable<any> {
@@ -39,13 +40,13 @@ export class CommentsService {
         'Authorization': `Bearer ${token}`
       })
     };
-    return this.http.get(this.configService.config.apiEndpoint + '/comments?author=' + userId + '', httpOptionsBearer);
+    return this.http.get(environment.apiUrl + '/comments?author=' + userId + '', httpOptionsBearer);
   }
 
   postComment(comment: any): Observable<Config[]> {
     if (this.authService.isAuthenticated()) {
-      return this.http.post<Config[]>(this.configService.config.apiEndpoint + '/comments?author=' + this.authService.getUserID() + '', comment, this.httpOptionsLoggedIn);
+      return this.http.post<Config[]>(environment.apiUrl + '/comments?author=' + this.authService.getUserID() + '', comment, this.httpOptionsLoggedIn);
     }
-    return this.http.post<Config[]>(this.configService.config.apiEndpoint + '/comments', comment, this.httpOptions);
+    return this.http.post<Config[]>(environment.apiUrl + '/comments', comment, this.httpOptions);
   }
 }

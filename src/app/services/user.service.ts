@@ -46,6 +46,6 @@ export class UserService {
         'Authorization': `Bearer ${this.token}`
       })
     };
-    return this.http.post<Config[]>(`${this.configService.config.apiEndpoint}`  + '/users/'+ `${user}` + '?context=edit/', userData, httpOptions);
+    return this.http.post<Config[]>(`${environment.apiUrl}`  + '/users/'+ `${user}` + '?context=edit/', userData, httpOptions);
   }
 }

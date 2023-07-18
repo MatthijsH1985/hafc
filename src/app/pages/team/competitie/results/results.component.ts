@@ -23,8 +23,7 @@ export class ResultsComponent implements OnInit {
   ngOnInit() {
     this.viewportScroller.scrollToPosition([0,0]);
     this.getResults();
-    this.title.setTitle('Uitslagen - HAFC.nl')
-    this.metaService.updateMetaTag(this.router.url, 'Alle uitslagen van Heracles in de Eredivisie');
+    this.metaService.updateMetaTag('Uitslagen - HAFC.nl', this.router.url, 'Alle uitslagen van Heracles in de Eredivisie');
   }
 
   getResults() {

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
 import {PostsService} from "../../services/posts.service";
 import {Router} from "@angular/router";
+import {MetaService} from "../../services/meta.service";
 
 @Component({
   selector: 'app-specials',
@@ -14,10 +15,11 @@ export class SpecialsComponent implements OnInit {
   postPage = 1;
   loading = true;
   postsSub: Subscription | undefined;
-  constructor(private postsService: PostsService, private router: Router) {}
+  constructor(private postsService: PostsService, private router: Router, private metaService: MetaService) {}
 
   ngOnInit() {
-    this.getPosts()
+    this.getPosts();
+    this.metaService.updateMetaTag('Specials - HAFC.nl', this.router.url, 'Exclusieve interviews en andere unieke specials lees je op HAFC.nl');
   }
 
   validDateFormat(dateString: any) {

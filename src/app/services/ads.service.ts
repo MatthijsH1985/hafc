@@ -3,6 +3,7 @@ import {Observable} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Config} from '../model/config';
 import {ConfigService} from './config.service';
+import {environment} from "../../environments/environment";
 
 @Injectable()
 
@@ -17,11 +18,11 @@ export class AdsService {
   constructor(private http: HttpClient, private configService: ConfigService) {}
 
   getAds(category = 804): Observable<Config[]> {
-    return this.http.get<Config[]>(this.configService.config.apiEndpoint + '/advertenties?per_page=50', this.httpOptions);
+    return this.http.get<Config[]>(environment.apiUrl + '/advertenties?per_page=50', this.httpOptions);
   }
 
   getLinks(category = 809): Observable<Config[]> {
-    return this.http.get<Config[]>(this.configService.config.apiEndpoint + '/posts?categories=' + category + '', this.httpOptions);
+    return this.http.get<Config[]>(environment.apiUrl + '/posts?categories=' + category + '', this.httpOptions);
   }
 
 }

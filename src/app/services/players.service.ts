@@ -21,11 +21,11 @@ export class PlayersService {
   }
 
   getPlayers(): Observable<Config[]> {
-    return this.http.get<Config[]>(this.configService.config.apiEndpoint + '/pages?parent=23380&per_page=50');
+    return this.http.get<Config[]>(environment.apiUrl + '/pages?parent=23380&per_page=50');
   }
 
   getPlayer(playerId: number): Observable<Config[]> {
-    return this.http.get<Config[]>(this.configService.config.apiEndpoint + '/pages/' + playerId + '', this.httpOptions);
+    return this.http.get<Config[]>(environment.apiUrl + '/pages/' + playerId + '', this.httpOptions);
   }
 
   getPlayerStats(playerId: number): Observable<any> {

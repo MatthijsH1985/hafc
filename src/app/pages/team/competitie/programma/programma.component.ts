@@ -25,7 +25,7 @@ export class ProgrammaComponent implements OnInit{
     this.viewportScroller.scrollToPosition([0,0]);
     this.getFixtures();
     this.title.setTitle('Programma - HAFC.nl')
-    this.metaService.updateMetaTag(this.router.url, 'Het wedstrijdprogramma van Heracles in de Eredivisie');
+    this.metaService.updateMetaTag('Wedstrijdprogramma - HAFC.nl', this.router.url, 'Het wedstrijdprogramma van Heracles in de Eredivisie');
   }
 
   getFixtures() {
