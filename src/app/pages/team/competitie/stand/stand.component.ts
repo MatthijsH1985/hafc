@@ -24,15 +24,15 @@ export class StandComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    if (!this.compact) {
+      this.title.setTitle('Stand - HAFC.nl');
+      this.metaService.updateMetaTag(this.router.url, 'De stand van de Eredivisie');
+    }
     this.viewportScroller.scrollToPosition([0, 0]);
     this.rankingSub = this.standingsService.getStandings(this.currentSeasonId).subscribe({
       next: (data: any) => {
         this.loading = false;
         this.ranking = data.data;
-        if (!this.compact) {
-          this.title.setTitle('Stand - HAFC.nl')
-          this.metaService.updateMetaTag(this.router.url, 'De stand van de Eredivisie');
-        }
         if (this.compact) {
           const club = 'Heracles Almelo';
           this.ranking = this.selectieRijen(this.ranking, club);
