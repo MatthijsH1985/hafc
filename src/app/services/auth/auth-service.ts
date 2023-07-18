@@ -32,7 +32,7 @@ export class AuthService {
   }
 
   login(email: string, password: string): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}` + `${this.loginUrl}`, { username: email, password: password })
+    return this.http.post<any>(`${this.loginUrl}`, { username: email, password: password })
       .pipe(
         tap(response => {
           if (this._platform.isBrowser) {
@@ -50,11 +50,11 @@ export class AuthService {
   }
 
   getUserInfo(): Observable<any>  {
-    return this.http.get<any>(`${this.apiUrl}` + 'wp/v2/users/me', this.httpOptions)
+    return this.http.get<any>(`${this.apiUrl}` + '/users/me', this.httpOptions)
   }
 
   getUserInfoEditable(): Observable<any>  {
-    return this.http.get<any>(`${this.apiUrl}` + 'wp/v2/users/me?context=edit', this.httpOptions)
+    return this.http.get<any>(`${this.apiUrl}` + '/users/me?context=edit', this.httpOptions)
   }
 
   public isAuthenticated(): any {
