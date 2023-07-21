@@ -28,6 +28,7 @@ export class VolgendeWedstrijdComponent implements OnInit{
       next: data => {
         const { rounds } = data.data[0];
         this.teamFixtures =  rounds;
+        console.log(this.teamFixtures);
         if (this.teamFixtures.length > 0) {
           this.teamFixtures.sort((a: any, b: any) => {
             const dateA = new Date(a.fixtures[0].starting_at);

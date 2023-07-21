@@ -26,7 +26,7 @@ import {SetNewPasswordComponent} from "./pages/account/set-new-password/set-new-
 import {UserConfigEditableComponent} from "./pages/account/user-config-editable/user-config-editable.component";
 import {NotFoundComponent} from "./pages/not-found/not-found.component";
 import {SinglePageComponent} from "./pages/single-page/single-page.component";
-
+import {PostResolver} from "./services/post-resolver.service";
 const routes: Routes = [
 
   {
@@ -39,7 +39,10 @@ const routes: Routes = [
   },
   {
     component: NieuwsberichtComponent,
-    path: 'nieuws/:id/:title'
+    path: 'nieuws/:id/:title',
+    resolve: {
+      post: PostResolver
+    }
   },
   {
     component: TeamComponent,

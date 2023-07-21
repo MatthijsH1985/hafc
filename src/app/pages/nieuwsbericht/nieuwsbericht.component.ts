@@ -27,7 +27,7 @@ import { TransferState } from '@angular/platform-browser';
 })
 export class NieuwsberichtComponent implements OnInit, OnDestroy {
   currentPostSub: Subscription | undefined;
-  postId: any = this.activatedRoute.snapshot.paramMap.get('id');
+  postId: any = this.route.snapshot.paramMap.get('id');
   post: any;
   name: string = '';
   loading: boolean = true;
@@ -38,8 +38,7 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy {
   buttonVisible: boolean = false;
   faComment = faComment;
   faArrowDown = faArrowDown;
-  postKey = makeStateKey<any>('post'); // Key voor het opslaan van de postgegevens in TransferState
-
+  isServer;
 
   @HostListener('window:scroll', ['$event']) onScroll(event: any) {
     const winScroll = event.target.documentElement.scrollTop || event.currentTarget.scrollTop || document.body.scrollTop;
@@ -48,22 +47,25 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy {
   }
 
   constructor(
-    private activatedRoute: ActivatedRoute,
+    private route: ActivatedRoute,
     private postService: PostsService,
     private router: Router,
     private titleService: Title,
     private toast: ToastrService,
     private viewportScroller: ViewportScroller,
     private metaService: MetaService,
-    @Inject(PLATFORM_ID) private platformId: object,
-    private transferState: TransferState
-  ) {}
+    @Inject(PLATFORM_ID) private platformId: object
+  ) {
+    this.isServer = isPlatformServer(platformId);
+    if (this.isServer) {
+      this.loadPost();
+    }
+  }
 
   ngOnInit() {
     this.loading = true;
-    this.currentRoute = this.router.url;
-    this.loadPost();
-    const url = this.router.url;
+    this.post = this.route.snapshot.data['post'];
+    this.updateMetaTags(this.post);
   }
 
   isButtonVisible(scrollHeight: number): void {
@@ -84,6 +86,7 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy {
           },
           error: (error) => {
             console.error(error)
+            console.log('error');
           }
         });
       },

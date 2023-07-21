@@ -77,6 +77,7 @@ import {NieuwssliderComponent} from "./components/nieuws/nieuwsslider/nieuwsslid
 import {SinglePageComponent} from "./pages/single-page/single-page.component";
 import {MetaService} from "./services/meta.service";
 import {TransferHttpCacheModule} from "@nguniversal/common";
+
 register()
 registerLocaleData(localeNl);
 
@@ -139,7 +140,7 @@ registerLocaleData(localeNl);
     RecaptchaV3Module,
     NieuwssliderModule,
     NieuwssliderComponent,
-    TransferHttpCacheModule
+    TransferHttpCacheModule,
   ],
   exports: [
     HomepageComponent
