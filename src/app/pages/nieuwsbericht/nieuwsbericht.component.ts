@@ -38,7 +38,6 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy {
   buttonVisible: boolean = false;
   faComment = faComment;
   faArrowDown = faArrowDown;
-  isServer;
 
   @HostListener('window:scroll', ['$event']) onScroll(event: any) {
     const winScroll = event.target.documentElement.scrollTop || event.currentTarget.scrollTop || document.body.scrollTop;
@@ -56,16 +55,13 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy {
     private metaService: MetaService,
     @Inject(PLATFORM_ID) private platformId: object
   ) {
-    this.isServer = isPlatformServer(platformId);
-    if (this.isServer) {
-      this.loadPost();
-    }
   }
 
   ngOnInit() {
     this.loading = true;
     this.post = this.route.snapshot.data['post'];
     this.updateMetaTags(this.post);
+    this.viewportScroller.scrollToPosition([0,0]);
   }
 
   isButtonVisible(scrollHeight: number): void {
@@ -74,26 +70,6 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy {
 
   toComments():void {
     this.viewportScroller.scrollToAnchor('comments');
-  }
-
-  loadPost() {
-    this.currentPostSub = this.postService.getPost(this.postId).subscribe({
-      next: (post) => {
-        this.postService.getPost(this.postId).subscribe({
-          next: post => {
-            this.post = post;
-            this.updateMetaTags(this.post);
-          },
-          error: (error) => {
-            console.error(error)
-            console.log('error');
-          }
-        });
-      },
-      error: (error) => {
-        console.log(error);
-      }
-    });
   }
 
   updateMetaTags(post: any) {
