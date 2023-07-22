@@ -17,8 +17,6 @@ import { ViewportScroller } from '@angular/common';
 import { faComment, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 import { MetaService } from '../../services/meta.service';
-import { isPlatformServer, isPlatformBrowser } from '@angular/common';
-import { TransferState } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-nieuwsbericht',
@@ -73,7 +71,7 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy {
   }
 
   updateMetaTags(post: any) {
-    const title = post.title.rendered;
+    const title = post.yoast_head_json.title;
     const metaUrl = post.yoast_head_json.og_url.replace('backend', 'www');
     const description = post.yoast_head_json.og_description;
     const image = post.better_featured_image.source_url;

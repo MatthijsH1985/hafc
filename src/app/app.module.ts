@@ -77,6 +77,7 @@ import {NieuwssliderComponent} from "./components/nieuws/nieuwsslider/nieuwsslid
 import {SinglePageComponent} from "./pages/single-page/single-page.component";
 import {MetaService} from "./services/meta.service";
 import {TransferHttpCacheModule} from "@nguniversal/common";
+import {MatchpreviewComponent} from "./pages/team/competitie/matchpreview/matchpreview.component";
 
 register()
 registerLocaleData(localeNl);
@@ -124,7 +125,8 @@ registerLocaleData(localeNl);
     SetNewPasswordComponent,
     AddsComponent,
     NotFoundComponent,
-    SinglePageComponent
+    SinglePageComponent,
+    MatchpreviewComponent
   ],
   imports: [
     CommonModule,

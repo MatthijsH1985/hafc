@@ -11,8 +11,7 @@ export class MatchResolver implements Resolve<any> {
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
     const postId = route.paramMap.get('id');
-    console.log(postId)
 
-    return this.postService.getPost(postId);
+    return this.postService.getMatchReport(postId);
   }
 }

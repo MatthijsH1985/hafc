@@ -18,7 +18,7 @@ export class FixturesService {
   }
 
   getMatchReport(matchId: number) {
-    return this.http.get<Config[]>(environment.customApi + '/fixtures/' + matchId + '?include=lineup,localTeam,visitorTeam,substitutions,goals' );
+    return this.http.get<Config[]>(environment.customApi + '/fixtures/multi/' + matchId + '' );
   }
 
 }

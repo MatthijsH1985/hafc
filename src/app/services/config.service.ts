@@ -5,9 +5,11 @@ import {Config} from '../model/config';
 @Injectable()
 export class ConfigService {
   config: Config = {
-    "apiEndpoint": "https://www.hafc.nl/api",
-    "authEndPoint": "https://backend.nl/wp-json/jwt-auth/v1",
-    "apiEndPointDev": "http://hafc.site.development:8080/wp-json"
+    "apiEndpoint": "",
+    "authEndPoint": "",
+    "apiEndPointDev": "",
+    "teamID": 1403,
+    "seasonID": 21730
   };
 
   constructor() {

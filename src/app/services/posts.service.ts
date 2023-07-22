@@ -33,4 +33,12 @@ export class PostsService {
     return this.http.get<Config[]>(environment.apiUrl + '/pages/'+ postId + '', this.httpOptions);
   }
 
+  getMatchReport(postId: any | null): Observable<Config[]> {
+    return this.http.get<Config[]>(environment.apiUrl + '/wedstrijd-verslagen/' + postId, this.httpOptions);
+  }
+
+  getMatchReports(): Observable<Config[]> {
+    return this.http.get<Config[]>(environment.apiUrl + '/wedstrijd-verslagen/', this.httpOptions);
+  }
+
 }
