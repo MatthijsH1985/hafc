@@ -79,7 +79,7 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy {
   }
 
   addComment(comment: any) {
-    this.toast.success('Reactie wordt geplaatst', 'Succes');
+    this.toast.success('Reactie is geplaatst', 'Succes');
     this.reloadComments = true;
     this.onModalClose();
   }

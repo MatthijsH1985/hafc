@@ -81,10 +81,12 @@ export class ModalCommentComponent {
   }
 
   postComment(commentData: any) {
+
     this.commentService.postComment(commentData).subscribe({
       next: result => {
         if (result) {
           this.onCommentSuccesfull(result);
+          this.commentService.addNewComment(result);
         }
       },
       error: error => {

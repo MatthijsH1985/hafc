@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import { Observable} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Config} from '../model/config';
 import {ConfigService} from './config.service';
@@ -28,6 +28,23 @@ export class CommentsService {
               private authService: AuthService) {
   }
 
+  private newCommentAddedSubject: Subject<any> = new Subject<any>();
+
+  get newCommentAdded$(): Observable<any> {
+    return this.newCommentAddedSubject.asObservable();
+  }
+
+  addNewComment(comment: any) {
+    this.newCommentAddedSubject.next(comment);
+  }
+
+  postComment(comment: any): Observable<Config[]> {
+    if (this.authService.isAuthenticated()) {
+      return this.http.post<Config[]>(environment.apiUrl + '/comments?author=' + this.authService.getUserID(), comment, this.httpOptionsLoggedIn);
+    }
+    return this.http.post<Config[]>(environment.apiUrl + '/comments', comment, this.httpOptions);
+  }
+
   getComments(post:any, page = 1, order = 'desc'): Observable<Config[]> {
     return this.http.get<Config[]>(environment.apiUrl + '/comments?post='+ post + '&per_page=60&page='+ page + '&order='+ order + '', this.httpOptions);
   }
@@ -43,10 +60,4 @@ export class CommentsService {
     return this.http.get(environment.apiUrl + '/comments?author=' + userId + '', httpOptionsBearer);
   }
 
-  postComment(comment: any): Observable<Config[]> {
-    if (this.authService.isAuthenticated()) {
-      return this.http.post<Config[]>(environment.apiUrl + '/comments?author=' + this.authService.getUserID() + '', comment, this.httpOptionsLoggedIn);
-    }
-    return this.http.post<Config[]>(environment.apiUrl + '/comments', comment, this.httpOptions);
-  }
 }

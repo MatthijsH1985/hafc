@@ -1,7 +1,7 @@
 import {Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
 import {CommentsService} from "../../services/comments.service";
 import {Subscription} from "rxjs";
-import {faCheck} from "@fortawesome/free-solid-svg-icons";
+import {faCheck, faBell} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-comments',
@@ -19,9 +19,13 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy {
   noCommentsLoaded = true;
   faCheck = faCheck;
   commentPage: number = 1;
+  faBell = faBell;
+  newCommentCount: number = 0;
 
   constructor(private commentsService: CommentsService) {
-
+    this.commentsService.newCommentAdded$.subscribe((newComment) => {
+      this.comments.unshift(newComment);
+    });
   }
 
   ngOnInit() {
