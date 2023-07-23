@@ -2,13 +2,13 @@
   <div class="flex md:flex-row flex-col-reverse md:w-[1100px] container ml-auto mr-auto">
     <div *ngIf="!loadingComments;">
       <ul *ngIf="comments.length > 0; else noComments" class="">
-        <li *ngFor="let comment of comments" class="p-8 md:w-[600px]">
-          <div class="author-name p-2 inline-block text-white bg-white dark:bg-black relative">
-            <h3 class="dark:bg-black dark:text-white relative text-black p-2" [ngClass]="{'font-bold': comment.author !== 0}">{{ comment.author_name }} <fa-icon [icon]="faCheck" class="text-green-800 absolute -right-[.5rem] -top-[5px] text-sm" *ngIf="comment.author !== 0" title="Geregistreerde gebruiker"></fa-icon></h3>
+        <li *ngFor="let comment of comments" class="p-4 mt-4 md:mr-4 md:w-[600px] bg-white dark:bg-gray-800 ">
+          <div class="author-name p-2 inline-block text-white relative border-t border-gray-200 dark:border-gray-800">
+            <h3 class="text-black dark:text-white relative text-black p-2" [ngClass]="{'font-bold': comment.author !== 0}">{{ comment.author_name }} <fa-icon [icon]="faCheck" class="text-green-800 absolute -right-[.5rem] -top-[5px] text-sm" *ngIf="comment.author !== 0" title="Geregistreerde gebruiker"></fa-icon></h3>
           </div>
-          <div class="bg-white dark:bg-black break-words">
+          <div class="break-words">
             <div [innerHTML]="comment.content.rendered" class="text-black dark:text-white comment-content p-4"></div>
-            <div class="text-sm p-2 border-t border-gray-200">
+            <div class="text-sm p-2 border-t border-gray-200 dark:border-gray-900">
               <h4 class="dark:text-white">
                 <span class="date">{{ validDateFormat(comment.date) | date: 'EEEE, d MMMM, y' }}</span> <span class="ml-2">{{ validDateFormat(comment.date) | date: 'HH:mm' }}</span>
               </h4>
@@ -26,7 +26,7 @@
       </div>
     </div>
     <div class="flex-1">
-      <div class="sticky top-[130px] bg-white dark:gray-900 px-4 py-8">
+      <div class="sticky top-[130px] bg-white dark:bg-gray-900 px-4 py-8">
         <app-adds [layout]="'square'"></app-adds>
       </div>
     </div>
