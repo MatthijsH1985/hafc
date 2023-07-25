@@ -108,11 +108,11 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy {
   getComments(page: number) {
     this.commentsSub = this.commentsService.getComments(this.postId, this.commentPage).subscribe({
       next: comments => {
-        const newComments = comments.filter((comment: any) => !this.comments.some((existingComment: any) => existingComment.id === comment.id));
-        this.comments.unshift(...newComments);
-        // for (let i = 0; i < comments.length; i++) {
-        //   this.comments.push(comments[i]);
-        // }
+        // const newComments = comments.filter((comment: any) => !this.comments.some((existingComment: any) => existingComment.id === comment.id));
+        // this.comments.unshift(...newComments);
+        for (let i = 0; i < comments.length; i++) {
+          this.comments.push(comments[i]);
+        }
         console.log(this.comments);
         this.loadingComments = false;
         this.noCommentsLoaded = false;
