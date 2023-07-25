@@ -29,7 +29,6 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy {
   post: any;
   name: string = '';
   loading: boolean = true;
-  currentRoute: any;
   modalCommentsOpen: boolean = false;
   categoryName: any;
   reloadComments: any;
