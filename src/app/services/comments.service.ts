@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable, Subject} from 'rxjs';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Config} from '../model/config';
 import {ConfigService} from './config.service';
 import {AuthService} from "./auth/auth-service";
@@ -12,6 +12,8 @@ export class CommentsService {
 
   // @ts-ignore
   token: any = this.authService.getToken();
+  private lastFetchTime: number = 0;
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json;charset=UTF-8'
@@ -46,7 +48,13 @@ export class CommentsService {
   }
 
   getComments(post:any, page = 1, order = 'desc'): Observable<Config[]> {
-    return this.http.get<Config[]>(environment.apiUrl + '/comments?post='+ post + '&per_page=60&page='+ page + '&order='+ order + '', this.httpOptions);
+    const randomQueryParam = `cache_bypass=${Math.random()}`;
+    return this.http.get<Config[]>(environment.apiUrl + '/comments?post='+ post + '&per_page=60&page='+ page + '&order='+ order + '&' + randomQueryParam + '', this.httpOptions);
+  }
+
+  getCommentsCount(post:any): Observable<Config[]> {
+    const randomQueryParam = `cache_bypass=${Math.random()}`;
+    return this.http.get<Config[]>(environment.apiUrl + '/mumba/comment_count/'+ post +'?'+ randomQueryParam + '');
   }
 
   getCommentsByUserId(userId: number | undefined):Observable<any> {
@@ -58,6 +66,13 @@ export class CommentsService {
       })
     };
     return this.http.get(environment.apiUrl + '/comments?author=' + userId + '', httpOptionsBearer);
+  }
+
+  private getHeaders(): HttpHeaders {
+    const currentTime = new Date().getTime();
+    const headers = new HttpHeaders().set('X-Last-Fetch-Time', this.lastFetchTime.toString());
+    this.lastFetchTime = currentTime;
+    return headers;
   }
 
 }
