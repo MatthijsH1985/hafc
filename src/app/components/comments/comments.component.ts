@@ -57,15 +57,14 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnInit() {
     this.getComments(1);
-    if (isPlatformBrowser(this.platformId)) {
-      setInterval(() => {
-        this.checkForNewComments();
-      }, 5000)
-    }
+    // if (isPlatformBrowser(this.platformId)) {
+    //   setInterval(() => {
+    //     this.checkForNewComments();
+    //   }, 5000)
+    // }
   }
 
   checkForNewComments() {
-    console.log(this.newCommentCount);
     if (this.commentsCountSub && !this.commentsCountSub.closed) {
       return;
     } else {
@@ -110,8 +109,6 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy {
     this.commentsSub = this.commentsService.getComments(this.postId, this.commentPage).subscribe({
       next: comments => {
         const newComments = comments.filter((comment: any) => !this.comments.some((existingComment: any) => existingComment.id === comment.id));
-console.log(newComments)
-        // Voeg de nieuwe reacties toe aan de bestaande array
         this.comments.unshift(...newComments);
         // for (let i = 0; i < comments.length; i++) {
         //   this.comments.push(comments[i]);
