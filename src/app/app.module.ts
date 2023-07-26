@@ -2,7 +2,6 @@ import {CUSTOM_ELEMENTS_SCHEMA, LOCALE_ID, NgModule} from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {PostsService} from "./services/posts.service";
 import {HttpClientModule} from "@angular/common/http";
 import {ConfigService} from "./services/config.service";
 import {TeamComponent} from "./pages/team/team.component";
@@ -15,7 +14,6 @@ import {GenerateLogoUrlPipe} from "./shared/generate-logo-url/generate-logo-url.
 import {CommonModule, registerLocaleData} from '@angular/common';
 import localeNl from '@angular/common/locales/nl';
 import {HomepageComponent} from "./pages/homepage/homepage.component";
-import {NieuwslijstComponent} from "./components/nieuws/nieuwslijst/nieuwslijst.component";
 import {NieuwsberichtComponent} from "./pages/nieuwsbericht/nieuwsbericht.component";
 import {HeaderComponent} from "./components/header/header.component";
 import {NieuwsarchiefComponent} from "./pages/nieuwsarchief/nieuwsarchief.component";
@@ -72,12 +70,12 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {UserConfigEditableComponent} from "./pages/account/user-config-editable/user-config-editable.component";
 import {AddsComponent} from "./components/adds/adds.component";
 import {NotFoundComponent} from "./pages/not-found/not-found.component";
-import {NieuwssliderModule} from "./components/nieuws/nieuwsslider/nieuwsslider.module";
-import {NieuwssliderComponent} from "./components/nieuws/nieuwsslider/nieuwsslider.component";
 import {SinglePageComponent} from "./pages/single-page/single-page.component";
 import {MetaService} from "./services/meta.service";
 import {TransferHttpCacheModule} from "@nguniversal/common";
 import {MatchpreviewComponent} from "./pages/team/competitie/matchpreview/matchpreview.component";
+import {NewsModule} from "./news/news.module";
+import {PostsService} from "./news/services/posts.service";
 
 register()
 registerLocaleData(localeNl);
@@ -98,7 +96,6 @@ registerLocaleData(localeNl);
     RoundNumberPipe,
     TransformTeamDataPipe,
     HomepageComponent,
-    NieuwslijstComponent,
     NieuwsberichtComponent,
     HeaderComponent,
     HeaderComponent,
@@ -140,9 +137,8 @@ registerLocaleData(localeNl);
     RecaptchaModule,
     RecaptchaFormsModule,
     RecaptchaV3Module,
-    NieuwssliderModule,
-    NieuwssliderComponent,
     TransferHttpCacheModule,
+    NewsModule,
   ],
   exports: [
     HomepageComponent
@@ -155,7 +151,6 @@ registerLocaleData(localeNl);
       provide: RECAPTCHA_V3_SITE_KEY,
       useValue: environment.recaptcha.siteKey
     },
-    PostsService,
     ConfigService,
     CommentsService,
     PlayersService,
@@ -166,6 +161,7 @@ registerLocaleData(localeNl);
     LocalStorage,
     SessionStorage,
     MemoryStorage,
+    PostsService,
     UserService,
     MenuService,
     MetaService,

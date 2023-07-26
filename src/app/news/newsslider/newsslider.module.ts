@@ -1,5 +1,4 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core'
-import {NieuwssliderComponent} from "./nieuwsslider.component";
 import {CommonModule} from "@angular/common";
 import {RouterModule} from "@angular/router";
 
@@ -13,4 +12,4 @@ import {RouterModule} from "@angular/router";
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: []
 })
-export class NieuwssliderModule {}
+export class NewssliderModule {}

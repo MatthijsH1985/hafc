@@ -12,16 +12,16 @@ import Swiper, {
   Pagination,
   SwiperOptions,
 } from 'swiper'
-import {Subscription} from "rxjs";
-import {PostsService} from "../../../services/posts.service";
 import {CommonModule, isPlatformBrowser} from "@angular/common";
-import {SwiperDirective} from "../../../shared/slider.directive";
 import {RouterModule} from "@angular/router";
+import {SwiperDirective} from "../../shared/slider.directive";
+import {PostsService} from "../services/posts.service";
+import {Subscription} from "rxjs";
 
 @Component({
-  selector: 'app-nieuwsslider',
-  templateUrl: './nieuwsslider.component.html',
-  styleUrls: ['./nieuwsslider.component.scss'],
+  selector: 'app-newsslider',
+  templateUrl: './newsslider.component.html',
+  styleUrls: ['./newsslider.component.scss'],
   standalone: true,
   encapsulation: ViewEncapsulation.None,
   imports: [
@@ -32,8 +32,7 @@ import {RouterModule} from "@angular/router";
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 
-export class NieuwssliderComponent implements AfterViewInit {
-  postsSub: Subscription = new Subscription();
+export class NewssliderComponent implements AfterViewInit {
   public config: SwiperOptions = {
     grabCursor: true,
     effect: "creative",
@@ -59,15 +58,37 @@ export class NieuwssliderComponent implements AfterViewInit {
       },
     }
   }
-  @Input('headlines') headlines: any | undefined;
+  // @Input('headlines') headlines: any | undefined;
   @ViewChild('swiper') swiper: ElementRef | undefined;
+  postsSub: Subscription | undefined;
+  posts: any = [];
+  headlines: any = [];
   public activeSlideIndex: number = 0;
 
   constructor(
+    private postsService: PostsService,
     @Inject('isBrowser') @Inject(PLATFORM_ID) private platformId: Object,
     @Inject('isBrowser') private isBrowser: boolean
   ) {
     // ...
+  }
+
+  ngOnInit() {
+    this.getPosts();
+  }
+
+  getPosts(): void {
+    this.postsSub = this.postsService.getPosts().subscribe({
+      next: (data: any) => {
+        for (let i = 0; i < data.length; i++) {
+          this.posts.push(data[i]);
+        }
+        this.headlines = this.posts.slice(0,3);
+      },
+      error: (error: any) => {
+        console.log(error);
+      }
+    });
   }
 
   ngAfterViewInit() {

@@ -1,11 +1,12 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, Injector, OnInit, PLATFORM_ID} from '@angular/core';
 import {Subscription} from "rxjs";
-import {PostsService} from "../../services/posts.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Title} from "@angular/platform-browser";
-import {ViewportScroller} from "@angular/common";
+import {isPlatformBrowser, ViewportScroller} from "@angular/common";
 import {AdsService} from "../../services/ads.service";
 import {MetaService} from "../../services/meta.service";
+import {PostsService} from "../../news/services/posts.service";
+import {NewssliderComponent} from "../../news/newsslider/newsslider.component";
 
 @Component({
   selector: 'app-homepage',
@@ -14,7 +15,7 @@ import {MetaService} from "../../services/meta.service";
 })
 export class HomepageComponent implements OnInit {
   posts: any = [];
-  postPage = 1;
+  postPage = 2;
   loading = true;
   headlines: any = [];
   postsSub: Subscription | undefined;
@@ -24,20 +25,31 @@ export class HomepageComponent implements OnInit {
               private router: Router,
               private titleService: Title,
               private viewportScroller: ViewportScroller,
-              private metaService: MetaService) {
+              private metaService: MetaService,
+              private injector: Injector,
+              private route: ActivatedRoute,
+              @Inject('isBrowser') @Inject(PLATFORM_ID) private platformId: Object) {
+  }
+
+  get isBrowser() {
+    return isPlatformBrowser(this.platformId);
+  }
+
+  get newssliderComponent() {
+    return NewssliderComponent;
   }
 
   ngOnInit() {
     this.titleService.setTitle('HAFC - Wij zijn Heracles!');
     this.viewportScroller.scrollToPosition([0, 0]);
-    this.getPosts();
+    // this.getPosts();
     this.metaService.setMetaTag('HAFC.nl - Wij Zij Heracles', 'HAFC.nl is de grootste Heracles community voor en door supporters');
   }
 
   getPosts() {
     this.loading = true;
     this.postsSub = this.postsService.getPosts(this.postPage).subscribe({
-      next: data => {
+      next: (data: any) => {
         for (let i = 0; i < data.length; i++) {
           this.posts.push(data[i]);
         }
@@ -45,7 +57,7 @@ export class HomepageComponent implements OnInit {
         this.loading = false;
         this.postPage++;
       },
-      error: error => {
+      error: (error: any) => {
         console.log(error);
       }
     });

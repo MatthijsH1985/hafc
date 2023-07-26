@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {PostsService} from "../../services/posts.service";
-import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
-import {GoogleTagManagerService} from "angular-google-tag-manager";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Title} from "@angular/platform-browser";
+import {PostsService} from "../../news/services/posts.service";
 
 @Component({
   selector: 'app-single-page',

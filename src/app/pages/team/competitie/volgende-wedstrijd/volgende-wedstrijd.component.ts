@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FixturesService} from "../../../../services/fixtures.service";
 import {Router} from "@angular/router";
 import * as moment from 'moment';
-import {PostsService} from "../../../../services/posts.service";
+import {PostsService} from "../../../../news/services/posts.service";
 
 @Component({
   selector: 'app-volgende-wedstrijd',

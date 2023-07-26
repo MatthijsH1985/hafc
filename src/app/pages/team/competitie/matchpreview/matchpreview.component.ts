@@ -1,7 +1,6 @@
 import {Component, HostListener, Inject, OnDestroy, OnInit, PLATFORM_ID} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Subscription} from "rxjs";
-import {PostsService} from "../../../../services/posts.service";
 import {Title} from "@angular/platform-browser";
 import {ToastrService} from "ngx-toastr";
 import {ViewportScroller} from "@angular/common";
@@ -10,6 +9,7 @@ import { faComment, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import {FixturesService} from "../../../../services/fixtures.service";
 import {ConfigService} from "../../../../services/config.service";
 import * as moment from "moment/moment";
+import {PostsService} from "../../../../news/services/posts.service";
 
 
 @Component({

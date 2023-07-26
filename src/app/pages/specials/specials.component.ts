@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
-import {PostsService} from "../../services/posts.service";
 import {Router} from "@angular/router";
 import {MetaService} from "../../services/meta.service";
+import {PostsService} from "../../news/services/posts.service";
 
 @Component({
   selector: 'app-specials',
@@ -32,7 +32,7 @@ export class SpecialsComponent implements OnInit {
 
   getPosts(page = 1): void {
     this.postsSub = this.postsService.getPosts(page, [816]).subscribe( {
-      next: data => {
+      next: (data: any) => {
         for (let i = 0; i < data.length; i++) {
           // @ts-ignore
           this.posts.push(data[i]);
@@ -41,7 +41,7 @@ export class SpecialsComponent implements OnInit {
         this.loading = false;
         this.postPage++;
       },
-      error: error => {
+      error: (error: any) => {
         console.error(error);
       }
     });

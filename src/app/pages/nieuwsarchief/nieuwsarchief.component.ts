@@ -1,8 +1,8 @@
 import {Component, OnInit, Output} from '@angular/core';
 import {catchError, of, Subscription} from "rxjs";
-import {PostsService} from "../../services/posts.service";
 import {Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {PostsService} from "../../news/services/posts.service";
 
 @Component({
   selector: 'app-nieuwsarchief',
@@ -32,14 +32,14 @@ export class NieuwsarchiefComponent implements OnInit{
   getPosts() {
     this.loading = true;
     this.postsSub = this.postsService.getPosts(this.postPage).subscribe({
-      next: data => {
+      next: (data: any) => {
         for (let i = 0; i < data.length; i++) {
           this.posts.push(data[i]);
         }
         this.loading = false;
         this.postPage++;
       },
-      error: error => {
+      error: (error: any) => {
         console.log(error);
       }
     });

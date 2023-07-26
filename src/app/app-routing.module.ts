@@ -26,9 +26,9 @@ import {SetNewPasswordComponent} from "./pages/account/set-new-password/set-new-
 import {UserConfigEditableComponent} from "./pages/account/user-config-editable/user-config-editable.component";
 import {NotFoundComponent} from "./pages/not-found/not-found.component";
 import {SinglePageComponent} from "./pages/single-page/single-page.component";
-import {PostResolver} from "./services/resolvers/post-resolver.service";
 import {MatchpreviewComponent} from "./pages/team/competitie/matchpreview/matchpreview.component";
 import {MatchResolver} from "./services/resolvers/match-resolver.service";
+import {PostResolver} from "./news/services/resolvers/post-resolver.service";
 const routes: Routes = [
 
   {

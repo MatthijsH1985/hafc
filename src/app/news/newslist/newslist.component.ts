@@ -1,13 +1,13 @@
 import {Component, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {catchError, of, Subscription} from "rxjs";
-import {PostsService} from "../../../services/posts.service";
+import {PostsService} from "../services/posts.service";
 
 @Component({
-  selector: 'app-nieuwslijst',
-  templateUrl: './nieuwslijst.component.html',
-  styleUrls: ['./nieuwslijst.component.scss']
+  selector: 'app-newslist',
+  templateUrl: './newslist.component.html',
+  styleUrls: ['./newslist.component.scss']
 })
-export class NieuwslijstComponent implements OnChanges, OnInit {
+export class NewslistComponent implements OnChanges, OnInit {
   @Input('pagination') pagination: boolean = true;
   @Input('compact') compact: boolean = false;
   @Input('searchTerms') searchTerms: any | undefined;
@@ -29,20 +29,20 @@ export class NieuwslijstComponent implements OnChanges, OnInit {
   }
 
   ngOnInit() {
-    // this.getPosts(1);
+    this.getPosts(1);
   }
 
   getPosts(page: number): void {
     this.loading = true;
     this.postsSub = this.postsService.getPosts(this.postPage).subscribe({
-      next: data => {
+      next: (data: any) => {
         for (let i = 0; i < data.length; i++) {
           this.posts.push(data[i]);
         }
         this.loading = false;
         this.postPage++;
       },
-      error: error => {
+      error: (error: any) => {
         console.log(error);
       }
     });

@@ -11,12 +11,12 @@ import {
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PostsService } from '../../services/posts.service';
 import { Title } from '@angular/platform-browser';
 import { ViewportScroller } from '@angular/common';
 import { faComment, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 import { MetaService } from '../../services/meta.service';
+import {PostsService} from "../../news/services/posts.service";
 
 @Component({
   selector: 'app-nieuwsbericht',
