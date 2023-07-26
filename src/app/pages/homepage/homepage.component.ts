@@ -20,9 +20,7 @@ export class HomepageComponent implements OnInit {
   headlines: any = [];
   postsSub: Subscription | undefined;
 
-  constructor(private postsService: PostsService,
-              private adsService: AdsService,
-              private router: Router,
+  constructor(
               private titleService: Title,
               private viewportScroller: ViewportScroller,
               private metaService: MetaService,
@@ -39,28 +37,21 @@ export class HomepageComponent implements OnInit {
     return NewssliderComponent;
   }
 
+  get customInjector() {
+    return Injector.create({
+      providers: [
+        {
+          provide: 'headlines',
+          useValue: this.headlines }
+      ],
+      parent: this.injector,
+    });
+  }
+
   ngOnInit() {
     this.titleService.setTitle('HAFC - Wij zijn Heracles!');
     this.viewportScroller.scrollToPosition([0, 0]);
-    // this.getPosts();
     this.metaService.setMetaTag('HAFC.nl - Wij Zij Heracles', 'HAFC.nl is de grootste Heracles community voor en door supporters');
-  }
-
-  getPosts() {
-    this.loading = true;
-    this.postsSub = this.postsService.getPosts(this.postPage).subscribe({
-      next: (data: any) => {
-        for (let i = 0; i < data.length; i++) {
-          this.posts.push(data[i]);
-        }
-        this.headlines = this.posts.slice(0,3);
-        this.loading = false;
-        this.postPage++;
-      },
-      error: (error: any) => {
-        console.log(error);
-      }
-    });
   }
 
   validDateFormat(dateString: any) {

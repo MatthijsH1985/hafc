@@ -1,5 +1,5 @@
 import {Component, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
-import {catchError, of, Subscription} from "rxjs";
+import {Subscription} from "rxjs";
 import {PostsService} from "../services/posts.service";
 
 @Component({
@@ -7,25 +7,16 @@ import {PostsService} from "../services/posts.service";
   templateUrl: './newslist.component.html',
   styleUrls: ['./newslist.component.scss']
 })
-export class NewslistComponent implements OnChanges, OnInit {
+export class NewslistComponent implements OnInit {
   @Input('pagination') pagination: boolean = true;
   @Input('compact') compact: boolean = false;
-  @Input('searchTerms') searchTerms: any | undefined;
-  @Input() reloadItemsBySearch: boolean = false;
-  @Input() posts: any = [];
-  postsFound: any = [];
   postsSub: Subscription | undefined;
   loading: boolean = true;
   postPage: any = 1;
   errorMessage: any;
+  posts: any = [];
 
   constructor(private postsService: PostsService) {
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['reloadItemsBySearch'] && !changes['reloadItemsBySearch'].firstChange) {
-      this.getPostsBySearchTerm(this.searchTerms);
-    }
   }
 
   ngOnInit() {
@@ -50,23 +41,6 @@ export class NewslistComponent implements OnChanges, OnInit {
 
   onLoadMorePosts() {
     this.getPosts(this.postPage);
-  }
-
-  getPostsBySearchTerm(searchTerms: any) {
-    this.postsSub = this.postsService.getPostsBySearchTerm(searchTerms).pipe(
-      catchError((error: any) => {
-        this.errorMessage = error.message;
-        return of(null);
-      })
-    ).subscribe((data: any) => {
-      if (data) {
-        this.reloadItemsBySearch = true;
-        for (let i = 0; i < data.length; i++) {
-          this.postsFound.push(data[i]);
-        }
-      }
-      this.reloadItemsBySearch = false;
-    });
   }
 
   validDateFormat(dateString: any) {
