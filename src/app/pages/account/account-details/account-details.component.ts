@@ -1,22 +1,17 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../../services/auth/auth-service";
-import {CommentsService} from "../../../services/comments.service";
-import {catchError, of} from "rxjs";
+import {CommentsService} from "../../../comments/services/comments.service";
 
 @Component({
   selector: 'app-account-details',
   templateUrl: './account-details.component.html',
   styleUrls: ['./account-details.component.scss']
 })
-export class AccountDetailsComponent implements OnInit {
+export class AccountDetailsComponent {
 
   loading: boolean = true;
 
   constructor(private authService: AuthService, private commentsService: CommentsService) {
-
-  }
-
-  ngOnInit() {
 
   }
 

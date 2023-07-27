@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {CommentsService} from "../../../services/comments.service";
 import {AuthService} from "../../../services/auth/auth-service";
+import {CommentsService} from "../../../comments/services/comments.service";
 
 @Component({
   selector: 'app-user-comments',
@@ -15,10 +15,10 @@ export class UserCommentsComponent implements OnInit{
   ngOnInit() {
     const userID = Number(this.authService.getUserID());
     this.commentsService.getCommentsByUserId(userID).subscribe({
-      next: comments => {
+      next: (comments: any) => {
         this.comments = comments;
       },
-      error:error => {
+      error: (error: any) => {
         console.log('error');
       }
     })

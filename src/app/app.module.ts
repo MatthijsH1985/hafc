@@ -11,10 +11,7 @@ import localeNl from '@angular/common/locales/nl';
 import {HomepageComponent} from "./pages/homepage/homepage.component";
 import {NieuwsberichtComponent} from "./pages/nieuwsbericht/nieuwsbericht.component";
 import {NieuwsarchiefComponent} from "./pages/nieuwsarchief/nieuwsarchief.component";
-import {ModalCommentComponent} from "./components/modal-comment/modal-comment.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {CommentsComponent} from "./components/comments/comments.component";
-import {CommentsService} from "./services/comments.service";
 import {AccountComponent} from "./pages/account/account.component";
 import {LoginFormComponent} from "./components/login-form/login-form.component";
 import {RegistrationFormComponent} from "./components/registration-form/registration-form.component";
@@ -46,10 +43,10 @@ import {NotFoundComponent} from "./pages/not-found/not-found.component";
 import {SinglePageComponent} from "./pages/single-page/single-page.component";
 import {TransferHttpCacheModule} from "@nguniversal/common";
 import {NewsModule} from "./news/news.module";
-import {PostsService} from "./news/services/posts.service";
 import {AdsModule} from "./ads/ads.module";
 import {CoreModule} from "./core/core.module";
 import {CompetitionModule} from "./competition/competition.module";
+import {CommentsModule} from "./comments/comments.module";
 
 register()
 registerLocaleData(localeNl);
@@ -64,8 +61,6 @@ registerLocaleData(localeNl);
     HomepageComponent,
     NieuwsberichtComponent,
     NieuwsarchiefComponent,
-    ModalCommentComponent,
-    CommentsComponent,
     AccountComponent,
     RegistrationFormComponent,
     AccountDetailsComponent,
@@ -95,22 +90,20 @@ registerLocaleData(localeNl);
     CompetitionModule,
     TransferHttpCacheModule,
     NewsModule,
-    AdsModule,
-    CoreModule
+    CoreModule,
+    CommentsModule
   ],
   exports: [
-    HomepageComponent
+    HomepageComponent,
+    CommentsModule
   ],
   providers: [{
     provide: LOCALE_ID,
     useValue: 'nl',
   },
-
-    CommentsService,
     PlayersService,
     TeamService,
     AdsService,
-    PostsService,
     UserService,
     MenuService,
     JwtHelperService, {

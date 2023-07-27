@@ -10,10 +10,9 @@ import {
   PLATFORM_ID,
   SimpleChanges
 } from '@angular/core';
-import {CommentsService} from "../../services/comments.service";
 import {Subscription} from "rxjs";
 import {faCheck, faBell} from "@fortawesome/free-solid-svg-icons";
-import { isPlatformBrowser} from '@angular/common';
+import {CommentsService} from "../services/comments.service";
 
 
 @Component({
@@ -57,11 +56,6 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnInit() {
     this.getComments(1);
-    // if (isPlatformBrowser(this.platformId)) {
-    //   setInterval(() => {
-    //     this.checkForNewComments();
-    //   }, 5000)
-    // }
   }
 
   checkForNewComments() {
@@ -81,7 +75,7 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy {
           this.newCommentCount = newCommentCount;
           this.closeNewCommentsSubscription();
         },
-        error: (error) => {
+        error: (error: any) => {
           console.log(error);
         },
       });

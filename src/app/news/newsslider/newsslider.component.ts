@@ -2,14 +2,10 @@ import {
   AfterViewInit,
   Component, CUSTOM_ELEMENTS_SCHEMA,
   ElementRef, Inject,
-  Input, OnInit, PLATFORM_ID,
+  PLATFORM_ID,
   ViewChild, ViewEncapsulation,
 } from '@angular/core';
 import Swiper, {
-  A11y,
-  Mousewheel,
-  Navigation,
-  Pagination,
   SwiperOptions,
 } from 'swiper'
 import {CommonModule, isPlatformBrowser} from "@angular/common";

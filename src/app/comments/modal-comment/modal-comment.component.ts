@@ -1,10 +1,9 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {CommentsService} from "../../services/comments.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../services/auth/auth-service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {catchError, of} from "rxjs";
 import {ToastrService} from "ngx-toastr";
+import {CommentsService} from "../services/comments.service";
 
 @Component({
   selector: 'app-modal-comment',

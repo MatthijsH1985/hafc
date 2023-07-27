@@ -11,6 +11,7 @@ import {MatchpreviewComponent} from "./matchpreview/matchpreview.component";
 import {MatchreportComponent} from "./matchreport/matchreport.component";
 import {Competitioncomponent} from "./competition/competitioncomponent";
 import {RouterModule} from "@angular/router";
+import {CommentsModule} from "../comments/comments.module";
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {RouterModule} from "@angular/router";
   imports: [
     CommonModule,
     CoreModule,
-    RouterModule
+    RouterModule,
+    CommentsModule
   ],
   exports: [
     VolgendeWedstrijdComponent,

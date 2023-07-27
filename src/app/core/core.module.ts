@@ -21,6 +21,8 @@ import {SessionStorage} from "./services/session-storage";
 import {MemoryStorage} from "./services/memory-storage";
 import {LocalStorage} from "./services/local-storage";
 import {MetaService} from "./services/meta.service";
+import {CommentsModule} from "../comments/comments.module";
+import {AdsModule} from "../ads/ads.module";
 
 @NgModule({
   declarations: [
@@ -38,7 +40,7 @@ import {MetaService} from "./services/meta.service";
     FontAwesomeModule,
     RecaptchaModule,
     RecaptchaFormsModule,
-    RecaptchaV3Module,
+    RecaptchaV3Module
   ],
   exports: [
     HeaderComponent,
@@ -47,6 +49,8 @@ import {MetaService} from "./services/meta.service";
     GenerateLogoUrlPipe,
     RoundNumberPipe,
     TransformTeamDataPipe,
+    FontAwesomeModule,
+    AdsModule
   ],
   providers: [
     ConfigService,

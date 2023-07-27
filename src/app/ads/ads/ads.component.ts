@@ -6,7 +6,7 @@ import {Platform} from "@angular/cdk/platform";
 import * as _ from "lodash";
 
 @Component({
-  selector: 'app-adds',
+  selector: 'app-ads',
   templateUrl: './ads.component.html',
   styleUrls: ['./ads.component.scss']
 })
