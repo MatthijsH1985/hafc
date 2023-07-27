@@ -33,7 +33,6 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy {
   faCheck = faCheck;
   commentPage: number = 1;
   faBell = faBell;
-  commentCount: number = 0;
   newCommentCount: number = 0;
   reloadButtonVisible: any;
    @Input() initialCommentCount: number = 0;
