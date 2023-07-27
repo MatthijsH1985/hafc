@@ -43,7 +43,6 @@ import {NotFoundComponent} from "./pages/not-found/not-found.component";
 import {SinglePageComponent} from "./pages/single-page/single-page.component";
 import {TransferHttpCacheModule} from "@nguniversal/common";
 import {NewsModule} from "./news/news.module";
-import {AdsModule} from "./ads/ads.module";
 import {CoreModule} from "./core/core.module";
 import {CompetitionModule} from "./competition/competition.module";
 import {CommentsModule} from "./comments/comments.module";

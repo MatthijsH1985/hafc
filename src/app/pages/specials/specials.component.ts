@@ -51,8 +51,4 @@ export class SpecialsComponent implements OnInit {
     this.getPosts(this.postPage);
   }
 
-
-  openPost(post: any): void {
-    this.router.navigateByUrl(`nieuws/${post.id}`);
-  }
 }
