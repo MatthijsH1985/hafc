@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {FixturesService} from "../../../../services/fixtures.service";
 import {Router} from "@angular/router";
 import * as moment from 'moment';
-import {PostsService} from "../../../../news/services/posts.service";
+import {PostsService} from "../../news/services/posts.service";
+import {FixturesService} from "../services/fixtures.service";
 
 @Component({
   selector: 'app-volgende-wedstrijd',
@@ -31,10 +31,10 @@ export class VolgendeWedstrijdComponent implements OnInit{
 
   getPreviewMatch() {
     this.postsService.getMatchReports().subscribe({
-      next: (data:any) => {
+      next: (data: any) => {
         this.nextMatchPost = data[0];
       },
-      error: (error) => {
+      error: (error: any) => {
         console.log(error);
       }
     })
@@ -42,7 +42,7 @@ export class VolgendeWedstrijdComponent implements OnInit{
 
   getFixtures() {
     this.fixturesService.getFixtures(this.teamId).subscribe( {
-      next: data => {
+      next: (data: any) => {
         const { rounds } = data.data[0];
         this.teamFixtures =  rounds;
         if (this.teamFixtures.length > 0) {
@@ -60,8 +60,7 @@ export class VolgendeWedstrijdComponent implements OnInit{
         this.nextMatch = this.teamFixtures[0];
         this.loading = false;
       },
-      error: error => {
-        console.error(error)
+      error: (error: any) => {
         this.loading = false;
       }
     });

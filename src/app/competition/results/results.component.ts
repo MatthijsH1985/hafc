@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {FixturesService} from "../../../../services/fixtures.service";
 import {NavigationEnd, Router} from "@angular/router";
 import * as moment from "moment/moment";
 import {ViewportScroller} from "@angular/common";
 import {Title} from "@angular/platform-browser";
-import {MetaService} from "../../../../core/services/meta.service";
+import {FixturesService} from "../services/fixtures.service";
+import {MetaService} from "../../core/services/meta.service";
 
 @Component({
   selector: 'app-results',
@@ -28,7 +28,7 @@ export class ResultsComponent implements OnInit {
 
   getResults() {
     this.fixturesService.getFixtures(this.teamId).subscribe({
-      next: data => {
+      next: (data: any) => {
         const { rounds } = data.data[0];
         this.teamFixtures =  rounds;
         this.loading = false;
@@ -46,7 +46,7 @@ export class ResultsComponent implements OnInit {
         }
         this.viewportScroller.scrollToPosition([0, 0]);
       },
-      error: error => {
+      error: (error: any) => {
         console.error(error);
       }
     });

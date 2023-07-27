@@ -1,16 +1,14 @@
 import {Component, HostListener, Inject, OnDestroy, OnInit, PLATFORM_ID} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {Subscription} from "rxjs";
 import {Title} from "@angular/platform-browser";
 import {ToastrService} from "ngx-toastr";
 import {ViewportScroller} from "@angular/common";
 import { faComment, faArrowDown } from '@fortawesome/free-solid-svg-icons';
-import {FixturesService} from "../../../../services/fixtures.service";
 import * as moment from "moment/moment";
-import {PostsService} from "../../../../news/services/posts.service";
-import {ConfigService} from "../../../../core/services/config.service";
-import {MetaService} from "../../../../core/services/meta.service";
-
+import {ConfigService} from "../../core/services/config.service";
+import {PostsService} from "../../news/services/posts.service";
+import {FixturesService} from "../services/fixtures.service";
+import {MetaService} from "../../core/services/meta.service";
 
 @Component({
   selector: 'app-matchpreview',
@@ -61,7 +59,7 @@ export class MatchpreviewComponent implements OnInit {
 
   getFixtures() {
     this.fixturesService.getFixtures(this.teamID).subscribe( {
-      next: data => {
+      next: (data: any) => {
         const { rounds } = data.data[0];
         this.teamFixtures =  rounds;
         if (this.teamFixtures.length > 0) {
@@ -75,7 +73,7 @@ export class MatchpreviewComponent implements OnInit {
         this.nextMatch = this.teamFixtures[0];
         this.loading = false;
       },
-      error: error => {
+      error: (error: any) => {
         console.error(error)
         this.loading = false;
       }

@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
-import {FixturesService} from "../../../../services/fixtures.service";
 import {ViewportScroller} from "@angular/common";
 import {faLongArrowLeft, faLongArrowRight} from "@fortawesome/free-solid-svg-icons";
+import {FixturesService} from "../services/fixtures.service";
 
 @Component({
   selector: 'app-matchreport',
@@ -59,7 +59,7 @@ export class MatchreportComponent implements OnInit {
     this.loading = true;
     this.currentMatchId = this.activatedRoute.snapshot.paramMap.get('matchId');
     this.matchReportSub = this.fixturesService.getMatchReport(this.currentMatchId).subscribe({
-      next: data => {
+      next: (data: any) => {
         this.matchReportResult = data;
         this.matchReport = this.matchReportResult.data;
         this.localTeamId = this.matchReport.localteam_id;
@@ -70,7 +70,7 @@ export class MatchreportComponent implements OnInit {
         this.loading = false;
         this.viewportScroller.scrollToPosition([0, 0]);
       },
-      error: error => {
+      error: (error: any) => {
         console.error(error)
       }
     });

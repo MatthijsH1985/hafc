@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {TeamComponent} from "./pages/team/team.component";
-import {StandComponent} from "./pages/team/competitie/stand/stand.component";
 import {HomepageComponent} from "./pages/homepage/homepage.component";
 import {NieuwsberichtComponent} from "./pages/nieuwsbericht/nieuwsbericht.component";
 import {NieuwsarchiefComponent} from "./pages/nieuwsarchief/nieuwsarchief.component";
@@ -14,11 +13,6 @@ import {SpelerComponent} from "./pages/team/speler/speler.component";
 import {UserConfigComponent} from "./pages/account/user-config/user-config.component";
 import {UserCommentsComponent} from "./pages/account/user-comments/user-comments.component";
 import {RegisterComponent} from "./pages/account/register/register.component";
-import {SelectieComponent} from "./pages/team/selectie/selectie.component";
-import {ResultsComponent} from "./pages/team/competitie/results/results.component";
-import {ProgrammaComponent} from "./pages/team/competitie/programma/programma.component";
-import {MatchreportComponent} from "./pages/team/competitie/matchreport/matchreport.component";
-import {CompetitieComponent} from "./pages/team/competitie/competitie.component";
 import {SpecialsComponent} from "./pages/specials/specials.component";
 import {TeamstatsComponent} from "./pages/team/teamstats/teamstats.component";
 import {PasswordResetComponent} from "./pages/account/password-reset/password-reset.component";
@@ -26,9 +20,15 @@ import {SetNewPasswordComponent} from "./pages/account/set-new-password/set-new-
 import {UserConfigEditableComponent} from "./pages/account/user-config-editable/user-config-editable.component";
 import {NotFoundComponent} from "./pages/not-found/not-found.component";
 import {SinglePageComponent} from "./pages/single-page/single-page.component";
-import {MatchpreviewComponent} from "./pages/team/competitie/matchpreview/matchpreview.component";
 import {MatchResolver} from "./services/resolvers/match-resolver.service";
 import {PostResolver} from "./news/services/resolvers/post-resolver.service";
+import {MatchpreviewComponent} from "./competition/matchpreview/matchpreview.component";
+import {MatchreportComponent} from "./competition/matchreport/matchreport.component";
+import {SelectieComponent} from "./pages/team/selectie/selectie.component";
+import {ResultsComponent} from "./competition/results/results.component";
+import {StandComponent} from "./competition/stand/stand.component";
+import {ProgrammaComponent} from "./competition/programma/programma.component";
+import {Competitioncomponent} from "./competition/competition/competitioncomponent";
 const routes: Routes = [
 
   {
@@ -51,7 +51,7 @@ const routes: Routes = [
     path: 'club',
     children: [
       {
-        component: CompetitieComponent,
+        component: Competitioncomponent,
         path: 'competitie',
         children: [
           {

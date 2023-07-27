@@ -1,10 +1,10 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
-import {StandingsService} from "../../../../services/standings.service";
 import {ViewportScroller} from "@angular/common";
 import {Router} from "@angular/router";
 import {Title} from "@angular/platform-browser";
-import {MetaService} from "../../../../core/services/meta.service";
+import {StandingsService} from "../services/standings.service";
+import {MetaService} from "../../core/services/meta.service";
 
 @Component({
   selector: 'app-stand',

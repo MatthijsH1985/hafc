@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {FixturesService} from "../../../../services/fixtures.service";
 import * as moment from 'moment';
 import {ViewportScroller} from "@angular/common";
 import {Title} from "@angular/platform-browser";
-import {MetaService} from "../../../../core/services/meta.service";
+import {FixturesService} from "../services/fixtures.service";
+import {MetaService} from "../../core/services/meta.service";
 
 @Component({
   selector: 'app-programma',
@@ -30,7 +30,7 @@ export class ProgrammaComponent implements OnInit{
 
   getFixtures() {
     this.fixturesService.getFixtures(this.teamId).subscribe( {
-      next: data => {
+      next: (data: any) => {
         const { rounds } = data.data[0];
         this.teamFixtures =  rounds;
         this.loading = false;
@@ -47,7 +47,7 @@ export class ProgrammaComponent implements OnInit{
           });
         }
       },
-      error: error => {
+      error: (error: any) => {
         console.error(error)
       }
     });

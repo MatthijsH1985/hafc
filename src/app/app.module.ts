@@ -6,15 +6,11 @@ import {HttpClientModule} from "@angular/common/http";
 import {TeamComponent} from "./pages/team/team.component";
 import {PlayersService} from "./services/players.service";
 import {TeamService} from "./services/team.service";
-import {StandComponent} from "./pages/team/competitie/stand/stand.component";
-import {FixturesService} from "./services/fixtures.service";
-import {StandingsService} from "./services/standings.service";
 import {CommonModule, registerLocaleData} from '@angular/common';
 import localeNl from '@angular/common/locales/nl';
 import {HomepageComponent} from "./pages/homepage/homepage.component";
 import {NieuwsberichtComponent} from "./pages/nieuwsbericht/nieuwsbericht.component";
 import {NieuwsarchiefComponent} from "./pages/nieuwsarchief/nieuwsarchief.component";
-import {VolgendeWedstrijdComponent} from "./pages/team/competitie/volgende-wedstrijd/volgende-wedstrijd.component";
 import {ModalCommentComponent} from "./components/modal-comment/modal-comment.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {CommentsComponent} from "./components/comments/comments.component";
@@ -38,12 +34,8 @@ import {RegisterComponent} from "./pages/account/register/register.component";
 import {ToastrModule} from "ngx-toastr";
 import {AdsService} from "./ads/services/ads.service";
 import {MenuService} from "./services/menu.service";
-import {ResultsComponent} from "./pages/team/competitie/results/results.component";
 import {SelectieComponent} from "./pages/team/selectie/selectie.component";
-import {ProgrammaComponent} from "./pages/team/competitie/programma/programma.component";
-import {MatchreportComponent} from "./pages/team/competitie/matchreport/matchreport.component";
 import {PlayerOfTheWeekComponent} from "./pages/team/player-of-the-week/player-of-the-week.component";
-import {CompetitieComponent} from "./pages/team/competitie/competitie.component";
 import {SpecialsComponent} from "./pages/specials/specials.component";
 import {TeamstatsComponent} from "./pages/team/teamstats/teamstats.component";
 import {PasswordResetComponent} from "./pages/account/password-reset/password-reset.component";
@@ -53,11 +45,11 @@ import {UserConfigEditableComponent} from "./pages/account/user-config-editable/
 import {NotFoundComponent} from "./pages/not-found/not-found.component";
 import {SinglePageComponent} from "./pages/single-page/single-page.component";
 import {TransferHttpCacheModule} from "@nguniversal/common";
-import {MatchpreviewComponent} from "./pages/team/competitie/matchpreview/matchpreview.component";
 import {NewsModule} from "./news/news.module";
 import {PostsService} from "./news/services/posts.service";
 import {AdsModule} from "./ads/ads.module";
 import {CoreModule} from "./core/core.module";
+import {CompetitionModule} from "./competition/competition.module";
 
 register()
 registerLocaleData(localeNl);
@@ -67,17 +59,11 @@ registerLocaleData(localeNl);
     AppComponent,
     TeamComponent,
     SpelerComponent,
-    StandComponent,
-    ProgrammaComponent,
     SelectieComponent,
-    CompetitieComponent,
     PlayerOfTheWeekComponent,
-    MatchreportComponent,
-    ResultsComponent,
     HomepageComponent,
     NieuwsberichtComponent,
     NieuwsarchiefComponent,
-    VolgendeWedstrijdComponent,
     ModalCommentComponent,
     CommentsComponent,
     AccountComponent,
@@ -96,7 +82,6 @@ registerLocaleData(localeNl);
     SetNewPasswordComponent,
     NotFoundComponent,
     SinglePageComponent,
-    MatchpreviewComponent
   ],
   imports: [
     CommonModule,
@@ -107,7 +92,7 @@ registerLocaleData(localeNl);
     ReactiveFormsModule,
     FormsModule,
     FontAwesomeModule,
-
+    CompetitionModule,
     TransferHttpCacheModule,
     NewsModule,
     AdsModule,
@@ -124,8 +109,6 @@ registerLocaleData(localeNl);
     CommentsService,
     PlayersService,
     TeamService,
-    FixturesService,
-    StandingsService,
     AdsService,
     PostsService,
     UserService,
