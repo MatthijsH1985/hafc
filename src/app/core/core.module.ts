@@ -40,7 +40,7 @@ import {AdsModule} from "../ads/ads.module";
     FontAwesomeModule,
     RecaptchaModule,
     RecaptchaFormsModule,
-    RecaptchaV3Module
+    RecaptchaV3Module,
   ],
   exports: [
     HeaderComponent,

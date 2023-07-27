@@ -4,6 +4,7 @@ import {NewslistComponent} from "./newslist/newslist.component";
 import {NewssliderModule} from "./newsslider/newsslider.module";
 import {RouterModule} from "@angular/router";
 import {PostsService} from "./services/posts.service";
+import {CoreModule} from "../core/core.module";
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import {PostsService} from "./services/posts.service";
   imports: [
     CommonModule,
     NewssliderModule,
-    RouterModule
+    RouterModule,
+    CoreModule
   ],
   exports: [
     NewslistComponent

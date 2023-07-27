@@ -1,13 +1,10 @@
 import {
-  AfterViewInit,
   Component,
   HostListener,
   Inject,
-  makeStateKey,
   OnDestroy,
   OnInit,
   PLATFORM_ID,
-  StateKey
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
