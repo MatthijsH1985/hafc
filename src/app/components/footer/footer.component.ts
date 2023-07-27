@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, HostListener, OnInit} from '@angular/core';
 import {ViewportScroller} from "@angular/common";
-import {AdsService} from "../../services/ads.service";
+import {AdsService} from "../../ads/services/ads.service";
 import {faArrowUp} from "@fortawesome/free-solid-svg-icons";
 
 @Component({

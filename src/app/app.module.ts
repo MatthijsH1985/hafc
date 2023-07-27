@@ -49,7 +49,7 @@ import {UserConfigComponent} from "./pages/account/user-config/user-config.compo
 import {UserService} from "./services/user.service";
 import {RegisterComponent} from "./pages/account/register/register.component";
 import {ToastrModule} from "ngx-toastr";
-import {AdsService} from "./services/ads.service";
+import {AdsService} from "./ads/services/ads.service";
 import {LocalStorage} from "./services/local-storage";
 import {SessionStorage} from "./services/session-storage";
 import {MemoryStorage} from "./services/memory-storage";
@@ -68,7 +68,6 @@ import {PasswordResetComponent} from "./pages/account/password-reset/password-re
 import {SetNewPasswordComponent} from "./pages/account/set-new-password/set-new-password.component";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {UserConfigEditableComponent} from "./pages/account/user-config-editable/user-config-editable.component";
-import {AddsComponent} from "./components/adds/adds.component";
 import {NotFoundComponent} from "./pages/not-found/not-found.component";
 import {SinglePageComponent} from "./pages/single-page/single-page.component";
 import {MetaService} from "./services/meta.service";
@@ -76,6 +75,7 @@ import {TransferHttpCacheModule} from "@nguniversal/common";
 import {MatchpreviewComponent} from "./pages/team/competitie/matchpreview/matchpreview.component";
 import {NewsModule} from "./news/news.module";
 import {PostsService} from "./news/services/posts.service";
+import {AdsModule} from "./ads/ads.module";
 
 register()
 registerLocaleData(localeNl);
@@ -120,7 +120,6 @@ registerLocaleData(localeNl);
     TeamstatsComponent,
     PasswordResetComponent,
     SetNewPasswordComponent,
-    AddsComponent,
     NotFoundComponent,
     SinglePageComponent,
     MatchpreviewComponent
@@ -139,6 +138,7 @@ registerLocaleData(localeNl);
     RecaptchaV3Module,
     TransferHttpCacheModule,
     NewsModule,
+    AdsModule
   ],
   exports: [
     HomepageComponent

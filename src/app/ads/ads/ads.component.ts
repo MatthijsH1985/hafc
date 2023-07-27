@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {AdsService} from "../../services/ads.service";
+import {AdsService} from "../services/ads.service";
 import {Subscription} from "rxjs";
 import {Platform} from "@angular/cdk/platform";
 // @ts-ignore
@@ -7,13 +7,12 @@ import * as _ from "lodash";
 
 @Component({
   selector: 'app-adds',
-  templateUrl: './adds.component.html',
-  styleUrls: ['./adds.component.scss']
+  templateUrl: './ads.component.html',
+  styleUrls: ['./ads.component.scss']
 })
-export class AddsComponent implements OnInit{
+export class AdsComponent implements OnInit{
 
   adsSub: Subscription | undefined;
-  ads: any | undefined = [];
   @Input() layout: string | undefined;
   randomizedAds: any | undefined;
 
