@@ -14,7 +14,7 @@ import Swiper, {
 } from 'swiper'
 import {CommonModule, isPlatformBrowser} from "@angular/common";
 import {RouterModule} from "@angular/router";
-import {SwiperDirective} from "../../shared/slider.directive";
+import {SwiperDirective} from "../../core/shared/slider.directive";
 import {PostsService} from "../services/posts.service";
 import {Subscription} from "rxjs";
 

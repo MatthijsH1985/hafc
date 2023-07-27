@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {PlayersService} from "../../../services/players.service";
 import {TeamService} from "../../../services/team.service";
 import {Router} from "@angular/router";
-import {MetaService} from "../../../services/meta.service";
 import {Meta, Title} from "@angular/platform-browser";
+import {MetaService} from "../../../core/services/meta.service";
 
 @Component({
   selector: 'app-selectie',

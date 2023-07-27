@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
 import {Router} from "@angular/router";
-import {MetaService} from "../../services/meta.service";
 import {PostsService} from "../../news/services/posts.service";
+import {MetaService} from "../../core/services/meta.service";
 
 @Component({
   selector: 'app-specials',

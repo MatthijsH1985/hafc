@@ -3,8 +3,8 @@ import {Router} from "@angular/router";
 import {FixturesService} from "../../../../services/fixtures.service";
 import * as moment from 'moment';
 import {ViewportScroller} from "@angular/common";
-import {MetaService} from "../../../../services/meta.service";
 import {Title} from "@angular/platform-browser";
+import {MetaService} from "../../../../core/services/meta.service";
 
 @Component({
   selector: 'app-programma',

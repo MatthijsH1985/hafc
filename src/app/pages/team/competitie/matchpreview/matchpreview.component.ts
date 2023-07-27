@@ -4,12 +4,12 @@ import {Subscription} from "rxjs";
 import {Title} from "@angular/platform-browser";
 import {ToastrService} from "ngx-toastr";
 import {ViewportScroller} from "@angular/common";
-import {MetaService} from "../../../../services/meta.service";
 import { faComment, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import {FixturesService} from "../../../../services/fixtures.service";
-import {ConfigService} from "../../../../services/config.service";
 import * as moment from "moment/moment";
 import {PostsService} from "../../../../news/services/posts.service";
+import {ConfigService} from "../../../../core/services/config.service";
+import {MetaService} from "../../../../core/services/meta.service";
 
 
 @Component({

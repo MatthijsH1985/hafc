@@ -2,8 +2,8 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Config} from '../model/config';
-import {ConfigService} from './config.service';
 import {environment} from "../../environments/environment";
+import {ConfigService} from "../core/services/config.service";
 
 @Injectable()
 

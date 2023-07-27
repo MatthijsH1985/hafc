@@ -15,8 +15,8 @@ import { Title } from '@angular/platform-browser';
 import { ViewportScroller } from '@angular/common';
 import { faComment, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
-import { MetaService } from '../../services/meta.service';
 import {PostsService} from "../../news/services/posts.service";
+import {MetaService} from "../../core/services/meta.service";
 
 @Component({
   selector: 'app-nieuwsbericht',

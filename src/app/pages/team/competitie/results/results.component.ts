@@ -4,7 +4,7 @@ import {NavigationEnd, Router} from "@angular/router";
 import * as moment from "moment/moment";
 import {ViewportScroller} from "@angular/common";
 import {Title} from "@angular/platform-browser";
-import {MetaService} from "../../../../services/meta.service";
+import {MetaService} from "../../../../core/services/meta.service";
 
 @Component({
   selector: 'app-results',

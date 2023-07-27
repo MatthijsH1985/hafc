@@ -3,8 +3,8 @@ import { Observable} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Config} from '../model/config';
 import {environment} from "../../environments/environment";
-import {ConfigService} from "./config.service";
 import {AuthService} from "./auth/auth-service";
+import {ConfigService} from "../core/services/config.service";
 
 @Injectable()
 

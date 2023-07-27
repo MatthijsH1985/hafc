@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit, PLATFORM_ID} from '@angular/core';
 import {ChildrenOutletContexts, NavigationEnd, Router} from "@angular/router";
-import {slideInAnimation} from "./shared/animations";
+import {slideInAnimation} from "./core/shared/animations";
 import {Title} from "@angular/platform-browser";
 import {GoogleTagManagerService} from "angular-google-tag-manager";
 

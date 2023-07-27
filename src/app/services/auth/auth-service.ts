@@ -3,8 +3,8 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, tap} from 'rxjs';
 import { environment } from '../../../environments/environment';
 import {JwtHelperService} from "@auth0/angular-jwt";
-import {LocalStorage} from "../local-storage";
 import {Platform} from "@angular/cdk/platform";
+import {LocalStorage} from "../../core/services/local-storage";
 
 interface LoginResponse {
   token: string;

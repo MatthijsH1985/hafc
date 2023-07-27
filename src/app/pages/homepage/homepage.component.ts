@@ -4,9 +4,9 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Title} from "@angular/platform-browser";
 import {isPlatformBrowser, ViewportScroller} from "@angular/common";
 import {AdsService} from "../../ads/services/ads.service";
-import {MetaService} from "../../services/meta.service";
 import {PostsService} from "../../news/services/posts.service";
 import {NewssliderComponent} from "../../news/newsslider/newsslider.component";
+import {MetaService} from "../../core/services/meta.service";
 
 @Component({
   selector: 'app-homepage',
