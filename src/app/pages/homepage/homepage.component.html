@@ -14,16 +14,16 @@
       <div class="w-full md:p-0 md:w-1/3">
         <div class="md:p-0 pb-4">
           <div class="-mt-[50px] md:-mt-[80px] md:mx-0 mx-4 max-w-full relative m-auto z-10 text-center bg-black">
-            <div class="bg-black">
+            <div class="bg-black rounded-md overflow-hidden">
               <app-volgende-wedstrijd class="bg-white"></app-volgende-wedstrijd>
             </div>
           </div>
         </div>
-        <div class="gap-4 my-4 bg-white dark:bg-gray-900 p-4">
+        <div class="gap-4 my-4 bg-white rounded-md dark:bg-gray-900 p-4">
           <app-ads [layout]="'square'"></app-ads>
         </div>
-        <h3 class="black bg-gray-200 dark:bg-black text-black dark:text-white text-center md:text-left p-4 md:mt-4">Stand Eredivisie</h3>
-        <div class="md:p-4 bg-white dark:bg-gray-700 p-4 mb-4">
+        <h3 class="black bg-gray-200 rounded-t-md dark:bg-black text-black dark:text-white text-center md:text-left p-4 md:mt-4">Stand Eredivisie</h3>
+        <div class="md:p-4 rounded-b-md bg-white dark:bg-gray-700 p-4 mb-4">
           <app-stand [compact]="true"></app-stand>
           <div class="flex justify-center md:justify-start">
             <a routerLink="club/competitie/stand" class="block m-4 button button-blue" title="Bekijk de gehele stand">Bekijk gehele stand</a>

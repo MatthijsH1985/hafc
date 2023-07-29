@@ -47,6 +47,9 @@ import {CoreModule} from "./core/core.module";
 import {CompetitionModule} from "./competition/competition.module";
 import {CommentsModule} from "./comments/comments.module";
 
+import {CookieService} from 'ngx-cookie-service';
+
+
 register()
 registerLocaleData(localeNl);
 
@@ -105,6 +108,7 @@ registerLocaleData(localeNl);
     AdsService,
     UserService,
     MenuService,
+    CookieService,
     JwtHelperService, {
       provide: JWT_OPTIONS, useValue: JWT_OPTIONS
     }],
