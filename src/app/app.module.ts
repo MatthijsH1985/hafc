@@ -46,6 +46,7 @@ import {NewsModule} from "./news/news.module";
 import {CoreModule} from "./core/core.module";
 import {CompetitionModule} from "./competition/competition.module";
 import {CommentsModule} from "./comments/comments.module";
+import {RecaptchaModule} from "ng-recaptcha";
 
 
 register()
@@ -91,7 +92,8 @@ registerLocaleData(localeNl);
     TransferHttpCacheModule,
     NewsModule,
     CoreModule,
-    CommentsModule
+    CommentsModule,
+    RecaptchaModule
   ],
   exports: [
     HomepageComponent,
