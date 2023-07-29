@@ -34,9 +34,7 @@
       </div>
     </div>
   </div>
-  <div class="mt-auto" *ngIf="!loading">
-    <app-footer></app-footer>
-  </div>
+  <app-footer></app-footer>
 </div>
 
 <button class="md:hidden fixed hover:cursor-pointer rounded-md w-[200px] left-[50%] -ml-[100px] hover:bg-gray-900 p-4 bg-blue-500 text-white text-xl z-20 left-0 bottom-[1rem]" *ngIf="buttonVisible" (click)="onOpenCommentModal()">Reageer <fa-icon class="ml-4" [icon]="faComment"></fa-icon></button>
