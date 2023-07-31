@@ -1,34 +1,35 @@
 <form [formGroup]="userFormData" (ngSubmit)="onSubmitCreateUserForm(userFormData)">
   <div class="mb-4">
     <label for="user_name">Gebruikersnaam</label>
-    <input type="email" class="border border-gray-800 rounded-md w-full " formControlName="user_name" placeholder="Kies een gebruikersnaam" id="user_name" />
+    <input type="email" class="border border-gray-800 rounded-md w-full " class="dark:text-white" formControlName="user_name" placeholder="Kies een gebruikersnaam" id="user_name" />
   </div>
   <div class="mb-4">
     <label for="user_nickname">Weergave naam</label>
-    <input type="email" formControlName="user_nickname" placeholder="Kies een weergave naam"  id="user_nickname" />
+    <input type="email" formControlName="user_nickname" class="dark:text-white" placeholder="Kies een weergave naam"  id="user_nickname" />
   </div>
   <div class="mb-4">
     <label for="user_firstname">Voornaam</label>
-    <input type="email" formControlName="user_firstname" placeholder="Vul je voornaam in"  id="user_firstname" />
+    <input type="email" formControlName="user_firstname" class="dark:text-white" placeholder="Vul je voornaam in"  id="user_firstname" />
   </div>
   <div class="mb-4">
     <label for="user_lastname">Achternaam</label>
-    <input type="email" formControlName="user_lastname" placeholder="Vul je achternaam in"  id="user_lastname" />
+    <input type="email" formControlName="user_lastname" class="dark:text-white" placeholder="Vul je achternaam in"  id="user_lastname" />
   </div>
   <div class="mb-4">
     <label for="email">E-mailadres</label>
-    <input type="email" formControlName="user_email" placeholder="Voer je e-mailadres in"  id="email" />
+    <input type="email" formControlName="user_email" class="dark:text-white" placeholder="Voer je e-mailadres in"  id="email" />
   </div>
   <div class="mb-4">
     <label for="password">Wachtwoord</label>
-    <input type="password" formControlName="user_password" placeholder="Kies een wachtwoord in"  id="password">
+    <p class="ml-4 text-sm dark:text-white mb-2">Gebruik minimaal een speciaal teken, 6 karakters en een nummer</p>
+    <input type="password" formControlName="user_password" class="dark:text-white" placeholder="Voer je gewenste wachtwoord in"  id="password">
   </div>
   <div class="mb-4">
     <label for="password_repeat">Herhaal je wachtwoord</label>
-    <input type="password" formControlName="user_password_repeat" placeholder="Herhaal je wachtwoord"  id="password_repeat">
+    <input type="password" formControlName="user_password_repeat" class="dark:text-white" placeholder="Herhaal je wachtwoord"  id="password_repeat">
   </div>
   <div class="flex items-center justify-between">
-    <button class="button button-blue" type="submit" [disabled]="!userFormData.valid">Registreer</button>
+    <button class="button button-blue" type="submit" [disabled]="userFormData.invalid">Registreer</button>
   </div>
   <div class="mt-4">
 <!--    <re-captcha id="recaptcha" name="recaptcha" #recaptcha="ngModel" [ngModelOptions]="{standalone: true}" [(ngModel)]="token" required [class.is-invalid]="recaptcha.invalid && (recaptcha.dirty || recaptcha.touched)"></re-captcha>-->
