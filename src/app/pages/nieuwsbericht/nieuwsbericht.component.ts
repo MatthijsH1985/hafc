@@ -1,10 +1,8 @@
 import {
   Component,
   HostListener,
-  Inject,
   OnDestroy,
   OnInit,
-  PLATFORM_ID,
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -47,7 +45,6 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy {
     private toast: ToastrService,
     private viewportScroller: ViewportScroller,
     private metaService: MetaService,
-    @Inject(PLATFORM_ID) private platformId: object
   ) {
   }
 
