@@ -24,23 +24,23 @@ export function app(): express.Express {
   server.set('view engine', 'html');
   server.set('views', distFolder);
 
-  server.get('/api/*', async (req: express.Request, res: express.Response) => {
-
-    const params = req.query;
-
-    const apiHAFCUrl = `https://backend.hafc.nl/wp-json/wp/v2/${req.params[0]}`;
-
-    try {
-      const response = await axios.get(apiHAFCUrl, {
-        responseType: "json"
-      });
-      const data = response.data;
-      res.json(data);
-    } catch (error: any) {
-      res.status(500).json({error: error.message});
-    }
-
-  });
+  // server.get('/api/*', async (req: express.Request, res: express.Response) => {
+  //
+  //   const params = req.query;
+  //
+  //   const apiHAFCUrl = `https://backend.hafc.nl/wp-json/wp/v2/${req.params[0]}`;
+  //
+  //   try {
+  //     const response = await axios.get(apiHAFCUrl, {
+  //       responseType: "json"
+  //     });
+  //     const data = response.data;
+  //     res.json(data);
+  //   } catch (error: any) {
+  //     res.status(500).json({error: error.message});
+  //   }
+  //
+  // });
 
   // Example Express Rest API endpoints
   // server.get('/api/**', (req, res) => { });

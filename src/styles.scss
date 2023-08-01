@@ -32,6 +32,7 @@ body {
       rgba(0,0,0, 1) 50%
   ) right;
   background-size: 201%;
+  border-radius: 4px;
   &:active {
     box-shadow: 0 0 0 1px rgba(255,255,255,1), 0 0 0 1px rgba(0,0,0,1);
   }
@@ -209,13 +210,13 @@ form {
     @apply block mb-2 ml-4 text-base dark:text-white;
   }
   input[type=text], input[type=email], input[type=password], textarea, input[type=number] {
-    @apply border dark:border-black p-4 border dark:bg-gray-700 rounded-md w-full
+    @apply border dark:border-black p-4 border dark:bg-gray-700 rounded-md w-full dark:text-white
   }
   input[disabled] {
     @apply opacity-40
   }
   textarea {
-    @apply h-[200px] dark:bg-gray-700 dark:border-black
+    @apply h-[200px] dark:bg-gray-700 dark:border-black dark:text-white
   }
 }
 
