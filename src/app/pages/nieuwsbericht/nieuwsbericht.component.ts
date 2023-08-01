@@ -1,8 +1,10 @@
 import {
   Component,
   HostListener,
+  Inject,
   OnDestroy,
   OnInit,
+  PLATFORM_ID,
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';

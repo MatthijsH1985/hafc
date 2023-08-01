@@ -1,42 +1,44 @@
 <div class="flex flex-col">
-  <div *ngIf="post?.id;">
-    <div class="container xl:w-[1200px] ml-auto mr-auto">
-      <div class="relative container h-[450px] xl:h-[550px] md:h-[550px] align-center">
-        <img [src]="post?.better_featured_image.source_url" class="object-cover object-center xl:h-[550px] md:h-[550px] m-h-[550px] w-full h-full animate-in animate-in slide-in-from-bottom-10 fade-in-25 fill-mode-forwards" />
-        <span class="absolute right-2 bottom-2 z-20 text-sm text-white">Foto: {{ post?.better_featured_image.caption }}</span>
-      </div>
+  <div class="container xl:w-[1200px] ml-auto mr-auto">
+    <div class="relative container h-[450px] xl:h-[550px] md:h-[550px] align-center">
+      <img [src]="post?.better_featured_image.source_url" class="object-cover object-center xl:h-[550px] md:h-[550px] m-h-[550px] w-full h-full animate-in animate-in slide-in-from-bottom-10 fade-in-25 fill-mode-forwards" />
+      <span class="absolute right-2 bottom-2 z-20 text-sm text-white">Foto: {{ post?.better_featured_image.caption }}</span>
     </div>
-    <div class="flex container xl:w-[1200px] ml-auto mr-auto p-4 md:p-8">
-      <div class="flex space-x-4 items-center space-x-4 hidden md:flex dark:text-white">
-        <a routerLink="/" class="hover:underline dark:text-white">Home</a> > <a routerLink="/nieuws" class="hover:underline">Nieuws</a> <span [innerHTML]="post?.title.rendered" class="dark:text-white"></span>
-      </div>
-      <div class="flex w-full md:w-auto items-center md:space-x-2 mr-0 md:ml-auto">
-        <span class="font-bold dark:text-white">{{ post.date | date }}</span> <span class="dark:text-white inline-block md:hidden ml-5">{{ categoryName }}</span>
-        <button class="button button-blue text-xl self-end ml-auto" (click)="toComments()">Naar reacties <fa-icon clas="ml-2" [icon]="faArrowDown"></fa-icon></button>
-      </div>
+  </div>
+  <div class="flex container xl:w-[1200px] ml-auto mr-auto p-4 md:p-8">
+    <div class="flex space-x-4 items-center space-x-4 hidden md:flex dark:text-white">
+      <a routerLink="/" class="hover:underline dark:text-white">Home</a> > <a routerLink="/nieuws" class="hover:underline">Nieuws</a> <span [innerHTML]="post?.title.rendered" class="dark:text-white"></span>
     </div>
-    <div class="flex flex-col xl:w-[1200px] ml-auto mr-auto relative z-20">
-      <div class="container bg-white rounded-md dark:bg-black mb-4 xl:w-[1100px] flex flex-col ml-auto mr-auto items-center">
-        <div class="px-4 md:px-12 pt-16 news-container m-auto">
-          <h1 [innerHTML]="post?.title.rendered" class="text-4xl mb-4 leading-[1.25] dark:text-white"></h1>
-          <div [innerHTML]="post?.content.rendered" class="leading-8 text-base leading-[1.5] dark:text-white"></div>
-        </div>
-      </div>
+    <div class="flex w-full md:w-auto items-center md:space-x-2 mr-0 md:ml-auto">
+      <span class="font-bold dark:text-white">{{ post.date | date }}</span> <span class="dark:text-white inline-block md:hidden ml-5">{{ categoryName }}</span>
+      <button class="button button-blue text-xl self-end ml-auto" (click)="toComments()">Naar reacties <fa-icon clas="ml-2" [icon]="faArrowDown"></fa-icon></button>
     </div>
-    <div class="flex m-auto">
-      <div class="flex flex-col w-full justify-end ml-auto mr-auto">
-        <div class="flex md:flex-row flex-col-reverse md:w-[1100px] container ml-auto mr-auto mb-4">
+  </div>
+  <div class="flex flex-col xl:w-[1200px] ml-auto mr-auto relative z-20">
+    <div class="container bg-white dark:bg-black mb-8 xl:w-[1100px] flex flex-col ml-auto mr-auto items-center">
+      <div class="px-4 md:px-12 pt-16 news-container m-auto">
+        <h1 [innerHTML]="post?.title.rendered" class="text-4xl mb-4 leading-[1.25] dark:text-white"></h1>
+        <div [innerHTML]="post?.content.rendered" class="leading-8 text-base leading-[1.5] dark:text-white"></div>
+      </div>
+      <div class="bg-gray-200 dark:bg-gray-900 dark:text-white p-4 flex w-full justify-end w-full mt-8 items-center">
+        <div class="hidden md:inline-block">
           <button class="button button-blue text-xl self-end" (click)="onOpenCommentModal()">Reageer</button>
-        </div>
-        <div class="w-full" id="comments">
-          <app-comments [onReloadComments]="reloadComments" [initialCommentCount]="post.comments_count" [postId]="postId"></app-comments>
         </div>
       </div>
     </div>
   </div>
-  <app-footer></app-footer>
+  <div class="flex m-auto">
+    <div class="flex flex-col w-full justify-end ml-auto mr-auto">
+      <div class="w-full" id="comments">
+        <app-comments [postId]="post.id"></app-comments>
+      </div>
+    </div>
+  </div>
+  <div class="mt-auto" *ngIf="!loading">
+    <app-footer></app-footer>
+  </div>
 </div>
 
-<button class="md:hidden fixed hover:cursor-pointer rounded-md w-[200px] left-[50%] -ml-[100px] hover:bg-gray-900 p-4 bg-blue-500 text-white text-xl z-20 left-0 bottom-[1rem]" *ngIf="buttonVisible" (click)="onOpenCommentModal()">Reageer <fa-icon class="ml-4" [icon]="faComment"></fa-icon></button>
+<button class="fixed hover:cursor-pointer w-[200px] left-[50%] -ml-[100px] hover:bg-gray-900 p-4 bg-blue-500 text-white text-xl z-20 left-0 bottom-0" *ngIf="buttonVisible" (click)="onOpenCommentModal()">Reageer <fa-icon class="ml-4" [icon]="faComment"></fa-icon></button>
 
 <app-modal-comment (commentSuccesful)="addComment($event)" (closeModal)="onModalClose()" [modalStatus]="modalCommentsOpen" [postId]="postId"></app-modal-comment>
