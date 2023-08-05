@@ -48,27 +48,9 @@ import {CompetitionModule} from "./competition/competition.module";
 import {CommentsModule} from "./comments/comments.module";
 import {RecaptchaModule} from "ng-recaptcha";
 
-import {NgcCookieConsentConfig, NgcCookieConsentModule} from 'ngx-cookieconsent';
-
 
 register()
 registerLocaleData(localeNl);
-
-const cookieConfig:NgcCookieConsentConfig = {
-  cookie: {
-    domain: 'localhost' // or 'your.domain.com' // it is mandatory to set a domain, for cookies to work properly (see https://goo.gl/S2Hy2A)
-  },
-  palette: {
-    popup: {
-      background: '#000'
-    },
-    button: {
-      background: '#f1d600'
-    }
-  },
-  theme: 'edgeless',
-  type: 'opt-out'
-};
 
 // @ts-ignore
 // @ts-ignore
@@ -118,8 +100,7 @@ const cookieConfig:NgcCookieConsentConfig = {
     NewsModule,
     CoreModule,
     CommentsModule,
-    RecaptchaModule,
-    NgcCookieConsentModule.forRoot(cookieConfig)
+    RecaptchaModule
   ],
   providers: [{
     provide: LOCALE_ID,
