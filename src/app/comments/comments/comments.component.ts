@@ -90,7 +90,6 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy {
     this.commentsService.rateComment(commentData).subscribe({
       next: (result: any) => {
         if (result) {
-          console.log(result);
           this.updateLikesAndDislikes(result.comment_id, result.likes, result.dislikes);
         }
       },
