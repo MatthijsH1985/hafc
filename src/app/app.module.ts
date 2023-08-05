@@ -48,11 +48,32 @@ import {CompetitionModule} from "./competition/competition.module";
 import {CommentsModule} from "./comments/comments.module";
 import {RecaptchaModule} from "ng-recaptcha";
 
+import {NgcCookieConsentConfig, NgcCookieConsentModule} from 'ngx-cookieconsent';
+
 
 register()
 registerLocaleData(localeNl);
 
+const cookieConfig:NgcCookieConsentConfig = {
+  cookie: {
+    domain: 'localhost' // or 'your.domain.com' // it is mandatory to set a domain, for cookies to work properly (see https://goo.gl/S2Hy2A)
+  },
+  palette: {
+    popup: {
+      background: '#000'
+    },
+    button: {
+      background: '#f1d600'
+    }
+  },
+  theme: 'edgeless',
+  type: 'opt-out'
+};
+
+// @ts-ignore
+// @ts-ignore
 @NgModule({
+  bootstrap: [AppComponent],
   declarations: [
     AppComponent,
     TeamComponent,
@@ -79,6 +100,10 @@ registerLocaleData(localeNl);
     NotFoundComponent,
     SinglePageComponent,
   ],
+  exports: [
+    HomepageComponent,
+    CommentsModule,
+  ],
   imports: [
     CommonModule,
     AppRoutingModule,
@@ -93,11 +118,8 @@ registerLocaleData(localeNl);
     NewsModule,
     CoreModule,
     CommentsModule,
-    RecaptchaModule
-  ],
-  exports: [
-    HomepageComponent,
-    CommentsModule
+    RecaptchaModule,
+    NgcCookieConsentModule.forRoot(cookieConfig)
   ],
   providers: [{
     provide: LOCALE_ID,
@@ -111,7 +133,6 @@ registerLocaleData(localeNl);
     JwtHelperService, {
       provide: JWT_OPTIONS, useValue: JWT_OPTIONS
     }],
-  bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

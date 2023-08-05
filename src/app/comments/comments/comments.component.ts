@@ -11,8 +11,9 @@ import {
   SimpleChanges
 } from '@angular/core';
 import {Subscription} from "rxjs";
-import {faCheck, faBell} from "@fortawesome/free-solid-svg-icons";
+import {faCheck, faBell, faArrowDown, faArrowUp} from "@fortawesome/free-solid-svg-icons";
 import {CommentsService} from "../services/comments.service";
+import {AuthService} from "../../services/auth/auth-service";
 
 
 @Component({
@@ -31,6 +32,8 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy {
   loadingComments: boolean = true;
   noCommentsLoaded = true;
   faCheck = faCheck;
+  faArrowDown = faArrowDown;
+  faArrowUp = faArrowUp;
   commentPage: number = 1;
   faBell = faBell;
   newCommentCount: number = 0;
@@ -43,10 +46,14 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy {
     this.isNewCommentsButtonVisible(winScroll);
   }
 
-  constructor(private commentsService: CommentsService, private changeDetectorRef: ChangeDetectorRef, @Inject(PLATFORM_ID) private platformId: object) {
+  constructor(private commentsService: CommentsService, private authService: AuthService, private changeDetectorRef: ChangeDetectorRef, @Inject(PLATFORM_ID) private platformId: object) {
     this.commentsService.newCommentAdded$.subscribe((newComment) => {
       this.comments.unshift(newComment);
     });
+  }
+
+  isAuthenticated() {
+    return this.authService.isAuthenticated()
   }
 
   isNewCommentsButtonVisible(scrollHeight: number): void {
@@ -55,6 +62,42 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnInit() {
     this.getComments(1);
+  }
+
+  validateRating(rating: number): number {
+    return rating === 1 ? 1 : -1;
+  }
+
+  onRateComment(score: number, comment: any) {
+    const validatedScore = this.validateRating(score);
+    const commentData = JSON.stringify( {
+      comment_id: comment.id,
+      author_id: this.authService.getUserID(),
+      like_dislike: validatedScore
+    });
+    this.rateComment(commentData);
+  }
+
+  updateLikesAndDislikes(commentId: number, likes: number, dislikes: number) {
+    const comment = this.comments.find((c: any) => c.id === commentId);
+    if (comment) {
+      comment.likes = likes;
+      comment.dislikes = dislikes;
+    }
+  }
+
+  rateComment(commentData: any) {
+    this.commentsService.rateComment(commentData).subscribe({
+      next: (result: any) => {
+        if (result) {
+          console.log(result);
+          this.updateLikesAndDislikes(result.comment_id, result.likes, result.dislikes);
+        }
+      },
+      error: error => {
+        this.loading = false;
+      }
+    });
   }
 
   checkForNewComments() {
@@ -103,6 +146,7 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy {
       next: comments => {
         // const newComments = comments.filter((comment: any) => !this.comments.some((existingComment: any) => existingComment.id === comment.id));
         // this.comments.unshift(...newComments);
+
         for (let i = 0; i < comments.length; i++) {
           this.comments.push(comments[i]);
         }

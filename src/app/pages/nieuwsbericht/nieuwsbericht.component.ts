@@ -47,6 +47,7 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy {
     private toast: ToastrService,
     private viewportScroller: ViewportScroller,
     private metaService: MetaService,
+    @Inject(PLATFORM_ID) private platformId: object
   ) {
   }
 

@@ -173,7 +173,15 @@ body {
   &.button-sm {
     font-size: .85rem;
   }
+}
 
+button {
+  &.like-dislike-button {
+    &:hover {
+      @apply scale-125
+    }
+    @apply p-2 inline-block
+  }
 }
 
 .news-container {

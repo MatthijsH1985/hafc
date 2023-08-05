@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Observable, Subject} from 'rxjs';
+import {Observable, of, Subject} from 'rxjs';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {ConfigService} from "../../core/services/config.service";
 import {AuthService} from "../../services/auth/auth-service";
@@ -45,6 +45,14 @@ export class CommentsService {
       return this.http.post<Config[]>(environment.apiUrl + '/comments?author=' + this.authService.getUserID(), comment, this.httpOptionsLoggedIn);
     }
     return this.http.post<Config[]>(environment.apiUrl + '/comments', comment, this.httpOptions);
+  }
+
+  rateComment(commentData: any): Observable<Config[]> {
+    this.authService.isAuthenticated()
+    if (this.authService.isAuthenticated()) {
+      return this.http.post<Config[]>(environment.apiUrl + '/mumba/comment-like/', commentData, this.httpOptionsLoggedIn);
+    }
+    return of([]);
   }
 
   getComments(post:any, page = 1, order = 'desc'): Observable<Config[]> {
