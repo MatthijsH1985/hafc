@@ -27,6 +27,10 @@ export class UserService {
     return this.http.post<Config[]>(`${this.userServiceUrl}/`  + 'create/', user, this.httpOptions);
   }
 
+  validateKey(key: any) {
+    return this.http.post<Config[]>(`${this.userServiceUrl}/`  + 'verify-account/', key, this.httpOptions);
+  }
+
   forgetPassWord(userEmail: any) {
     return this.http.post<Config[]>(`${this.userServiceUrl}` + 'bdpwr/v1/reset-password/', userEmail, this.httpOptions);
   }

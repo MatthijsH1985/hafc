@@ -47,6 +47,7 @@ import {CoreModule} from "./core/core.module";
 import {CompetitionModule} from "./competition/competition.module";
 import {CommentsModule} from "./comments/comments.module";
 import {RecaptchaModule} from "ng-recaptcha";
+import {VerifyAccountComponent} from "./pages/account/verify-account/verify-account.component";
 
 
 register()
@@ -75,6 +76,7 @@ registerLocaleData(localeNl);
     UserConfigComponent,
     UserConfigEditableComponent,
     RegisterComponent,
+    VerifyAccountComponent,
     SpecialsComponent,
     TeamstatsComponent,
     PasswordResetComponent,
