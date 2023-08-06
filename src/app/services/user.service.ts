@@ -28,7 +28,7 @@ export class UserService {
   }
 
   validateKey(key: any) {
-    return this.http.post<Config[]>(`${this.userServiceUrl}/`  + 'verify-account/', key, this.httpOptions);
+    return this.http.get<Config[]>(`${this.userServiceUrl}/verify-account/${key}`, this.httpOptions);
   }
 
   forgetPassWord(userEmail: any) {
