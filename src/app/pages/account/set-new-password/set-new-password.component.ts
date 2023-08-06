@@ -36,7 +36,6 @@ export class SetNewPasswordComponent implements OnInit {
   }
 
   onResetPassword(payload: string) {
-    console.log(payload)
     this.userService.setUserPassword(payload).subscribe({
       next: (result: any) => {
         console.log(result);
