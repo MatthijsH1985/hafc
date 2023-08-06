@@ -50,7 +50,8 @@ import {AdsModule} from "../ads/ads.module";
     RoundNumberPipe,
     TransformTeamDataPipe,
     FontAwesomeModule,
-    AdsModule
+    AdsModule,
+    LoadingIndicatorComponent
   ],
   providers: [
     ConfigService,

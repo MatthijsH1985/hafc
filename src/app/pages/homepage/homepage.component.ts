@@ -7,6 +7,7 @@ import {AdsService} from "../../ads/services/ads.service";
 import {PostsService} from "../../news/services/posts.service";
 import {NewssliderComponent} from "../../news/newsslider/newsslider.component";
 import {MetaService} from "../../core/services/meta.service";
+import {LoadingIndicatorService} from "../../core/shared/loading-indicator/loading-indicator.service";
 
 @Component({
   selector: 'app-homepage',
@@ -25,12 +26,21 @@ export class HomepageComponent implements OnInit {
               private viewportScroller: ViewportScroller,
               private metaService: MetaService,
               private injector: Injector,
+              private loadingIndicatorService: LoadingIndicatorService,
               private route: ActivatedRoute,
               @Inject('isBrowser') @Inject(PLATFORM_ID) private platformId: Object) {
   }
 
   get isBrowser() {
     return isPlatformBrowser(this.platformId);
+  }
+
+  showLoading(): void {
+    this.loadingIndicatorService.setLoading(true);
+  }
+
+  hideLoading(): void {
+    this.loadingIndicatorService.setLoading(false);
   }
 
   get newssliderComponent() {

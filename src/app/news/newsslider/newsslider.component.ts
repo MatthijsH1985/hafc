@@ -13,6 +13,7 @@ import {RouterModule} from "@angular/router";
 import {SwiperDirective} from "../../core/shared/slider.directive";
 import {PostsService} from "../services/posts.service";
 import {Subscription} from "rxjs";
+import {LoadingIndicatorService} from "../../core/shared/loading-indicator/loading-indicator.service";
 
 @Component({
   selector: 'app-newsslider',
@@ -63,6 +64,7 @@ export class NewssliderComponent implements AfterViewInit {
 
   constructor(
     private postsService: PostsService,
+    private loadingIndicatorService: LoadingIndicatorService,
     @Inject('isBrowser') @Inject(PLATFORM_ID) private platformId: Object,
     @Inject('isBrowser') private isBrowser: boolean
   ) {
@@ -71,6 +73,14 @@ export class NewssliderComponent implements AfterViewInit {
 
   ngOnInit() {
     this.getPosts();
+  }
+
+  showLoading(): void {
+    this.loadingIndicatorService.setLoading(true);
+  }
+
+  hideLoading(): void {
+    this.loadingIndicatorService.setLoading(false);
   }
 
   getPosts(): void {

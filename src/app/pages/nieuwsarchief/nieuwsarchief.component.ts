@@ -11,7 +11,7 @@ import {PostsService} from "../../news/services/posts.service";
 })
 export class NieuwsarchiefComponent implements OnInit{
   posts: any = [];
-  loading = true;
+  loading = false;
   @Output() searchTerms: any;
   reloadItems: boolean = false;
   postsSub: Subscription | undefined;

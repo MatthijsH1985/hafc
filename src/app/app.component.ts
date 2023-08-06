@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ChildrenOutletContexts} from "@angular/router";
 import {slideInAnimation} from "./core/shared/animations";
 import {Subscription} from "rxjs";
+import {LoadingIndicatorService} from "./core/shared/loading-indicator/loading-indicator.service";
 
 @Component({
   selector: 'app-root',
@@ -22,9 +23,15 @@ export class AppComponent implements OnInit, OnDestroy{
   private revokeChoiceSubscription!: Subscription;
   private noCookieLawSubscription!: Subscription;
 
-  constructor(){}
+  public loading: boolean = false;
+
+  constructor(private loadingIndicatorService: LoadingIndicatorService ){}
 
   ngOnInit() {
+
+    this.loadingIndicatorService.loading$.subscribe((loading) => {
+      this.loading = loading;
+    });
 
     // this.popupOpenSubscription = this.ccService.popupOpen$.subscribe(
     //   (data: any) => {

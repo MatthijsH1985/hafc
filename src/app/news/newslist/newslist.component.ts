@@ -1,6 +1,7 @@
 import {Component, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {Subscription} from "rxjs";
 import {PostsService} from "../services/posts.service";
+import {LoadingIndicatorService} from "../../core/shared/loading-indicator/loading-indicator.service";
 
 @Component({
   selector: 'app-newslist',
@@ -16,7 +17,15 @@ export class NewslistComponent implements OnInit {
   errorMessage: any;
   posts: any = [];
 
-  constructor(private postsService: PostsService) {
+  constructor(private postsService: PostsService, private loadingIndicatorService: LoadingIndicatorService) {
+  }
+
+  showLoading(): void {
+    this.loadingIndicatorService.setLoading(true);
+  }
+
+  hideLoading(): void {
+    this.loadingIndicatorService.setLoading(false);
   }
 
   ngOnInit() {

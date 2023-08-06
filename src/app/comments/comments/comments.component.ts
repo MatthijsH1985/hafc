@@ -106,11 +106,9 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy {
       this.commentsCountSub = this.commentsService.getCommentsCount(this.postId).subscribe({
         next: (data: any) => {
           const commentCount = data.count;
-          console.log('Totaal aantal reacties: ' + commentCount);
 
           // Bereken het aantal nieuwe reacties
           const newCommentCount = commentCount - this.initialCommentCount;
-          console.log('Op te halen reacties: ' + newCommentCount);
 
           // Update this.newCommentCount met het nieuwe aantal
           this.newCommentCount = newCommentCount;
@@ -131,7 +129,6 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy {
     this.commentPage = 1;
     this.getComments(1);
     this.newCommentCount = 0;
-    console.log(this.newCommentCount);
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -149,7 +146,6 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy {
         for (let i = 0; i < comments.length; i++) {
           this.comments.push(comments[i]);
         }
-        console.log(this.comments);
         this.loadingComments = false;
         this.noCommentsLoaded = false;
         this.commentPage++;

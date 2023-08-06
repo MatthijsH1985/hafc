@@ -14,6 +14,7 @@ import { faComment, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 import {PostsService} from "../../news/services/posts.service";
 import {MetaService} from "../../core/services/meta.service";
+import {LoadingIndicatorService} from "../../core/shared/loading-indicator/loading-indicator.service";
 
 @Component({
   selector: 'app-nieuwsbericht',
@@ -47,15 +48,24 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy {
     private toast: ToastrService,
     private viewportScroller: ViewportScroller,
     private metaService: MetaService,
+    private loadingIndicatorService: LoadingIndicatorService,
     @Inject(PLATFORM_ID) private platformId: object
   ) {
   }
 
   ngOnInit() {
-    this.loading = true;
+    this.hideLoading();
     this.post = this.route.snapshot.data['post'];
     this.updateMetaTags(this.post);
     this.viewportScroller.scrollToPosition([0,0]);
+  }
+
+  showLoading(): void {
+    this.loadingIndicatorService.setLoading(true);
+  }
+
+  hideLoading(): void {
+    this.loadingIndicatorService.setLoading(false);
   }
 
   isButtonVisible(scrollHeight: number): void {

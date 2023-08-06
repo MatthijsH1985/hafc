@@ -11,7 +11,6 @@ export class PostResolver implements Resolve<any> {
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
     const postId = route.paramMap.get('id');
-
     return this.postService.getPost(postId);
   }
 }
