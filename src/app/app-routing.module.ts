@@ -29,6 +29,7 @@ import {ResultsComponent} from "./competition/results/results.component";
 import {StandComponent} from "./competition/stand/stand.component";
 import {ProgrammaComponent} from "./competition/programma/programma.component";
 import {Competitioncomponent} from "./competition/competition/competitioncomponent";
+import {PostsResolver} from "./news/resolvers/posts-resolver.service";
 const routes: Routes = [
 
   {
@@ -99,7 +100,10 @@ const routes: Routes = [
   },
   {
     component: NieuwsarchiefComponent,
-    path: 'nieuws'
+    path: 'nieuws',
+    resolve: {
+      posts: PostsResolver
+    }
   },
   {
     component: AccountComponent,

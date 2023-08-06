@@ -1,6 +1,6 @@
 import {Component, OnInit, Output} from '@angular/core';
 import {catchError, of, Subscription} from "rxjs";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {PostsService} from "../../news/services/posts.service";
 
@@ -21,12 +21,13 @@ export class NieuwsarchiefComponent implements OnInit{
     searchTerm: new FormControl('', [Validators.required])
   });
 
-  constructor(private postsService: PostsService, private router: Router) {
+  constructor(private postsService: PostsService, private route: ActivatedRoute, private router: Router) {
 
   }
 
   ngOnInit() {
-    this.getPosts();
+    this.posts = this.route.snapshot.data['posts'];
+    console.log(this.posts);
   }
 
   getPosts() {
