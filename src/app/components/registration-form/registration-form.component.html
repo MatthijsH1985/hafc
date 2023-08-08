@@ -1,7 +1,7 @@
-<form [formGroup]="userFormData" (ngSubmit)="onSubmitCreateUserForm(userFormData)">
+<form [formGroup]="userFormData" (ngSubmit)="onSubmitCreateUserForm(userFormData)" *ngIf="!submitted">
   <div class="mb-4">
     <label for="user_name">Gebruikersnaam</label>
-    <input type="text" value="Testje123" class="border border-gray-800 rounded-md w-full " class="dark:text-white" formControlName="user_name" placeholder="Kies een gebruikersnaam" id="user_name" />
+    <input type="text" class="border border-gray-800 rounded-md w-full " class="dark:text-white" formControlName="user_name" placeholder="Kies een gebruikersnaam" id="user_name" />
   </div>
   <div class="mb-4">
     <label for="user_nickname">Weergave naam</label>
@@ -40,3 +40,8 @@
   {{ errorMessage }}
 </div>
 
+<div *ngIf="submitted">
+  <p class="dark:text-white">
+    {{ feedbackMessage }}
+  </p>
+</div>

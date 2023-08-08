@@ -14,11 +14,9 @@ export class RegistrationFormComponent implements OnInit {
   errorMessage: string = '';
   feedbackMessage: string = ''
   token: string|undefined;
-
+  submitted: boolean = false;
 
   constructor(private userService: UserService, private router: Router) {
-    console.log('Constructor called.'); // Voeg deze log toe
-
     this.token = undefined;
     this.userFormData = new FormGroup({
       user_name: new FormControl('', Validators.required),
@@ -51,7 +49,6 @@ export class RegistrationFormComponent implements OnInit {
     const password = control.get('user_password')?.value;
     const passwordRepeat = control.get('user_password_repeat')?.value;
 
-    // Alleen controleren als beide velden zijn ingevuld
     if (password !== null && passwordRepeat !== null && password !== passwordRepeat) {
       control.get('user_password_repeat')?.setErrors({ 'passwordMismatch': true });
       return { 'passwordMismatch': true };
@@ -59,7 +56,6 @@ export class RegistrationFormComponent implements OnInit {
       control.get('user_password_repeat')?.setErrors(null);
     }
 
-    // Voer de andere validaties uit (minimale lengte, nummer, speciaal karakter)
     const hasNumber = /\d/.test(password);
     const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
 
@@ -75,8 +71,6 @@ export class RegistrationFormComponent implements OnInit {
 
 
   onSubmitCreateUserForm(form: FormGroup) {
-    console.log('Form submitted.', form.valid, form.value); // Voeg deze log toe
-
     const formData = JSON.stringify({
       user_login: form.value.user_name,
       user_nicename: form.value.user_nickname,
@@ -85,19 +79,16 @@ export class RegistrationFormComponent implements OnInit {
       last_name: form.value.user_lastname,
       user_password: form.value.user_password
     })
-    this.userService.createUser(formData).pipe(
-      catchError((error: any) => {
-        this.errorMessage = error.error.message;
-        return of(null);
-      })
-    ).subscribe((result:any) => {
-      if (result) {
-        this.feedbackMessage = 'Gelukt, je bent succesvol geregistreerd. je kunt nu inloggen';
-        setTimeout(() => {
-          this.router.navigateByUrl('/account/login');
-        }, 3000)
+    this.userService.createUser(formData).subscribe({
+      next: (result: any) => {
+        if (result) {
+          this.feedbackMessage = 'Je hebt een e-mail ontvangen waarin je je e-mailadres kunt bevestigen. Wanneer je dit gedaan hebt, kun je inloggen.';
+          this.submitted = true;
+        }
+      },
+      error: (error: any) => {
+        console.log(error);
       }
     });
   }
-
 }
