@@ -11,7 +11,7 @@ import {
   SimpleChanges
 } from '@angular/core';
 import {Subscription} from "rxjs";
-import {faCheck, faBell, faArrowDown, faArrowUp} from "@fortawesome/free-solid-svg-icons";
+import {faCheck, faBell, faArrowDown, faArrowUp, faExclamationTriangle} from "@fortawesome/free-solid-svg-icons";
 import {CommentsService} from "../services/comments.service";
 import {AuthService} from "../../services/auth/auth-service";
 
@@ -34,10 +34,12 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy {
   faCheck = faCheck;
   faArrowDown = faArrowDown;
   faArrowUp = faArrowUp;
+  faExclamationTriangle = faExclamationTriangle;
   commentPage: number = 1;
   faBell = faBell;
   newCommentCount: number = 0;
   reloadButtonVisible: any;
+  modalReportOpen: boolean = false;
    @Input() initialCommentCount: number = 0;
 
   @HostListener('window:scroll', ['$event']) onScroll(event: any) {
@@ -50,6 +52,14 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy {
     this.commentsService.newCommentAdded$.subscribe((newComment) => {
       this.comments.unshift(newComment);
     });
+  }
+
+  onModalClose() {
+    this.modalReportOpen = false;
+  }
+
+  onReportModalOpen() {
+    this.modalReportOpen = true;
   }
 
   isAuthenticated() {
@@ -119,6 +129,10 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy {
         },
       });
     }
+  }
+
+  onAddReport(id: any) {
+    this.modalReportOpen = true;
   }
 
   closeNewCommentsSubscription() {

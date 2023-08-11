@@ -80,7 +80,6 @@ export class ModalCommentComponent {
   }
 
   postComment(commentData: any) {
-
     this.commentService.postComment(commentData).subscribe({
       next: result => {
         if (result) {

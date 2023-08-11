@@ -21,7 +21,6 @@ import {SessionStorage} from "./services/session-storage";
 import {MemoryStorage} from "./services/memory-storage";
 import {LocalStorage} from "./services/local-storage";
 import {MetaService} from "./services/meta.service";
-import {CommentsModule} from "../comments/comments.module";
 import {AdsModule} from "../ads/ads.module";
 
 @NgModule({
