@@ -12,7 +12,6 @@
           <div class="hidden align-middle dark:text-white md:table-cell" *ngIf="!compact"></div>
           <div class="hidden align-middle dark:text-white md:table-cell" *ngIf="!compact"></div>
           <div class="hidden align-middle dark:text-white md:table-cell" *ngIf="!compact"></div>
-          <div class="table-cell align-middle dark:text-white" *ngIf="!compact"></div>
           <div class="table-cell align-middle dark:text-white"></div>
         </div>
       </div>
@@ -45,9 +44,6 @@
           </div>
           <div class="hidden md:table-cell dark:text-white py-2 align-middle" *ngIf="!compact">
             {{ getDetailValue(club, 134) }}
-          </div>
-          <div class="table-cell py-2 dark:text-white align-middle" *ngIf="!compact">
-            {{ calculateGoalDifference(getDetailValue(club, 135), getDetailValue(club, 136)) }}
           </div>
           <div class="table-cell dark:text-white py-2 align-middle">
             {{ club?.points }}
