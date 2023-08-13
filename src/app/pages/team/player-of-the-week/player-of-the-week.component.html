@@ -1,10 +1,10 @@
 
 <div class="group flex md:flex-col" *ngIf="playerOfTheWeek">
-  <div class="pl-4 pt-4 pr-4 player-of-the-week-background">
+  <div class="pl-4 pt-4 pr-4 rounded-t-md bg-white dark:bg-black">
     <img class="block w-[200px] md:w-full" [src]="playerOfTheWeek?.better_featured_image.source_url" alt="{{ playerOfTheWeek?.acf?.voornaam + ' ' + playerOfTheWeek?.acf?.achternaam }}" />
   </div>
-  <div class="bg-white flex-1 p-4 flex flex-col justify-end">
-    <h4 class="block mb-2 text-black text-xl">Player of the week</h4>
+  <div class="rounded-b-md bg-white dark:bg-gray-800 flex-1 p-4 flex flex-col justify-end">
+    <h4 class="block mb-2 text-black text-xl dark:text-white">Player of the week</h4>
     <h5 class="text-blue-500 text-2xl">{{ playerOfTheWeek?.acf?.voornaam }} {{ playerOfTheWeek?.acf?.achternaam }}</h5>
   </div>
 </div>
