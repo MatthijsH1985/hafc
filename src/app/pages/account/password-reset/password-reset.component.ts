@@ -75,7 +75,7 @@ constructor(private userService: UserService, private viewportScroller: Viewport
     });
     this.userService.forgetPassWord(email).subscribe({
       next: (result: any) => {
-        console.log(result);
+        // console.log(result);
         this.message = 'Moment, je wordt automatisch doorgestuurd.';
         setTimeout(() => {
           return this.router.navigate(['/account', 'set-new-password']);

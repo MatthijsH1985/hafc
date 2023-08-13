@@ -20,7 +20,7 @@ export class VerifyAccountComponent implements OnInit {
       if (verificationKey) {
         this.userService.validateKey(verificationKey).subscribe({
           next: (response: any) => {
-            console.log(response);
+            // console.log(response);
             this.message = 'Je account is geverifieerd. Je kunt nu inloggen.';
           },
           error: (error: any) => {

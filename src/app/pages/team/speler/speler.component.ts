@@ -38,8 +38,6 @@ export class SpelerComponent implements OnInit {
       next: (data) => {
         this.playerStats = data.data.stats.data[0];
         this.playerInfo = data.data;
-        console.log(this.playerStats);
-        console.log(this.playerInfo);
         this.loading = false;      },
       error: (error) => {
         console.log(error);

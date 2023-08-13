@@ -42,7 +42,6 @@ export class StandComponent implements OnInit, OnDestroy {
       next: (data: any) => {
         this.loading = false;
         this.ranking = data.data;
-        console.log(data);
         if (this.compact) {
           const club = 'Heracles Almelo';
           this.ranking = this.selectieRijen(this.ranking, club);

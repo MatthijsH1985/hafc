@@ -16,7 +16,7 @@ export class PlayerOfTheWeekComponent implements OnInit, OnDestroy{
     this.playerOfTheWeekSub = this.playersService.getPlayerOfTheWeek().subscribe({
       next: (player: any) => {
         this.playerOfTheWeek = player[0];
-        console.log(this.playerOfTheWeek)
+        // console.log(this.playerOfTheWeek)
       },
       error: (error) => {
         return error;
