@@ -45,19 +45,30 @@ export class VolgendeWedstrijdComponent implements OnInit{
       next: (data: any) => {
         const { rounds } = data.data[0];
         this.teamFixtures =  rounds;
-        if (this.teamFixtures.length > 0) {
-          this.teamFixtures.sort((a: any, b: any) => {
+
+        const upcomingFixtures = this.teamFixtures.filter((round: any) => {
+          const firstFixture = round.fixtures[0];
+          const fixtureDate = new Date(firstFixture.starting_at);
+          const currentDate = new Date();
+          return !firstFixture.finished && fixtureDate > currentDate;
+        });
+
+        if (upcomingFixtures.length > 0) {
+          upcomingFixtures.sort((a: any, b: any) => {
             const dateA = new Date(a.fixtures[0].starting_at);
             const dateB = new Date(b.fixtures[0].starting_at);
             return dateA.getTime() - dateB.getTime();
           });
+
+          this.nextMatch = upcomingFixtures[0].fixtures[0];
+
+          this.participantHome = this.generateUrlFriendlyString(this.nextMatch.participants[0].name);
+          this.participantAway = this.generateUrlFriendlyString(this.nextMatch.participants[1].name);
+          this.url = this.participantHome + '-' + this.participantAway;
+
         }
 
-        this.participantHome = this.generateUrlFriendlyString(this.teamFixtures[0].fixtures[0].participants[0].name);
-        this.participantAway = this.generateUrlFriendlyString(this.teamFixtures[0].fixtures[0].participants[1].name);
-        this.url = this.participantHome + '-' + this.participantAway;
 
-        this.nextMatch = this.teamFixtures[0];
         this.loading = false;
       },
       error: (error: any) => {
