@@ -15,6 +15,6 @@ export class StandingsService{
   constructor(private http: HttpClient) {}
 
   getStandings(seasonId: any): Observable<any> {
-    return this.http.get<Config[]>(environment.customApi + '/standings/seasons/21730?include=participant;details' );
+    return this.http.get<Config[]>(environment.customApi + '/standings/seasons/21730?include=league;participant;details' );
   }
 }

@@ -33,6 +33,7 @@ export class StandComponent implements OnInit, OnDestroy {
       next: (data: any) => {
         this.loading = false;
         this.ranking = data.data;
+
         if (this.compact) {
           const club = 'Heracles Almelo';
           this.ranking = this.selectieRijen(this.ranking, club);
@@ -44,9 +45,15 @@ export class StandComponent implements OnInit, OnDestroy {
     });
   }
 
-  getDetailValue(club: any, code: string): number {
-    const detail = club?.details?.find((d: any) => d?.type?.code === code);
-    return detail?.value || 0;
+  getDetailValue(club: any, code: number): number {
+
+    const detail = club.details.find((detail: any) => detail.type_id === code);
+
+    if (detail) {
+      return detail.value; // Of een ander veld afhankelijk van wat je wilt weergeven
+    } else {
+      return 0; // Of een andere passende standaardwaarde
+    }
   }
 
   calculateGoalDifference(goalsFor: number, goalsAgainst: number): any {
