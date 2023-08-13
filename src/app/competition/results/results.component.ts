@@ -14,7 +14,7 @@ import {MetaService} from "../../core/services/meta.service";
 export class ResultsComponent implements OnInit {
   loading: boolean = true;
   teamId = 1403;
-  teamFixtures: any = [];
+  teamResults: any = [];
 
   constructor(private fixturesService: FixturesService, private metaService: MetaService, private title: Title, private titleService: Title, private viewportScroller: ViewportScroller, private router: Router) {
 
@@ -30,20 +30,16 @@ export class ResultsComponent implements OnInit {
     this.fixturesService.getFixtures(this.teamId).subscribe({
       next: (data: any) => {
         const { rounds } = data.data[0];
-        this.teamFixtures =  rounds;
+        this.teamResults =  rounds;
         this.loading = false;
         this.viewportScroller.scrollToPosition([0, 0]);
-
-        this.teamFixtures = this.teamFixtures.filter((fixture: any) => fixture.finished);
-
-        if (this.teamFixtures.length > 0) {
-          this.teamFixtures.sort((a: any, b: any) => {
-            const dateA = new Date(a.fixtures[0].starting_at);
-            const dateB = new Date(b.fixtures[0].starting_at);
-            return dateA.getTime() - dateB.getTime();
-          });
-          console.log(this.teamFixtures);
-        }
+        this.teamResults = this.teamResults.filter((round: any) => round.fixtures[0].result_info);
+        this.teamResults.sort((a: any, b: any) => {
+          const dateA = new Date(a.fixtures[0].starting_at);
+          const dateB = new Date(b.fixtures[0].starting_at);
+          return dateA.getTime() - dateB.getTime();
+        });
+        console.log(this.teamResults)
         this.viewportScroller.scrollToPosition([0, 0]);
       },
       error: (error: any) => {
