@@ -17,6 +17,15 @@ export class StandComponent implements OnInit, OnDestroy {
   ranking: any = [];
   loading = true;
   teamId: number = 0;
+  detailCodeMapping: any = {
+    matchesPlayed: 129,
+    matchesWon: 130,
+    matchesDrawn: 131,
+    matchesLost: 132,
+    goalsScored: 133,
+    goalsConceded: 134,
+    // Voeg hier andere mappings toe zoals nodig
+  };
   @Input('compact') compact: boolean = false;
 
   constructor(private standingsService: StandingsService, private metaService: MetaService, private title: Title, private router: Router, private titleService: Title, private viewportScroller: ViewportScroller) {
@@ -33,7 +42,7 @@ export class StandComponent implements OnInit, OnDestroy {
       next: (data: any) => {
         this.loading = false;
         this.ranking = data.data;
-
+        console.log(data);
         if (this.compact) {
           const club = 'Heracles Almelo';
           this.ranking = this.selectieRijen(this.ranking, club);
@@ -45,16 +54,22 @@ export class StandComponent implements OnInit, OnDestroy {
     });
   }
 
-  getDetailValue(club: any, code: number): number {
+  getDetailValue(club: any, code: string): number {
 
-    const detail = club.details.find((detail: any) => detail.type_id === code);
+    const detailCode = this.detailCodeMapping[code]; // Haal de code op uit de mapping
 
-    if (detail) {
-      return detail.value; // Of een ander veld afhankelijk van wat je wilt weergeven
-    } else {
-      return 0; // Of een andere passende standaardwaarde
+    if (detailCode && club.details) {
+      const detail = club.details.find((detail: any) => detail.type_id === detailCode);
+
+      if (detail) {
+        return detail.value;
+      }
     }
+
+    return 0;
   }
+
+
 
   calculateGoalDifference(goalsFor: number, goalsAgainst: number): any {
     return goalsFor - goalsAgainst

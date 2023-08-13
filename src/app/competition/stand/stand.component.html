@@ -28,22 +28,22 @@
             {{ club?.participant?.name }}
           </div>
           <div class="table-cell left-auto dark:text-white py-2 align-middle">
-            {{ getDetailValue(club, 129) }}
+            {{ getDetailValue(club, 'matchesPlayed') }}
           </div>
           <div class="hidden md:table-cell dark:text-white py-2 align-middle" *ngIf="!compact">
-            {{ getDetailValue(club, 130) }}
+            {{ getDetailValue(club, 'matchesWon') }}
           </div>
           <div class="hidden md:table-cell dark:text-white py-2 align-middle" *ngIf="!compact">
-            {{ getDetailValue(club, 131) }}
+            {{ getDetailValue(club, 'matchesDrawn') }}
           </div>
           <div class="hidden md:table-cell dark:text-white py-2 align-middle" *ngIf="!compact">
-            {{ getDetailValue(club, 132) }}
+            {{ getDetailValue(club, 'matchesLost') }}
           </div>
           <div class="hidden md:table-cell dark:text-white py-2 align-middle" *ngIf="!compact">
-            {{ getDetailValue(club, 133) }}
+            {{ getDetailValue(club, 'goalsScored') }}
           </div>
           <div class="hidden md:table-cell dark:text-white py-2 align-middle" *ngIf="!compact">
-            {{ getDetailValue(club, 134) }}
+            {{ getDetailValue(club, 'goalsConceded') }}
           </div>
           <div class="table-cell dark:text-white py-2 align-middle">
             {{ club?.points }}
