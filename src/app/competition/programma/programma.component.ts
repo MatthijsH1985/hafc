@@ -33,18 +33,21 @@ export class ProgrammaComponent implements OnInit{
       next: (data: any) => {
         const { rounds } = data.data[0];
         this.teamFixtures =  rounds;
-        this.loading = false;
-        this.viewportScroller.scrollToPosition([0, 0]);
 
-        this.teamFixtures = this.teamFixtures.filter((fixture: any) => !fixture.finished);
+        const upcomingFixtures = this.teamFixtures.filter((round: any) => {
+          const firstFixture = round.fixtures[0];
+          const fixtureDate = new Date(firstFixture.starting_at);
+          const currentDate = new Date();
+          return !firstFixture.finished && fixtureDate > currentDate;
+        });
 
-        if (this.teamFixtures.length > 0) {
-          // Sorteer de fixtures op basis van het "starting_at" veld binnen het geneste "fixtures" object
-          this.teamFixtures.sort((a: any, b: any) => {
+        if (upcomingFixtures.length > 0) {
+          upcomingFixtures.sort((a: any, b: any) => {
             const dateA = new Date(a.fixtures[0].starting_at);
             const dateB = new Date(b.fixtures[0].starting_at);
             return dateA.getTime() - dateB.getTime();
           });
+          this.teamFixtures = upcomingFixtures;
         }
       },
       error: (error: any) => {

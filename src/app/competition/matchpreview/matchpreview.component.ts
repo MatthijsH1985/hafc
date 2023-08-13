@@ -28,6 +28,8 @@ export class MatchpreviewComponent implements OnInit {
   teamFixtures: any;
   nextMatch: any;
   teamID = this.configService.config.teamID;
+  participantHome: string = '';
+  participantAway: string = '';
 
   @HostListener('window:scroll', ['$event']) onScroll(event: any) {
     const winScroll = event.target.documentElement.scrollTop || event.currentTarget.scrollTop || document.body.scrollTop;
@@ -62,15 +64,28 @@ export class MatchpreviewComponent implements OnInit {
       next: (data: any) => {
         const { rounds } = data.data[0];
         this.teamFixtures =  rounds;
-        if (this.teamFixtures.length > 0) {
-          this.teamFixtures.sort((a: any, b: any) => {
+
+        const upcomingFixtures = this.teamFixtures.filter((round: any) => {
+          const firstFixture = round.fixtures[0];
+          const fixtureDate = new Date(firstFixture.starting_at);
+          const currentDate = new Date();
+          return !firstFixture.finished && fixtureDate > currentDate;
+        });
+
+        if (upcomingFixtures.length > 0) {
+          upcomingFixtures.sort((a: any, b: any) => {
             const dateA = new Date(a.fixtures[0].starting_at);
             const dateB = new Date(b.fixtures[0].starting_at);
             return dateA.getTime() - dateB.getTime();
           });
+
+          this.nextMatch = upcomingFixtures[0].fixtures[0];
+
+          this.participantHome = this.generateUrlFriendlyString(this.nextMatch.participants[0].name);
+          this.participantAway = this.generateUrlFriendlyString(this.nextMatch.participants[1].name);
+
         }
 
-        this.nextMatch = this.teamFixtures[0];
         this.loading = false;
       },
       error: (error: any) => {
@@ -100,6 +115,10 @@ export class MatchpreviewComponent implements OnInit {
     const description = post.yoast_head_json.og_description;
     const image = post.better_featured_image.source_url;
     this.metaService.updateMetaTag(title, metaUrl, description, image);
+  }
+
+  generateUrlFriendlyString(str: string): string {
+    return str.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
   }
 
   addComment(comment: any) {
