@@ -68,11 +68,19 @@ export class StandComponent implements OnInit, OnDestroy {
     return 0;
   }
 
+  calculateGoalDifference(club: any, goalsScored: string, goalsConceded: string): any {
+    const detailCodeGoalsScored = this.detailCodeMapping[goalsScored];
+    const detailCodeGoalsConceded = this.detailCodeMapping[goalsConceded];
 
-
-  calculateGoalDifference(goalsFor: number, goalsAgainst: number): any {
-    return goalsFor - goalsAgainst
-    // return (goalDifference > 0 ? '+' + goalDifference : goalDifference);
+    if ((detailCodeGoalsScored || detailCodeGoalsConceded) && club.details) {
+      const detailGoalsScored = club.details.find((detail: any) => detail.type_id === detailCodeGoalsScored);
+      const detailGoalsConceded = club.details.find((detail: any) => detail.type_id === detailCodeGoalsConceded);
+      if (detailGoalsScored && detailGoalsConceded ) {
+        const goalDifference = detailGoalsScored.value - detailGoalsConceded.value;
+        return goalDifference;
+      }
+    }
+    return 0;
   }
 
   selectieRijen(ranking: any[], club: string): any[] {
