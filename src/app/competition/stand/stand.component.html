@@ -46,7 +46,7 @@
             {{ getDetailValue(club, 'goalsConceded') }}
           </div>
           <div class="table-cell dark:text-white py-2 align-middle">
-            {{ calculateGoalDifference(club, 'goalsScored', 'goalsConceded') }}
+            {{ calculateGoalDifference(club, 'goalsScored', 'goalsConceded') | positiveNumber }}
           </div>
           <div class="table-cell dark:text-white py-2 align-middle">
             {{ club?.points }}

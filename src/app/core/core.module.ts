@@ -23,6 +23,7 @@ import {LocalStorage} from "./services/local-storage";
 import {MetaService} from "./services/meta.service";
 import {CommentsModule} from "../comments/comments.module";
 import {AdsModule} from "../ads/ads.module";
+import {PositiveNumberPipe} from "./shared/positive-number/positive-number.pipe";
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import {AdsModule} from "../ads/ads.module";
     NavigationComponent,
     GenerateLogoUrlPipe,
     RoundNumberPipe,
+    PositiveNumberPipe,
     TransformTeamDataPipe,
     LoadingIndicatorComponent
   ],
@@ -48,6 +50,7 @@ import {AdsModule} from "../ads/ads.module";
     NavigationComponent,
     GenerateLogoUrlPipe,
     RoundNumberPipe,
+    PositiveNumberPipe,
     TransformTeamDataPipe,
     FontAwesomeModule,
     AdsModule,
