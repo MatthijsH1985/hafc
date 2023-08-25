@@ -38,13 +38,21 @@ export class SelectieComponent implements OnInit{
         this.groupPlayers(data);
         this.loading = false;
         this.keepers = this.team.Keeper;
-        this.keepers.sort((a:any, b:any) => a.acf.rugnummer.localeCompare(b.acf.rugnummer, {numeric: true, sensitivity: 'base'}));
+        if (this.keepers) {
+          this.keepers.sort((a:any, b:any) => a.acf.rugnummer.localeCompare(b.acf.rugnummer, {numeric: true, sensitivity: 'base'}));
+        }
         this.verdedigers = this.team.Verdediger;
-        this.verdedigers.sort((a:any, b:any) => Number(a.acf.rugnummer) - Number(b.acf.rugnummer));
+        if (this.verdedigers) {
+          this.verdedigers.sort((a:any, b:any) => Number(a.acf.rugnummer) - Number(b.acf.rugnummer));
+        }
         this.middenvelders = this.team.Middenvelder;
-        this.middenvelders.sort((a:any, b:any) => Number(a.acf.rugnummer) - Number(b.acf.rugnummer));
+        if (this.middenvelders) {
+          this.middenvelders.sort((a:any, b:any) => Number(a.acf.rugnummer) - Number(b.acf.rugnummer));
+        }
         this.aanvallers = this.team.Aanvaller;
-        this.aanvallers.sort((a:any, b:any) => Number(a.acf.rugnummer) - Number(b.acf.rugnummer));
+        if (this.aanvallers) {
+          this.aanvallers.sort((a:any, b:any) => Number(a.acf.rugnummer) - Number(b.acf.rugnummer));
+        }
       },
       error: error => {
         this.loading = false;
@@ -58,9 +66,5 @@ export class SelectieComponent implements OnInit{
       app.push(item);
       return result;
     }, {});
-  }
-
-  onViewPlayer(player:any) {
-    this.router.navigateByUrl(`team/${player.id}`);
   }
 }

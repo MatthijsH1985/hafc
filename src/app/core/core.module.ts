@@ -24,6 +24,7 @@ import {MetaService} from "./services/meta.service";
 import {CommentsModule} from "../comments/comments.module";
 import {AdsModule} from "../ads/ads.module";
 import {PositiveNumberPipe} from "./shared/positive-number/positive-number.pipe";
+import {TranslateModule} from "@ngx-translate/core";
 
 @NgModule({
   declarations: [
@@ -42,7 +43,7 @@ import {PositiveNumberPipe} from "./shared/positive-number/positive-number.pipe"
     FontAwesomeModule,
     RecaptchaModule,
     RecaptchaFormsModule,
-    RecaptchaV3Module
+    RecaptchaV3Module,
   ],
   exports: [
     HeaderComponent,

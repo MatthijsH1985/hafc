@@ -6,7 +6,7 @@
     <div *ngIf="keepers" class="mt-8">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-8 content-center">
         <div *ngFor="let keeper of keepers" class="flex content-center items-center justify-center">
-          <div class="flex flex-col group">
+          <a class="flex flex-col group" [routerLink]="[keeper.id, keeper.slug]">
             <div class="">
               <img [src]="keeper?.better_featured_image?.source_url" [alt]="keeper?.acf.voornaam + ' ' + keeper?.acf.achternaam"
                    *ngIf="keeper?.better_featured_image?.source_url; else showPlaceholder" class="group-hover:scale-110 transition-all"/>
@@ -25,14 +25,14 @@
                 <span class="">{{ keeper.acf.achternaam }}</span>
               </h3>
             </div>
-          </div>
+          </a>
         </div>
       </div>
     </div>
     <div *ngIf="verdedigers" class="mt-8">
       <div class="grid grid-cols-2 md:grid-cols-4  content-center flex justify-center">
         <div *ngFor="let verdediger of verdedigers">
-          <div class="group">
+          <div class="group" [routerLink]="[verdediger.id, verdediger.slug]">
             <div class="">
               <img [src]="verdediger?.better_featured_image?.source_url" [alt]="verdediger?.acf.voornaam + ' ' + verdediger?.acf.achternaam"
                    *ngIf="verdediger?.better_featured_image?.source_url; else showPlaceholder" class="group-hover:scale-110 transition-all" />
@@ -58,7 +58,7 @@
     <div *ngIf="middenvelders">
       <div class="grid grid-cols-2 md:grid-cols-4 ">
         <div *ngFor="let middenvelder of middenvelders">
-          <div class="group">
+          <div class="group" [routerLink]="[middenvelder.id, middenvelder.slug]">
             <div class="text-center">
               <img [src]="middenvelder.better_featured_image?.source_url" [alt]="middenvelder?.acf.voornaam + ' ' + middenvelder?.acf.achternaam"
                    *ngIf="middenvelder.better_featured_image?.source_url; else showPlaceholder" class="group-hover:scale-110 transition-all"/>
@@ -84,7 +84,7 @@
     <div *ngIf="aanvallers">
       <div class="grid grid-cols-2 md:grid-cols-4 ">
         <div *ngFor="let aanvaller of aanvallers">
-          <div class="group">
+          <div class="group" [routerLink]="[aanvaller.id, aanvaller.slug]">
             <div class="">
               <img [src]="aanvaller.better_featured_image?.source_url" [alt]="aanvaller?.acf.voornaam + ' ' + aanvaller?.acf.achternaam"
                    *ngIf="aanvaller.better_featured_image?.source_url; else showPlaceholder" class="group-hover:scale-110 transition-all"/>
