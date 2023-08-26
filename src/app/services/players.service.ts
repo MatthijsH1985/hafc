@@ -21,7 +21,7 @@ export class PlayersService {
   }
 
   getPlayers(): Observable<Config[]> {
-    return this.http.get<Config[]>(environment.apiUrl + '/spelers');
+    return this.http.get<Config[]>(environment.apiUrl + '/spelers?per_page=100');
   }
 
   getPlayer(playerId: number): Observable<Config[]> {
