@@ -46,6 +46,11 @@
 <div class="flex-1 text-right uppercase text-white menu-right">
   <nav class="hidden lg:block right-menu">
     <ul class="flex space-x-2 uppercase text-white justify-end">
+      <li>
+        <a class="button button-black flex" href="https://petjeaf.com/hafc" target="_blank">
+          <fa-icon [icon]="faBeer" class="mr-2"></fa-icon> Steun HAFC
+        </a>
+      </li>
       <li *ngIf="!isLoggedIn()">
         <a class="button  button-black flex" (click)="menuService.close()" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['account', 'register']">Registreer</a>
       </li>
