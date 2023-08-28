@@ -31,13 +31,15 @@ import {ProgrammaComponent} from "./competition/programma/programma.component";
 import {Competitioncomponent} from "./competition/competition/competitioncomponent";
 import {PostsResolver} from "./news/services/resolvers/posts-resolver.service";
 import {VerifyAccountComponent} from "./pages/account/verify-account/verify-account.component";
+import {LinksResolver} from "./core/services/resolvers/links.resolver";
 const routes: Routes = [
 
   {
     component: HomepageComponent,
     path: '',
     resolve: {
-      posts: PostsResolver
+      posts: PostsResolver,
+      links: LinksResolver
     }
   },
   {
@@ -48,7 +50,8 @@ const routes: Routes = [
     component: NieuwsberichtComponent,
     path: 'nieuws/:id/:title',
     resolve: {
-      post: PostResolver
+      post: PostResolver,
+      links: LinksResolver
     }
   },
   {

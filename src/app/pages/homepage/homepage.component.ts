@@ -15,6 +15,7 @@ import {PlayersService} from "../../services/players.service";
 export class HomepageComponent implements OnInit {
   posts: any = [];
   loading = true;
+  links: any;
   constructor(
               private titleService: Title,
               private playersService: PlayersService,
@@ -42,6 +43,7 @@ export class HomepageComponent implements OnInit {
     this.titleService.setTitle('HAFC - Wij zijn Heracles!');
     this.viewportScroller.scrollToPosition([0, 0]);
     this.posts = this.route.snapshot.data['post'];
+    this.links = this.route.snapshot.data['links'];
     this.metaService.setMetaTag('HAFC.nl - Wij Zij Heracles', 'HAFC.nl is de grootste Heracles community voor en door supporters');
   }
 
