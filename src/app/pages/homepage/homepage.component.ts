@@ -41,6 +41,7 @@ export class HomepageComponent implements OnInit {
   ngOnInit() {
     this.titleService.setTitle('HAFC - Wij zijn Heracles!');
     this.viewportScroller.scrollToPosition([0, 0]);
+    this.posts = this.route.snapshot.data['post'];
     this.metaService.setMetaTag('HAFC.nl - Wij Zij Heracles', 'HAFC.nl is de grootste Heracles community voor en door supporters');
   }
 

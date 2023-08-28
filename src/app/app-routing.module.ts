@@ -29,13 +29,16 @@ import {ResultsComponent} from "./competition/results/results.component";
 import {StandComponent} from "./competition/stand/stand.component";
 import {ProgrammaComponent} from "./competition/programma/programma.component";
 import {Competitioncomponent} from "./competition/competition/competitioncomponent";
-import {PostsResolver} from "./news/resolvers/posts-resolver.service";
+import {PostsResolver} from "./news/services/resolvers/posts-resolver.service";
 import {VerifyAccountComponent} from "./pages/account/verify-account/verify-account.component";
 const routes: Routes = [
 
   {
     component: HomepageComponent,
-    path: ''
+    path: '',
+    resolve: {
+      posts: PostsResolver
+    }
   },
   {
     component: SpecialsComponent,

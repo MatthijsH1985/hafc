@@ -17,7 +17,7 @@ export class PostsService {
 
   constructor(private http: HttpClient, private configService: ConfigService) {}
 
-  getPosts(page = 1, category = [3]): Observable<Config[]> {
+  getPosts(page = 1, category = [3, 812]): Observable<Config[]> {
     return this.http.get<Config[]>(environment.apiUrl + '/posts?page='+ page + '&per_page=12&categories=' + category + '', this.httpOptions);
   }
 

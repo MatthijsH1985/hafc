@@ -84,7 +84,7 @@ export class NewssliderComponent implements AfterViewInit {
   }
 
   getPosts(): void {
-    this.postsSub = this.postsService.getPosts().subscribe({
+    this.postsSub = this.postsService.getPosts(1, [3]).subscribe({
       next: (data: any) => {
         for (let i = 0; i < data.length; i++) {
           this.posts.push(data[i]);
