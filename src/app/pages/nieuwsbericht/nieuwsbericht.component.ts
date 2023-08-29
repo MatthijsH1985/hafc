@@ -60,6 +60,7 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy {
     this.links = this.route.snapshot.data['links'];
     this.updateMetaTags(this.post);
     this.viewportScroller.scrollToPosition([0,0]);
+    console.log(this.post);
   }
 
   showLoading(): void {
