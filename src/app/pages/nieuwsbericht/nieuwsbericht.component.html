@@ -29,11 +29,11 @@
   </div>
   <div class="flex m-auto">
     <div class="flex flex-col w-full justify-end ml-auto mr-auto">
-      <ng-template *ngIf="post?.comment_status !== 'closed'; else commentsClosed">
+      <div *ngIf="post?.comment_status !== 'closed'; else commentsClosed">
         <div class="w-full" id="comments">
           <app-comments [postId]="post.id"></app-comments>
         </div>
-      </ng-template>
+      </div>
       <ng-template #commentsClosed>
         <p class="mb-8 text-xl">Op dit bericht kun je niet reageren</p>
       </ng-template>
