@@ -3,6 +3,7 @@ import {ViewportScroller} from "@angular/common";
 import {AdsService} from "../../ads/services/ads.service";
 import {faArrowUp} from "@fortawesome/free-solid-svg-icons";
 import {ActivatedRoute} from "@angular/router";
+import {Link} from "../model/link.interface";
 
 @Component({
   selector: 'app-footer',
@@ -21,11 +22,22 @@ export class FooterComponent implements OnInit {
   }
 
   constructor(private route: ActivatedRoute, private viewportScroller: ViewportScroller, private linkService: AdsService) {
+
   }
 
   ngOnInit(){
-
+    const rawData = this.route.snapshot.data['links'];
+    if (Array.isArray(rawData)) {
+      this.links = rawData.map((item: any) => {
+        const rawItem: Link = item.acf;
+        return {
+          anchor: rawItem.anchor,
+          url: rawItem.url
+        };
+      });
+    }
   }
+
   isButtonVisible(scrollHeight: number): void {
     this.buttonVisible = (scrollHeight > 1000) ? true : false
   }

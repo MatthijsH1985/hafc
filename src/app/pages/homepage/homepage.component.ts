@@ -6,6 +6,7 @@ import {NewssliderComponent} from "../../news/newsslider/newsslider.component";
 import {MetaService} from "../../core/services/meta.service";
 import {LoadingIndicatorService} from "../../core/shared/loading-indicator/loading-indicator.service";
 import {PlayersService} from "../../services/players.service";
+import {Link} from "../../core/model/link.interface";
 
 @Component({
   selector: 'app-homepage',
@@ -15,7 +16,7 @@ import {PlayersService} from "../../services/players.service";
 export class HomepageComponent implements OnInit {
   posts: any = [];
   loading = true;
-  links: any;
+  links: Link[] = [];
   constructor(
               private titleService: Title,
               private playersService: PlayersService,

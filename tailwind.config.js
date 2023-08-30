@@ -33,6 +33,10 @@ module.exports = {
         100: '#c2eab0',
         500: '#00FF00',
         800: '#247f00'
+      },
+      yellow: {
+        100: '#FFF0B7FF',
+        800: '#d08100'
       }
     },
     extend: {

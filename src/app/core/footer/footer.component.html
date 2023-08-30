@@ -33,6 +33,9 @@
             Selectie
           </a>
         </li>
+        <li>
+          Fotografie: NESImages
+        </li>
       </ul>
       <ul class="text-white mb-4">
         <li>
@@ -59,8 +62,8 @@
           <strong class="mb-2 block">Interessante links</strong>
         </li>
         <li class="mb-2" *ngFor="let link of links">
-          <a [href]="link.acf.url" target="_blank" [title]="link.acf.anchor" class="hover:underline">
-            {{ link.acf.anchor }}
+          <a [href]="link.url" target="_blank" [title]="link.anchor" class="hover:underline">
+            {{ link.anchor }}
           </a>
         </li>
       </ul>
