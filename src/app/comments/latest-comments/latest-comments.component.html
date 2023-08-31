@@ -1,7 +1,7 @@
 <div *ngIf="latestComments.length > 0" class="relative w-full z-20 rounded-md bg-white dark:bg-gray-700">
-  <a [routerLink]="['/', 'nieuws', comment.post, getSlug(comment.post_permalink, comment.post)] " (click)="onShowLoading()"  *ngFor="let comment of latestComments" class="group block py-2 border-b border-gray-200 mb-2">
+  <a [routerLink]="['/', 'nieuws', comment.post, getSlug(comment.post_permalink, comment.post)] " (click)="onShowLoading()"  *ngFor="let comment of latestComments" class="group block py-2 border-b dark:border-gray-800 border-gray-200 mb-2">
     <h3 class="font-bold group-hover:text-blue-500 dark:text-white">{{ comment.author_name }}</h3>
     <div [innerHtml]="shortenComment(comment.content.rendered)" class="group-hover:text-blue-500 comment-shortened dark:text-white"></div>
-    <span class="text-sm text-gray-700 dark:text-white"></span>
+    <span class="text-sm text-gray-700 dark:text-white" [innerHtml]="comment.post_title"></span>
   </a>
 </div>
