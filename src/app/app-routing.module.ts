@@ -32,6 +32,7 @@ import {Competitioncomponent} from "./competition/competition/competitioncompone
 import {PostsResolver} from "./news/services/resolvers/posts-resolver.service";
 import {VerifyAccountComponent} from "./pages/account/verify-account/verify-account.component";
 import {LinksResolver} from "./core/services/resolvers/links.resolver";
+import {LatestCommentsResolver} from "./comments/services/resolvers/latest-comments.resolver";
 const routes: Routes = [
 
   {
@@ -39,7 +40,8 @@ const routes: Routes = [
     path: '',
     resolve: {
       posts: PostsResolver,
-      links: LinksResolver
+      links: LinksResolver,
+      latestComments: LatestCommentsResolver
     }
   },
   {

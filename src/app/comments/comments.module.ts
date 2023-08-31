@@ -5,11 +5,13 @@ import {ModalCommentComponent} from "./modal-comment/modal-comment.component";
 import {CommentsComponent} from "./comments/comments.component";
 import {CoreModule} from "../core/core.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { LatestCommentsComponent } from './latest-comments/latest-comments.component';
 
 @NgModule({
   declarations: [
     ModalCommentComponent,
-    CommentsComponent
+    CommentsComponent,
+    LatestCommentsComponent
   ],
   imports: [
     CommonModule,
@@ -17,10 +19,11 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     FormsModule,
     ReactiveFormsModule
   ],
-  exports: [
-    CommentsComponent,
-    ModalCommentComponent
-  ],
+    exports: [
+        CommentsComponent,
+        ModalCommentComponent,
+        LatestCommentsComponent
+    ],
   providers: [
     CommentsService
   ]

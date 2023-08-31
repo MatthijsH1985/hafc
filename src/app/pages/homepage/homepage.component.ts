@@ -15,6 +15,7 @@ import {Link} from "../../core/model/link.interface";
 })
 export class HomepageComponent implements OnInit {
   posts: any = [];
+  latestComments: any = [];
   loading = true;
   links: Link[] = [];
   constructor(
@@ -45,6 +46,7 @@ export class HomepageComponent implements OnInit {
     this.viewportScroller.scrollToPosition([0, 0]);
     this.posts = this.route.snapshot.data['post'];
     this.links = this.route.snapshot.data['links'];
+    this.latestComments = this.route.snapshot.data['latestComments'];
     this.metaService.setMetaTag('HAFC.nl - Wij Zij Heracles', 'HAFC.nl is de grootste Heracles community voor en door supporters');
   }
 

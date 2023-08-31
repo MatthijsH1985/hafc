@@ -55,6 +55,11 @@ export class CommentsService {
     return of([]);
   }
 
+  getLatestComments() {
+    const randomQueryParam = `cache_bypass=${Math.random()}`;
+    return this.http.get<Config[]>(environment.apiUrl + '/comments?per_page=4&' + randomQueryParam + '', this.httpOptions);
+  }
+
   getComments(post:any, page = 1, order = 'desc'): Observable<Config[]> {
     const randomQueryParam = `cache_bypass=${Math.random()}`;
     return this.http.get<Config[]>(environment.apiUrl + '/comments?post='+ post + '&per_page=60&page='+ page + '&order='+ order + '&' + randomQueryParam + '', this.httpOptions);
@@ -74,13 +79,6 @@ export class CommentsService {
       })
     };
     return this.http.get(environment.apiUrl + '/comments?author=' + userId + '', httpOptionsBearer);
-  }
-
-  private getHeaders(): HttpHeaders {
-    const currentTime = new Date().getTime();
-    const headers = new HttpHeaders().set('X-Last-Fetch-Time', this.lastFetchTime.toString());
-    this.lastFetchTime = currentTime;
-    return headers;
   }
 
 }

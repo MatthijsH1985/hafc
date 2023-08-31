@@ -17,11 +17,11 @@ export class SpelerComponent implements OnInit, OnDestroy {
   playerSub: Subscription | undefined;
   playerStatsSub: Subscription | undefined;
   playerStats: any = [];
+  playerInfo: any = [];
   constructor(private playersService: PlayersService, private translationService: TranslationService, private viewportScroller: ViewportScroller, private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit() {
-    console.log(this.playerId);
     this.viewportScroller.scrollToPosition([0, 0]);
     this.playerSub = this.playersService.getPlayer(this.playerId).subscribe({
       next: playerInfo => {
@@ -40,9 +40,10 @@ export class SpelerComponent implements OnInit, OnDestroy {
   }
 
   getPlayerStats(player: any) {
-    console.log(player);
     this.playerStatsSub = this.playersService.getPlayerStats(player.acf.sportmonks_speler_id).subscribe({
       next: (data: any) => {
+        console.log(data);
+        this.playerInfo = data.data;
         const playerData = data.data.statistics[0].details;
         if (playerData) {
           for (const item of playerData) {

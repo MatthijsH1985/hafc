@@ -305,3 +305,7 @@ app-nieuwsbericht {
 .grecaptcha-badge {
   right: -50%;
 }
+
+.comment-shortened p {
+  @apply w-full overflow-hidden overflow-ellipsis whitespace-nowrap
+}

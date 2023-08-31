@@ -55,7 +55,8 @@ import {TranslateModule} from "@ngx-translate/core";
     TransformTeamDataPipe,
     FontAwesomeModule,
     AdsModule,
-    LoadingIndicatorComponent
+    LoadingIndicatorComponent,
+    RouterModule
   ],
   providers: [
     ConfigService,

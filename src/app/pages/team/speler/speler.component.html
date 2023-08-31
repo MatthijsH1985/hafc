@@ -17,7 +17,29 @@
       <div>
         <div class="" *ngIf="!loading">
           <div class="content-page w-screen p-8 md:p-0 md:w-[1000px]">
-            <div class="player-content-container">
+            <div class="player-content-container items-center justify-center">
+              <h3 class="text-3xl flex text-center mb-8">Informatie</h3>
+              <div class="dark:text-white mb-8 w-[33.3%]">
+                <div class="py-2 flex">
+                  <label class="inline-block mr-4">Geboren</label>
+                  <div class="ml-auto mr-8">
+                    {{ playerInfo.date_of_birth | date }}
+                  </div>
+                </div>
+                <div class="py-2 flex">
+                  <label class="inline-block mr-4">Lengte</label>
+                  <div class="ml-auto mr-8">
+                    {{ playerInfo.height }} cm
+                  </div>
+                </div>
+                <div class="py-2 flex">
+                  <label class="inline-block mr-4">Gewicht</label>
+                  <div class="ml-auto mr-8">
+                    {{ playerInfo.weight }} kg
+                  </div>
+                </div>
+              </div>
+              <h3 class="text-3xl text-center mb-8">Statistieken</h3>
               <div class="player-info-container grid grid-cols-1 md:grid-cols-3 gap-x-4 dark:text-white mb-24">
                 <div *ngFor="let stat of playerStats" class="py-2 flex">
                   <label class="inline-block mr-4">{{ translate(stat.type.name) }}</label>
