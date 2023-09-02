@@ -30,7 +30,7 @@ export class VolgendeWedstrijdComponent implements OnInit{
   }
 
   getPreviewMatch() {
-    this.postsService.getMatchReports().subscribe({
+    this.postsService.getPosts(1, [37]).subscribe({
       next: (data: any) => {
         this.nextMatchPost = data[0];
       },
