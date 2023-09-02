@@ -17,8 +17,8 @@ export class LatestCommentsComponent {
   }
 
   getSlug(commentLink: any, postId: number) {
-    const baseUrl = `https://backend.hafc.nl/nieuws/${postId}/`;
-    const slug = commentLink.replace(baseUrl, '');
+    const baseUrl = `https://backend.hafc.nl/nieuws/${postId}`;
+    const slug = commentLink.replace(baseUrl, '').replace(/\//g, '');;
     return slug;
   }
 
