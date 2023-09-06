@@ -60,6 +60,7 @@ export class ModalCommentComponent {
   }
 
   onPostComment(form: FormGroup): void {
+
     if (this.isLoggedIn()) {
       const commentData = JSON.stringify( {
         post: this.postId,
@@ -80,7 +81,7 @@ export class ModalCommentComponent {
   }
 
   postComment(commentData: any) {
-
+    console.log(commentData)
     this.commentService.postComment(commentData).subscribe({
       next: result => {
         if (result) {

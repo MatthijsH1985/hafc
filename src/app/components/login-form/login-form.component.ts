@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit, PLATFORM_ID} from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {AuthService} from "../../services/auth/auth-service";
 import {Router} from "@angular/router";
 import {catchError, of, timer} from "rxjs";
+import {isPlatformBrowser} from "@angular/common";
 
 @Component({
   selector: 'app-login-form',
@@ -16,7 +17,9 @@ export class LoginFormComponent implements OnInit {
   });
   errorMessage: string = '';
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router,
+              @Inject(PLATFORM_ID)
+              private platformId: any) { }
 
   ngOnInit() {
     if (this.isLoggedIn()) {
@@ -40,9 +43,9 @@ export class LoginFormComponent implements OnInit {
           })
         ).subscribe((result) => {
           if (result) {
-            timer(2000).subscribe(() => {
-              this.router.navigate(['account/details/mijn-gegevens']);
-            });
+            if (isPlatformBrowser(this.platformId)) {
+              location.reload();
+            }
           }
         });
       }

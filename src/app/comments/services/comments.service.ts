@@ -42,7 +42,7 @@ export class CommentsService {
 
   postComment(comment: any): Observable<Config[]> {
     if (this.authService.isAuthenticated()) {
-      return this.http.post<Config[]>(environment.apiUrl + '/comments?author=' + this.authService.getUserID(), comment, this.httpOptionsLoggedIn);
+      return this.http.post<Config[]>(environment.apiUrl + '/comments', comment, this.httpOptionsLoggedIn);
     }
     return this.http.post<Config[]>(environment.apiUrl + '/comments', comment, this.httpOptions);
   }
