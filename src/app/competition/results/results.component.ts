@@ -42,6 +42,8 @@ export class ResultsComponent implements OnInit {
           return dateA.getTime() - dateB.getTime();
         });
 
+        console.log(this.teamResults)
+
         this.homeTeamTotalScore = 0; // Initialize thuisspelende ploeg totaalscore
         this.awayTeamTotalScore = 0; // Initialize uitspelende ploeg totaalscore
 
@@ -49,13 +51,15 @@ export class ResultsComponent implements OnInit {
           const fixture = round.fixtures[0];
 
           if (fixture.result_info) {
-            this.homeTeamTotalScore = fixture.scores.filter((score: any) => score.score.participant === "home");
-            this.awayTeamTotalScore = fixture.scores.filter((score: any) => score.score.participant !== "home");
+
+            this.awayTeamTotalScore = fixture.scores.filter((score: any) => score.description === "CURRENT");
+            console.log(this.awayTeamTotalScore)
+
+            this.homeTeamTotalScore = this.homeTeamTotalScore[0].score.goals;
+            this.awayTeamTotalScore = this.awayTeamTotalScore[1].score.goals;
+
           }
         });
-
-        this.homeTeamTotalScore = this.homeTeamTotalScore[1].score.goals;
-        this.awayTeamTotalScore = this.awayTeamTotalScore[1].score.goals;
 
         this.viewportScroller.scrollToPosition([0, 0]);
       },
@@ -63,6 +67,13 @@ export class ResultsComponent implements OnInit {
         console.error(error);
       }
     });
+  }
+
+  onCalculateScore(data: any) {
+    if (data.filter((score: any) => score.description === "CURRENT")[0].score.participant === 'home') {
+      console.log(data.filter((score: any) => score.description === "CURRENT")[0].score.goals)
+      return data.filter((score: any) => score.description === "CURRENT")[0].score.goals;
+    }
   }
 
   validDateFormat(dateString: Date): any {

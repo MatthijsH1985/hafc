@@ -25,6 +25,7 @@ import {CommentsModule} from "../comments/comments.module";
 import {AdsModule} from "../ads/ads.module";
 import {PositiveNumberPipe} from "./shared/positive-number/positive-number.pipe";
 import {TranslateModule} from "@ngx-translate/core";
+import {PreloaderComponent} from "./shared/preloader/preloader.component";
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import {TranslateModule} from "@ngx-translate/core";
     RoundNumberPipe,
     PositiveNumberPipe,
     TransformTeamDataPipe,
-    LoadingIndicatorComponent
+    LoadingIndicatorComponent,
+    PreloaderComponent
   ],
   imports: [
     CommonModule,
@@ -55,6 +57,7 @@ import {TranslateModule} from "@ngx-translate/core";
     TransformTeamDataPipe,
     FontAwesomeModule,
     AdsModule,
+    PreloaderComponent,
     LoadingIndicatorComponent,
     RouterModule
   ],

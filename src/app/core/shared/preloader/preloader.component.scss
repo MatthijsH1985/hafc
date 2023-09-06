@@ -1,0 +1,81 @@
+.preload-container {
+  z-index: 9999;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  animation-name:  slideUp;
+  animation-duration: .8s;
+  animation-fill-mode: forwards;
+  animation-delay: 2.5s;
+}
+
+.preloader-overlay {
+  display: flex;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.preload-inner-container {
+  position: relative;
+  overflow: hidden;
+  img {
+    height: 160px;
+    width: auto;
+    animation-name: fadeIn;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    height: 160px;
+    width: 100%;
+    animation-name: appear;
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
+    background: #fff;
+    z-index: 1;
+    animation-delay: .75s;
+  }
+}
+
+@keyframes appear {
+  0% {
+    transform: translateY(0%);
+  }
+  50% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: -100vh;
+  }
+}
