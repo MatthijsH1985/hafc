@@ -24,6 +24,7 @@ import {AuthService} from "../../services/auth/auth-service";
 export class CommentsComponent implements OnInit, OnChanges, OnDestroy {
   commentsSub: Subscription | undefined;
   commentsCountSub: Subscription | undefined;
+  authSub: Subscription | undefined;
   @Input() postId: string | undefined;
   @Input() onReloadComments: boolean = false;
   comments: any = [];
@@ -70,12 +71,19 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy {
 
   onRateComment(score: number, comment: any) {
     const validatedScore = this.validateRating(score);
-    const commentData = JSON.stringify( {
-      comment_id: comment.id,
-      author_id: this.authService.getUserID(),
-      like_dislike: validatedScore
-    });
-    this.rateComment(commentData);
+    this.authSub = this.authService.getUserInfo().subscribe({
+      next: (user: any) => {
+        const commentData = JSON.stringify( {
+          comment_id: comment.id,
+          author_id: user.id,
+          like_dislike: validatedScore
+        });
+        this.rateComment(commentData);
+      },
+      error: (err: any) => {
+        console.log(err);
+      }
+    })
   }
 
   updateLikesAndDislikes(commentId: number, likes: number, dislikes: number) {
