@@ -42,10 +42,9 @@ export class LoginFormComponent implements OnInit {
             return of(null);
           })
         ).subscribe((result) => {
-          console.log(result)
           if (result) {
             if (isPlatformBrowser(this.platformId)) {
-              this.router.navigateByUrl('/account/details/mijn-gegevens');
+              location.reload();
             }
           }
         });
