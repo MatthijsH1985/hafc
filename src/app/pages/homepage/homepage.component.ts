@@ -7,6 +7,7 @@ import {MetaService} from "../../core/services/meta.service";
 import {LoadingIndicatorService} from "../../core/shared/loading-indicator/loading-indicator.service";
 import {PlayersService} from "../../services/players.service";
 import {Link} from "../../core/model/link.interface";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-homepage',
@@ -23,6 +24,7 @@ export class HomepageComponent implements OnInit {
               private playersService: PlayersService,
               private viewportScroller: ViewportScroller,
               private metaService: MetaService,
+              private toastr:ToastrService,
               private injector: Injector,
               private loadingIndicatorService: LoadingIndicatorService,
               private route: ActivatedRoute,
@@ -43,11 +45,19 @@ export class HomepageComponent implements OnInit {
 
   ngOnInit() {
     this.titleService.setTitle('HAFC - Wij zijn Heracles!');
+   this.onShowDonateMessage();
     this.viewportScroller.scrollToPosition([0, 0]);
     this.posts = this.route.snapshot.data['post'];
     this.links = this.route.snapshot.data['links'];
     this.latestComments = this.route.snapshot.data['latestComments'];
     this.metaService.setMetaTag('HAFC.nl - Wij Zij Heracles', 'HAFC.nl is de grootste Heracles community voor en door supporters');
+  }
+
+  onShowDonateMessage() {
+    this.toastr.error('<a href="https://hafcnl.backme.org/#support" target="_blank">Doneer een kleine bijdrage</a>', 'Help HAFC online te houden!', {
+      positionClass: 'toast-bottom-center',
+      enableHtml: true
+    })
   }
 
   validDateFormat(dateString: any) {
