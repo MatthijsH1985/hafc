@@ -12,7 +12,7 @@ import {ActivatedRoute} from "@angular/router";
 export class NewslistComponent implements OnInit, OnDestroy {
   @Input('pagination') pagination: boolean = true;
   @Input('compact') compact: boolean = false;
-  @Input('posts') posts: any = [];
+  posts: any = [];
   postsSub: Subscription | undefined;
   loading: boolean = true;
   postPage: any = 1;

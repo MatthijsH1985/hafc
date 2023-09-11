@@ -47,7 +47,7 @@ export class HomepageComponent implements OnInit {
     this.titleService.setTitle('HAFC - Wij zijn Heracles!');
     this.onShowDonateMessage();
     this.viewportScroller.scrollToPosition([0, 0]);
-    this.posts = this.route.snapshot.data['post'];
+    this.posts = this.route.snapshot.data['posts'];
     this.links = this.route.snapshot.data['links'];
     this.latestComments = this.route.snapshot.data['latestComments'];
     this.metaService.setMetaTag('HAFC.nl - Wij Zij Heracles', 'HAFC.nl is de grootste Heracles community voor en door supporters');
@@ -58,7 +58,8 @@ export class HomepageComponent implements OnInit {
       this.toastr.error('<a href="https://hafcnl.backme.org/#support" target="_blank">Je zou ons heel erg helpen. Doneer nu.</a>', 'Help HAFC online te houden!', {
         positionClass: 'toast-top-center',
         enableHtml: true,
-        timeOut: 12000
+        timeOut: 12000,
+
       })
     }
   }
