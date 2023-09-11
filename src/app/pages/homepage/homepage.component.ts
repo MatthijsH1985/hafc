@@ -54,9 +54,10 @@ export class HomepageComponent implements OnInit {
   }
 
   onShowDonateMessage() {
-    this.toastr.error('<a href="https://hafcnl.backme.org/#support" target="_blank">Doneer een kleine bijdrage</a>', 'Help HAFC online te houden!', {
+    this.toastr.error('<a href="https://hafcnl.backme.org/#support" target="_blank">Je zou ons heel erg helpen. Doneer nu.</a>', 'Help HAFC online te houden!', {
       positionClass: 'toast-bottom-center',
-      enableHtml: true
+      enableHtml: true,
+      timeOut: 8000
     })
   }
 
