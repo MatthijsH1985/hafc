@@ -1,7 +1,8 @@
 import {
+  AfterViewInit,
   Component,
   HostListener,
-  Inject,
+  Inject, Input,
   OnDestroy,
   OnInit,
   PLATFORM_ID,
@@ -21,7 +22,7 @@ import {LoadingIndicatorService} from "../../core/shared/loading-indicator/loadi
   templateUrl: './nieuwsbericht.component.html',
   styleUrls: ['./nieuwsbericht.component.scss']
 })
-export class NieuwsberichtComponent implements OnInit, OnDestroy {
+export class NieuwsberichtComponent implements OnInit, OnDestroy, AfterViewInit {
   currentPostSub: Subscription | undefined;
   postId: any = this.route.snapshot.paramMap.get('id');
   post: any;
@@ -33,6 +34,7 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy {
   buttonVisible: boolean = false;
   faComment = faComment;
   faArrowDown = faArrowDown;
+  @Input('links') links: any;
 
   @HostListener('window:scroll', ['$event']) onScroll(event: any) {
     const winScroll = event.target.documentElement.scrollTop || event.currentTarget.scrollTop || document.body.scrollTop;
@@ -54,10 +56,14 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.hideLoading();
     this.post = this.route.snapshot.data['post'];
+    this.links = this.route.snapshot.data['links'];
     this.updateMetaTags(this.post);
     this.viewportScroller.scrollToPosition([0,0]);
+  }
+
+  ngAfterViewInit() {
+    this.hideLoading();
   }
 
   showLoading(): void {

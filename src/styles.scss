@@ -272,7 +272,7 @@ form {
         @apply border-b-2 border-blue-500 pb-4
       }
       &:hover {
-        @apply text-blue-500 border-black border-b-2 pb-4
+        @apply text-blue-500 border-black dark:border-white border-b-2 pb-4
       }
     }
   }
@@ -304,4 +304,8 @@ app-nieuwsbericht {
 
 .grecaptcha-badge {
   right: -50%;
+}
+
+.comment-shortened p {
+  @apply w-full overflow-hidden overflow-ellipsis whitespace-nowrap
 }

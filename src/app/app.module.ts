@@ -2,7 +2,7 @@ import {CUSTOM_ELEMENTS_SCHEMA, LOCALE_ID, NgModule} from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {TeamComponent} from "./pages/team/team.component";
 import {PlayersService} from "./services/players.service";
 import {TeamService} from "./services/team.service";
@@ -48,12 +48,15 @@ import {CompetitionModule} from "./competition/competition.module";
 import {CommentsModule} from "./comments/comments.module";
 import {RecaptchaModule} from "ng-recaptcha";
 import {VerifyAccountComponent} from "./pages/account/verify-account/verify-account.component";
-
+import {TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+import {TranslationService} from "./services/translation.service";
+import {TRANSLATIONS} from "./services/translations";
+import {of} from "rxjs";
 
 register()
 registerLocaleData(localeNl);
 
-// @ts-ignore
 // @ts-ignore
 @NgModule({
   bootstrap: [AppComponent],
@@ -89,6 +92,16 @@ registerLocaleData(localeNl);
     CommentsModule,
   ],
   imports: [
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useValue: {
+          getTranslation: () => {
+            return of(TRANSLATIONS);
+          }
+        }
+      }
+    }),
     CommonModule,
     AppRoutingModule,
     HttpClientModule,
@@ -102,7 +115,7 @@ registerLocaleData(localeNl);
     NewsModule,
     CoreModule,
     CommentsModule,
-    RecaptchaModule
+    RecaptchaModule,
   ],
   providers: [{
     provide: LOCALE_ID,
@@ -110,6 +123,7 @@ registerLocaleData(localeNl);
   },
     PlayersService,
     TeamService,
+    TranslationService,
     AdsService,
     UserService,
     MenuService,

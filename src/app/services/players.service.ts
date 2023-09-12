@@ -13,7 +13,7 @@ export class PlayersService {
     headers: new HttpHeaders({
       'Content-Type': 'application/json;charset=UTF-8'
     }),
-    params: new HttpParams().set('include', 'stats,seasons')
+    // params: new HttpParams().set('include', 'stats,seasons')
   };
 
   constructor(private http: HttpClient,
@@ -21,15 +21,19 @@ export class PlayersService {
   }
 
   getPlayers(): Observable<Config[]> {
-    return this.http.get<Config[]>(environment.apiUrl + '/pages?parent=23380&per_page=50');
+    return this.http.get<Config[]>(environment.apiUrl + '/spelers?per_page=100');
   }
 
   getPlayer(playerId: number): Observable<Config[]> {
-    return this.http.get<Config[]>(environment.apiUrl + '/pages/' + playerId + '', this.httpOptions);
+    return this.http.get<Config[]>(environment.apiUrl + '/spelers/' + playerId + '', this.httpOptions);
   }
 
   getPlayerStats(playerId: number): Observable<any> {
-    return this.http.get<Config[]>(environment.customApi + '/players/' + playerId + '', this.httpOptions);
+    return this.http.get<Config[]>(environment.customApi + '/players/' + playerId + '?include=statistics.details.type&filters=playerstatisticSeasons:' + this.configService.config.seasonID + '', this.httpOptions);
+  }
+
+  getPlayerOfTheWeek() {
+    return this.http.get<Config[]>(environment.apiUrl + '/player-of-the-week/', this.httpOptions);
   }
 
 }

@@ -17,6 +17,15 @@ export class StandComponent implements OnInit, OnDestroy {
   ranking: any = [];
   loading = true;
   teamId: number = 0;
+  detailCodeMapping: any = {
+    matchesPlayed: 129,
+    matchesWon: 130,
+    matchesDrawn: 131,
+    matchesLost: 132,
+    goalsScored: 133,
+    goalsConceded: 134,
+    // Voeg hier andere mappings toe zoals nodig
+  };
   @Input('compact') compact: boolean = false;
 
   constructor(private standingsService: StandingsService, private metaService: MetaService, private title: Title, private router: Router, private titleService: Title, private viewportScroller: ViewportScroller) {
@@ -45,13 +54,33 @@ export class StandComponent implements OnInit, OnDestroy {
   }
 
   getDetailValue(club: any, code: string): number {
-    const detail = club?.details?.find((d: any) => d?.type?.code === code);
-    return detail?.value || 0;
+
+    const detailCode = this.detailCodeMapping[code]; // Haal de code op uit de mapping
+
+    if (detailCode && club.details) {
+      const detail = club.details.find((detail: any) => detail.type_id === detailCode);
+
+      if (detail) {
+        return detail.value;
+      }
+    }
+
+    return 0;
   }
 
-  calculateGoalDifference(goalsFor: number, goalsAgainst: number): any {
-    return goalsFor - goalsAgainst
-    // return (goalDifference > 0 ? '+' + goalDifference : goalDifference);
+  calculateGoalDifference(club: any, goalsScored: string, goalsConceded: string): any {
+    const detailCodeGoalsScored = this.detailCodeMapping[goalsScored];
+    const detailCodeGoalsConceded = this.detailCodeMapping[goalsConceded];
+
+    if ((detailCodeGoalsScored || detailCodeGoalsConceded) && club.details) {
+      const detailGoalsScored = club.details.find((detail: any) => detail.type_id === detailCodeGoalsScored);
+      const detailGoalsConceded = club.details.find((detail: any) => detail.type_id === detailCodeGoalsConceded);
+      if (detailGoalsScored && detailGoalsConceded ) {
+        const goalDifference = detailGoalsScored.value - detailGoalsConceded.value;
+        return goalDifference;
+      }
+    }
+    return 0;
   }
 
   selectieRijen(ranking: any[], club: string): any[] {

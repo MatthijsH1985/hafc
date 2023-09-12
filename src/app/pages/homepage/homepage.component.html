@@ -1,3 +1,4 @@
+
 <div class="flex flex-col min-h-screen">
   <div class="container max-w-[1200px] relative z-10 ml-auto mr-auto">
     <div class="md:h-[550px] m-h-[450px] overflow-hidden relative bg-black min-h-[550px]">
@@ -19,6 +20,10 @@
             </div>
           </div>
         </div>
+        <h3 class="black bg-gray-200 rounded-t-md dark:bg-black text-black dark:text-white text-center md:text-left p-4 md:mt-4">Laatste reacties</h3>
+        <div class="md:p-4 rounded-b-md bg-white dark:bg-black p-4 mb-4">
+          <app-latest-comments [comments]="latestComments"></app-latest-comments>
+        </div>
         <div class="gap-4 my-4 bg-white rounded-md dark:bg-gray-900 p-4">
           <app-ads [layout]="'square'"></app-ads>
         </div>
@@ -29,14 +34,13 @@
             <a routerLink="club/competitie/stand" class="block m-4 rounded-md button button-blue" title="Bekijk de gehele stand">Bekijk gehele stand</a>
           </div>
         </div>
-<!--        <div class="md:mt-4 p-4 md:p-0">-->
-<!--          <app-player-of-the-week></app-player-of-the-week>-->
-<!--        </div>-->
+        <div class="md:mt-4 p-4 md:p-0">
+          <app-player-of-the-week></app-player-of-the-week>
+        </div>
       </div>
     </div>
   </div>
   <div class="mt-auto">
-    <app-footer></app-footer>
+    <app-footer [links]="links"></app-footer>
   </div>
 </div>
-<button (click)="showLoading()">Show loading</button>

@@ -1,13 +1,13 @@
-<div *ngIf="headlines.length !== 0" class="overflow-hidden">
+<div *ngIf="posts.length !== 0" class="overflow-hidden">
   <swiper-container fmSwiper [config]="config" init="false">
-    <swiper-slide *ngFor="let headline of headlines">
-      <a (click)="showLoading()" class="relative xl:w-[1200px] flex items-center flex-col justify-center w-full h-[500px]] md:h-[550px] group" [routerLink]="['nieuws', headline.id, headline.slug]">
+    <swiper-slide *ngFor="let post of posts">
+      <a (click)="showLoading()" class="relative xl:w-[1200px] flex items-center flex-col justify-center w-full h-[500px]] md:h-[550px] group" [routerLink]="['nieuws', post.id, post.slug]">
         <div class="h-450px relative w-full">
-          <img [src]="headline.better_featured_image.source_url" class=" object-cover object-center w-full h-[550px] object-cover transition-all w-full block" />
+          <img [src]="post.better_featured_image.source_url" class=" object-cover object-center w-full h-[550px] object-cover transition-all w-full block" />
             <div class="mt-4 flex flex-col absolute bottom-24 w-full justify-center md:text-left text-center m-auto z-30 md:bottom-32 lg:w-[50%] md:pl-16">
-              <h1 [innerHTML]="headline?.title?.rendered" class="text-white font-bold md:text-3xl text-3xl md:leading-normal leading-normal p-4"></h1>
-              <span class="inline md:ml-4 text-white mb-4">{{ validDateFormat(headline?.date)  | date: 'd MMMM' }}</span>
-              <span class="inline md:ml-4 text-white">{{ headline.comments_count }} reacties</span>
+              <h1 [innerHTML]="post?.title?.rendered" class="text-white font-bold md:text-3xl text-3xl md:leading-normal leading-normal p-4"></h1>
+              <span class="inline md:ml-4 text-white mb-4">{{ validDateFormat(post?.date)  | date: 'd MMMM' }}</span>
+              <span class="inline md:ml-4 text-white">{{ post.comments_count }} reacties</span>
             </div>
         </div>
         <div class="bg-gradient-to-t from-black to-transparent w-full h-full z-10 absolute left-0 right-0 top-0 bottom-0"></div>

@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
-import {PostsService} from "../services/posts.service";
+import {CommentsService} from "../comments.service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class PostsResolver implements Resolve<any> {
-  constructor(private postService: PostsService) { }
+export class LatestCommentsResolver implements Resolve<any> {
+  constructor(private commentsService: CommentsService) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
 
-    return this.postService.getPosts();
+    return this.commentsService.getLatestComments();
   }
 }

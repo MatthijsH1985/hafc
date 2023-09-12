@@ -30,7 +30,7 @@ export class RegistrationFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.userFormData.value);
+    // console.log(this.userFormData.value);
   }
 
   passwordRequirementsValidator(control: AbstractControl): { [key: string]: any } | null {

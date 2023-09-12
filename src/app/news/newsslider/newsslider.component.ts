@@ -9,10 +9,9 @@ import Swiper, {
   SwiperOptions,
 } from 'swiper'
 import {CommonModule, isPlatformBrowser} from "@angular/common";
-import {RouterModule} from "@angular/router";
+import {ActivatedRoute, RouterModule} from "@angular/router";
 import {SwiperDirective} from "../../core/shared/slider.directive";
 import {PostsService} from "../services/posts.service";
-import {Subscription} from "rxjs";
 import {LoadingIndicatorService} from "../../core/shared/loading-indicator/loading-indicator.service";
 
 @Component({
@@ -55,46 +54,24 @@ export class NewssliderComponent implements AfterViewInit {
       },
     }
   }
-  // @Input('headlines') headlines: any | undefined;
   @ViewChild('swiper') swiper: ElementRef | undefined;
-  postsSub: Subscription | undefined;
   posts: any = [];
-  headlines: any = [];
   public activeSlideIndex: number = 0;
 
   constructor(
     private postsService: PostsService,
     private loadingIndicatorService: LoadingIndicatorService,
+    private route: ActivatedRoute,
     @Inject('isBrowser') @Inject(PLATFORM_ID) private platformId: Object,
     @Inject('isBrowser') private isBrowser: boolean
-  ) {
-    // ...
-  }
+  ) {  }
 
   ngOnInit() {
-    this.getPosts();
+    this.posts = this.route.snapshot.data['posts'].slice(0,3);
   }
 
   showLoading(): void {
     this.loadingIndicatorService.setLoading(true);
-  }
-
-  hideLoading(): void {
-    this.loadingIndicatorService.setLoading(false);
-  }
-
-  getPosts(): void {
-    this.postsSub = this.postsService.getPosts().subscribe({
-      next: (data: any) => {
-        for (let i = 0; i < data.length; i++) {
-          this.posts.push(data[i]);
-        }
-        this.headlines = this.posts.slice(0,3);
-      },
-      error: (error: any) => {
-        console.log(error);
-      }
-    });
   }
 
   ngAfterViewInit() {
@@ -104,12 +81,6 @@ export class NewssliderComponent implements AfterViewInit {
         this.swiper.nativeElement.initialize();
       }
     }
-  }
-
-  public onSwiper(swiper: any) {
-    swiper.on('slideChange', () => {
-      this.activeSlideIndex = swiper.activeIndex;
-    });
   }
 
   validDateFormat(dateString: any) {

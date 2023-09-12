@@ -60,6 +60,7 @@ export class ModalCommentComponent {
   }
 
   onPostComment(form: FormGroup): void {
+
     if (this.isLoggedIn()) {
       const commentData = JSON.stringify( {
         post: this.postId,

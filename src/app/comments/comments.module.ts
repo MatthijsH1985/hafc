@@ -6,12 +6,15 @@ import {CommentsComponent} from "./comments/comments.component";
 import {CoreModule} from "../core/core.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ReportCommentComponent } from './report-comment/report-comment.component';
+import { LatestCommentsComponent } from './latest-comments/latest-comments.component';
+
 
 @NgModule({
   declarations: [
     ModalCommentComponent,
     CommentsComponent,
-    ReportCommentComponent
+    ReportCommentComponent,
+    LatestCommentsComponent
   ],
   imports: [
     CommonModule,
@@ -19,10 +22,11 @@ import { ReportCommentComponent } from './report-comment/report-comment.componen
     FormsModule,
     ReactiveFormsModule
   ],
-  exports: [
-    CommentsComponent,
-    ModalCommentComponent
-  ],
+    exports: [
+        CommentsComponent,
+        ModalCommentComponent,
+        LatestCommentsComponent
+    ],
   providers: [
     CommentsService
   ]

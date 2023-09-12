@@ -29,13 +29,20 @@ import {ResultsComponent} from "./competition/results/results.component";
 import {StandComponent} from "./competition/stand/stand.component";
 import {ProgrammaComponent} from "./competition/programma/programma.component";
 import {Competitioncomponent} from "./competition/competition/competitioncomponent";
-import {PostsResolver} from "./news/resolvers/posts-resolver.service";
+import {PostsResolver} from "./news/services/resolvers/posts-resolver.service";
 import {VerifyAccountComponent} from "./pages/account/verify-account/verify-account.component";
+import {LinksResolver} from "./core/services/resolvers/links.resolver";
+import {LatestCommentsResolver} from "./comments/services/resolvers/latest-comments.resolver";
 const routes: Routes = [
 
   {
     component: HomepageComponent,
-    path: ''
+    path: '',
+    resolve: {
+      posts: PostsResolver,
+      links: LinksResolver,
+      latestComments: LatestCommentsResolver
+    }
   },
   {
     component: SpecialsComponent,
@@ -45,7 +52,8 @@ const routes: Routes = [
     component: NieuwsberichtComponent,
     path: 'nieuws/:id/:title',
     resolve: {
-      post: PostResolver
+      post: PostResolver,
+      links: LinksResolver
     }
   },
   {

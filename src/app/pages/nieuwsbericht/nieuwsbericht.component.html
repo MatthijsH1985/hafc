@@ -11,7 +11,7 @@
     </div>
     <div class="flex w-full md:w-auto items-center md:space-x-2 mr-0 md:ml-auto">
       <span class="font-bold dark:text-white">{{ post.date | date }}</span> <span class="dark:text-white inline-block md:hidden ml-5">{{ categoryName }}</span>
-      <button class="button button-blue text-xl self-end ml-auto" (click)="toComments()">Naar reacties <fa-icon clas="ml-2" [icon]="faArrowDown"></fa-icon></button>
+      <button class="button button-blue text-xl self-end ml-auto"  *ngIf="post?.comment_status !== 'closed'"  (click)="toComments()">Naar reacties <fa-icon clas="ml-2" [icon]="faArrowDown"></fa-icon></button>
     </div>
   </div>
   <div class="flex flex-col xl:w-[1200px] ml-auto mr-auto relative z-20">
@@ -19,26 +19,32 @@
       <div class="px-4 md:px-12 pt-16 news-container m-auto">
         <h1 [innerHTML]="post?.title.rendered" class="text-4xl mb-4 leading-[1.25] dark:text-white"></h1>
         <div [innerHTML]="post?.content.rendered" class="leading-8 text-base leading-[1.5] dark:text-white"></div>
+<!--        <div class="">-->
+<!--          <p class="bg-red-200 dark:bg-red-200 text-red-800 px-2 py-4 dark:text-red-800"><a href="https://hafcnl.backme.org/#support" class="text-red-800 dark:text-red-800" title="Doneer" target="_blank">Ben je een regelmatige bezoeker en vind je het belangrijk dat HAFC blijft bestaan? Steun ons dan met een kleine bijdrage. Het is nodig. Klik hier om te doneren.</a></p>-->
+<!--        </div>-->
       </div>
       <div class="bg-gray-200 dark:bg-gray-900 dark:text-white p-4 flex w-full justify-end w-full mt-8 items-center">
         <div class="hidden md:inline-block">
-          <button class="button button-blue text-xl self-end" (click)="onOpenCommentModal()">Reageer</button>
+          <button class="button button-blue text-xl self-end" *ngIf="post?.comment_status !== 'closed'" (click)="onOpenCommentModal()">Reageer</button>
         </div>
       </div>
     </div>
   </div>
   <div class="flex m-auto">
     <div class="flex flex-col w-full justify-end ml-auto mr-auto">
-      <div class="w-full" id="comments">
-        <app-comments [postId]="post.id"></app-comments>
+      <div *ngIf="post?.comment_status !== 'closed'; else commentsClosed">
+        <div class="w-full" id="comments">
+          <app-comments [postId]="post.id"></app-comments>
+        </div>
       </div>
+      <ng-template #commentsClosed>
+        <p class="mb-8 text-xl dark:text-white">Op dit bericht kun je niet reageren</p>
+      </ng-template>
     </div>
   </div>
-  <div class="mt-auto" *ngIf="!loading">
-    <app-footer></app-footer>
-  </div>
+  <app-footer [links]="links"></app-footer>
 </div>
 
-<button class="fixed hover:cursor-pointer w-[200px] left-[50%] -ml-[100px] hover:bg-gray-900 p-4 bg-blue-500 text-white text-xl z-20 left-0 bottom-2 rounded-md" *ngIf="buttonVisible" (click)="onOpenCommentModal()">Reageer <fa-icon class="ml-4" [icon]="faComment"></fa-icon></button>
+<button class="fixed hover:cursor-pointer w-[200px] left-[50%] -ml-[100px] hover:bg-gray-900 p-4 bg-blue-500 text-white text-xl z-20 left-0 bottom-2 rounded-md" *ngIf="buttonVisible && post?.comment_status !== 'closed'" (click)="onOpenCommentModal()">Reageer <fa-icon class="ml-4" [icon]="faComment"></fa-icon></button>
 
 <app-modal-comment (commentSuccesful)="addComment($event)" (closeModal)="onModalClose()" [modalStatus]="modalCommentsOpen" [postId]="postId"></app-modal-comment>

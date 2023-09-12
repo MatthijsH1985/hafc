@@ -22,6 +22,9 @@ import {MemoryStorage} from "./services/memory-storage";
 import {LocalStorage} from "./services/local-storage";
 import {MetaService} from "./services/meta.service";
 import {AdsModule} from "../ads/ads.module";
+import {PositiveNumberPipe} from "./shared/positive-number/positive-number.pipe";
+import {TranslateModule} from "@ngx-translate/core";
+import {PreloaderComponent} from "./shared/preloader/preloader.component";
 
 @NgModule({
   declarations: [
@@ -30,8 +33,10 @@ import {AdsModule} from "../ads/ads.module";
     NavigationComponent,
     GenerateLogoUrlPipe,
     RoundNumberPipe,
+    PositiveNumberPipe,
     TransformTeamDataPipe,
-    LoadingIndicatorComponent
+    LoadingIndicatorComponent,
+    PreloaderComponent
   ],
   imports: [
     CommonModule,
@@ -39,7 +44,7 @@ import {AdsModule} from "../ads/ads.module";
     FontAwesomeModule,
     RecaptchaModule,
     RecaptchaFormsModule,
-    RecaptchaV3Module
+    RecaptchaV3Module,
   ],
   exports: [
     HeaderComponent,
@@ -47,10 +52,13 @@ import {AdsModule} from "../ads/ads.module";
     NavigationComponent,
     GenerateLogoUrlPipe,
     RoundNumberPipe,
+    PositiveNumberPipe,
     TransformTeamDataPipe,
     FontAwesomeModule,
     AdsModule,
-    LoadingIndicatorComponent
+    PreloaderComponent,
+    LoadingIndicatorComponent,
+    RouterModule
   ],
   providers: [
     ConfigService,

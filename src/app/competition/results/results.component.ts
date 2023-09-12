@@ -14,7 +14,9 @@ import {MetaService} from "../../core/services/meta.service";
 export class ResultsComponent implements OnInit {
   loading: boolean = true;
   teamId = 1403;
-  teamFixtures: any = [];
+  teamResults: any = [];
+  homeTeamTotalScore: any;
+  awayTeamTotalScore: any;
 
   constructor(private fixturesService: FixturesService, private metaService: MetaService, private title: Title, private titleService: Title, private viewportScroller: ViewportScroller, private router: Router) {
 
@@ -30,26 +32,48 @@ export class ResultsComponent implements OnInit {
     this.fixturesService.getFixtures(this.teamId).subscribe({
       next: (data: any) => {
         const { rounds } = data.data[0];
-        this.teamFixtures =  rounds;
+        this.teamResults = rounds;
         this.loading = false;
         this.viewportScroller.scrollToPosition([0, 0]);
+        this.teamResults = this.teamResults.filter((round: any) => round.fixtures[0].result_info);
+        this.teamResults.sort((a: any, b: any) => {
+          const dateA = new Date(a.fixtures[0].starting_at);
+          const dateB = new Date(b.fixtures[0].starting_at);
+          return dateA.getTime() - dateB.getTime();
+        });
 
-        this.teamFixtures = this.teamFixtures.filter((fixture: any) => fixture.finished);
+        console.log(this.teamResults)
 
-        if (this.teamFixtures.length > 0) {
-          this.teamFixtures.sort((a: any, b: any) => {
-            const dateA = new Date(a.fixtures[0].starting_at);
-            const dateB = new Date(b.fixtures[0].starting_at);
-            return dateA.getTime() - dateB.getTime();
-          });
-          console.log(this.teamFixtures);
-        }
+        this.homeTeamTotalScore = 0; // Initialize thuisspelende ploeg totaalscore
+        this.awayTeamTotalScore = 0; // Initialize uitspelende ploeg totaalscore
+
+        this.teamResults.forEach((round: any) => {
+          const fixture = round.fixtures[0];
+
+          if (fixture.result_info) {
+
+            this.awayTeamTotalScore = fixture.scores.filter((score: any) => score.description === "CURRENT");
+            console.log(this.awayTeamTotalScore)
+
+            this.homeTeamTotalScore = this.homeTeamTotalScore[0].score.goals;
+            this.awayTeamTotalScore = this.awayTeamTotalScore[1].score.goals;
+
+          }
+        });
+
         this.viewportScroller.scrollToPosition([0, 0]);
       },
       error: (error: any) => {
         console.error(error);
       }
     });
+  }
+
+  onCalculateScore(data: any) {
+    if (data.filter((score: any) => score.description === "CURRENT")[0].score.participant === 'home') {
+      console.log(data.filter((score: any) => score.description === "CURRENT")[0].score.goals)
+      return data.filter((score: any) => score.description === "CURRENT")[0].score.goals;
+    }
   }
 
   validDateFormat(dateString: Date): any {

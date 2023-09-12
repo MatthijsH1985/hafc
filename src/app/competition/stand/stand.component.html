@@ -11,8 +11,7 @@
           <div class="hidden align-middle dark:text-white md:table-cell" *ngIf="!compact"></div>
           <div class="hidden align-middle dark:text-white md:table-cell" *ngIf="!compact"></div>
           <div class="hidden align-middle dark:text-white md:table-cell" *ngIf="!compact"></div>
-          <div class="hidden align-middle dark:text-white md:table-cell" *ngIf="!compact"></div>
-          <div class="table-cell align-middle dark:text-white" *ngIf="!compact"></div>
+          <div class="hidden align-middle dark:text-white md:table-cell"></div>
           <div class="table-cell align-middle dark:text-white"></div>
         </div>
       </div>
@@ -29,25 +28,25 @@
             {{ club?.participant?.name }}
           </div>
           <div class="table-cell left-auto dark:text-white py-2 align-middle">
-            {{ getDetailValue(club, 'overall-matches-played') }}
+            {{ getDetailValue(club, 'matchesPlayed') }}
           </div>
           <div class="hidden md:table-cell dark:text-white py-2 align-middle" *ngIf="!compact">
-            {{ getDetailValue(club, 'overall-matches-won') }}
+            {{ getDetailValue(club, 'matchesWon') }}
           </div>
           <div class="hidden md:table-cell dark:text-white py-2 align-middle" *ngIf="!compact">
-            {{ getDetailValue(club, 'overall-matches-draw') }}
+            {{ getDetailValue(club, 'matchesDrawn') }}
           </div>
           <div class="hidden md:table-cell dark:text-white py-2 align-middle" *ngIf="!compact">
-            {{ getDetailValue(club, 'overall-matches-lost') }}
+            {{ getDetailValue(club, 'matchesLost') }}
           </div>
           <div class="hidden md:table-cell dark:text-white py-2 align-middle" *ngIf="!compact">
-            {{ getDetailValue(club, 'overall-goals-for') }}
+            {{ getDetailValue(club, 'goalsScored') }}
           </div>
           <div class="hidden md:table-cell dark:text-white py-2 align-middle" *ngIf="!compact">
-            {{ getDetailValue(club, 'overall-goals-against') }}
+            {{ getDetailValue(club, 'goalsConceded') }}
           </div>
-          <div class="table-cell py-2 dark:text-white align-middle" *ngIf="!compact">
-            {{ calculateGoalDifference(getDetailValue(club, 'overall-goals-for'), getDetailValue(club, 'overall-goals-against')) }}
+          <div class="table-cell dark:text-white py-2 align-middle">
+            {{ calculateGoalDifference(club, 'goalsScored', 'goalsConceded') | positiveNumber }}
           </div>
           <div class="table-cell dark:text-white py-2 align-middle">
             {{ club?.points }}

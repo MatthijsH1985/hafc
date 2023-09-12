@@ -42,7 +42,7 @@ export class CommentsService {
 
   postComment(comment: any): Observable<Config[]> {
     if (this.authService.isAuthenticated()) {
-      return this.http.post<Config[]>(environment.apiUrl + '/comments?author=' + this.authService.getUserID(), comment, this.httpOptionsLoggedIn);
+      return this.http.post<Config[]>(environment.apiUrl + '/comments', comment, this.httpOptionsLoggedIn);
     }
     return this.http.post<Config[]>(environment.apiUrl + '/comments', comment, this.httpOptions);
   }
@@ -53,6 +53,11 @@ export class CommentsService {
       return this.http.post<Config[]>(environment.apiUrl + '/mumba/comment-like/', commentData, this.httpOptionsLoggedIn);
     }
     return of([]);
+  }
+
+  getLatestComments() {
+    const randomQueryParam = `cache_bypass=${Math.random()}`;
+    return this.http.get<Config[]>(environment.apiUrl + '/comments?per_page=4&' + randomQueryParam + '', this.httpOptions);
   }
 
   getComments(post:any, page = 1, order = 'desc'): Observable<Config[]> {
@@ -74,13 +79,6 @@ export class CommentsService {
       })
     };
     return this.http.get(environment.apiUrl + '/comments?author=' + userId + '', httpOptionsBearer);
-  }
-
-  private getHeaders(): HttpHeaders {
-    const currentTime = new Date().getTime();
-    const headers = new HttpHeaders().set('X-Last-Fetch-Time', this.lastFetchTime.toString());
-    this.lastFetchTime = currentTime;
-    return headers;
   }
 
 }

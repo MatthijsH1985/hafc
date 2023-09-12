@@ -5,22 +5,22 @@
         <img [src]="post?.better_featured_image.source_url" class="object-cover object-top md:h-[350px] m-h-[250px] w-full h-full animate-in animate-in slide-in-from-bottom-10 fade-in-25 fill-mode-forwards" />
         <span class="absolute right-2 bottom-2 z-20 text-sm text-white">Foto: {{ post?.better_featured_image.caption }}</span>
         <div class="absolute z-20 top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-full">
-          <div [ngClass]="['matches next-match']" class="p-4">
+          <div [ngClass]="['matches next-match']" class="p-6 group-hover:bg-gray-800">
             <div class="flex items-center text-center justify-center">
               <div class="flex">
                 <div class="text-white flex items-center justify-center space-x-4">
                   <div class="text-center items-center justify-center">
-                    <img src="{{ nextMatch?.fixtures[0].participants[1].id | generateLogoUrl }}" class="w-[80px] m-auto h-auto" />
+                    <img src="{{ nextMatch.participants[0].id | generateLogoUrl }}" class="w-[80px] m-auto h-auto" />
                   </div>
                 </div>
                 <div class="px-4">
-                  <div class="text-base text-white dark:text-white">{{ validDateFormat(nextMatch?.fixtures[0].starting_at) | date: 'EEEE'}}</div>
-                  <div class="text-base text-white dark:text-white">{{ validDateFormat(nextMatch?.fixtures[0].starting_at) | date: 'd MMMM'}}</div>
-                  <div class="text-base text-white dark:text-white">{{ validDateFormat(nextMatch?.fixtures[0].starting_at) | date: 'HH:mm' }}</div>
+                  <div class="text-base text-white dark:text-white">{{ validDateFormat(nextMatch.starting_at) | date: 'EEEE'}}</div>
+                  <div class="text-base text-white dark:text-white">{{ validDateFormat(nextMatch.starting_at) | date: 'd MMMM'}}</div>
+                  <div class="text-base text-white dark:text-white">{{ validDateFormat(nextMatch.starting_at) | date: 'HH:mm' }}</div>
                 </div>
                 <div class="text-white flex items-center justify-center space-x-4">
                   <div class="text-center items-center justify-center">
-                    <img src="{{ nextMatch?.fixtures[0].participants[0].id | generateLogoUrl }}" class="w-[80px] m-auto h-auto" />
+                    <img src="{{ nextMatch.participants[1].id | generateLogoUrl }}" class="w-[80px] m-auto h-auto" />
                   </div>
                 </div>
               </div>

@@ -27,7 +27,7 @@ export class NieuwsarchiefComponent implements OnInit{
 
   ngOnInit() {
     this.posts = this.route.snapshot.data['posts'];
-    console.log(this.posts);
+    // console.log(this.posts);
   }
 
   getPosts() {

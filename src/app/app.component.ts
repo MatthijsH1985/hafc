@@ -1,8 +1,7 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ChildrenOutletContexts} from "@angular/router";
+import {Component, OnInit} from '@angular/core';
 import {slideInAnimation} from "./core/shared/animations";
-import {Subscription} from "rxjs";
 import {LoadingIndicatorService} from "./core/shared/loading-indicator/loading-indicator.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-root',
@@ -12,78 +11,17 @@ import {LoadingIndicatorService} from "./core/shared/loading-indicator/loading-i
     slideInAnimation
   ],
 })
-export class AppComponent implements OnInit, OnDestroy{
-
-  private popupOpenSubscription!: Subscription;
-  private popupCloseSubscription!: Subscription;
-  private initializingSubscription!: Subscription;
-  private initializedSubscription!: Subscription;
-  private initializationErrorSubscription!: Subscription;
-  private statusChangeSubscription!: Subscription;
-  private revokeChoiceSubscription!: Subscription;
-  private noCookieLawSubscription!: Subscription;
+export class AppComponent implements OnInit {
 
   public loading: boolean = false;
 
-  constructor(private loadingIndicatorService: LoadingIndicatorService ){}
+  constructor(private loadingIndicatorService: LoadingIndicatorService, private translationService: TranslateService ){}
 
   ngOnInit() {
-
+    this.translationService.use('nl');
     this.loadingIndicatorService.loading$.subscribe((loading) => {
-      this.loading = loading;
+      this.loading = loading
     });
-
-    // this.popupOpenSubscription = this.ccService.popupOpen$.subscribe(
-    //   (data: any) => {
-    //
-    // });
-    //
-    // this.popupCloseSubscription = this.ccService.popupClose$.subscribe(
-    //   () => {
-    //
-    //   });
-    //
-    // this.initializingSubscription = this.ccService.initializing$.subscribe(
-    //   (event: NgcInitializingEvent) => {
-    //     console.log('Init')
-    //   });
-    //
-    // this.initializedSubscription = this.ccService.initialized$.subscribe(
-    //   () => {
-    //     console.log(`initialized: ${JSON.stringify(event)}`);
-    //   });
-    //
-    // this.initializationErrorSubscription = this.ccService.initializationError$.subscribe(
-    //   (event: NgcInitializationErrorEvent) => {
-    //     console.log(`initializationError: ${JSON.stringify(event.error?.message)}`);
-    //   });
-    //
-    // this.statusChangeSubscription = this.ccService.statusChange$.subscribe(
-    //   (event: NgcStatusChangeEvent) => {
-    //     // you can use this.ccService.getConfig() to do stuff...
-    //   });
-    //
-    // this.revokeChoiceSubscription = this.ccService.revokeChoice$.subscribe(
-    //   () => {
-    //     // you can use this.ccService.getConfig() to do stuff...
-    //   });
-    //
-    // this.noCookieLawSubscription = this.ccService.noCookieLaw$.subscribe(
-    //   (event: NgcNoCookieLawEvent) => {
-    //
-    //   });
-  }
-
-  ngOnDestroy() {
-    // unsubscribe to cookieconsent observables to prevent memory leaks
-    // this.popupOpenSubscription.unsubscribe();
-    // this.popupCloseSubscription.unsubscribe();
-    // this.initializingSubscription.unsubscribe();
-    // this.initializedSubscription.unsubscribe();
-    // this.initializationErrorSubscription.unsubscribe();
-    // this.statusChangeSubscription.unsubscribe();
-    // this.revokeChoiceSubscription.unsubscribe();
-    // this.noCookieLawSubscription.unsubscribe();
   }
 
 }

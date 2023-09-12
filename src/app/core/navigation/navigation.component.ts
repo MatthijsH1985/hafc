@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {AuthService} from "../../services/auth/auth-service";
 import {MenuService} from "../../services/menu.service";
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown, faBeer } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-navigation',
@@ -12,6 +12,7 @@ export class NavigationComponent {
 
   user: string | null | undefined;
   faChevronDown = faChevronDown;
+  faBeer = faBeer;
 
   constructor(private authService: AuthService, public menuService: MenuService) {
 

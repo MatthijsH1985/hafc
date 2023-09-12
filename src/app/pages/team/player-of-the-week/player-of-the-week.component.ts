@@ -1,27 +1,29 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {PlayersService} from "../../../services/players.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-player-of-the-week',
   templateUrl: './player-of-the-week.component.html',
   styleUrls: ['./player-of-the-week.component.scss']
 })
-export class PlayerOfTheWeekComponent implements OnInit{
+export class PlayerOfTheWeekComponent implements OnInit, OnDestroy{
   playerOfTheWeek: any;
+  playerOfTheWeekSub: Subscription = new Subscription();
   constructor(private playersService: PlayersService) {
   }
   ngOnInit() {
-    this.playersService.getPlayers().subscribe({
-      next: (players: any) => {
-        for(let i = 0; i < players.length; i++) {
-          if (players[i].acf.speler_van_de_week) {
-            this.playerOfTheWeek = players[i];
-          }
-        }
+    this.playerOfTheWeekSub = this.playersService.getPlayerOfTheWeek().subscribe({
+      next: (player: any) => {
+        this.playerOfTheWeek = player[0];
+        // console.log(this.playerOfTheWeek)
       },
-      error: error => {
-        console.error(error);
+      error: (error) => {
+        return error;
       }
     })
+  }
+  ngOnDestroy() {
+    this.playerOfTheWeekSub.unsubscribe();
   }
 }
