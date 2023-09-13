@@ -14,13 +14,13 @@
             </div>
             <div class="ml-auto flex items-center justify-center">
               <div class="ml-auto">
-                <span class="text-red-800 dark:text-white"><span *ngIf="comment.dislikes > 0">-  {{ comment.dislikes }}</span></span>
-                <button *ngIf="isAuthenticated()" class="like-dislike-button like-button" (click)="onRateComment(-1, comment)">
-                  <fa-icon [icon]="faArrowDown" class="text-red-800 dark:text-white"></fa-icon>
-                </button>
                 <span class="text-green-800 ml-4 dark:text-white"><span *ngIf="comment.likes > 0">+ {{ comment.likes }}</span></span>
                 <button *ngIf="isAuthenticated()" class="like-dislike-button like-button" (click)="onRateComment(1, comment)">
                   <fa-icon [icon]="faArrowUp" class="text-green-800 dark:text-white"></fa-icon>
+                </button>
+                <span class="text-red-800 dark:text-white"><span *ngIf="comment.dislikes > 0">-  {{ comment.dislikes }}</span></span>
+                <button *ngIf="isAuthenticated()" class="like-dislike-button like-button" (click)="onRateComment(-1, comment)">
+                  <fa-icon [icon]="faArrowDown" class="text-red-800 dark:text-white"></fa-icon>
                 </button>
               </div>
             </div>
@@ -28,10 +28,10 @@
           <div class="break-words">
             <div [innerHTML]="comment.content.rendered" class="text-black dark:text-white comment-content p-4"></div>
             <div class="text-sm p-4 pb-0 border-t border-gray-200 dark:border-gray-900 flex">
-              <h4 class="dark:text-white flex">
+              <h4 class="dark:text-white flex items-center w-full">
                 <span class="date">{{ validDateFormat(comment.date) | date: 'EEEE, d MMMM, y' }}</span> <span class="ml-2">{{ validDateFormat(comment.date) | date: 'HH:mm' }}</span>
-                <div class="ml-auto">
-                  <button class="like-dislike-button" (click)="onAddReport(comment.id)">
+                <div class="ml-auto" *ngIf="isAuthenticated()">
+                  <button class="like-dislike-button" (click)="onAddReport(comment, comment.author, comment.author_name)">
                     <fa-icon [icon]="faExclamationTriangle" class="text-red-800 dark:text-white"></fa-icon>
                   </button>
                 </div>
@@ -62,4 +62,4 @@
     <p class="mt-4 p-8 text-center text-red-800">{{ noCommentsMessage }}</p>
   </div>
 </div>
-<app-report-comment (closeModal)="onModalClose()" [modalStatus]="modalReportOpen"></app-report-comment>
+<app-report-comment (closeModal)="onModalClose()" [modalStatus]="modalReportOpen" [userData]="commentUserData"></app-report-comment>

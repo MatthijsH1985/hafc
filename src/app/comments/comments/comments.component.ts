@@ -14,6 +14,7 @@ import {Subscription} from "rxjs";
 import {faCheck, faBell, faArrowDown, faArrowUp, faExclamationTriangle} from "@fortawesome/free-solid-svg-icons";
 import {CommentsService} from "../services/comments.service";
 import {AuthService} from "../../services/auth/auth-service";
+import {ToastrService} from "ngx-toastr";
 
 
 @Component({
@@ -41,6 +42,7 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy {
   newCommentCount: number = 0;
   reloadButtonVisible: any;
   modalReportOpen: boolean = false;
+  commentUserData: any;
    @Input() initialCommentCount: number = 0;
 
   @HostListener('window:scroll', ['$event']) onScroll(event: any) {
@@ -49,7 +51,7 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy {
     this.isNewCommentsButtonVisible(winScroll);
   }
 
-  constructor(private commentsService: CommentsService, private authService: AuthService, private changeDetectorRef: ChangeDetectorRef, @Inject(PLATFORM_ID) private platformId: object) {
+  constructor(private commentsService: CommentsService, private toastService: ToastrService, private authService: AuthService, private changeDetectorRef: ChangeDetectorRef, @Inject(PLATFORM_ID) private platformId: object) {
     this.commentsService.newCommentAdded$.subscribe((newComment) => {
       this.comments.unshift(newComment);
     });
@@ -91,7 +93,7 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy {
         this.rateComment(commentData);
       },
       error: (err: any) => {
-        console.log(err);
+        console.log(err)
       }
     })
   }
@@ -113,6 +115,7 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy {
       },
       error: error => {
         this.loading = false;
+        this.toastService.error('Oops', error.error)
       }
     });
   }
@@ -139,7 +142,14 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
-  onAddReport(id: any) {
+  onAddReport(comment: any, author: number, author_name: string) {
+    this.commentUserData = {
+      commentId: comment.id,
+      author: comment.author,
+      author_name: comment.author_name,
+      comment_content: comment.content.rendered,
+      reporter: this.authService.getUserName()
+    }
     this.modalReportOpen = true;
   }
 

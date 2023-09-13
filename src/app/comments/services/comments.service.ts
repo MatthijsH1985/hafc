@@ -55,6 +55,13 @@ export class CommentsService {
     return of([]);
   }
 
+  reportComment(commentData: any) {
+    if (this.authService.isAuthenticated()) {
+      return this.http.post<Config[]>(environment.apiUrl + '/mumba/report-comment', commentData, this.httpOptions);
+    }
+    return of([]);
+  }
+
   getLatestComments() {
     const randomQueryParam = `cache_bypass=${Math.random()}`;
     return this.http.get<Config[]>(environment.apiUrl + '/comments?per_page=4&' + randomQueryParam + '', this.httpOptions);
