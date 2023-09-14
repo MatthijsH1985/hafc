@@ -1,7 +1,7 @@
 <div *ngIf="!loading;">
   <div class="md:p-0" *ngIf="nextMatch?.fixtures || nextMatch?.length > 0;">
     <div class=" max-w-full relative m-auto z-10 text-center bg-black rounded-md">
-      <a class="group transition-all" [routerLink]="['/', 'voorbeschouwing', nextMatchPost?.slug, nextMatchPost?.id]">
+      <a class="group transition-all" [routerLink]="['/', 'voorbeschouwing', nextMatchPost?.id, nextMatchPost?.slug]">
         <div [ngClass]="['matches next-match']" class="p-6 group-hover:bg-gray-800">
           <div class="flex items-center text-center justify-center">
             <div class="flex">

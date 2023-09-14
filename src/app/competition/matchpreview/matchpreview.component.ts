@@ -9,6 +9,7 @@ import {ConfigService} from "../../core/services/config.service";
 import {PostsService} from "../../news/services/posts.service";
 import {FixturesService} from "../services/fixtures.service";
 import {MetaService} from "../../core/services/meta.service";
+import {LoadingIndicatorService} from "../../core/shared/loading-indicator/loading-indicator.service";
 
 @Component({
   selector: 'app-matchpreview',
@@ -47,12 +48,13 @@ export class MatchpreviewComponent implements OnInit {
     private fixturesService: FixturesService,
     private viewportScroller: ViewportScroller,
     private metaService: MetaService,
+    private loadingIndicatorService: LoadingIndicatorService,
     @Inject(PLATFORM_ID) private platformId: object
   ) {
   }
 
   ngOnInit() {
-    this.loading = true;
+    this.loading = false;
     this.post = this.route.snapshot.data['post'];
     this.updateMetaTags(this.post);
     this.viewportScroller.scrollToPosition([0,0]);
@@ -86,7 +88,7 @@ export class MatchpreviewComponent implements OnInit {
 
         }
 
-        this.loading = false;
+        this.hideLoading();
       },
       error: (error: any) => {
         console.error(error)
@@ -125,6 +127,10 @@ export class MatchpreviewComponent implements OnInit {
     this.toast.success('Reactie wordt geplaatst', 'Succes');
     this.reloadComments = true;
     this.onModalClose();
+  }
+
+  hideLoading(): void {
+    this.loadingIndicatorService.setLoading(false);
   }
 
   onModalClose() {

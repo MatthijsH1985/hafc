@@ -102,7 +102,7 @@ const routes: Routes = [
   },
   {
     component: MatchpreviewComponent,
-    path: 'voorbeschouwing/:opponents/:id',
+    path: 'voorbeschouwing/:id/:opponents',
     resolve: {
       post: MatchResolver
     }
