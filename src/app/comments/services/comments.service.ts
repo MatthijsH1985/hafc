@@ -63,12 +63,12 @@ export class CommentsService {
   }
 
   getLatestComments() {
-    const randomQueryParam = `cache_bypass=${Math.random()}`;
+    const randomQueryParam = `cache_bypass=1`;
     return this.http.get<Config[]>(environment.apiUrl + '/comments?per_page=4&' + randomQueryParam + '', this.httpOptions);
   }
 
   getComments(post:any, page = 1, order = 'desc'): Observable<Config[]> {
-    const randomQueryParam = `cache_bypass=${Math.random()}`;
+    const randomQueryParam = `cache_bypass=1`;
     return this.http.get<Config[]>(environment.apiUrl + '/comments?post='+ post + '&per_page=60&page='+ page + '&order='+ order + '&' + randomQueryParam + '', this.httpOptions);
   }
 
