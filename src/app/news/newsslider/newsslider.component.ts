@@ -64,9 +64,7 @@ export class NewssliderComponent implements AfterViewInit {
     private route: ActivatedRoute,
     @Inject('isBrowser') @Inject(PLATFORM_ID) private platformId: Object,
     @Inject('isBrowser') private isBrowser: boolean
-  ) {  }
-
-  ngOnInit() {
+  ) {
     this.posts = this.route.snapshot.data['posts'].slice(0,3);
   }
 
