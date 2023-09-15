@@ -36,10 +36,10 @@ export class AdsComponent implements OnInit{
   }
 
   randomizeAds(ads: any) {
-    this.randomizedAds  = _.sampleSize(ads, 4);
+    this.randomizedAds  = _.sampleSize(ads, 6);
     if (this.platform.isBrowser) {
       setInterval(() => {
-        const adsRandimized = _.sampleSize(ads, 4);
+        const adsRandimized = _.sampleSize(ads, 6);
         this.randomizedAds = adsRandimized;
       }, 15000)
     }
