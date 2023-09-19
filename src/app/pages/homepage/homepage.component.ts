@@ -46,7 +46,7 @@ export class HomepageComponent implements OnInit {
 
   ngOnInit() {
     this.titleService.setTitle('HAFC - Wij zijn Heracles!');
-    // this.onShowDonateMessage();
+    this.onShowDonateMessage();
     this.viewportScroller.scrollToPosition([0, 0]);
     this.posts = this.route.snapshot.data['posts'];
     this.links = this.route.snapshot.data['links'];
@@ -57,10 +57,11 @@ export class HomepageComponent implements OnInit {
 
   onShowDonateMessage() {
     if (isPlatformBrowser(this.platformId)) {
-      this.toastr.error('<a href="https://hafcnl.backme.org/#support" target="_blank">Steun ons dan nu. Het is nodig.</a>', 'Vind jij het belangrijk dat HAFC blijft bestaan?!', {
+      this.toastr.info('<a href="https://hafcnl.backme.org/#support" target="_blank" class="underline">Klik hier om ons te steunen. Het is nodig.</a>', 'Vind jij het belangrijk dat HAFC blijft bestaan?!', {
         positionClass: 'toast-top-center',
         enableHtml: true,
-        timeOut: 12000
+        timeOut: 12000,
+        tapToDismiss: false
       })
     }
   }
