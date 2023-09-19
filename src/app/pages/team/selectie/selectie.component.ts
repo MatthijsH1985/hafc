@@ -1,9 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {PlayersService} from "../../../services/players.service";
-import {TeamService} from "../../../services/team.service";
-import {Router} from "@angular/router";
-import {Meta, Title} from "@angular/platform-browser";
-import {MetaService} from "../../../core/services/meta.service";
 
 @Component({
   selector: 'app-selectie',
@@ -23,15 +19,9 @@ export class SelectieComponent implements OnInit{
   aanvallers: any = [];
   loading: any = [];
 
-  constructor(private playerService: PlayersService,
-              private teamService: TeamService,
-              private router: Router,
-              private metaService: MetaService,
-              private title: Title,
-              private meta: Meta) {}
+  constructor(private playerService: PlayersService) {}
 
   ngOnInit() {
-    this.title.setTitle('Selectie - HAFC.nl')
     this.loading = true;
     this.playerService.getPlayers().subscribe( {
       next: data => {

@@ -42,25 +42,6 @@ export class ResultsComponent implements OnInit {
           return dateA.getTime() - dateB.getTime();
         });
 
-        console.log(this.teamResults)
-
-        this.homeTeamTotalScore = 0; // Initialize thuisspelende ploeg totaalscore
-        this.awayTeamTotalScore = 0; // Initialize uitspelende ploeg totaalscore
-
-        this.teamResults.forEach((round: any) => {
-          const fixture = round.fixtures[0];
-
-          if (fixture.result_info) {
-
-            this.awayTeamTotalScore = fixture.scores.filter((score: any) => score.description === "CURRENT");
-            console.log(this.awayTeamTotalScore)
-
-            this.homeTeamTotalScore = this.homeTeamTotalScore[0].score.goals;
-            this.awayTeamTotalScore = this.awayTeamTotalScore[1].score.goals;
-
-          }
-        });
-
         this.viewportScroller.scrollToPosition([0, 0]);
       },
       error: (error: any) => {
@@ -69,11 +50,12 @@ export class ResultsComponent implements OnInit {
     });
   }
 
-  onCalculateScore(data: any) {
-    if (data.filter((score: any) => score.description === "CURRENT")[0].score.participant === 'home') {
-      console.log(data.filter((score: any) => score.description === "CURRENT")[0].score.goals)
-      return data.filter((score: any) => score.description === "CURRENT")[0].score.goals;
-    }
+  calculateScore(scoreData: any, side: any) {
+    const goals = scoreData.filter((score: any) => {
+      return score.score.participant === side && score.description === 'CURRENT';
+    });
+    const totalGoals = goals.reduce((total: number, score: any) => total + score.score.goals, 0);
+    return totalGoals;
   }
 
   validDateFormat(dateString: Date): any {
