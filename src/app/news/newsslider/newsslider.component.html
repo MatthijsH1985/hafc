@@ -3,7 +3,7 @@
     <swiper-slide *ngFor="let post of posts">
       <a (click)="showLoading()" class="relative xl:w-[1200px] flex items-center flex-col justify-center w-full h-[500px]] md:h-[550px] group" [routerLink]="[post.categories[0] === 37 ? 'voorbeschouwing' : 'nieuws', post.id, post.slug]">
         <div class="h-450px relative w-full">
-          <img [src]="post.better_featured_image.source_url" class=" object-cover object-center w-full h-[550px] object-cover transition-all w-full block" />
+          <img [src]="post?.better_featured_image.source_url" class=" object-cover object-center w-full h-[550px] object-cover transition-all w-full block" />
           <div class="mt-4 flex flex-col absolute bottom-24 w-full justify-center md:text-left text-center m-auto z-30 md:bottom-32 lg:w-[50%] md:pl-16">
             <h1 [innerHTML]="post?.title?.rendered" class="text-white font-bold md:text-3xl text-3xl md:leading-normal leading-normal p-4"></h1>
             <span class="inline md:ml-4 text-white mb-4">{{ validDateFormat(post?.date)  | date: 'd MMMM' }}</span>
