@@ -33,7 +33,7 @@ export class PlayersService {
   }
 
   getPlayerOfTheWeek() {
-    return this.http.get<Config[]>(environment.apiUrl + '/player-of-the-week/', this.httpOptions);
+    return this.http.get<Config[]>(environment.apiUrl + '/player-of-the-week?per_page=20', this.httpOptions);
   }
 
 }
