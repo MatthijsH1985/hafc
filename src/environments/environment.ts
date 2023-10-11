@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   apiUrl: 'https://backend.hafc.nl/wp-json/wp/v2',
   loginUrl: 'https://backend.hafc.nl/wp-json/jwt-auth/v1/token',
-  userServiceUrl: 'https://backend.hafc.nl/wp-json/userservice',
+  userServiceUrl: 'https://backend.hafc.nl/wp-json',
   recaptcha: {
     siteKey: '6LfEKGImAAAAACNlgj6_ompIBaRy_e4sulh4Axgu',
   },

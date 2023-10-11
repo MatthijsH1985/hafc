@@ -32,7 +32,7 @@
                     {{ playerInfo.height }} cm
                   </div>
                 </div>
-                <div class="py-2 flex">
+                <div class="py-2 flex" *ngIf="playerInfo.weight !== undefined || playerInfo.weight !== null">
                   <label class="inline-block mr-4">Gewicht</label>
                   <div class="ml-auto mr-8">
                     {{ playerInfo.weight }} kg
