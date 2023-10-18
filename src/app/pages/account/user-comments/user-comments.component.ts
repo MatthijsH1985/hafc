@@ -13,15 +13,7 @@ export class UserCommentsComponent implements OnInit{
   constructor(private commentsService: CommentsService, private authService: AuthService) {}
 
   ngOnInit() {
-    const userID = Number(this.authService.getUserID());
-    this.commentsService.getCommentsByUserId(userID).subscribe({
-      next: (comments: any) => {
-        this.comments = comments;
-      },
-      error: (error: any) => {
-        console.log('error');
-      }
-    })
+
   }
 
   validDateFormat(dateString: any) {

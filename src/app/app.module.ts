@@ -2,7 +2,7 @@ import {CUSTOM_ELEMENTS_SCHEMA, LOCALE_ID, NgModule} from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {HttpClient, HttpClientModule, HTTP_INTERCEPTORS} from "@angular/common/http";
 import {TeamComponent} from "./pages/team/team.component";
 import {PlayersService} from "./services/players.service";
 import {TeamService} from "./services/team.service";
@@ -53,6 +53,10 @@ import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {TranslationService} from "./services/translation.service";
 import {TRANSLATIONS} from "./services/translations";
 import {of} from "rxjs";
+import {ShopModule} from './shop/shop.module';
+import { CookieInterceptor } from './services/http-interceptors';
+import {SsrCookieService} from 'ngx-cookie-service-ssr';
+import {SessionService} from './shop/services/session';
 
 register()
 registerLocaleData(localeNl);
@@ -116,16 +120,24 @@ registerLocaleData(localeNl);
     CoreModule,
     CommentsModule,
     RecaptchaModule,
+    ShopModule
   ],
   providers: [{
     provide: LOCALE_ID,
     useValue: 'nl',
   },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: CookieInterceptor,
+      multi: true,
+    },
+    SsrCookieService,
     PlayersService,
     TeamService,
     TranslationService,
     AdsService,
     UserService,
+    SessionService,
     MenuService,
     JwtHelperService, {
       provide: JWT_OPTIONS, useValue: JWT_OPTIONS

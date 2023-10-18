@@ -33,6 +33,9 @@ import {PostsResolver} from "./news/services/resolvers/posts-resolver.service";
 import {VerifyAccountComponent} from "./pages/account/verify-account/verify-account.component";
 import {LinksResolver} from "./core/services/resolvers/links.resolver";
 import {LatestCommentsResolver} from "./comments/services/resolvers/latest-comments.resolver";
+import {ShopHomepageComponent} from './shop/shophomepage/shophomepage.component';
+import {ProductComponent} from './shop/product/product.component';
+import {CartComponent} from './shop/cart/cart.component';
 const routes: Routes = [
 
   {
@@ -164,6 +167,23 @@ const routes: Routes = [
   {
     path: 'page/:id/:title',
     component: SinglePageComponent
+  },
+  {
+    path: 'shop',
+    children: [
+      {
+        path: '',
+        component: ShopHomepageComponent,
+      },
+      {
+        path: 'product/:slug',
+        component: ProductComponent
+      },
+      {
+        path: 'winkelwagen',
+        component: CartComponent
+      }
+    ]
   },
   {
     component: NotFoundComponent,

@@ -70,12 +70,6 @@ export class AuthService {
     this.removeUserEmail();
   }
 
-  getUserID(): any | null {
-    if (this._platform.isBrowser) {
-      return this.storage.getItem(this.USER_ID)
-    }
-  }
-
   getUserName(): any | null {
     if (this._platform.isBrowser) {
       return this.storage.getItem(this.USERNAME);

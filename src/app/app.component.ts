@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit, PLATFORM_ID} from '@angular/core';
 import {slideInAnimation} from "./core/shared/animations";
 import {LoadingIndicatorService} from "./core/shared/loading-indicator/loading-indicator.service";
 import {TranslateService} from "@ngx-translate/core";
+import {BehaviorSubject} from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,9 @@ export class AppComponent implements OnInit {
 
   public loading: boolean = false;
 
-  constructor(private loadingIndicatorService: LoadingIndicatorService, private translationService: TranslateService ){}
+  constructor(@Inject(PLATFORM_ID) private platformId: any, private loadingIndicatorService: LoadingIndicatorService, private translationService: TranslateService ){}
+
+  static isBrowser = new BehaviorSubject<boolean>(false);
 
   ngOnInit() {
     this.translationService.use('nl');
