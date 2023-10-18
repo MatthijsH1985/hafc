@@ -1,13 +1,14 @@
 import {isEmpty} from 'rxjs';
-import {Injectable} from '@angular/core';
+import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
 import _ from 'lodash';
+import {isPlatformBrowser} from '@angular/common';
 
 @Injectable()
 
 // @ts-ignore
 export class SessionService {
 
-  constructor() {
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
   }
 
   checkIfSessionExists(key: string): Promise<boolean> {
@@ -25,7 +26,10 @@ export class SessionService {
   }
 
   getCartSession = () => {
-    return localStorage.getItem( 'x-wc-session' );
+    if (isPlatformBrowser(this.platformId)) {
+      return localStorage.getItem( 'x-wc-session' );
+    }
+    return null
   }
 
 }

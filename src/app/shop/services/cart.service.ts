@@ -21,7 +21,6 @@ export class CartService {
     if (_.isEmpty(session)) {
       headers.set('x-wc-session', session);
     }
-
     return headers;
   }
 
@@ -29,7 +28,8 @@ export class CartService {
 
   getCart(): Observable<Config[]> {
     const httpOptions = {
-      headers: this.getHeadersWithSession()
+      headers: this.getHeadersWithSession(),
+      withCredentials: true
     };
     return this.http.get<Config[]>(environment.shopUrlCustom + '/cart/items', httpOptions);
   }
@@ -37,7 +37,8 @@ export class CartService {
   addToCart(cartData: string): Observable<Config[]> {
     const httpOptions = {
       headers: this.getHeadersWithSession(),
-      observe: 'response'
+      observe: 'response',
+      withCredentials: true
     };
     // @ts-ignore
     return this.http.post<Config[]>(environment.shopUrlCustom + '/cart/items', cartData, httpOptions);
@@ -45,7 +46,8 @@ export class CartService {
 
   updateCart(products: any): Observable<Config[]> {
     const httpOptions = {
-      headers: this.getHeadersWithSession()
+      headers: this.getHeadersWithSession(),
+      withCredentials: true
     };
 
     return this.http.post<Config[]>(environment.shopUrlCustom + '/cart/items', products, httpOptions);
