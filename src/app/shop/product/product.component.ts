@@ -63,17 +63,14 @@ export class ProductComponent implements OnInit, OnDestroy {
     });
     this.cartSub =  this.cartService.addToCart(cartData).subscribe({
       next: (res: any) => {
-        const headers = res?.headers;
+        const headers = res?.headers?.headers;
         const updatedCartItem = res?.body;
-        // const sessionHeader = headers.get('x-wc-session');
-        console.log(headers);
-        // console.log(sessionHeader)
-        console.log(res.body);
+        const sessionHeader = headers.get('x-wc-session');
         this.sessionService.checkIfSessionExists('x-wc-session').then((itemExists) => {
           if (itemExists) {
             localStorage.setItem('woo-next-cart', JSON.stringify(updatedCartItem));
           } else {
-            // this.sessionService.setSession(sessionHeader);
+            this.sessionService.setSession(sessionHeader);
           }
         });
       },

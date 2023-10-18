@@ -18,7 +18,6 @@ export class CartService {
     });
 
     const session: any = this.sessionService.getCartSession();
-    console.log(session);
     if (_.isEmpty(session)) {
       headers.set('x-wc-session', session);
     }
