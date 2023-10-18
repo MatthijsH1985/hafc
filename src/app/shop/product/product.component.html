@@ -1,0 +1,29 @@
+<div class="flex flex-col min-h-screen">
+  <div class="container max-w-[1200px] relative z-10 ml-auto mr-auto">
+    <div class="md:h-[550px] m-h-[450px] overflow-hidden relative min-h-[550px]">
+      <div class="grid grid-cols-2" *ngIf="product">
+        <div class="">
+          <img [srcset]="product?.images[0].src" [alt]="product.name" class="h-[500px] w-full object-cover" />
+        </div>
+        <div class="bg-white p-8">
+          <h1 class="text-black text-3xl" [innerHTML]="product?.name"></h1>
+          <div class="">
+            <h3 class="line-through text-xl text-black opacity-50">{{ product?.sale_price }}</h3>
+            <h3 class="text-blue-500 text-2xl">{{ product?.regular_price }}</h3>
+            <h3 class="flex">Omschrijving <fa-icon class="ml-auto" [icon]="faChevronDown"></fa-icon></h3>
+            <div [innerHTML]="product?.description" class="hidden"></div>
+            <div class="flex">
+              <form [formGroup]="productFormData" (ngSubmit)="onAddToCart(productFormData) ">
+                <input type="hidden" formControlName="product_id" />
+                <input type="number" placeholder="Aantal" formControlName="quantity" />
+                <button type="submit" class="bg-blue-500 text-white p-2">
+                  Bestel nu
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
