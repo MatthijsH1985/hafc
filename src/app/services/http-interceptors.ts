@@ -21,7 +21,7 @@ export class CookieInterceptor implements HttpInterceptor {
     return next.handle(req).pipe(
       // Filter alleen HttpResponse, negeer andere soorten responses
       filter((event: any) => event instanceof HttpResponse),
-      take(1), // Wacht op de voltooiing van de HttpResponse
+      take(1),
       map((response: HttpResponse<any>) => {
         const cookies = response.headers.getAll('Set-Cookie');
         return response;
