@@ -3,7 +3,7 @@ import {ProductsService} from '../services/products.service';
 import {Subscription} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
 import {faChevronDown} from '@fortawesome/free-solid-svg-icons';
-import {CartService} from '../services/cart.service';
+import {CartService} from '../cart/services/cart.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {SessionService} from '../services/session';
 
@@ -61,16 +61,20 @@ export class ProductComponent implements OnInit, OnDestroy {
       product_id: formData.value.product_id,
       quantity: formData.value.quantity
     });
+    this.addToCart(cartData)
+;  }
+
+  addToCart(cartData: any) {
     this.cartSub =  this.cartService.addToCart(cartData).subscribe({
       next: (res: any) => {
         const headers = res?.headers?.headers;
         const updatedCartItem = res?.body;
         const sessionHeader = headers.get('x-wc-session');
-        console.log(headers);
         this.sessionService.checkIfSessionExists('x-wc-session').then((itemExists) => {
           if (!itemExists) {
             this.sessionService.setSession(sessionHeader);
           }
+          this.cartService.updateCart(updatedCartItem);
           localStorage.setItem('woo-next-cart', JSON.stringify(updatedCartItem));
         });
       },

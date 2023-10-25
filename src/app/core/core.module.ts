@@ -25,6 +25,8 @@ import {AdsModule} from "../ads/ads.module";
 import {PositiveNumberPipe} from "./shared/positive-number/positive-number.pipe";
 import {TranslateModule} from "@ngx-translate/core";
 import {PreloaderComponent} from "./shared/preloader/preloader.component";
+import {CartService} from '../shop/cart/services/cart.service';
+import {SafePipe} from './shared/safe.pipe';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,7 @@ import {PreloaderComponent} from "./shared/preloader/preloader.component";
     NavigationComponent,
     GenerateLogoUrlPipe,
     RoundNumberPipe,
+    SafePipe,
     PositiveNumberPipe,
     TransformTeamDataPipe,
     LoadingIndicatorComponent,
@@ -50,6 +53,7 @@ import {PreloaderComponent} from "./shared/preloader/preloader.component";
     HeaderComponent,
     FooterComponent,
     NavigationComponent,
+    SafePipe,
     GenerateLogoUrlPipe,
     RoundNumberPipe,
     PositiveNumberPipe,
@@ -58,13 +62,14 @@ import {PreloaderComponent} from "./shared/preloader/preloader.component";
     AdsModule,
     PreloaderComponent,
     LoadingIndicatorComponent,
-    RouterModule
+    RouterModule,
   ],
   providers: [
     ConfigService,
     SessionStorage,
     LocalStorage,
     MetaService,
+    CartService,
     MemoryStorage,
     {
       provide: RECAPTCHA_V3_SITE_KEY,

@@ -15,9 +15,8 @@ export class SinglePageComponent implements OnInit{
   postId: any = this.activatedRoute.snapshot.paramMap.get('id');
   page: any;
 
-  constructor(private postsService: PostsService, private titleService: Title, private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(private postsService: PostsService, private titleService: Title, private router: Router, private activatedRoute: ActivatedRoute) {}
 
-  }
   ngOnInit() {
     this.currentRoute = this.router.url;
     this.postsService.getSinglePage(this.postId).subscribe({

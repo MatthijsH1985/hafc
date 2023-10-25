@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {CartService} from '../services/cart.service';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {CartService} from './services/cart.service';
 import {Subscription} from 'rxjs';
 
 @Component({
@@ -7,17 +7,23 @@ import {Subscription} from 'rxjs';
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss']
 })
-export class CartComponent implements OnInit{
+export class CartComponent implements OnInit, OnDestroy {
   cartSub: Subscription = new Subscription();
+  products: any = [];
+  productCount: any;
   constructor(private cartService: CartService) {}
   ngOnInit() {
     this.cartSub = this.cartService.getCart().subscribe({
       next: (cartContent: any) => {
-        console.log(cartContent);
+        this.products = cartContent;
+        this.productCount = cartContent.quantity;
       },
       error: (error: any) => {
         console.log(error);
       }
     })
+  }
+  ngOnDestroy() {
+    this.cartSub.unsubscribe();
   }
 }

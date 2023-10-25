@@ -57,6 +57,7 @@ import {ShopModule} from './shop/shop.module';
 import { CookieInterceptor } from './services/http-interceptors';
 import {SsrCookieService} from 'ngx-cookie-service-ssr';
 import {SessionService} from './shop/services/session';
+import {CartService} from './shop/cart/services/cart.service';
 
 register()
 registerLocaleData(localeNl);

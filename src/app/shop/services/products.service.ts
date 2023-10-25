@@ -12,7 +12,7 @@ export class ProductsService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json;charset=UTF-8',
-      'Authorization': 'Basic ' + btoa('ck_713a189544a36c84cec37f2d54f7cc918be84681:cs_1505f608af0cba240cc7bc728099ca3663f641b7')
+      'Authorization': 'Basic ' + btoa('ck_75c63c2bcbee598bc3fcde7103e7ad45c35bcfcc:cs_c4b7a35c4f98003842437144070e30cf0e95e5e2')
     })
   };
 

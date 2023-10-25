@@ -8,9 +8,9 @@ export const environment = {
   shopUrl: 'https://backend.hafc.nl/wp-json/wc/v3',
   shopUrlCustom: 'https://backend.hafc.nl/wp-json/rae/v1',
   loginUrl: 'https://backend.hafc.nl/wp-json/jwt-auth/v1/token',
-  userServiceUrl: 'https://backend.hafc.nl/wp-json',
+  userServiceUrl: 'https://backend.hafc.nl/wp-json/userservice',
   recaptcha: {
-    siteKey: '6LfEKGImAAAAACNlgj6_ompIBaRy_e4sulh4Axgu',
+    siteKey: '6LdyyrcUAAAAAB81RMMORr90yBEMcYN_omdANSEe',
   },
   customApi: 'https://stats.hafc.nl/v3/football'
 };

@@ -8,9 +8,8 @@ import { ShopHomepageComponent } from './shophomepage/shophomepage.component';
 import { CartComponent } from './cart/cart.component';
 import { ProductComponent } from './product/product.component';
 import { ProductsComponent } from './products/products.component';
-import {CartService} from './services/cart.service';
+import {CartService} from './cart/services/cart.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {SessionStorage} from '../core/services/session-storage';
 
 @NgModule({
   declarations: [
@@ -28,10 +27,10 @@ import {SessionStorage} from '../core/services/session-storage';
     FormsModule
   ],
   exports: [
+
   ],
   providers: [
-    ProductsService,
-    CartService
+    ProductsService
   ]
 })
 export class ShopModule { }
