@@ -26,6 +26,7 @@ body {
   outline: none;
   padding: 0.5rem 1rem;
   font-size: 1rem;
+  text-decoration: none;
   background: linear-gradient(
       to left,
       rgba(255,255,255, 1) 50%,
@@ -332,4 +333,8 @@ app-nieuwsbericht {
 
 .news-container a {
   @apply text-blue-500 underline
+}
+
+.news-container .button {
+  text-decoration: none;
 }
