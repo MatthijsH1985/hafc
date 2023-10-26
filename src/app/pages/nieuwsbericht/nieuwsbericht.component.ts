@@ -9,11 +9,9 @@ import {
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Title } from '@angular/platform-browser';
 import { ViewportScroller } from '@angular/common';
 import { faComment, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
-import {PostsService} from "../../news/services/posts.service";
 import {MetaService} from "../../core/services/meta.service";
 import {LoadingIndicatorService} from "../../core/shared/loading-indicator/loading-indicator.service";
 
@@ -44,9 +42,6 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy, AfterViewInit 
 
   constructor(
     private route: ActivatedRoute,
-    private postService: PostsService,
-    private router: Router,
-    private titleService: Title,
     private toast: ToastrService,
     private viewportScroller: ViewportScroller,
     private metaService: MetaService,
@@ -62,12 +57,9 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy, AfterViewInit 
     this.viewportScroller.scrollToPosition([0,0]);
   }
 
+
   ngAfterViewInit() {
     this.hideLoading();
-  }
-
-  showLoading(): void {
-    this.loadingIndicatorService.setLoading(true);
   }
 
   hideLoading(): void {

@@ -19,6 +19,7 @@ export function app(): express.Express {
 
   server.use((req, res, next) => {
     res.setHeader('Content-Security-Policy', "frame-ancestors 'self' https://open.spotify.com;");
+    console.log(res);
     next();
   });
 
