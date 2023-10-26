@@ -5,7 +5,7 @@ import { ngExpressEngine } from '@nguniversal/express-engine';
 import * as express from 'express';
 import { existsSync } from 'fs';
 import { join } from 'path';
-
+import * as compression from 'compression';
 
 import { AppServerModule } from './src/main.server';
 import axios from "axios";
@@ -14,14 +14,9 @@ import axios from "axios";
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
   const server = express();
+  server.use(compression());
   const distFolder = join(process.cwd(), 'dist/hafc/browser');
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
-
-  server.use((req, res, next) => {
-    res.setHeader('Content-Security-Policy', "frame-ancestors 'self' https://open.spotify.com;");
-    console.log(res);
-    next();
-  });
 
   // Our Universal express-engine (found @ https://github.com/angular/universal/tree/main/modules/express-engine)
   server.engine('html', ngExpressEngine({
