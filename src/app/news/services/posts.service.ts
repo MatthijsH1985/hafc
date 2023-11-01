@@ -21,6 +21,10 @@ export class PostsService {
     return this.http.get<Config[]>(environment.apiUrl + '/posts?page='+ page + '&per_page=12&categories=' + category + '', this.httpOptions);
   }
 
+  getHeadlines(page = 1, category = [3, 37]): Observable<Config[]> {
+    return this.http.get<Config[]>(environment.apiUrl + '/posts?page='+ page + '&per_page=1&categories=' + category + '', this.httpOptions);
+  }
+
   getPost(postId: any | null): Observable<Config[]> {
     return this.http.get<Config[]>(environment.apiUrl + '/posts/'+ postId + '', this.httpOptions);
   }

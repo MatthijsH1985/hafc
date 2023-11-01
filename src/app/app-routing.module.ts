@@ -36,12 +36,14 @@ import {LatestCommentsResolver} from "./comments/services/resolvers/latest-comme
 import {ShopHomepageComponent} from './shop/shophomepage/shophomepage.component';
 import {ProductComponent} from './shop/product/product.component';
 import {CartComponent} from './shop/cart/cart.component';
+import {HeadlinesResolver} from './news/services/resolvers/headlines-resolver.service';
 const routes: Routes = [
 
   {
     component: HomepageComponent,
     path: '',
     resolve: {
+      headlines: HeadlinesResolver,
       posts: PostsResolver,
       links: LinksResolver,
       latestComments: LatestCommentsResolver
