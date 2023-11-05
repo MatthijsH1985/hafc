@@ -58,6 +58,7 @@ import { CookieInterceptor } from './services/http-interceptors';
 import {SsrCookieService} from 'ngx-cookie-service-ssr';
 import {SessionService} from './shop/services/session';
 import {CartService} from './shop/cart/services/cart.service';
+import {IntersectionObserverService} from './services/intersection-observer.service';
 
 register()
 registerLocaleData(localeNl);
@@ -133,6 +134,7 @@ registerLocaleData(localeNl);
     TranslationService,
     AdsService,
     UserService,
+    IntersectionObserverService,
     SessionService,
     MenuService,
     JwtHelperService, {

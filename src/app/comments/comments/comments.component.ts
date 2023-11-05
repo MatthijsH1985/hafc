@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   ChangeDetectorRef,
   Component,
   HostListener,
@@ -15,6 +16,9 @@ import {faCheck, faBell, faArrowDown, faArrowUp, faExclamationTriangle} from "@f
 import {CommentsService} from "../services/comments.service";
 import {AuthService} from "../../services/auth/auth-service";
 import {ToastrService} from "ngx-toastr";
+import {IntersectionObserverService} from '../../services/intersection-observer.service';
+import {isPlatformBrowser} from '@angular/common';
+import {ActivatedRoute, Route} from '@angular/router';
 
 
 @Component({
@@ -22,13 +26,11 @@ import {ToastrService} from "ngx-toastr";
   templateUrl: './comments.component.html',
   styleUrls: ['./comments.component.scss']
 })
-export class CommentsComponent implements OnInit, OnChanges, OnDestroy {
+export class CommentsComponent implements OnInit, OnChanges, OnDestroy, AfterViewInit {
   commentsSub: Subscription | undefined;
   commentsCountSub: Subscription | undefined;
+  comments = this.route.snapshot.data['comments'];
   authSub: Subscription | undefined;
-  @Input() postId: string | undefined;
-  @Input() onReloadComments: boolean = false;
-  comments: any = [];
   loading: boolean = true;
   noCommentsMessage = 'Er is (nog) niet gereageerd op dit artikel';
   loadingComments: boolean = true;
@@ -43,15 +45,16 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy {
   reloadButtonVisible: any;
   modalReportOpen: boolean = false;
   commentUserData: any;
-   @Input() initialCommentCount: number = 0;
+  @Input() initialCommentCount: number = 0;
+  @Input() postId: string | undefined;
+  @Input() onReloadComments: boolean = false;
 
   @HostListener('window:scroll', ['$event']) onScroll(event: any) {
     const winScroll = event.target.documentElement.scrollTop || event.currentTarget.scrollTop || document.body.scrollTop;
-
     this.isNewCommentsButtonVisible(winScroll);
   }
 
-  constructor(private commentsService: CommentsService, private toastService: ToastrService, private authService: AuthService, private changeDetectorRef: ChangeDetectorRef, @Inject(PLATFORM_ID) private platformId: object) {
+  constructor(private IntersectionObserverService: IntersectionObserverService, private route: ActivatedRoute, private commentsService: CommentsService, private toastService: ToastrService, private authService: AuthService, private changeDetectorRef: ChangeDetectorRef, @Inject(PLATFORM_ID) private platformId: object) {
     this.commentsService.newCommentAdded$.subscribe((newComment) => {
       this.comments.unshift(newComment);
     });
@@ -74,7 +77,12 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnInit() {
-    this.getComments(1);
+    // this.getComments(1);
+    console.log(this.comments);
+  }
+
+  ngAfterViewInit() {
+    this.animateComments();
   }
 
   validateRating(rating: number): number {
@@ -169,12 +177,40 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
+  animateComments() {
+    if (isPlatformBrowser(this.platformId)) {
+      console.log(this.platformId);
+      this.IntersectionObserverService.loadPolyfill();
+      const options = {
+        root: null,
+        rootMargin: '100px',
+        threshold: 0.5
+      };
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const targetElement = entry.target as HTMLElement;
+            const classesToAdd = ['animate-fade-up', 'animate-fill-forwards', 'animate-normal', 'animate-once','animate-duration-200', 'animate-ease-linear'];
+            targetElement.classList.add(...classesToAdd);
+            observer.unobserve(targetElement);
+          }
+        });
+      }, options);
+      const elementsToObserve = document.querySelectorAll('.comment-container');
+
+      elementsToObserve.forEach(element => {
+        observer.observe(element);
+      });
+    }
+  }
+
   getComments(page: number) {
     this.commentsSub = this.commentsService.getComments(this.postId, this.commentPage).subscribe({
       next: comments => {
         // const newComments = comments.filter((comment: any) => !this.comments.some((existingComment: any) => existingComment.id === comment.id));
         // this.comments.unshift(...newComments);
-
+        this.animateComments();
         for (let i = 0; i < comments.length; i++) {
           this.comments.push(comments[i]);
         }

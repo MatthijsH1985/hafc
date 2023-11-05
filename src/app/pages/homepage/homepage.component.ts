@@ -47,12 +47,11 @@ export class HomepageComponent implements OnInit {
 
   ngOnInit() {
     this.titleService.setTitle('HAFC - Wij zijn Heracles!');
-    // this.onShowDonateMessage();
     this.viewportScroller.scrollToPosition([0, 0]);
     this.headlines = this.route.snapshot.data['headlines'].slice(0,1)[0];
     this.posts = this.route.snapshot.data['posts'];
     this.links = this.route.snapshot.data['links'];
-    console.log(this.headlines)
+    this.loading = false;
     this.latestComments = this.route.snapshot.data['latestComments'];
     this.metaService.setMetaTag('HAFC.nl - Wij Zij Heracles', 'HAFC.nl is de grootste Heracles community voor en door supporters');
   }

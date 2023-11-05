@@ -193,7 +193,7 @@ button {
 
 .comment-content {
   p {
-    @apply mb-4 break-all;
+    @apply mb-4;
   }
   * {
     @apply text-black leading-6 dark:text-white
@@ -337,4 +337,8 @@ app-nieuwsbericht {
 
 .news-container .button {
   text-decoration: none;
+}
+
+.comment-container {
+  @apply p-4 mb-4 md:mr-4 md:w-[600px] rounded-md bg-white dark:bg-gray-800 opacity-0
 }

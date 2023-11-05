@@ -69,7 +69,7 @@ export class CommentsService {
 
   getComments(post:any, page = 1, order = 'desc'): Observable<Config[]> {
     const randomQueryParam = `cache_bypass=1`;
-    return this.http.get<Config[]>(environment.apiUrl + '/comments?post='+ post + '&per_page=60&page='+ page + '&order='+ order + '&' + randomQueryParam + '', this.httpOptions);
+    return this.http.get<Config[]>(environment.apiUrl + '/comments?post='+ post + '&per_page=100&page='+ page + '&order='+ order + '&' + randomQueryParam + '', this.httpOptions);
   }
 
   getCommentsCount(post:any): Observable<Config[]> {

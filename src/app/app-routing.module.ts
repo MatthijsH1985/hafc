@@ -37,6 +37,7 @@ import {ShopHomepageComponent} from './shop/shophomepage/shophomepage.component'
 import {ProductComponent} from './shop/product/product.component';
 import {CartComponent} from './shop/cart/cart.component';
 import {HeadlinesResolver} from './news/services/resolvers/headlines-resolver.service';
+import {CommentsResolverService} from './services/resolvers/comments-resolver.service';
 const routes: Routes = [
 
   {
@@ -58,7 +59,8 @@ const routes: Routes = [
     path: 'nieuws/:id/:title',
     resolve: {
       post: PostResolver,
-      links: LinksResolver
+      links: LinksResolver,
+      comments: CommentsResolverService
     }
   },
   {
