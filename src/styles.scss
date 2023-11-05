@@ -233,7 +233,7 @@ form {
   position: relative;
   &:before {
     content: " ";
-    @apply block absolute right-0 left-0 top-[300px] -z-10 bottom-0 dark:bg-gray-700
+    @apply block absolute right-0 left-0 top-[300px] -z-10 bottom-0 dark:bg-none
   }
 }
 
