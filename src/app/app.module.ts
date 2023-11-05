@@ -127,11 +127,6 @@ registerLocaleData(localeNl);
     provide: LOCALE_ID,
     useValue: 'nl',
   },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: CookieInterceptor,
-      multi: true,
-    },
     SsrCookieService,
     PlayersService,
     TeamService,
@@ -141,7 +136,8 @@ registerLocaleData(localeNl);
     SessionService,
     MenuService,
     JwtHelperService, {
-      provide: JWT_OPTIONS, useValue: JWT_OPTIONS
+      provide: JWT_OPTIONS,
+      useValue: JWT_OPTIONS
     }],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

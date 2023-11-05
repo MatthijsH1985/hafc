@@ -50,11 +50,22 @@ export class AuthService {
   }
 
   getUserInfo(): Observable<any>  {
-    return this.http.get<any>(`${this.apiUrl}` + '/users/me', this.httpOptions)
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json;charset=UTF-8',
+      'Authorization': `Bearer ${this.getToken()}`
+    });
+    return this.http.get<any>(`${this.apiUrl}` + '/users/me', {headers})
   }
 
   getUserInfoEditable(): Observable<any>  {
-    return this.http.get<any>(`${this.apiUrl}` + '/users/me?context=edit', this.httpOptions)
+    const headers = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json;charset=UTF-8',
+        'Authorization': `Bearer ${this.getToken()}`
+      })
+    }
+    console.log(headers);
+    return this.http.get<any>(`${this.apiUrl}` + '/users/me?context=edit', headers)
   }
 
   public isAuthenticated(): any {

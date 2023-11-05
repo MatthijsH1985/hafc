@@ -1,6 +1,6 @@
 <div class="comments-section flex flex-col">
   <div class="flex md:flex-row flex-col-reverse md:w-[1100px] container ml-auto mr-auto">
-    <div *ngIf="!loadingComments;">
+    <div class="flex-1">
       <div class="flex items-center justify-center mb-4 relative">
         <button *ngIf="newCommentCount > 0 && reloadButtonVisible" (click)="loadNewComments();" class="shadow-md border-solid button button-white fixed md:inline-block top-[100px] z-30 left-[50%] ml-[-120px] w-[240px]">
           <fa-icon [icon]="faBell" class="mr-1"></fa-icon> Toon <span class="text-red-800 inline-block mr-1">+{{ newCommentCount }}</span> nieuwe reacties

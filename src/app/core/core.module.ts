@@ -27,6 +27,7 @@ import {TranslateModule} from "@ngx-translate/core";
 import {PreloaderComponent} from "./shared/preloader/preloader.component";
 import {CartService} from '../shop/cart/services/cart.service';
 import {SafePipe} from './shared/safe.pipe';
+import { CreditsComponent } from './footer/credits/credits.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import {SafePipe} from './shared/safe.pipe';
     PositiveNumberPipe,
     TransformTeamDataPipe,
     LoadingIndicatorComponent,
-    PreloaderComponent
+    PreloaderComponent,
+    CreditsComponent
   ],
   imports: [
     CommonModule,
@@ -63,6 +65,7 @@ import {SafePipe} from './shared/safe.pipe';
     PreloaderComponent,
     LoadingIndicatorComponent,
     RouterModule,
+    CreditsComponent,
   ],
   providers: [
     ConfigService,
