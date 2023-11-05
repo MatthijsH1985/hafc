@@ -193,7 +193,7 @@ button {
 
 .comment-content {
   p {
-    @apply mb-4;
+    @apply mb-4 break-all;
   }
   * {
     @apply text-black leading-6 dark:text-white
