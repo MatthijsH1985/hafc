@@ -1,15 +1,27 @@
-import {Component, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges} from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  Inject,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Output,
+  PLATFORM_ID,
+  SimpleChanges
+} from '@angular/core';
 import {Subscription} from "rxjs";
 import {PostsService} from "../services/posts.service";
 import {LoadingIndicatorService} from "../../core/shared/loading-indicator/loading-indicator.service";
 import {ActivatedRoute} from "@angular/router";
+import {isPlatformBrowser} from '@angular/common';
 
 @Component({
   selector: 'app-newslist',
   templateUrl: './newslist.component.html',
   styleUrls: ['./newslist.component.scss']
 })
-export class NewslistComponent implements OnInit, OnDestroy {
+export class NewslistComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input('pagination') pagination: boolean = true;
   @Input('compact') compact: boolean = false;
   posts: any = [];
@@ -18,11 +30,43 @@ export class NewslistComponent implements OnInit, OnDestroy {
   postPage: any = 1;
   errorMessage: any;
 
-  constructor(private postsService: PostsService, private route: ActivatedRoute, private loadingIndicatorService: LoadingIndicatorService) {
+  constructor(private postsService: PostsService,  @Inject(PLATFORM_ID) private platformId: object, private route: ActivatedRoute, private loadingIndicatorService: LoadingIndicatorService) {
   }
 
   showLoading(): void {
     this.loadingIndicatorService.setLoading(true);
+  }
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.animateItems();
+    }, 200);
+  }
+
+  animateItems() {
+    if (isPlatformBrowser(this.platformId)) {
+      const options = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.5
+      };
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const targetElement = entry.target as HTMLElement;
+            const classesToAdd = ['animate-fade-up', 'animate-fill-forwards', 'animate-normal', 'animate-once','animate-duration-300', 'animate-ease-linear'];
+            targetElement.classList.add(...classesToAdd);
+            observer.unobserve(targetElement);
+          }
+        });
+      }, options);
+      const elementsToObserve = document.querySelectorAll('.newsitem-container');
+
+      elementsToObserve.forEach(element => {
+        observer.observe(element);
+      });
+    }
   }
 
   ngOnInit() {
@@ -38,6 +82,9 @@ export class NewslistComponent implements OnInit, OnDestroy {
           for (let i = 0; i < data.length; i++) {
             this.posts.push(data[i]);
           }
+          setTimeout(() => {
+            this.animateItems();
+          }, 200);
           this.loading = false;
           this.postPage++;
         } else {

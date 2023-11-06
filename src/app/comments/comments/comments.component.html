@@ -30,11 +30,11 @@
             <div class="text-sm p-4 pb-0 border-t border-gray-200 dark:border-gray-900 flex">
               <h4 class="dark:text-white flex items-center w-full">
                 <span class="date">{{ validDateFormat(comment.date) | date: 'EEEE, d MMMM, y' }}</span> <span class="ml-2">{{ validDateFormat(comment.date) | date: 'HH:mm' }}</span>
-                <div class="ml-auto" *ngIf="isAuthenticated()">
-                  <button class="like-dislike-button" (click)="onAddReport(comment, comment.author, comment.author_name)">
-                    <fa-icon [icon]="faExclamationTriangle" class="text-red-800 dark:text-white"></fa-icon>
-                  </button>
-                </div>
+<!--                <div class="ml-auto" *ngIf="isAuthenticated()">-->
+<!--                  <button class="like-dislike-button" (click)="onAddReport(comment, comment.author, comment.author_name)">-->
+<!--                    <fa-icon [icon]="faExclamationTriangle" class="text-red-800 dark:text-white"></fa-icon>-->
+<!--                  </button>-->
+<!--                </div>-->
               </h4>
             </div>
           </div>

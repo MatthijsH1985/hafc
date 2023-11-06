@@ -143,7 +143,7 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy, AfterVie
     if (isPlatformBrowser(this.platformId)) {
       const options = {
         root: null,
-        rootMargin: '50px',
+        rootMargin: '0px',
         threshold: 0.5
       };
 
@@ -151,7 +151,7 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy, AfterVie
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             const targetElement = entry.target as HTMLElement;
-            const classesToAdd = ['animate-fade-up', 'animate-fill-forwards', 'animate-normal', 'animate-once','animate-duration-200', 'animate-ease-linear'];
+            const classesToAdd = ['animate-fade-up', 'animate-fill-forwards', 'animate-normal', 'animate-once','animate-duration-300', 'animate-ease-linear'];
             targetElement.classList.add(...classesToAdd);
             observer.unobserve(targetElement);
           }

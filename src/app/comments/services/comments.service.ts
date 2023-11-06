@@ -77,15 +77,4 @@ export class CommentsService {
     return this.http.get<Config[]>(environment.apiUrl + '/mumba/comment_count/'+ post +'?'+ randomQueryParam + '');
   }
 
-  getCommentsByUserId(userId: number | undefined):Observable<any> {
-    const token: any = this.authService.getToken();
-    const httpOptionsBearer = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json;charset=UTF-8',
-        'Authorization': `Bearer ${token}`
-      })
-    };
-    return this.http.get(environment.apiUrl + '/comments?author=' + userId + '', httpOptionsBearer);
-  }
-
 }
