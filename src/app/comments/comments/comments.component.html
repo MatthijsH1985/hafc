@@ -41,7 +41,7 @@
         </li>
       </ul>
       <ng-template #noComments>
-        <div class="p-8 md:w-[600px]">
+        <div class="p-4 -mt-4 md:w-[600px] bg-blue-100 rounded-md mr-4">
           <p class="dark:text-white">Er is nog niet gereageerd op dit artikel</p>
         </div>
       </ng-template>
@@ -50,13 +50,13 @@
       </div>
     </div>
     <div class="flex-1">
+      <h3 class="black bg-gray-200 rounded-t-md dark:bg-black text-black dark:text-white text-center md:text-left p-4">
+        Onze sponsoren
+      </h3>
       <div class="sticky top-[130px] rounded-md bg-white dark:bg-gray-900 px-4 py-8">
         <app-ads [layout]="'square'"></app-ads>
       </div>
     </div>
-  </div>
-  <div *ngIf="loadingComments">
-    <p class="text-black p-8 xl:w-[1100px] ml-auto mr-auto">Reacties ophalen</p>
   </div>
   <div *ngIf="noCommentsLoaded && !loadingComments" class="p-8">
     <p class="mt-4 p-8 text-center text-red-800">{{ noCommentsMessage }}</p>

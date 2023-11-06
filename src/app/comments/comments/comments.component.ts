@@ -38,7 +38,7 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy, AfterVie
   faArrowDown = faArrowDown;
   faArrowUp = faArrowUp;
   faExclamationTriangle = faExclamationTriangle;
-  commentPage: number = 1;
+  commentPage: number = 2;
   faBell = faBell;
   newCommentCount: number = 0;
   reloadButtonVisible: any;
@@ -63,10 +63,6 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy, AfterVie
     this.modalReportOpen = false;
   }
 
-  onReportModalOpen() {
-    this.modalReportOpen = true;
-  }
-
   isAuthenticated() {
     return this.authService.isAuthenticated()
   }
@@ -77,7 +73,6 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy, AfterVie
 
   ngOnInit() {
     // this.getComments(1);
-    console.log(this.comments);
   }
 
   ngAfterViewInit() {
@@ -127,28 +122,6 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy, AfterVie
     });
   }
 
-  checkForNewComments() {
-    if (this.commentsCountSub && !this.commentsCountSub.closed) {
-      return;
-    } else {
-      this.commentsCountSub = this.commentsService.getCommentsCount(this.postId).subscribe({
-        next: (data: any) => {
-          const commentCount = data.count;
-
-          // Bereken het aantal nieuwe reacties
-          const newCommentCount = commentCount - this.initialCommentCount;
-
-          // Update this.newCommentCount met het nieuwe aantal
-          this.newCommentCount = newCommentCount;
-          this.closeNewCommentsSubscription();
-        },
-        error: (error: any) => {
-          console.log(error);
-        },
-      });
-    }
-  }
-
   onAddReport(comment: any, author: number, author_name: string) {
     this.commentUserData = {
       commentId: comment.id,
@@ -158,10 +131,6 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy, AfterVie
       reporter: this.authService.getUserName()
     }
     this.modalReportOpen = true;
-  }
-
-  closeNewCommentsSubscription() {
-    this.commentsCountSub?.unsubscribe();
   }
 
   loadNewComments() {
