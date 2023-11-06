@@ -2,7 +2,6 @@ import {
   AfterViewInit,
   ChangeDetectorRef,
   Component,
-  HostListener,
   Inject,
   Input,
   OnChanges,
@@ -48,14 +47,12 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy, AfterVie
   @Input() postId: string | undefined;
   @Input() onReloadComments: boolean = false;
 
-  @HostListener('window:scroll', ['$event']) onScroll(event: any) {
-    const winScroll = event.target.documentElement.scrollTop || event.currentTarget.scrollTop || document.body.scrollTop;
-    this.isNewCommentsButtonVisible(winScroll);
-  }
-
   constructor(private route: ActivatedRoute, private commentsService: CommentsService, private toastService: ToastrService, private authService: AuthService, private changeDetectorRef: ChangeDetectorRef, @Inject(PLATFORM_ID) private platformId: object) {
     this.commentsService.newCommentAdded$.subscribe((newComment) => {
       this.comments.unshift(newComment);
+      setTimeout(() => {
+        this.animateComments();
+      }, 250)
     });
   }
 
@@ -67,9 +64,6 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy, AfterVie
     return this.authService.isAuthenticated()
   }
 
-  isNewCommentsButtonVisible(scrollHeight: number): void {
-    this.reloadButtonVisible = scrollHeight > 2000 ? true : false;
-  }
 
   ngOnInit() {
     // this.getComments(1);
