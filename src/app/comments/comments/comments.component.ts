@@ -147,7 +147,6 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy, AfterVie
 
   animateComments() {
     if (isPlatformBrowser(this.platformId)) {
-      console.log(this.platformId);
       const options = {
         root: null,
         rootMargin: '50px',

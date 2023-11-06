@@ -1,6 +1,6 @@
 <app-loading-indicator *ngIf="loading"></app-loading-indicator>
 <div class="flex flex-col">
-  <div *ngIf="page?.id;">
+  <div *ngIf="page?.id;" class="animate-fade-up animate-once animate-ease-in-out animate-duration-200">
     <div class="container xl:w-[1200px] ml-auto mr-auto">
       <div class="relative container h-[450px] xl:h-[550px] md:h-[550px] align-center">
         <img [src]="page?.better_featured_image.source_url" class="object-cover object-center xl:h-[550px] md:h-[550px] m-h-[550px] w-full h-full animate-in animate-in slide-in-from-bottom-10 fade-in-25 fill-mode-forwards" />
