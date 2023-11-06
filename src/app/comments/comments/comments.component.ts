@@ -16,7 +16,6 @@ import {faCheck, faBell, faArrowDown, faArrowUp, faExclamationTriangle} from "@f
 import {CommentsService} from "../services/comments.service";
 import {AuthService} from "../../services/auth/auth-service";
 import {ToastrService} from "ngx-toastr";
-import {IntersectionObserverService} from '../../services/intersection-observer.service';
 import {isPlatformBrowser} from '@angular/common';
 import {ActivatedRoute, Route} from '@angular/router';
 
@@ -54,7 +53,7 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy, AfterVie
     this.isNewCommentsButtonVisible(winScroll);
   }
 
-  constructor(private IntersectionObserverService: IntersectionObserverService, private route: ActivatedRoute, private commentsService: CommentsService, private toastService: ToastrService, private authService: AuthService, private changeDetectorRef: ChangeDetectorRef, @Inject(PLATFORM_ID) private platformId: object) {
+  constructor(private route: ActivatedRoute, private commentsService: CommentsService, private toastService: ToastrService, private authService: AuthService, private changeDetectorRef: ChangeDetectorRef, @Inject(PLATFORM_ID) private platformId: object) {
     this.commentsService.newCommentAdded$.subscribe((newComment) => {
       this.comments.unshift(newComment);
     });
@@ -180,10 +179,9 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy, AfterVie
   animateComments() {
     if (isPlatformBrowser(this.platformId)) {
       console.log(this.platformId);
-      this.IntersectionObserverService.loadPolyfill();
       const options = {
         root: null,
-        rootMargin: '100px',
+        rootMargin: '50px',
         threshold: 0.5
       };
 

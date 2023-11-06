@@ -49,16 +49,12 @@ import {CommentsModule} from "./comments/comments.module";
 import {RecaptchaModule} from "ng-recaptcha";
 import {VerifyAccountComponent} from "./pages/account/verify-account/verify-account.component";
 import {TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {TranslationService} from "./services/translation.service";
 import {TRANSLATIONS} from "./services/translations";
 import {of} from "rxjs";
 import {ShopModule} from './shop/shop.module';
-import { CookieInterceptor } from './services/http-interceptors';
 import {SsrCookieService} from 'ngx-cookie-service-ssr';
 import {SessionService} from './shop/services/session';
-import {CartService} from './shop/cart/services/cart.service';
-import {IntersectionObserverService} from './services/intersection-observer.service';
 
 register()
 registerLocaleData(localeNl);
@@ -134,7 +130,6 @@ registerLocaleData(localeNl);
     TranslationService,
     AdsService,
     UserService,
-    IntersectionObserverService,
     SessionService,
     MenuService,
     JwtHelperService, {
