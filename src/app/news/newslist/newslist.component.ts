@@ -47,7 +47,7 @@ export class NewslistComponent implements OnInit, OnDestroy, AfterViewInit {
     if (isPlatformBrowser(this.platformId)) {
       const options = {
         root: null,
-        rootMargin: '0px',
+        rootMargin: '40px',
         threshold: 0.5
       };
 
