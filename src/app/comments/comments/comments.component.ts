@@ -143,7 +143,7 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy, AfterVie
     if (isPlatformBrowser(this.platformId)) {
       const options = {
         root: null,
-        rootMargin: '40px',
+        rootMargin: '15px',
         threshold: 0.5
       };
 

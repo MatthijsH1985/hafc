@@ -6,20 +6,6 @@
 /* Google Font */
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Open+Sans:ital,wght@0,300;0,400;0,700;1,400&display=swap');
 
-body {
-  &:before {
-    content: "";
-    height: 350px;
-    --tw-bg-opacity: 1;
-    background-color: rgba(0,0,0);
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    @apply hidden sm:block
-  }
-}
-
 .button {
   transition: all 0.15s ease;
   border: none;
