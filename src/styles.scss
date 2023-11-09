@@ -328,3 +328,24 @@ app-nieuwsbericht {
 .comment-container {
   @apply p-4 mb-4 md:mr-4 md:w-[600px] rounded-md bg-white dark:bg-gray-800 opacity-0
 }
+
+@keyframes headerHeightAnimate {
+  from {
+    height: 0px;
+  }
+  to {
+    height: 350px;
+  }
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 0;
+  background-color: black; /* Je kunt de achtergrondkleur aanpassen zoals nodig */
+  animation: headerHeightAnimate .25s ease-out 0.5s forwards; /* tijdsduur, timingfunctie en vertraging toegevoegd */
+  z-index: -1; /* Zorg ervoor dat het pseudo-element onder de pagina-inhoud ligt */
+}
