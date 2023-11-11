@@ -14,26 +14,26 @@
         <li class="has-sub-menu group rounded-md" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
           <span (click)="menuService.close()" class="button button-black hidden md:flex items-center hover:hidden group-hover:hidden md:group-hover:flex">Club <fa-icon class="text-xs ml-2" [icon]="faChevronDown"></fa-icon></span>
           <div class="sub-menu absolute md:hidden w-full left-0 pt-6 group-hover:flex">
-            <div class="bg-black md:bg-white sub-menu-inner p-8 w-full h-[300px] md:flex">
+            <div class="bg-black md:bg-white md:dark:bg-black md:dark:text-white sub-menu-inner p-8 w-full h-[300px] md:flex">
               <div class="mt-4 md:p-4">
-                <h4 class="my-4 text-black font-bold">Eerste elftal</h4>
+                <h4 class="my-4 text-black md:dark:text-white font-bold">Eerste elftal</h4>
                 <ul class="">
                   <li>
-                    <a class="text-black text-sm" (click)="menuService.close()" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['club', 'selectie']">Selectie</a>
+                    <a class="text-black dark:text-white text-sm" (click)="menuService.close()" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['club', 'selectie']">Selectie</a>
                   </li>
                 </ul>
               </div>
               <div class="mt-4 md:p-4">
-                <h4 class="my-4 text-black font-bold">Competitie</h4>
+                <h4 class="my-4 text-black md:dark:text-white font-bold">Competitie</h4>
                 <ul class="">
                   <li>
-                    <a class="text-black text-sm" (click)="menuService.close()" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['club', 'competitie', 'wedstrijdprogramma']">Wedstrijdprogramma</a>
+                    <a class="text-black md:dark:text-white text-sm" (click)="menuService.close()" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['club', 'competitie', 'wedstrijdprogramma']">Wedstrijdprogramma</a>
                   </li>
                   <li>
-                    <a class="text-black text-sm" (click)="menuService.close()" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['club', 'competitie', 'uitslagen']">Uitslagen</a>
+                    <a class="text-black md:dark:text-white text-sm" (click)="menuService.close()" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['club', 'competitie', 'uitslagen']">Uitslagen</a>
                   </li>
                   <li>
-                    <a class="text-black text-sm" (click)="menuService.close()" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['club', 'competitie', 'stand']">Stand</a>
+                    <a class="text-black md:dark:text-white text-sm" (click)="menuService.close()" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['club', 'competitie', 'stand']">Stand</a>
                   </li>
                 </ul>
               </div>
