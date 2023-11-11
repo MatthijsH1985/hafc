@@ -14,6 +14,7 @@ interface PlayerOfTheWeek {
 })
 export class PlayerOfTheWeekComponent implements OnInit, OnDestroy{
   playerOfTheWeek: PlayerOfTheWeek | undefined;
+  showPlayerOfTheWeek = false;
   playerOfTheWeekSub: Subscription = new Subscription();
 
   constructor(private playersService: PlayersService) {
@@ -29,11 +30,17 @@ export class PlayerOfTheWeekComponent implements OnInit, OnDestroy{
     })
   }
   generatePlayerOfTheWeek(player: any) {
-    this.playerOfTheWeek = {
-      ID: player[0].acf.speler_van_de_week?.ID,
-      playerName: player[0]?.acf?.speler_van_de_week?.post_title,
-      slug: player[0]?.acf?.speler_van_de_week?.post_name,
-      image: player[0]?.better_featured_image?.source_url
+    console.log(player[0]);
+    if (player[0].title.rendered == 'Geen') {
+      this.showPlayerOfTheWeek = false;
+    } else {
+      this.showPlayerOfTheWeek = true;
+      this.playerOfTheWeek = {
+        ID: player[0].acf.speler_van_de_week?.ID,
+        playerName: player[0]?.acf?.speler_van_de_week?.post_title,
+        slug: player[0]?.acf?.speler_van_de_week?.post_name,
+        image: player[0]?.better_featured_image?.source_url
+      }
     }
   }
   ngOnDestroy() {
