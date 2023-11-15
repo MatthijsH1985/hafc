@@ -70,7 +70,7 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy, AfterVie
   }
 
   ngAfterViewInit() {
-    this.animateComments();
+    // this.animateComments();
   }
 
   validateRating(rating: number): number {
@@ -140,29 +140,29 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy, AfterVie
   }
 
   animateComments() {
-    if (isPlatformBrowser(this.platformId)) {
-      const options = {
-        root: null,
-        rootMargin: '15px',
-        threshold: 0.5
-      };
-
-      const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const targetElement = entry.target as HTMLElement;
-            const classesToAdd = ['animate-fade-up', 'animate-fill-forwards', 'animate-normal', 'animate-once','animate-duration-300', 'animate-ease-linear'];
-            targetElement.classList.add(...classesToAdd);
-            observer.unobserve(targetElement);
-          }
-        });
-      }, options);
-      const elementsToObserve = document.querySelectorAll('.comment-container');
-
-      elementsToObserve.forEach(element => {
-        observer.observe(element);
-      });
-    }
+    // if (isPlatformBrowser(this.platformId)) {
+    //   const options = {
+    //     root: null,
+    //     rootMargin: '0px',
+    //     threshold: 0.5
+    //   };
+    //
+    //   const observer = new IntersectionObserver((entries, observer) => {
+    //     entries.forEach(entry => {
+    //       if (entry.isIntersecting) {
+    //         const targetElement = entry.target as HTMLElement;
+    //         const classesToAdd = ['animate-fade-up', 'animate-fill-forwards', 'animate-normal', 'animate-once','animate-duration-300', 'animate-ease-linear'];
+    //         targetElement.classList.add(...classesToAdd);
+    //         observer.unobserve(targetElement);
+    //       }
+    //     });
+    //   }, options);
+    //   const elementsToObserve = document.querySelectorAll('.comment-container');
+    //
+    //   elementsToObserve.forEach(element => {
+    //     observer.observe(element);
+    //   });
+    // }
   }
 
   getComments(page: number) {
