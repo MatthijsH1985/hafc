@@ -349,3 +349,9 @@ body::before {
   animation: headerHeightAnimate .25s ease-out 0.5s forwards; /* tijdsduur, timingfunctie en vertraging toegevoegd */
   z-index: -1; /* Zorg ervoor dat het pseudo-element onder de pagina-inhoud ligt */
 }
+
+.single-page {
+  h3 {
+    @apply text-2xl mb-4
+  }
+}

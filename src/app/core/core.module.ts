@@ -23,11 +23,11 @@ import {LocalStorage} from "./services/local-storage";
 import {MetaService} from "./services/meta.service";
 import {AdsModule} from "../ads/ads.module";
 import {PositiveNumberPipe} from "./shared/positive-number/positive-number.pipe";
-import {TranslateModule} from "@ngx-translate/core";
 import {PreloaderComponent} from "./shared/preloader/preloader.component";
 import {CartService} from '../shop/cart/services/cart.service';
 import {SafePipe} from './shared/safe.pipe';
 import { CreditsComponent } from './footer/credits/credits.component';
+import {AdsComponent} from '../ads/ads/ads.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +49,7 @@ import { CreditsComponent } from './footer/credits/credits.component';
     FontAwesomeModule,
     RecaptchaModule,
     RecaptchaFormsModule,
-    RecaptchaV3Module,
+    RecaptchaV3Module
   ],
   exports: [
     HeaderComponent,
@@ -61,11 +61,10 @@ import { CreditsComponent } from './footer/credits/credits.component';
     PositiveNumberPipe,
     TransformTeamDataPipe,
     FontAwesomeModule,
-    AdsModule,
     PreloaderComponent,
     LoadingIndicatorComponent,
     RouterModule,
-    CreditsComponent,
+    CreditsComponent
   ],
   providers: [
     ConfigService,

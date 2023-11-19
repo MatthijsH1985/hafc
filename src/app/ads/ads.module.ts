@@ -3,6 +3,7 @@ import {AdsComponent} from "./ads/ads.component";
 import {AdsService} from "./services/ads.service";
 import {CommonModule} from "@angular/common";
 import {RouterModule} from "@angular/router";
+import {CoreModule} from '../core/core.module';
 
 @NgModule({
   declarations: [
@@ -10,7 +11,8 @@ import {RouterModule} from "@angular/router";
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    CoreModule
   ],
   exports: [
     AdsComponent

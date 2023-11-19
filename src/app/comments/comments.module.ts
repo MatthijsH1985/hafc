@@ -7,6 +7,7 @@ import {CoreModule} from "../core/core.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ReportCommentComponent } from './report-comment/report-comment.component';
 import { LatestCommentsComponent } from './latest-comments/latest-comments.component';
+import {AdsModule} from '../ads/ads.module';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { LatestCommentsComponent } from './latest-comments/latest-comments.compo
   imports: [
     CommonModule,
     CoreModule,
+    AdsModule,
     FormsModule,
     ReactiveFormsModule
   ],
