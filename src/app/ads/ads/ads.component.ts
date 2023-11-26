@@ -2,8 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import {AdsService} from "../services/ads.service";
 import {Subscription} from "rxjs";
 import {Platform} from "@angular/cdk/platform";
-// @ts-ignore
 import * as _ from "lodash";
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-ads',
@@ -15,6 +15,7 @@ export class AdsComponent implements OnInit{
   adsSub: Subscription | undefined;
   @Input() layout: string | undefined;
   randomizedAds: any | undefined;
+  arrowRight= faArrowRight
 
   constructor(private adsService: AdsService, private platform: Platform) {
   }
