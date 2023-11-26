@@ -64,7 +64,6 @@ export class AuthService {
         'Authorization': `Bearer ${this.getToken()}`
       })
     }
-    console.log(headers);
     return this.http.get<any>(`${this.apiUrl}` + '/users/me?context=edit', headers)
   }
 

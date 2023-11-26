@@ -60,7 +60,6 @@ export class ModalCommentComponent {
   }
 
   onPostComment(form: FormGroup): void {
-
     if (this.isLoggedIn()) {
       const commentData = JSON.stringify( {
         post: this.postId,
@@ -86,10 +85,12 @@ export class ModalCommentComponent {
         if (result) {
           this.onCommentSuccesfull(result);
           this.commentService.addNewComment(result);
+          console.log(result)
         }
       },
       error: error => {
         this.errorMessage = error.error.message;
+        console.log(error)
         this.loading = false;
       }
     });

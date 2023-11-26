@@ -67,6 +67,7 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy, AfterVie
 
   ngOnInit() {
     // this.getComments(1);
+    console.log(this.comments);
   }
 
   ngAfterViewInit() {
@@ -170,7 +171,7 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy, AfterVie
       next: comments => {
         // const newComments = comments.filter((comment: any) => !this.comments.some((existingComment: any) => existingComment.id === comment.id));
         // this.comments.unshift(...newComments);
-        this.animateComments();
+        // this.animateComments();
         for (let i = 0; i < comments.length; i++) {
           this.comments.push(comments[i]);
         }

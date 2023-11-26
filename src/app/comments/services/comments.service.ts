@@ -42,7 +42,16 @@ export class CommentsService {
 
   postComment(comment: any): Observable<Config[]> {
     if (this.authService.isAuthenticated()) {
-      return this.http.post<Config[]>(environment.apiUrl + '/comments', comment, this.httpOptionsLoggedIn);
+      const token = this.authService.getToken();
+      console.log('Token:', token);
+
+      const httpOptionsLoggedIn = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json;charset=UTF-8',
+          'Authorization': `Bearer ${token}`
+        })
+      };
+      return this.http.post<Config[]>(environment.apiUrl + '/comments', comment, httpOptionsLoggedIn);
     }
     return this.http.post<Config[]>(environment.apiUrl + '/comments', comment, this.httpOptions);
   }
@@ -57,6 +66,7 @@ export class CommentsService {
 
   reportComment(commentData: any) {
     if (this.authService.isAuthenticated()) {
+
       return this.http.post<Config[]>(environment.apiUrl + '/mumba/report-comment', commentData, this.httpOptions);
     }
     return of([]);
