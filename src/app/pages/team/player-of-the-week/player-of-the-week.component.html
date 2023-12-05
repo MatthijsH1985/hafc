@@ -1,6 +1,5 @@
 
 <div *ngIf="showPlayerOfTheWeek">
-  {{showPlayerOfTheWeek}}
   <a [routerLink]="['club', 'selectie', playerOfTheWeek?.ID, playerOfTheWeek?.slug]" class="group flex md:flex-col">
     <div class="pl-4 pt-4 pr-4 rounded-t-md bg-white dark:bg-black">
       <img class="block w-[200px] md:w-full" [src]="playerOfTheWeek?.image" alt="{{ playerOfTheWeek?.playerName  }}" />
