@@ -6,7 +6,7 @@
           <fa-icon [icon]="faBell" class="mr-1"></fa-icon> Toon <span class="text-red-800 inline-block mr-1">+{{ newCommentCount }}</span> nieuwe reacties
         </button>
       </div>
-      <ul *ngIf="comments.length > 0; else noComments" class="">
+      <ul *ngIf="comments?.length > 0; else noComments" class="">
         <li *ngFor="let comment of comments;" class="comment-container">
           <div class="flex w-full">
             <div class="author-name p-2 inline-block text-white relative border-b border-blue-500 dark:border-gray-800">
@@ -46,7 +46,7 @@
         </div>
       </ng-template>
       <div class="mx-4 my-8 flex items-center justify-center">
-        <button class="button button-blue" (click)="onLoadMoreComments()" *ngIf="comments.length > 100">Meer reacties tonen</button>
+        <button class="button button-blue" (click)="onLoadMoreComments()" *ngIf="comments?.length > 100">Meer reacties tonen</button>
       </div>
     </div>
     <div class="flex-1">

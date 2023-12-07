@@ -67,7 +67,6 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy, AfterVie
 
   ngOnInit() {
     // this.getComments(1);
-    console.log(this.comments);
   }
 
   ngAfterViewInit() {
