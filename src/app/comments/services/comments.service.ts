@@ -10,7 +10,6 @@ import {environment} from "../../../environments/environment";
 
 export class CommentsService {
 
-  // @ts-ignore
   token: any = this.authService.getToken();
   private lastFetchTime: number = 0;
 
@@ -26,7 +25,6 @@ export class CommentsService {
     })
   };
   constructor(private http: HttpClient,
-              private configService: ConfigService,
               private authService: AuthService) {
   }
 
@@ -43,7 +41,6 @@ export class CommentsService {
   postComment(comment: any): Observable<Config[]> {
     if (this.authService.isAuthenticated()) {
       const token = this.authService.getToken();
-      console.log('Token:', token);
 
       const httpOptionsLoggedIn = {
         headers: new HttpHeaders({
@@ -78,8 +75,7 @@ export class CommentsService {
   }
 
   getComments(post:any, page = 1, order = 'desc'): Observable<Config[]> {
-    const randomQueryParam = `cache_bypass=1`;
-    return this.http.get<Config[]>(environment.apiUrl + '/comments?post='+ post + '&per_page=100&page='+ page + '&order='+ order + '&' + randomQueryParam + '', this.httpOptions);
+    return this.http.get<Config[]>(environment.apiUrl + '/comments?post='+ post + '&per_page=100&page='+ page + '&order='+ order + '', this.httpOptions);
   }
 
   getCommentsCount(post:any): Observable<Config[]> {

@@ -50,9 +50,6 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy, AfterVie
   constructor(private route: ActivatedRoute, private commentsService: CommentsService, private toastService: ToastrService, private authService: AuthService, private changeDetectorRef: ChangeDetectorRef, @Inject(PLATFORM_ID) private platformId: object) {
     this.commentsService.newCommentAdded$.subscribe((newComment) => {
       this.comments.unshift(newComment);
-      setTimeout(() => {
-        this.animateComments();
-      }, 250)
     });
   }
 
@@ -137,32 +134,6 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy, AfterVie
     if (changes['onReloadComments'] && !changes['onReloadComments'].firstChange) {
       this.getComments(this.commentPage);
     }
-  }
-
-  animateComments() {
-    // if (isPlatformBrowser(this.platformId)) {
-    //   const options = {
-    //     root: null,
-    //     rootMargin: '0px',
-    //     threshold: 0.5
-    //   };
-    //
-    //   const observer = new IntersectionObserver((entries, observer) => {
-    //     entries.forEach(entry => {
-    //       if (entry.isIntersecting) {
-    //         const targetElement = entry.target as HTMLElement;
-    //         const classesToAdd = ['animate-fade-up', 'animate-fill-forwards', 'animate-normal', 'animate-once','animate-duration-300', 'animate-ease-linear'];
-    //         targetElement.classList.add(...classesToAdd);
-    //         observer.unobserve(targetElement);
-    //       }
-    //     });
-    //   }, options);
-    //   const elementsToObserve = document.querySelectorAll('.comment-container');
-    //
-    //   elementsToObserve.forEach(element => {
-    //     observer.observe(element);
-    //   });
-    // }
   }
 
   getComments(page: number) {

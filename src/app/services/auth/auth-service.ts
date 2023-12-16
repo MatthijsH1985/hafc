@@ -41,7 +41,6 @@ export class AuthService {
             const username = response.user_nicename;
             const user_email = response.user_email;
             this.storeToken(token);
-            this.storeUserID(user_id);
             this.storeUsername(username);
             this.storeUserEmail(user_email);
           }
@@ -95,12 +94,6 @@ export class AuthService {
   private storeToken(token: string): void {
     if (this._platform.isBrowser) {
       this.storage.setItem(this.JWT_TOKEN, token);
-    }
-  }
-
-  private storeUserID(user_id: string): void {
-    if (this._platform.isBrowser) {
-      this.storage.setItem(this.USER_ID, user_id);
     }
   }
 

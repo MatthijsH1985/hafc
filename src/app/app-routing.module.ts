@@ -111,7 +111,8 @@ const routes: Routes = [
     component: MatchpreviewComponent,
     path: 'voorbeschouwing/:id/:opponents',
     resolve: {
-      post: MatchResolver
+      post: MatchResolver,
+      comments: CommentsResolverService
     }
   },
   {
