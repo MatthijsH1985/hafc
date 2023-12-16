@@ -30,7 +30,6 @@ export class PlayerOfTheWeekComponent implements OnInit, OnDestroy{
     })
   }
   generatePlayerOfTheWeek(player: any) {
-    console.log(player[0]);
     if (player[0].title.rendered == 'Geen') {
       this.showPlayerOfTheWeek = false;
     } else {

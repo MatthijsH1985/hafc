@@ -42,7 +42,6 @@ export class SpelerComponent implements OnInit, OnDestroy {
   getPlayerStats(player: any) {
     this.playerStatsSub = this.playersService.getPlayerStats(player.acf.sportmonks_speler_id).subscribe({
       next: (data: any) => {
-        console.log(data);
         this.playerInfo = data.data;
         const playerData = data.data.statistics[0].details;
         if (playerData) {

@@ -59,8 +59,6 @@ export class MatchpreviewComponent implements OnInit {
     this.updateMetaTags(this.post);
     this.viewportScroller.scrollToPosition([0,0]);
     this.getFixtures();
-    console.log(this.post);
-    console.log(this.postId);
   }
 
   getFixtures() {

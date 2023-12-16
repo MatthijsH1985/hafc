@@ -19,7 +19,6 @@ export class ShopHomepageComponent implements OnInit, OnDestroy {
     this.productsSub = this.productsService.getProducts(1, 830).subscribe({
       next: (products: any) => {
         this.products = products;
-        console.log(this.products);
       },
       error: (error: any) => {
         console.log(error);

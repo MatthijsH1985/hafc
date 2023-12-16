@@ -68,13 +68,6 @@ export class NewssliderComponent implements AfterViewInit {
     this.posts = this.route.snapshot.data['posts'].slice(0,3);
   }
 
-  isMatchPreview(post: any) {
-    if (post.categories[0] = 37) {
-      console.log(post.categories[0]);
-      return true
-    } return undefined;
-  }
-
   showLoading(): void {
     this.loadingIndicatorService.setLoading(true);
   }
