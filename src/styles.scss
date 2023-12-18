@@ -337,7 +337,7 @@ body::before {
   top: 0;
   height: 0;
   background-color: black; /* Je kunt de achtergrondkleur aanpassen zoals nodig */
-  animation: headerHeightAnimate .25s ease-out 0.5s forwards; /* tijdsduur, timingfunctie en vertraging toegevoegd */
+  animation: bodyEffectAnimation .25s ease-out 0.5s forwards; /* tijdsduur, timingfunctie en vertraging toegevoegd */
   z-index: -1; /* Zorg ervoor dat het pseudo-element onder de pagina-inhoud ligt */
 }
 
@@ -349,12 +349,21 @@ body::before {
 
 .slider-animation {
   animation: headerHeightAnimate .75s 1s forwards;
-  background: #000;
+  background: #222222;
   bottom: 0;
   position: absolute;
   width: 100%;
   height: 550px;
   overflow: hidden;
+}
+
+@keyframes bodyEffectAnimation {
+  from {
+    height: 0;
+  }
+  to {
+    height: 350px
+  }
 }
 
 @keyframes headerHeightAnimate {
