@@ -348,13 +348,14 @@ body::before {
 }
 
 .slider-animation {
-  animation: headerHeightAnimate .75s 1s forwards;
+  animation: headerHeightAnimate .75s .5s forwards;
   background: #222222;
   bottom: 0;
   position: absolute;
   width: 100%;
   height: 550px;
   overflow: hidden;
+  z-index: 21;
 }
 
 @keyframes bodyEffectAnimation {

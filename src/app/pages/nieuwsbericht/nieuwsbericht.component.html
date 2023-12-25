@@ -1,29 +1,34 @@
-<div class="flex flex-col animate-fade-up animate-once animate-ease-in-out animate-duration-200">
+<div class="flex flex-col">
   <div class="container xl:w-[1200px] ml-auto mr-auto">
     <div class="relative container h-[450px] xl:h-[550px] md:h-[550px] align-center">
       <img [src]="post?.better_featured_image.source_url" class="object-cover object-center xl:h-[550px] md:h-[550px] m-h-[550px] w-full h-full" />
       <span *ngIf="post?.better_featured_image.caption; else noCaption" class="absolute right-2 bottom-2 z-20 text-sm text-white">Foto: {{ post?.better_featured_image.caption }}</span>
+      <div class="slider-animation"></div>
       <ng-template #noCaption>
         <span class="absolute right-2 bottom-2 z-20 text-sm text-white">Foto: NESImages</span>
       </ng-template>
     </div>
   </div>
-  <div class="flex flex-col xl:w-[1200px] ml-auto mr-auto relative z-20">
+  <div class="flex flex-col xl:w-[1200px] ml-auto mr-auto relative z-20 animate-fade-up animate-once animate-ease-in-out animate-duration-200 animate-delay-700">
     <div class="container flex flex-col ml-auto mr-auto items-center">
       <div class="m-auto flex flex-col md:flex-row">
         <div class="w-full md:w-2/3 md:pr-4">
-          <div class="bg-white dark:bg-gray-900 rounded-md mb-8 md:px-12 pt-8 p-8 news-container">
-            <div class="flex items-center md:flex dark:text-white text-xs mb-8">
-              <a routerLink="/" class="inline-block hover:underline dark:text-white mr-2">Home</a> &rsaquo; <a routerLink="/nieuws" class="inline-block hover:underline mx-2">Nieuws</a> &rsaquo; <span [innerHTML]="post?.title.rendered" class="inline-block dark:text-white mx-2"></span>
+          <div class="bg-white dark:bg-gray-900 rounded-md mb-8 md:px-12 news-container">
+            <div class="flex items-center md:flex dark:text-white text-xs mb-8 dark:bg-black p-2 md:p-0">
+              <div class="px-8 py-4 hidden md:flex">
+                <a routerLink="/" class="inline-block hover:underline dark:text-white mr-2 max-w-full overflow-hidden whitespace-nowrap text-ellipsis">Home</a> &rsaquo; <a routerLink="/nieuws" class="inline-block hover:underline mx-2 max-w-full overflow-hidden whitespace-nowrap text-ellipsis">Nieuws</a> &rsaquo; <span [innerHTML]="post?.title.rendered" class="inline-block dark:text-white mx-2 max-w-full overflow-hidden whitespace-nowrap text-ellipsis"></span>
+              </div>
             </div>
-            <h1 [innerHTML]="post?.title.rendered" class="text-4xl mb-4 leading-[1.25] dark:text-white"></h1>
-            <span class="font-bold dark:text-white">{{ post.date | date }}</span> <span class="dark:text-white inline-block md:hidden ml-5">{{ categoryName }}</span>
-            <div [innerHTML]="post?.content.rendered" class="leading-8 text-base leading-[1.5] dark:text-white"></div>
-            <div *ngIf="post?.acf.spotify_link">
-              <a [href]="post?.acf.spotify_link" class="button button-blue no-underline" target="_blank">
-                Beluister op Spotify
-              </a>
-              <iframe [src]="post.acf.spotify_link | safe" width="100%" height="390" seamless="true"></iframe>
+            <div class="py-4 px-8">
+              <h1 [innerHTML]="post?.title.rendered" class="text-4xl mb-4 leading-[1.25] dark:text-white"></h1>
+              <span class="font-bold dark:text-white">{{ post.date | date }}</span> <span class="dark:text-white inline-block md:hidden ml-5">{{ categoryName }}</span>
+              <div [innerHTML]="post?.content.rendered" class="leading-8 text-base leading-[1.5] dark:text-white"></div>
+              <div *ngIf="post?.acf.spotify_link">
+                <a [href]="post?.acf.spotify_link" class="button button-blue no-underline" target="_blank">
+                  Beluister op Spotify
+                </a>
+                <iframe [src]="post.acf.spotify_link | safe" width="100%" height="390" seamless="true"></iframe>
+              </div>
             </div>
           </div>
         </div>
