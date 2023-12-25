@@ -1,7 +1,7 @@
 <div class="mb-16">
   <ul [ngClass]="{'xl:grid-cols-4': !compact, 'xl:grid-cols-2': compact}" class="grid grid-cols-2 gap-4">
     <li *ngFor="let post of posts" class="group newsitem-container opacity-0">
-      <a (click)="showLoading()" class="flex" [routerLink]="'/nieuws/' + post?.id + '/' + post?.slug" class="flex flex-col rounded-md bg-white dark:bg-gray-700 h-full overflow-hidden">
+      <a (click)="showLoading()" class="flex" [routerLink]="'/nieuws/' + post?.id + '/' + post?.slug" class="flex flex-col rounded-md bg-white dark:bg-gray-900 h-full overflow-hidden">
         <div class="md:p-4 overflow-hidden">
           <img class="object-cover rounded-md block group-hover:scale-105 transition-all object-top w-full h-[120px] md:h-[220px]" [src]="post?.better_featured_image.source_url" [alt]="post?.title?.rendered" />
         </div>

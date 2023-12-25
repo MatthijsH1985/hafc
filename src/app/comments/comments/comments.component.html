@@ -1,13 +1,13 @@
 <div class="comments-section flex flex-col">
-  <div class="flex md:flex-row flex-col-reverse md:w-[1100px] container ml-auto mr-auto">
+  <div class="flex md:flex-row flex-col-reverse container">
     <div class="flex-1">
-      <div class="flex items-center justify-center mb-4 relative">
+      <div class="flex mb-4 relative">
         <button *ngIf="newCommentCount > 0 && reloadButtonVisible" (click)="loadNewComments();" class="shadow-md border-solid button button-white fixed md:inline-block top-[100px] z-30 left-[50%] ml-[-120px] w-[240px]">
           <fa-icon [icon]="faBell" class="mr-1"></fa-icon> Toon <span class="text-red-800 inline-block mr-1">+{{ newCommentCount }}</span> nieuwe reacties
         </button>
       </div>
       <ul *ngIf="comments?.length > 0; else noComments" class="">
-        <li *ngFor="let comment of comments;" class="comment-container dark:border-b border-gray-900 rounded-md">
+        <li *ngFor="let comment of comments;" class="comment-container dark:bg-gray-900 dark:border-b border-gray-900 rounded-md">
           <div class="flex w-full">
             <div class="author-name p-2 inline-block text-white relative border-b border-blue-500">
               <h3 class="text-black font-bold dark:text-white relative text-black p-2" [ngClass]="{'font-bold text-blue-500': comment.author !== 0}">{{ comment.author_name }} <fa-icon [icon]="faCheck" class="text-green-800 absolute -right-[.5rem] -top-[5px] text-sm" *ngIf="comment.author !== 0" title="Geregistreerde gebruiker"></fa-icon></h3>
@@ -27,7 +27,7 @@
           </div>
           <div class="">
             <div [innerHTML]="comment.content.rendered" class="text-black dark:text-white comment-content p-4"></div>
-            <div class="text-sm p-4 pb-0 border-t border-gray-200 dark:border-gray-900 flex">
+            <div class="text-sm p-4 pb-0 border-t border-gray-200 dark:border-black flex">
               <h4 class="dark:text-white flex items-center w-full">
                 <span class="date italic">{{ validDateFormat(comment.date) | date: 'EEEE, d MMMM, y' }}</span> <span class="ml-2">{{ validDateFormat(comment.date) | date: 'HH:mm' }}</span>
                 <div class="ml-auto" *ngIf="isAuthenticated()">
@@ -47,14 +47,6 @@
       </ng-template>
       <div class="mx-4 my-8 flex items-center justify-center">
         <button class="button button-blue" (click)="onLoadMoreComments()" *ngIf="comments?.length > 100">Meer reacties tonen</button>
-      </div>
-    </div>
-    <div class="flex-1">
-      <h3 class="black bg-gray-200 rounded-t-md dark:bg-black text-black dark:text-white text-center md:text-left p-4">
-        Onze sponsoren
-      </h3>
-      <div class="sticky top-[130px] rounded-md bg-white dark:bg-gray-900 px-4 py-8">
-        <app-ads [layout]="'square'"></app-ads>
       </div>
     </div>
   </div>
