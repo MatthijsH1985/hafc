@@ -3,6 +3,8 @@ import {AdsService} from "../services/ads.service";
 import {Subscription} from "rxjs";
 import {Platform} from "@angular/cdk/platform";
 import * as _ from "lodash";
+import * as moment from 'moment';
+
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -15,7 +17,8 @@ export class AdsComponent implements OnInit{
   adsSub: Subscription | undefined;
   @Input() layout: string | undefined;
   randomizedAds: any | undefined;
-  arrowRight= faArrowRight
+  arrowRight= faArrowRight;
+  formattedAds: any = [];
 
   constructor(private adsService: AdsService, private platform: Platform) {
   }
@@ -26,7 +29,14 @@ export class AdsComponent implements OnInit{
 
   getAds() {
     this.adsSub = this.adsService.getAds().subscribe({
-        next: ads => {
+        next: (ads: any) => {
+          const currentDate = new Date();
+          for (let i = 0; i < ads.length; i++) {
+            const adEndDate = moment(ads[i].acf.eindigt_op, 'DD/MM/YYYY').toDate();
+            if (adEndDate > currentDate) {
+              this.formattedAds.push(ads[i]);
+            }
+          }
           this.randomizeAds(ads);
         },
         error: error => {
