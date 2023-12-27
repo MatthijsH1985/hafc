@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Observable, of, Subject} from 'rxjs';
+import {BehaviorSubject, Observable, of, Subject} from 'rxjs';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {ConfigService} from "../../core/services/config.service";
 import {AuthService} from "../../services/auth/auth-service";
@@ -29,6 +29,19 @@ export class CommentsService {
   }
 
   private newCommentAddedSubject: Subject<any> = new Subject<any>();
+
+  private commentModalSubject = new BehaviorSubject<boolean>(false);
+  private commentIdSubject = new BehaviorSubject<number>(0);
+  public commentId$ = this.commentIdSubject.asObservable();
+  public modalVisible$ = this.commentModalSubject.asObservable()
+
+  sendCommentId(commentId: number) {
+    this.commentIdSubject.next(commentId);
+  }
+
+  setCommentModalVisibility(visibiliy = false) {
+    this.commentModalSubject.next(visibiliy)
+  }
 
   get newCommentAdded$(): Observable<any> {
     return this.newCommentAddedSubject.asObservable();
@@ -63,7 +76,6 @@ export class CommentsService {
 
   reportComment(commentData: any) {
     if (this.authService.isAuthenticated()) {
-
       return this.http.post<Config[]>(environment.apiUrl + '/mumba/report-comment', commentData, this.httpOptions);
     }
     return of([]);

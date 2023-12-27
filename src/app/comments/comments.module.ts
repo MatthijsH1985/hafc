@@ -8,6 +8,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ReportCommentComponent } from './report-comment/report-comment.component';
 import { LatestCommentsComponent } from './latest-comments/latest-comments.component';
 import {AdsModule} from '../ads/ads.module';
+import { CommentComponent } from './comment/comment.component';
+import { CommentTreeComponent } from './comment-tree/comment-tree.component';
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import {AdsModule} from '../ads/ads.module';
     ModalCommentComponent,
     CommentsComponent,
     ReportCommentComponent,
-    LatestCommentsComponent
+    LatestCommentsComponent,
+    CommentComponent,
+    CommentTreeComponent
   ],
   imports: [
     CommonModule,

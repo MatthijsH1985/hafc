@@ -1,0 +1,13 @@
+<ul>
+  <li *ngFor="let node of commentNodes" class="comment-container dark:bg-gray-900 dark:border-b border-gray-900 rounded-md">
+    <app-comment
+      [isAuthenticated]="isAuthenticated"
+      [comment]="node.comment"
+    ></app-comment>
+    <app-comment-tree
+      *ngIf="node.children.length > 0"
+      [commentNodes]="node.children"
+      [isAuthenticated]="isAuthenticated"
+    ></app-comment-tree>
+  </li>
+</ul>

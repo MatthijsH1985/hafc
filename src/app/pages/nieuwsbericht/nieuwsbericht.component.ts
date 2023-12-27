@@ -14,6 +14,7 @@ import { faComment, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 import {MetaService} from "../../core/services/meta.service";
 import {LoadingIndicatorService} from "../../core/shared/loading-indicator/loading-indicator.service";
+import {CommentsService} from '../../comments/services/comments.service';
 
 @Component({
   selector: 'app-nieuwsbericht',
@@ -31,7 +32,7 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy, AfterViewInit 
   reloadComments: any;
   buttonVisible: boolean = false;
   faComment = faComment;
-  faArrowDown = faArrowDown;
+  currentReplyToCommentId: number | undefined;
   @Input('links') links: any;
 
   @HostListener('window:scroll', ['$event']) onScroll(event: any) {
@@ -44,10 +45,14 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy, AfterViewInit 
     private route: ActivatedRoute,
     private toast: ToastrService,
     private viewportScroller: ViewportScroller,
+    private commentsService: CommentsService,
     private metaService: MetaService,
     private loadingIndicatorService: LoadingIndicatorService,
     @Inject(PLATFORM_ID) private platformId: object
   ) {
+    this.commentsService.modalVisible$.subscribe((visibility) => {
+      this.modalCommentsOpen = visibility;
+    })
   }
 
   ngOnInit() {
@@ -70,6 +75,11 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy, AfterViewInit 
     this.buttonVisible = scrollHeight > 1000 ? true : false;
   }
 
+  onReplyToComment(commentId: number) {
+    this.currentReplyToCommentId = commentId;
+    this.onOpenCommentModal();
+  }
+
   toComments():void {
     this.viewportScroller.scrollToAnchor('comments');
   }
@@ -89,11 +99,16 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy, AfterViewInit 
   }
 
   onModalClose() {
-    this.modalCommentsOpen = false;
+    this.commentsService.setCommentModalVisibility(false);
   }
 
   onOpenCommentModal() {
-    this.modalCommentsOpen = true;
+    this.commentsService.setCommentModalVisibility(true);
+  }
+
+  onAddNewComment() {
+    this.currentReplyToCommentId = 0;
+    this.onOpenCommentModal();
   }
 
   ngOnDestroy() {

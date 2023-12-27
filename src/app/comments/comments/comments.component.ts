@@ -1,51 +1,41 @@
 import {
-  AfterViewInit,
   ChangeDetectorRef,
-  Component,
+  Component, EventEmitter,
   Inject,
   Input,
   OnChanges,
   OnDestroy,
-  OnInit,
+  OnInit, Output,
   PLATFORM_ID,
   SimpleChanges
 } from '@angular/core';
 import {Subscription} from "rxjs";
-import {faCheck, faBell, faArrowDown, faArrowUp, faExclamationTriangle} from "@fortawesome/free-solid-svg-icons";
 import {CommentsService} from "../services/comments.service";
 import {AuthService} from "../../services/auth/auth-service";
 import {ToastrService} from "ngx-toastr";
-import {isPlatformBrowser} from '@angular/common';
 import {ActivatedRoute, Route} from '@angular/router';
-
+import {CommentNode} from '../model/comment-node.model';
 
 @Component({
   selector: 'app-comments',
   templateUrl: './comments.component.html',
   styleUrls: ['./comments.component.scss']
 })
-export class CommentsComponent implements OnInit, OnChanges, OnDestroy, AfterViewInit {
+export class CommentsComponent implements OnChanges, OnDestroy, OnInit {
   commentsSub: Subscription | undefined;
   commentsCountSub: Subscription | undefined;
   comments = this.route.snapshot.data['comments'];
-  authSub: Subscription | undefined;
   loading: boolean = true;
   noCommentsMessage = 'Er is (nog) niet gereageerd op dit artikel';
   loadingComments: boolean = true;
   noCommentsLoaded = true;
-  faCheck = faCheck;
-  faArrowDown = faArrowDown;
-  faArrowUp = faArrowUp;
-  faExclamationTriangle = faExclamationTriangle;
   commentPage: number = 2;
-  faBell = faBell;
   newCommentCount: number = 0;
-  reloadButtonVisible: any;
-  modalReportOpen: boolean = false;
-  commentUserData: any;
+  hierarchicalComments: CommentNode[] = [];
   @Input() initialCommentCount: number = 0;
   @Input() postId: string | undefined;
   @Input() onReloadComments: boolean = false;
+  @Output() replyToComment: EventEmitter<number> = new EventEmitter<number>();
 
   constructor(private route: ActivatedRoute, private commentsService: CommentsService, private toastService: ToastrService, private authService: AuthService, private changeDetectorRef: ChangeDetectorRef, @Inject(PLATFORM_ID) private platformId: object) {
     this.commentsService.newCommentAdded$.subscribe((newComment) => {
@@ -53,42 +43,36 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy, AfterVie
     });
   }
 
-  onModalClose() {
-    this.modalReportOpen = false;
+  ngOnInit() {
+    this.buildCommentHierarchy();
   }
 
   isAuthenticated() {
     return this.authService.isAuthenticated()
   }
 
+  buildCommentHierarchy() {
+    const commentMap = new Map<number, CommentNode>();
 
-  ngOnInit() {
-    // this.getComments(1);
-  }
+    this.comments.forEach((comment: any) => {
+      const commentNode = new CommentNode(comment);
+      commentMap.set(comment.id, commentNode);
+    });
 
-  ngAfterViewInit() {
-    // this.animateComments();
-  }
+    // Nu de hiërarchie opbouwen
+    this.comments.forEach((comment: any) => {
+      const commentNode = commentMap.get(comment.id);
 
-  validateRating(rating: number): number {
-    return rating === 1 ? 1 : -1;
-  }
+      if (commentNode) {
+        const parentCommentNode = commentMap.get(comment.parent);
 
-  onRateComment(score: number, comment: any) {
-    const validatedScore = this.validateRating(score);
-    this.authSub = this.authService.getUserInfo().subscribe({
-      next: (user: any) => {
-        const commentData = JSON.stringify( {
-          comment_id: comment.id,
-          author_id: user.id,
-          like_dislike: validatedScore
-        });
-        this.rateComment(commentData);
-      },
-      error: (err: any) => {
-        console.log(err)
+        if (parentCommentNode) {
+          parentCommentNode.children.push(commentNode);
+        }
       }
-    })
+    });
+
+    this.hierarchicalComments = Array.from(commentMap.values()).filter(commentNode => !commentNode.comment.parent);
   }
 
   updateLikesAndDislikes(commentId: number, likes: number, dislikes: number) {
@@ -97,31 +81,6 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy, AfterVie
       comment.likes = likes;
       comment.dislikes = dislikes;
     }
-  }
-
-  rateComment(commentData: any) {
-    this.commentsService.rateComment(commentData).subscribe({
-      next: (result: any) => {
-        if (result) {
-          this.updateLikesAndDislikes(result.comment_id, result.likes, result.dislikes);
-        }
-      },
-      error: error => {
-        this.loading = false;
-        this.toastService.error('Oops', error.error)
-      }
-    });
-  }
-
-  onAddReport(comment: any, author: number, author_name: string) {
-    this.commentUserData = {
-      commentId: comment.id,
-      author: comment.author,
-      author_name: comment.author_name,
-      comment_content: comment.content.rendered,
-      reporter: this.authService.getUserName()
-    }
-    this.modalReportOpen = true;
   }
 
   loadNewComments() {
@@ -139,9 +98,6 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy, AfterVie
   getComments(page: number) {
     this.commentsSub = this.commentsService.getComments(this.postId, this.commentPage).subscribe({
       next: comments => {
-        // const newComments = comments.filter((comment: any) => !this.comments.some((existingComment: any) => existingComment.id === comment.id));
-        // this.comments.unshift(...newComments);
-        // this.animateComments();
         for (let i = 0; i < comments.length; i++) {
           this.comments.push(comments[i]);
         }
@@ -155,13 +111,6 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy, AfterVie
         this.noCommentsLoaded = true;
       }
     })
-  }
-
-  validDateFormat(dateString: any) {
-    if(dateString) {
-      return dateString.replace(/\s/, 'T');
-    }
-    return null;
   }
 
   onLoadMoreComments() {

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../services/auth/auth-service";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -10,11 +10,12 @@ import {CommentsService} from "../services/comments.service";
   templateUrl: './modal-comment.component.html',
   styleUrls: ['./modal-comment.component.scss']
 })
-export class ModalCommentComponent {
+export class ModalCommentComponent implements OnChanges {
 
   @Output() closeModal: EventEmitter<any> = new EventEmitter();
   @Input() modalStatus: boolean | undefined;
   @Input() postId: number | undefined;
+  replyToCommentId: number | undefined;
 
   username: string | null = '';
   user_email: string | null = '';
@@ -32,6 +33,19 @@ export class ModalCommentComponent {
       email: new FormControl('', Validators.email),
       comment: new FormControl('', Validators.required)
     });
+    this.commentService.commentId$.subscribe((commentId) => {
+      this.replyToCommentId = commentId;
+    });
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['replyToCommentId'] && changes['replyToCommentId'].currentValue !== changes['replyToCommentId'].previousValue) {
+      const newReplyToCommentId = changes['replyToCommentId'].currentValue;
+
+      if (newReplyToCommentId !== undefined) {
+        this.replyToCommentId = newReplyToCommentId;
+      }
+    }
   }
 
   ngOnInit() {
@@ -59,24 +73,31 @@ export class ModalCommentComponent {
     }
   }
 
-  onPostComment(form: FormGroup): void {
+  onPostComment(form: FormGroup, commentParentId?: number): void {
+    let commentData: any;
     if (this.isLoggedIn()) {
-      const commentData = JSON.stringify( {
+      commentData = {
         post: this.postId,
         author_name: this.authService.getUserName(),
         author_email: this.authService.getUserEmail(),
-        content: form.value.comment
-      });
-      this.postComment(commentData);
+        content: form.value.comment,
+      };
     } else {
-      const commentData = JSON.stringify( {
+      commentData = {
         post: this.postId,
         author_name: form.value.name,
         author_email: form.value.email,
-        content: form.value.comment
-      });
-      this.postComment(commentData);
+        content: form.value.comment,
+      };
     }
+
+    if (this.replyToCommentId !== undefined) {
+      commentData.parent = this.replyToCommentId;
+    }
+
+    console.log(JSON.stringify(commentData));
+
+    this.postComment(JSON.stringify(commentData));
   }
 
   postComment(commentData: any) {
