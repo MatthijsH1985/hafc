@@ -179,7 +179,7 @@ button {
 
 .comment-content {
   p {
-    @apply mb-4;
+    @apply mb-4 text-sm;
   }
   * {
     @apply text-black leading-6 dark:text-white
@@ -325,8 +325,21 @@ app-nieuwsbericht {
   text-decoration: none;
 }
 
+.comments-container {
+  ul {
+    li {
+      ul {
+        li {
+          @apply ml-4
+        }
+      }
+      @apply mb-4
+    }
+  }
+}
+
 .comment-container {
-  @apply p-4 mb-8 md:mr-4 rounded-md bg-white dark:bg-gray-800
+  @apply p-4 md:mr-4 bg-white dark:bg-gray-800
 }
 
 body::before {

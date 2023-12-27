@@ -61,10 +61,8 @@ export class CommentsComponent implements OnChanges, OnDestroy, OnInit {
 
     this.comments.forEach((comment: any) => {
       const commentNode = commentMap.get(comment.id);
-
       if (commentNode) {
         const parentCommentNode = commentMap.get(comment.parent);
-
         if (parentCommentNode) {
           parentCommentNode.children.push(commentNode);
           commentNode.level = parentCommentNode.level + 1;
@@ -75,13 +73,7 @@ export class CommentsComponent implements OnChanges, OnDestroy, OnInit {
     this.hierarchicalComments = Array.from(commentMap.values()).filter(commentNode => !commentNode.comment.parent);
   }
 
-  updateLikesAndDislikes(commentId: number, likes: number, dislikes: number) {
-    const comment = this.comments.find((c: any) => c.id === commentId);
-    if (comment) {
-      comment.likes = likes;
-      comment.dislikes = dislikes;
-    }
-  }
+
 
   loadNewComments() {
     this.commentPage = 1;
@@ -93,7 +85,6 @@ export class CommentsComponent implements OnChanges, OnDestroy, OnInit {
     if (changes['onReloadComments'] && !changes['onReloadComments'].firstChange) {
       this.getComments(this.commentPage);
       this.buildCommentHierarchy();
-      console.log(this.comments);
     }
   }
 

@@ -5,6 +5,9 @@ import {AuthService} from '../../services/auth/auth-service';
 import {Subscription} from 'rxjs';
 import {ToastrService} from 'ngx-toastr';
 
+import * as moment from 'moment';
+import 'moment/locale/nl';
+
 @Component({
   selector: 'app-comment',
   templateUrl: './comment.component.html',
@@ -27,7 +30,6 @@ export class CommentComponent implements OnInit {
     @Input() commentLevel: number = 0;
 
     ngOnInit() {
-      console.log('Comment Level:', this.commentLevel);
     }
 
     isReplyButtonVisible(): boolean {
@@ -63,7 +65,7 @@ export class CommentComponent implements OnInit {
         next: (result: any) => {
           if (result) {
             // Emit event
-            // this.updateLikesAndDislikes(result.comment_id, result.likes, result.dislikes);
+            this.updateLikesAndDislikes(result.comment_id, result.likes, result.dislikes);
           }
         },
         error: error => {
@@ -72,6 +74,18 @@ export class CommentComponent implements OnInit {
         }
       });
     }
+
+  calculateTimeDifference(startDate: string): string {
+    return moment(startDate).fromNow();
+  }
+
+  updateLikesAndDislikes(commentId: number, likes: number, dislikes: number) {
+    const comment = this.comment.find((c: any) => c.id === commentId);
+    if (comment) {
+      comment.likes = likes;
+      comment.dislikes = dislikes;
+    }
+  }
 
     validateRating(rating: number): number {
       return rating === 1 ? 1 : -1;
