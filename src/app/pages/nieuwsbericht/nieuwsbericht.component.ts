@@ -29,7 +29,7 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy, AfterViewInit 
   loading: boolean = true;
   modalCommentsOpen: boolean = false;
   categoryName: any;
-  reloadComments: any;
+  reloadComments: boolean = false;
   buttonVisible: boolean = false;
   faComment = faComment;
   currentReplyToCommentId: number | undefined;
@@ -108,6 +108,7 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy, AfterViewInit 
 
   onAddNewComment() {
     this.currentReplyToCommentId = 0;
+    this.reloadComments = true;
     this.onOpenCommentModal();
   }
 

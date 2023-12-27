@@ -1,13 +1,17 @@
 <ul>
-  <li *ngFor="let node of commentNodes" class="comment-container dark:bg-gray-900 dark:border-b border-gray-900 rounded-md">
+  <li *ngFor="let node of commentNodes" class="ml-4">
     <app-comment
       [isAuthenticated]="isAuthenticated"
       [comment]="node.comment"
+      [commentLevel]="commentLevel + 1"
     ></app-comment>
-    <app-comment-tree
-      *ngIf="node.children.length > 0"
-      [commentNodes]="node.children"
-      [isAuthenticated]="isAuthenticated"
-    ></app-comment-tree>
+    <ng-container *ngIf="!isMaxLevelReached()">
+      <app-comment-tree
+        *ngIf="node.children.length > 0"
+        [commentNodes]="node.children"
+        [isAuthenticated]="isAuthenticated"
+        [commentLevel]="commentLevel + 1"
+      ></app-comment-tree>
+    </ng-container>
   </li>
 </ul>

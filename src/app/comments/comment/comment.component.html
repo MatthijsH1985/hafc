@@ -1,30 +1,32 @@
-<div class="flex w-full">
-  <div class="author-name p-2 inline-block text-white relative border-b border-blue-500">
-    <h3 class="text-black font-bold dark:text-white relative text-black p-2" [ngClass]="{'font-bold text-blue-500': comment.author !== 0}">{{ comment.author_name }} <fa-icon [icon]="faCheck" class="text-green-800 absolute -right-[.5rem] -top-[5px] text-sm" *ngIf="comment.author !== 0" title="Geregistreerde gebruiker"></fa-icon></h3>
-  </div>
-  <div class="ml-auto flex items-center justify-center">
-    <div class="ml-auto">
-      <span class="text-green-800 ml-4 dark:text-white"><span *ngIf="comment.likes > 0">+ {{ comment.likes }}</span></span>
-      <button *ngIf="isAuthenticated" class="like-dislike-button like-button" (click)="onRateComment(1, comment)">
-        <fa-icon [icon]="faArrowUp" class="text-green-800 dark:text-white"></fa-icon>
-      </button>
-      <span class="text-red-800 dark:text-white"><span *ngIf="comment.dislikes > 0">-  {{ comment.dislikes }}</span></span>
-      <button *ngIf="isAuthenticated" class="like-dislike-button like-button" (click)="onRateComment(-1, comment)">
-        <fa-icon [icon]="faArrowDown" class="text-red-800 dark:text-white"></fa-icon>
-      </button>
+<div class="comment-container ml-4 border-l border-blue-500 dark:bg-gray-900 dark:border-b border-gray-900 rounded-md">
+  <div class="flex w-full">
+    <div class="author-name p-2 inline-block text-white relative border-b border-blue-500">
+      <h3 class="text-black font-bold dark:text-white relative text-black p-2" [ngClass]="{'font-bold text-blue-500': comment.author !== 0}">{{ comment.author_name }} <fa-icon [icon]="faCheck" class="text-green-800 absolute -right-[.5rem] -top-[5px] text-sm" *ngIf="comment.author !== 0" title="Geregistreerde gebruiker"></fa-icon></h3>
     </div>
-  </div>
-</div>
-<div class="">
-  <div [innerHTML]="comment.content.rendered" class="text-black dark:text-white comment-content p-4"></div>
-  <div class="text-sm p-4 pb-0 border-t border-gray-200 dark:border-black flex">
-    <h4 class="dark:text-white flex items-center w-full">
-      <span class="date italic">{{ validDateFormat(comment.date) | date: 'EEEE, d MMMM, y' }}</span> <span class="ml-2">{{ validDateFormat(comment.date) | date: 'HH:mm' }}</span>
+    <div class="ml-auto flex items-center justify-center">
       <div class="ml-auto">
-        <button class="text-blue" (click)="onReplyToComment(comment.id)">
-          Reageer
+        <span class="text-green-800 ml-4 dark:text-white"><span *ngIf="comment.likes > 0">+ {{ comment.likes }}</span></span>
+        <button *ngIf="isAuthenticated" class="like-dislike-button like-button" (click)="onRateComment(1, comment)">
+          <fa-icon [icon]="faArrowUp" class="text-green-800 dark:text-white"></fa-icon>
+        </button>
+        <span class="text-red-800 dark:text-white"><span *ngIf="comment.dislikes > 0">-  {{ comment.dislikes }}</span></span>
+        <button *ngIf="isAuthenticated" class="like-dislike-button like-button" (click)="onRateComment(-1, comment)">
+          <fa-icon [icon]="faArrowDown" class="text-red-800 dark:text-white"></fa-icon>
         </button>
       </div>
-    </h4>
+    </div>
+  </div>
+  <div class="">
+    <div [innerHTML]="comment.content.rendered" class="text-black dark:text-white comment-content p-4"></div>
+    <div class="text-sm p-4 pb-0 border-t border-gray-200 dark:border-black flex">
+      <h4 class="dark:text-white flex items-center w-full">
+        <span class="date italic">{{ validDateFormat(comment.date) | date: 'EEEE, d MMMM, y' }}</span> <span class="ml-2">{{ validDateFormat(comment.date) | date: 'HH:mm' }}</span>
+        <div class="ml-auto" *ngIf="isReplyButtonVisible()">
+          <button class="text-blue" (click)="onReplyToComment(comment.id)">
+            Reageer
+          </button>
+        </div>
+      </h4>
+    </div>
   </div>
 </div>

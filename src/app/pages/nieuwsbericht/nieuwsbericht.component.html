@@ -14,7 +14,7 @@
       <div class="m-auto flex flex-col md:flex-row">
         <div class="w-full md:w-2/3 md:pr-4">
           <div class="bg-white dark:bg-gray-900 rounded-md mb-8 md:px-12 news-container">
-            <div class="flex items-center md:flex dark:text-white text-xs mb-8 dark:bg-black p-2 md:p-0">
+            <div class="flex items-center md:flex border-b border-gray-200 dark:border-black dark:text-white text-xs mb-8 p-2 md:p-0">
               <div class="px-8 py-4 hidden md:flex">
                 <a routerLink="/" class="inline-block hover:underline dark:text-white mr-2 max-w-full overflow-hidden whitespace-nowrap text-ellipsis">Home</a> &rsaquo; <a routerLink="/nieuws" class="inline-block hover:underline mx-2 max-w-full overflow-hidden whitespace-nowrap text-ellipsis">Nieuws</a> &rsaquo; <span [innerHTML]="post?.title.rendered" class="inline-block dark:text-white mx-2 max-w-full overflow-hidden whitespace-nowrap text-ellipsis"></span>
               </div>
@@ -48,7 +48,7 @@
   <div class="xl:w-[1200px] container m-auto">
     <div *ngIf="post?.comment_status !== 'closed'; else commentsClosed">
       <div class="w-2/3" id="comments">
-        <app-comments (replyToComment)="onReplyToComment($event)" [postId]="post.id"></app-comments>
+        <app-comments [onReloadComments]="reloadComments" (replyToComment)="onReplyToComment($event)" [postId]="post.id"></app-comments>
       </div>
     </div>
     <ng-template #commentsClosed>

@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {faArrowDown, faArrowUp, faCheck} from '@fortawesome/free-solid-svg-icons';
 import {CommentsService} from '../services/comments.service';
 import {AuthService} from '../../services/auth/auth-service';
@@ -10,13 +10,13 @@ import {ToastrService} from 'ngx-toastr';
   templateUrl: './comment.component.html',
   styleUrls: ['./comment.component.scss']
 })
-export class CommentComponent {
+export class CommentComponent implements OnInit {
 
     constructor(private commentsService: CommentsService,
                 private authService: AuthService,
                 private toastService: ToastrService
-    ) {}
-
+    ) {
+    }
     private authSub = new Subscription();
     private loading: boolean = true;
     protected readonly faArrowDown = faArrowDown;
@@ -24,6 +24,15 @@ export class CommentComponent {
     protected readonly faArrowUp = faArrowUp;
     @Input() isAuthenticated = false;
     @Input() comment: any = [];
+    @Input() commentLevel: number = 0;
+
+    ngOnInit() {
+      console.log('Comment Level:', this.commentLevel);
+    }
+
+    isReplyButtonVisible(): boolean {
+      return this.commentLevel < 3;
+    }
 
     validDateFormat(dateString: any) {
       if(dateString) {

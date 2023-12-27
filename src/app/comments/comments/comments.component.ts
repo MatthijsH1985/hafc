@@ -59,7 +59,6 @@ export class CommentsComponent implements OnChanges, OnDestroy, OnInit {
       commentMap.set(comment.id, commentNode);
     });
 
-    // Nu de hiërarchie opbouwen
     this.comments.forEach((comment: any) => {
       const commentNode = commentMap.get(comment.id);
 
@@ -68,6 +67,7 @@ export class CommentsComponent implements OnChanges, OnDestroy, OnInit {
 
         if (parentCommentNode) {
           parentCommentNode.children.push(commentNode);
+          commentNode.level = parentCommentNode.level + 1;
         }
       }
     });
@@ -92,6 +92,8 @@ export class CommentsComponent implements OnChanges, OnDestroy, OnInit {
   ngOnChanges(changes: SimpleChanges) {
     if (changes['onReloadComments'] && !changes['onReloadComments'].firstChange) {
       this.getComments(this.commentPage);
+      this.buildCommentHierarchy();
+      console.log(this.comments);
     }
   }
 
