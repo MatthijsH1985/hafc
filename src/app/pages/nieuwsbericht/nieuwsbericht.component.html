@@ -1,7 +1,7 @@
 <div class="flex flex-col">
   <div class="container xl:w-[1200px] ml-auto mr-auto">
     <div class="relative container h-[450px] xl:h-[550px] md:h-[550px] align-center">
-      <img [src]="post?.better_featured_image.source_url" class="object-cover object-center xl:h-[550px] md:h-[550px] m-h-[550px] w-full h-full" />
+      <img [src]="post?.better_featured_image.source_url" class=" rounded-tl-md rounded-tr-md rounded-br-md object-cover object-center xl:h-[550px] md:h-[550px] m-h-[550px] w-full h-full" />
       <span *ngIf="post?.better_featured_image.caption; else noCaption" class="absolute right-2 bottom-2 z-20 text-sm text-white">Foto: {{ post?.better_featured_image.caption }}</span>
       <div class="slider-animation"></div>
       <ng-template #noCaption>
@@ -45,10 +45,10 @@
       </div>
     </div>
   </div>
-  <div class="xl:w-[1200px] container m-auto">
+  <div class="w-full xl:w-[1200px] container m-auto mb-8">
     <div *ngIf="post?.comment_status !== 'closed'; else commentsClosed">
-      <div class="w-2/3" id="comments">
-        <app-comments [onReloadComments]="reloadComments" (replyToComment)="onReplyToComment($event)" [postId]="post.id"></app-comments>
+      <div class="md:w-2/3 p-4 md:p-0 md:pr-4" id="comments">
+        <app-comments [onReloadComments]="reloadComments" (replyToComment)="onReplyToComment($event)" [post]="post"></app-comments>
       </div>
     </div>
     <ng-template #commentsClosed>

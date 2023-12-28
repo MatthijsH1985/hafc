@@ -33,7 +33,7 @@ export class CommentsComponent implements OnChanges, OnDestroy, OnInit {
   newCommentCount: number = 0;
   hierarchicalComments: CommentNode[] = [];
   @Input() initialCommentCount: number = 0;
-  @Input() postId: string | undefined;
+  @Input() post: any | undefined;
   @Input() onReloadComments: boolean = false;
   @Output() replyToComment: EventEmitter<number> = new EventEmitter<number>();
 
@@ -89,7 +89,7 @@ export class CommentsComponent implements OnChanges, OnDestroy, OnInit {
   }
 
   getComments(page: number) {
-    this.commentsSub = this.commentsService.getComments(this.postId, this.commentPage).subscribe({
+    this.commentsSub = this.commentsService.getComments(this.post.id, this.commentPage).subscribe({
       next: comments => {
         for (let i = 0; i < comments.length; i++) {
           this.comments.push(comments[i]);

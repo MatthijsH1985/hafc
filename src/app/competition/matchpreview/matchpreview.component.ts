@@ -41,9 +41,6 @@ export class MatchpreviewComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private configService: ConfigService,
-    private postService: PostsService,
-    private router: Router,
-    private titleService: Title,
     private toast: ToastrService,
     private fixturesService: FixturesService,
     private viewportScroller: ViewportScroller,

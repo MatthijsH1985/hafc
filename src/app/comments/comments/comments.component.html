@@ -1,13 +1,17 @@
-<div class="comments-section flex flex-col">
+<div class="comments-section flex flex-col bg-white dark:bg-gray-900 rounded-md p-4 pl-16">
+  <div class="my-8 mx-4 flex items-center">
+    <h3 class="text-black dark:text-white mb-2 md:text-3xl font-bold">Discussieer mee</h3>
+    <span class="ml-4 p-2 rounded-md bg-gray-900 text-white dark:bg-white dark:text-gray-900 text-md md:text-sm">{{ post?.comments_count }} reacties</span>
+  </div>
   <div class="flex md:flex-row flex-col-reverse container">
     <div class="flex-1">
       <app-comment-tree
-        *ngIf="comments?.length > 0"
+        *ngIf="comments?.length > 0 else noComments"
         [commentNodes]="hierarchicalComments"
         [isAuthenticated]="isAuthenticated()"
       ></app-comment-tree>
       <ng-template #noComments>
-        <div class="p-4 -mt-4 md:w-[600px] bg-blue-100 rounded-md md:mr-4">
+        <div class="p-4 md:w-[600px] bg-blue-100 rounded-md md:mr-4">
           <p class="dark:text-white dark:bg-black">Er is nog niet gereageerd op dit artikel</p>
         </div>
       </ng-template>

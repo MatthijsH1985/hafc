@@ -179,7 +179,7 @@ button {
 
 .comment-content {
   p {
-    @apply mb-4 text-sm;
+    @apply mb-4 text-sm text-gray-900 dark:text-white;
   }
   * {
     @apply text-black leading-6 dark:text-white
@@ -330,7 +330,17 @@ app-nieuwsbericht {
     li {
       ul {
         li {
-          @apply ml-4
+          position: relative;
+          &:before {
+            font-family: "Font Awesome 6 Pro";
+            content: "\f3e5";
+            font-size: .8rem;
+            position: absolute;
+            left: -1.5rem;
+            top: 1rem;
+            transform: rotate(180deg);
+          }
+          @apply ml-6
         }
       }
       @apply mb-4
