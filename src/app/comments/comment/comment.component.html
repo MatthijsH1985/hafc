@@ -1,4 +1,5 @@
 <div class="relative">
+  <fa-icon [icon]="faShare" *ngIf="commentLevel > 1" class="absolute text-black -left-[30px] top-[1rem] text-xm rotate-180 -scale-x-[1]"></fa-icon>
   <div class="absolute -left-[44px] bottom-[2.5rem] rounded-full w-[30px] h-[30px] flex items-center justify-center bg-blue-500 text-white text-xs">
     {{ firstCharacters(comment.author_name) }}
   </div>

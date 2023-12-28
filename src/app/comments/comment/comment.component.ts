@@ -1,5 +1,5 @@
 import {ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
-import {faArrowDown, faArrowUp, faCheck} from '@fortawesome/free-solid-svg-icons';
+import {faArrowDown, faArrowUp, faCheck, faShare} from '@fortawesome/free-solid-svg-icons';
 import {CommentsService} from '../services/comments.service';
 import {AuthService} from '../../services/auth/auth-service';
 import {Subscription} from 'rxjs';
@@ -103,4 +103,5 @@ export class CommentComponent implements OnInit {
         this.commentsService.sendCommentId(commentID);
     }
 
+  protected readonly faShare = faShare;
 }

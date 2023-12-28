@@ -331,15 +331,6 @@ app-nieuwsbericht {
       ul {
         li {
           position: relative;
-          &:before {
-            font-family: "Font Awesome 6 Pro";
-            content: "\f3e5";
-            font-size: .8rem;
-            position: absolute;
-            left: -1.5rem;
-            top: 1rem;
-            transform: rotate(180deg);
-          }
           @apply ml-6
         }
       }
