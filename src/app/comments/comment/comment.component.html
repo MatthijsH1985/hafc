@@ -5,7 +5,7 @@
   <div class="bg-gray-100 dark:bg-gray-1000 rounded-md p-2">
     <div class="flex w-full">
       <div class="author-name text-sm px-2 text-white relative flex">
-        <h3 class="text-black dark:text-white relative w-full flex" [ngClass]="{'font-bold text-blue-500': comment.author !== 0}">{{ comment.author_name }} <fa-icon [icon]="faCheck" class="text-green-800 absolute -right-[.5rem] -top-[5px] text-sm" *ngIf="comment.author !== 0" title="Geregistreerde gebruiker"></fa-icon> zegt</h3>
+        <h3 class="text-black dark:text-white relative w-full flex" [ngClass]="{'font-bold text-blue-500': comment.author !== 0}"><strong>{{ comment.author_name }}</strong> <fa-icon [icon]="faCheck" class="text-green-800 absolute -right-[.5rem] -top-[5px] text-sm" *ngIf="comment.author !== 0" title="Geregistreerde gebruiker"></fa-icon> zegt</h3>
       </div>
       <span class="text-sm ml-auto date italic text-gray-400 dark:text-gray-500 dark_text-gray-300">{{ calculateTimeDifference(validDateFormat(comment.date)) }}</span>
       <!--    <div class="ml-auto flex items-center justify-center">-->
