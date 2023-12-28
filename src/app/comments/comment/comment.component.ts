@@ -36,6 +36,10 @@ export class CommentComponent implements OnInit {
       return this.commentLevel < 3;
     }
 
+  firstCharacters(authorName: string) {
+      return authorName.substring(0,3);
+  }
+
     validDateFormat(dateString: any) {
       if(dateString) {
         return dateString.replace(/\s/, 'T');
