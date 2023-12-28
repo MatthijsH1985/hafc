@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
 import {faArrowDown, faArrowUp, faCheck} from '@fortawesome/free-solid-svg-icons';
 import {CommentsService} from '../services/comments.service';
 import {AuthService} from '../../services/auth/auth-service';
@@ -17,7 +17,8 @@ export class CommentComponent implements OnInit {
 
     constructor(private commentsService: CommentsService,
                 private authService: AuthService,
-                private toastService: ToastrService
+                private toastService: ToastrService,
+                private cdr: ChangeDetectorRef
     ) {
     }
     private authSub = new Subscription();
@@ -28,6 +29,7 @@ export class CommentComponent implements OnInit {
     @Input() isAuthenticated = false;
     @Input() comment: any = [];
     @Input() commentLevel: number = 0;
+    @Input() comments: any | undefined;
 
     ngOnInit() {
     }
@@ -36,9 +38,9 @@ export class CommentComponent implements OnInit {
       return this.commentLevel < 3;
     }
 
-  firstCharacters(authorName: string) {
-      return authorName.substring(0,3);
-  }
+    firstCharacters(authorName: string) {
+        return authorName.substring(0,3);
+    }
 
     validDateFormat(dateString: any) {
       if(dateString) {
@@ -68,7 +70,7 @@ export class CommentComponent implements OnInit {
       this.commentsService.rateComment(commentData).subscribe({
         next: (result: any) => {
           if (result) {
-            // Emit event
+            console.log(result.comment_id, result.likes, result.dislikes)
             this.updateLikesAndDislikes(result.comment_id, result.likes, result.dislikes);
           }
         },
@@ -84,10 +86,11 @@ export class CommentComponent implements OnInit {
   }
 
   updateLikesAndDislikes(commentId: number, likes: number, dislikes: number) {
-    const comment = this.comment.find((c: any) => c.id === commentId);
+    const comment = this.comment;
     if (comment) {
       comment.likes = likes;
       comment.dislikes = dislikes;
+      this.cdr.detectChanges();
     }
   }
 

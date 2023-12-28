@@ -62,7 +62,6 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy, AfterViewInit 
     this.viewportScroller.scrollToPosition([0,0]);
   }
 
-
   ngAfterViewInit() {
     this.hideLoading();
   }
@@ -108,7 +107,7 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy, AfterViewInit 
 
   onAddNewComment() {
     this.currentReplyToCommentId = 0;
-    this.reloadComments = true;
+    this.reloadComments = false;
     this.onOpenCommentModal();
   }
 

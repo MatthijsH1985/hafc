@@ -5,21 +5,9 @@
   <div class="bg-gray-100 dark:bg-gray-1000 rounded-md p-2">
     <div class="flex w-full">
       <div class="author-name text-sm px-2 text-white relative flex">
-        <h3 class="text-black dark:text-white relative w-full flex" [ngClass]="{'font-bold text-blue-500': comment.author !== 0}"><strong>{{ comment.author_name }}</strong> <fa-icon [icon]="faCheck" class="text-green-800 absolute -right-[.5rem] -top-[5px] text-sm" *ngIf="comment.author !== 0" title="Geregistreerde gebruiker"></fa-icon> zegt</h3>
+        <h3 class="text-black dark:text-white relative w-full flex" [ngClass]="{'font-bold text-blue-500': comment.author !== 0}"><strong class="mr-1">{{ comment.author_name }}</strong> <fa-icon [icon]="faCheck" class="text-green-800 absolute -right-[.5rem] -top-[5px] text-sm" *ngIf="comment.author !== 0" title="Geregistreerde gebruiker"></fa-icon>zegt</h3>
       </div>
       <span class="text-sm ml-auto date italic text-gray-400 dark:text-gray-500 dark_text-gray-300">{{ calculateTimeDifference(validDateFormat(comment.date)) }}</span>
-      <!--    <div class="ml-auto flex items-center justify-center">-->
-      <!--      <div class="ml-auto">-->
-      <!--        <span class="text-green-800 ml-4 dark:text-white"><span *ngIf="comment.likes > 0">+ {{ comment.likes }}</span></span>-->
-      <!--        <button *ngIf="isAuthenticated" class="like-dislike-button like-button" (click)="onRateComment(1, comment)">-->
-      <!--          <fa-icon [icon]="faArrowUp" class="text-green-800 dark:text-white"></fa-icon>-->
-      <!--        </button>-->
-      <!--        <span class="text-red-800 dark:text-white"><span *ngIf="comment.dislikes > 0">-  {{ comment.dislikes }}</span></span>-->
-      <!--        <button *ngIf="isAuthenticated" class="like-dislike-button like-button" (click)="onRateComment(-1, comment)">-->
-      <!--          <fa-icon [icon]="faArrowDown" class="text-red-800 dark:text-white"></fa-icon>-->
-      <!--        </button>-->
-      <!--      </div>-->
-      <!--    </div>-->
     </div>
     <div [innerHTML]="comment.content.rendered" class="text-black dark:text-white comment-content px-2 pt-2"></div>
   </div>
@@ -28,6 +16,16 @@
       <div *ngIf="isReplyButtonVisible()">
         <button class="text-blue-500 hover:underline hover:text-black dark:hover:text-white p-2 rounded-md" (click)="onReplyToComment(comment.id)">
           Reageer
+        </button>
+      </div>
+      <div class="ml-4">
+        <span class="text-green-800 ml-4 dark:text-white text-sm" *ngIf="comment?.likes > 0"><span>+ {{ comment.likes }}</span></span>
+        <button *ngIf="isAuthenticated" class="text-sm like-dislike-button like-button" (click)="onRateComment(1, comment)">
+          <fa-icon [icon]="faArrowUp" class="text-green-800 dark:text-white"></fa-icon>
+        </button>
+        <span class="text-red-800 dark:text-white text-sm" *ngIf="comment?.dislikes > 0"><span>-  {{ comment.dislikes }}</span></span>
+        <button *ngIf="isAuthenticated" class="text-sm like-dislike-button like-button" (click)="onRateComment(-1, comment)">
+          <fa-icon [icon]="faArrowDown" class="text-red-800 dark:text-white"></fa-icon>
         </button>
       </div>
     </h4>

@@ -18,8 +18,4 @@ export class CommentTreeComponent {
   isMaxLevelReached(): boolean {
     return this.commentLevel >= 2;
   }
-
-  isReplyButtonVisible(): boolean {
-    return !this.isMaxLevelReached();
-  }
 }

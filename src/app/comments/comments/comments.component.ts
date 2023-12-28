@@ -73,8 +73,6 @@ export class CommentsComponent implements OnChanges, OnDestroy, OnInit {
     this.hierarchicalComments = Array.from(commentMap.values()).filter(commentNode => !commentNode.comment.parent);
   }
 
-
-
   loadNewComments() {
     this.commentPage = 1;
     this.getComments(1);
@@ -97,6 +95,7 @@ export class CommentsComponent implements OnChanges, OnDestroy, OnInit {
         this.loadingComments = false;
         this.noCommentsLoaded = false;
         this.commentPage++;
+
         this.changeDetectorRef.detectChanges();
       },
       error:error => {
