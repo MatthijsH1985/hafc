@@ -30,34 +30,51 @@
         <div class="bg-gradient-to-t from-black to-transparent w-full h-full z-10 absolute left-0 right-0 top-0 bottom-0"></div>
       </div>
     </div>
-    <div class="flex container xl:w-[1200px] ml-auto mr-auto p-4 md:p-8">
-      <div class="flex space-x-4 items-center space-x-4 hidden md:flex dark:text-white">
-        <a routerLink="/" class="hover:underline dark:text-white">Home</a> > <a routerLink="/nieuws" class="hover:underline">Nieuws</a> <span [innerHTML]="post?.title.rendered" class="dark:text-white"></span>
-      </div>
-      <div class="flex w-full md:w-auto items-center md:space-x-2 mr-0 md:ml-auto">
-        <span class="font-bold dark:text-white">{{ post.date | date }}</span> <span class="dark:text-white inline-block md:hidden ml-5">{{ categoryName }}</span>
-        <button class="button button-blue text-xl self-end ml-auto" (click)="toComments()">Naar reacties <fa-icon clas="ml-2" [icon]="faArrowDown"></fa-icon></button>
-      </div>
-    </div>
-    <div class="flex flex-col xl:w-[1200px] ml-auto mr-auto relative z-20">
-      <div class="container bg-white dark:bg-black mb-8 xl:w-[1100px] flex flex-col ml-auto mr-auto items-center">
-        <div class="px-4 md:px-12 pt-16 news-container m-auto">
-          <h1 [innerHTML]="post?.title.rendered" class="text-4xl mb-4 leading-[1.25] dark:text-white"></h1>
-          <div [innerHTML]="post?.content.rendered" class="leading-8 text-base leading-[1.5] dark:text-white"></div>
-        </div>
-        <div class="bg-gray-200 dark:bg-gray-900 dark:text-white p-4 flex w-full justify-end w-full mt-8 items-center">
-          <div class="hidden md:inline-block">
-            <button class="button button-blue text-xl self-end" (click)="onOpenCommentModal()">Reageer</button>
+    <div class="flex flex-col xl:w-[1200px] ml-auto mr-auto relative z-20 animate-fade-up animate-once animate-ease-in-out animate-duration-200 animate-delay-700">
+      <div class="container flex flex-col ml-auto mr-auto items-center">
+        <div class="m-auto flex flex-col md:flex-row">
+          <div class="w-full md:w-2/3 md:pr-4">
+            <div class="bg-white dark:bg-gray-900 rounded-md mb-8 md:px-12 news-container">
+              <div class="flex items-center md:flex border-b border-gray-200 dark:border-black dark:text-white text-xs mb-8 p-2 md:p-0">
+                <div class="px-8 py-4 hidden md:flex">
+                  <a routerLink="/" class="inline-block hover:underline dark:text-white mr-2 max-w-full overflow-hidden whitespace-nowrap text-ellipsis">Home</a> &rsaquo; <a routerLink="/nieuws" class="inline-block hover:underline mx-2 max-w-full overflow-hidden whitespace-nowrap text-ellipsis">Nieuws</a> &rsaquo; <span [innerHTML]="post?.title.rendered" class="inline-block dark:text-white mx-2 max-w-full overflow-hidden whitespace-nowrap text-ellipsis"></span>
+                </div>
+              </div>
+              <div class="py-4 px-8">
+                <h1 [innerHTML]="post?.title.rendered" class="text-4xl mb-4 leading-[1.25] dark:text-white"></h1>
+                <p class="text-xs">Geschreven door {{ post?.author_data?.display_name }} op <span class="font-bold dark:text-white">{{ post.date | date }}</span></p>
+                <div [innerHTML]="post?.content.rendered" class="leading-8 text-base leading-[1.5] dark:text-white"></div>
+                <div *ngIf="post?.acf.spotify_link">
+                  <a [href]="post?.acf.spotify_link" class="button button-blue no-underline" target="_blank">
+                    Beluister op Spotify
+                  </a>
+                  <iframe [src]="post.acf.spotify_link | safe" width="100%" height="390" seamless="true"></iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="w-full md:w-1/3 relative">
+            <div class="md:sticky md:top-[120px]">
+              <h3 class="ml-4 p-2 text-xl my-8 inline-block dark:text-white relative border-b border-blue-500">
+                Onze sponsoren
+              </h3>
+              <div class="p-4">
+                <app-ads [layout]="'square'"></app-ads>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="flex m-auto">
-      <div class="flex flex-col w-full justify-end ml-auto mr-auto">
-        <div class="w-full" id="comments">
-          <app-comments [post]="post"></app-comments>
+    <div class="w-full xl:w-[1200px] container m-auto mb-8">
+      <div *ngIf="post?.comment_status !== 'closed'; else commentsClosed">
+        <div class="md:w-2/3 p-4 md:p-0 md:pr-4" id="comments">
+          <app-comments [onReloadComments]="reloadComments" (replyToComment)="onReplyToComment($event)" [post]="post"></app-comments>
         </div>
       </div>
+      <ng-template #commentsClosed>
+        <p class="mb-8 text-xl dark:text-white">Op dit bericht kun je niet reageren</p>
+      </ng-template>
     </div>
   </div>
   <div class="mt-auto" *ngIf="!loading">

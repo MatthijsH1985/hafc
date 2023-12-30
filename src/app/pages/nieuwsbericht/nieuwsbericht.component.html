@@ -21,7 +21,8 @@
             </div>
             <div class="py-4 px-8">
               <h1 [innerHTML]="post?.title.rendered" class="text-4xl mb-4 leading-[1.25] dark:text-white"></h1>
-              <span class="font-bold dark:text-white">{{ post.date | date }}</span> <span class="dark:text-white inline-block md:hidden ml-5">{{ categoryName }}</span>
+              <span class="dark:text-white inline-block md:hidden ml-5">{{ categoryName }}</span>
+              <p class="text-xs">Geschreven door {{ post?.author_data?.display_name }} op <span class="font-bold dark:text-white">{{ post.date | date }}</span></p>
               <div [innerHTML]="post?.content.rendered" class="leading-8 text-base leading-[1.5] dark:text-white"></div>
               <div *ngIf="post?.acf.spotify_link">
                 <a [href]="post?.acf.spotify_link" class="button button-blue no-underline" target="_blank">

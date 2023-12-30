@@ -12,6 +12,7 @@ import {MatchreportComponent} from "./matchreport/matchreport.component";
 import {Competitioncomponent} from "./competition/competitioncomponent";
 import {RouterModule} from "@angular/router";
 import {CommentsModule} from "../comments/comments.module";
+import {AdsModule} from '../ads/ads.module';
 
 @NgModule({
   declarations: [
@@ -23,12 +24,13 @@ import {CommentsModule} from "../comments/comments.module";
     MatchreportComponent,
     Competitioncomponent
   ],
-  imports: [
-    CommonModule,
-    CoreModule,
-    RouterModule,
-    CommentsModule
-  ],
+    imports: [
+        CommonModule,
+        CoreModule,
+        RouterModule,
+        CommentsModule,
+        AdsModule
+    ],
   exports: [
     VolgendeWedstrijdComponent,
     StandComponent

@@ -31,6 +31,7 @@ export class MatchpreviewComponent implements OnInit {
   teamID = this.configService.config.teamID;
   participantHome: string = '';
   participantAway: string = '';
+  currentReplyToCommentId: number | undefined;
 
   @HostListener('window:scroll', ['$event']) onScroll(event: any) {
     const winScroll = event.target.documentElement.scrollTop || event.currentTarget.scrollTop || document.body.scrollTop;
@@ -106,6 +107,11 @@ export class MatchpreviewComponent implements OnInit {
 
   toComments():void {
     this.viewportScroller.scrollToAnchor('comments');
+  }
+
+  onReplyToComment(commentId: number) {
+    this.currentReplyToCommentId = commentId;
+    this.onOpenCommentModal();
   }
 
   updateMetaTags(post: any) {
