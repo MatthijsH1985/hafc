@@ -1,7 +1,7 @@
 
 <div class="flex flex-col" *ngIf="!loading">
   <div class="container max-w-[1200px] relative z-10 ml-auto mr-auto">
-    <div class="md:h-[550px] m-h-[450px] overflow-hidden relative bg-gray-800 min-h-[550px] animate-fade-up animate-once animate-duration-300 animate-ease-linear animate-delay-500">
+    <div class="md:h-[550px] m-h-[450px] overflow-hidden relative bg-gray-800 min-h-[550px] animate-fade-up animate-once animate-duration-300 animate-ease-linear animate-delay-100">
 <!--      <ng-container *ngIf="isBrowser">-->
 <!--        <ng-container *ngComponentOutlet="newssliderComponent"></ng-container>-->
 <!--      </ng-container>-->
@@ -18,7 +18,7 @@
         <div class="slider-animation"></div>
       </a>
     </div>
-    <div class="flex md:flex-row flex-col-reverse animate-fade-up animate-once animate-duration-300 animate-ease-linear animate-delay-700">
+    <div class="flex md:flex-row flex-col-reverse animate-fade-up animate-once animate-duration-300 animate-ease-linear animate-delay-1000">
       <div class="w-full md:w-2/3 ">
         <div class="md:ml-0 px-4 md:mr-4 md:px-0 md:mt-4">
           <app-newslist [compact]="true" [pagination]="false"></app-newslist>
