@@ -53,6 +53,7 @@ export class HomepageComponent implements OnInit {
     this.links = this.route.snapshot.data['links'];
     this.loading = false;
     this.latestComments = this.route.snapshot.data['latestComments'];
+    this.metaService.setMetaTag('https://www.hafc.nl', 'HAFC.nl is de grootste Heracles community voor en door supporters. Volg hier het laatste nieuws over Heracles en blijf op de hoogte', 'https://backend.hafc.nl/wp-content/uploads/2023/05/nac-heracles.jpg');
     this.metaService.updateMetaTag('HAFC.nl - Wij zijn Heracles', 'https://www.hafc.nl', 'HAFC.nl is de grootste Heracles community voor en door supporters. Volg hier het laatste nieuws over Heracles en blijf op de hoogte');
   }
 
