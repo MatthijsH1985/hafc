@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../../services/auth/auth-service";
 import {CommentsService} from "../../../comments/services/comments.service";
+import {error} from '@angular/compiler-cli/src/transformers/util';
 
 @Component({
   selector: 'app-user-comments',
@@ -13,7 +14,25 @@ export class UserCommentsComponent implements OnInit{
   constructor(private commentsService: CommentsService, private authService: AuthService) {}
 
   ngOnInit() {
+    const userId = this.authService.getUserInfo().subscribe({
+      next: (response: any) => {
+        this.onGetCommentsByUserId(response.id);
+      },
+      error: (error: any) => {
+        console.log(error);
+      }
+    });
+  }
 
+  onGetCommentsByUserId(userId: number) {
+    this.commentsService.getLatestCommentsByUser(userId).subscribe( {
+      next: (response: any) => {
+        this.comments = response;
+      },
+      error: (error: any) => {
+        console.log(error);
+      }
+    });
   }
 
   validDateFormat(dateString: any) {

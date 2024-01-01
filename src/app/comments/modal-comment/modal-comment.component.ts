@@ -76,12 +76,24 @@ export class ModalCommentComponent implements OnChanges {
   onPostComment(form: FormGroup, commentParentId?: number): void {
     let commentData: any;
     if (this.isLoggedIn()) {
-      commentData = {
-        post: this.postId,
-        author_name: this.authService.getUserName(),
-        author_email: this.authService.getUserEmail(),
-        content: form.value.comment,
-      };
+      const userId = this.authService.getUserInfo().subscribe({
+        next: (response: any) => {
+          commentData = {
+            post: this.postId,
+            author_name: this.authService.getUserName(),
+            author_email: this.authService.getUserEmail(),
+            content: form.value.comment,
+            author: response.id
+          };
+          if (this.replyToCommentId !== undefined) {
+            commentData.parent = this.replyToCommentId;
+          }
+          this.postComment(JSON.stringify(commentData));
+        },
+        error: (error: any) => {
+          console.log(error);
+        }
+      });
     } else {
       commentData = {
         post: this.postId,
@@ -89,15 +101,11 @@ export class ModalCommentComponent implements OnChanges {
         author_email: form.value.email,
         content: form.value.comment,
       };
+      if (this.replyToCommentId !== undefined) {
+        commentData.parent = this.replyToCommentId;
+      }
+      this.postComment(JSON.stringify(commentData));
     }
-
-    if (this.replyToCommentId !== undefined) {
-      commentData.parent = this.replyToCommentId;
-    }
-
-    console.log(JSON.stringify(commentData));
-
-    this.postComment(JSON.stringify(commentData));
   }
 
   postComment(commentData: any) {

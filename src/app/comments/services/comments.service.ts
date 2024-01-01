@@ -86,6 +86,11 @@ export class CommentsService {
     return this.http.get<Config[]>(environment.apiUrl + '/comments?per_page=4&' + randomQueryParam + '', this.httpOptions);
   }
 
+  getLatestCommentsByUser(authorId: number) {
+    const randomQueryParam = `cache_bypass=1`;
+    return this.http.get<Config[]>(environment.apiUrl + '/comments?per_page=10&order=desc&' + randomQueryParam + '&author=' + authorId , this.httpOptionsLoggedIn);
+  }
+
   getComments(post:any, page = 1, order = 'desc'): Observable<Config[]> {
     return this.http.get<Config[]>(environment.apiUrl + '/comments?post='+ post + '&per_page=100&page='+ page + '&order='+ order + '', this.httpOptions);
   }
