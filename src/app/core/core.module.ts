@@ -28,21 +28,23 @@ import {CartService} from '../shop/cart/services/cart.service';
 import {SafePipe} from './shared/safe.pipe';
 import { CreditsComponent } from './footer/credits/credits.component';
 import {AdsComponent} from '../ads/ads/ads.component';
+import {CountdownComponent} from '../components/countdown/countdown.component';
 
 @NgModule({
-  declarations: [
-    HeaderComponent,
-    FooterComponent,
-    NavigationComponent,
-    GenerateLogoUrlPipe,
-    RoundNumberPipe,
-    SafePipe,
-    PositiveNumberPipe,
-    TransformTeamDataPipe,
-    LoadingIndicatorComponent,
-    PreloaderComponent,
-    CreditsComponent
-  ],
+    declarations: [
+        HeaderComponent,
+        FooterComponent,
+        NavigationComponent,
+        GenerateLogoUrlPipe,
+        RoundNumberPipe,
+        SafePipe,
+        PositiveNumberPipe,
+        TransformTeamDataPipe,
+        LoadingIndicatorComponent,
+        PreloaderComponent,
+        CreditsComponent,
+        CountdownComponent
+    ],
   imports: [
     CommonModule,
     RouterModule,
@@ -51,21 +53,22 @@ import {AdsComponent} from '../ads/ads/ads.component';
     RecaptchaFormsModule,
     RecaptchaV3Module
   ],
-  exports: [
-    HeaderComponent,
-    FooterComponent,
-    NavigationComponent,
-    SafePipe,
-    GenerateLogoUrlPipe,
-    RoundNumberPipe,
-    PositiveNumberPipe,
-    TransformTeamDataPipe,
-    FontAwesomeModule,
-    PreloaderComponent,
-    LoadingIndicatorComponent,
-    RouterModule,
-    CreditsComponent
-  ],
+    exports: [
+        HeaderComponent,
+        FooterComponent,
+        NavigationComponent,
+        SafePipe,
+        GenerateLogoUrlPipe,
+        RoundNumberPipe,
+        PositiveNumberPipe,
+        TransformTeamDataPipe,
+        FontAwesomeModule,
+        PreloaderComponent,
+        LoadingIndicatorComponent,
+        RouterModule,
+        CreditsComponent,
+        CountdownComponent
+    ],
   providers: [
     ConfigService,
     SessionStorage,

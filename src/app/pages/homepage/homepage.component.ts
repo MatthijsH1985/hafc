@@ -8,6 +8,7 @@ import {LoadingIndicatorService} from "../../core/shared/loading-indicator/loadi
 import {PlayersService} from "../../services/players.service";
 import {Link} from "../../core/model/link.interface";
 import {ToastrService} from "ngx-toastr";
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-homepage',
@@ -20,7 +21,6 @@ export class HomepageComponent implements OnInit {
   loading = true;
   links: Link[] = [];
   headlines: any;
-  mainPost: any = [];
   constructor(
               private titleService: Title,
               private playersService: PlayersService,

@@ -27,7 +27,6 @@ export class UserCommentsComponent implements OnInit{
     this.commentsService.getLatestCommentsByUser(userId).subscribe( {
       next: (response: any) => {
         this.comments = response.map((comment: any) => {
-          // Hier kun je je eigen logica toepassen om de post_permalink-waarde aan te passen
           comment.post_permalink = this.updatePostPermalink(comment.post_permalink);
           return comment;
         });
