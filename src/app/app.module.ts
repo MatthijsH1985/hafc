@@ -109,7 +109,9 @@ registerLocaleData(localeNl);
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      preventDuplicates: true
+    }),
     ReactiveFormsModule,
     FormsModule,
     FontAwesomeModule,
