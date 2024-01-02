@@ -24,11 +24,11 @@ export class UserService {
   }
 
   createUser(user: any): Observable<Config[]> {
-    return this.http.post<Config[]>(`${this.userServiceUrl}/`  + 'userservice/create/', user, this.httpOptions);
+    return this.http.post<Config[]>(`${this.userServiceUrl}/`  + 'create/', user, this.httpOptions);
   }
 
   validateKey(key: any) {
-    return this.http.get<Config[]>(`${this.userServiceUrl}/userservice/verify-account/${key}`, this.httpOptions);
+    return this.http.get<Config[]>(`${this.userServiceUrl}/verify-account/${key}`, this.httpOptions);
   }
 
   forgetPassWord(userEmail: any) {
