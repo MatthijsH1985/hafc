@@ -5,14 +5,12 @@ import {UserService} from "../../../services/user.service";
 
 @Component({
   selector: 'app-verify-account',
-  template: `
-    <div *ngIf="message">{{ message }}</div>
-  `
+  templateUrl: 'verify-account.component.html'
 })
 export class VerifyAccountComponent implements OnInit {
   message: string = '';
 
-  constructor(private route: ActivatedRoute, private userService: UserService, private http: HttpClient) { }
+  constructor(private route: ActivatedRoute, private userService: UserService) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -20,11 +18,9 @@ export class VerifyAccountComponent implements OnInit {
       if (verificationKey) {
         this.userService.validateKey(verificationKey).subscribe({
           next: (response: any) => {
-            // console.log(response);
             this.message = 'Je account is geverifieerd. Je kunt nu inloggen.';
           },
           error: (error: any) => {
-            console.log(error);
             this.message = 'Er is een fout opgetreden tijdens de verificatie.';
           }
         });
