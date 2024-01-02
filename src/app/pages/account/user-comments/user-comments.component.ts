@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../../services/auth/auth-service";
 import {CommentsService} from "../../../comments/services/comments.service";
-import {error} from '@angular/compiler-cli/src/transformers/util';
 
 @Component({
   selector: 'app-user-comments',
@@ -27,12 +26,24 @@ export class UserCommentsComponent implements OnInit{
   onGetCommentsByUserId(userId: number) {
     this.commentsService.getLatestCommentsByUser(userId).subscribe( {
       next: (response: any) => {
-        this.comments = response;
+        this.comments = response.map((comment: any) => {
+          // Hier kun je je eigen logica toepassen om de post_permalink-waarde aan te passen
+          comment.post_permalink = this.updatePostPermalink(comment.post_permalink);
+          return comment;
+        });
       },
       error: (error: any) => {
         console.log(error);
       }
     });
+  }
+
+  updatePostPermalink(oldPermalink: string): string {
+    if (oldPermalink.startsWith('https://backend.hafc.nl')) {
+      return oldPermalink.replace('https://backend.hafc.nl', 'https://www.hafc.nl');
+    } else {
+      return oldPermalink;
+    }
   }
 
   validDateFormat(dateString: any) {
