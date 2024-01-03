@@ -29,6 +29,7 @@ import {SafePipe} from './shared/safe.pipe';
 import { CreditsComponent } from './footer/credits/credits.component';
 import {AdsComponent} from '../ads/ads/ads.component';
 import {CountdownComponent} from '../components/countdown/countdown.component';
+import {CountdownService} from '../components/countdown/countdown.service';
 
 @NgModule({
     declarations: [
@@ -75,6 +76,7 @@ import {CountdownComponent} from '../components/countdown/countdown.component';
     LocalStorage,
     MetaService,
     CartService,
+    CountdownService,
     MemoryStorage,
     {
       provide: RECAPTCHA_V3_SITE_KEY,
