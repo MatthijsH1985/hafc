@@ -31,7 +31,8 @@ export class CountdownComponent implements OnInit {
           const targetDate = this.pageData.acf.datum;
           this.countDown(targetDate);
           this.showWarning = false;
-          this.pageData.acf.link_naar_pagina = this.updatePostPermalink(this.pageData.acf.link_naar_pagina);
+          this.pageData.acf.link_naar_pagina = this.parsePermalinkToArray(this.pageData.acf.link_naar_pagina);
+          console.log(this.pageData.acf.link_naar_pagina)
         } else {
           this.showWarning = true;
         }
@@ -42,11 +43,16 @@ export class CountdownComponent implements OnInit {
     })
   }
 
-  updatePostPermalink(oldPermalink: string): string {
-    if (oldPermalink.startsWith('https://backend.hafc.nl')) {
-      return oldPermalink.replace('https://backend.hafc.nl', 'https://www.hafc.nl');
+  parsePermalinkToArray(permalink: string): string[] {
+    const regex = /https:\/\/backend\.hafc\.nl\/nieuws\/(\d+)\/(.+)/;
+    const match = permalink.match(regex);
+
+    if (match && match.length === 3) {
+      const nummer = match[1];
+      const titel = match[2].replace(/-/g, ' ').replace(/\//g, '').trim(); // Verwijder spaties aan het begin en einde
+      return ['nieuws', nummer, titel];
     } else {
-      return oldPermalink;
+      return [];
     }
   }
 
