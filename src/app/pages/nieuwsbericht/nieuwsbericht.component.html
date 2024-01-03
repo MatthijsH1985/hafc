@@ -46,7 +46,7 @@
       </div>
     </div>
   </div>
-  <div class="w-full xl:w-[1200px] container m-auto mb-8">
+  <div class="w-full xl:w-[1200px] container m-auto mb-8 animate-fade-up animate-once animate-ease-in-out animate-duration-200 animate-delay-1000">
     <div *ngIf="post?.comment_status !== 'closed'; else commentsClosed">
       <div class="md:w-2/3 p-4 md:p-0 md:pr-4" id="comments">
         <app-comments [onReloadComments]="reloadComments" (replyToComment)="onReplyToComment($event)" [post]="post"></app-comments>
