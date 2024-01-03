@@ -19,11 +19,8 @@ export class CountdownComponent implements OnInit {
 
   countDown() {
     const targetDate = moment('2024-02-01');
-
-    // Start de interval om de countdown bij te werken
     setInterval(() => {
       const diff = targetDate.diff(moment());
-
       const duration = moment.duration(diff);
       this.days = Math.floor(duration.asDays());
       this.hours = duration.hours();

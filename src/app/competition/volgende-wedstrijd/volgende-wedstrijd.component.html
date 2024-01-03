@@ -1,7 +1,8 @@
 <div class="md:p-0" *ngIf="nextMatch?.fixtures || nextMatch?.length > 0;">
-  <div class=" max-w-full relative m-auto z-10 text-center bg-black rounded-md">
+  <div class="max-w-full relative m-auto z-10 text-center rounded-md">
     <a class="group transition-all" [routerLink]="['/', 'voorbeschouwing', nextMatchPost?.id, nextMatchPost?.slug]">
-      <div [ngClass]="['matches next-match']" class="p-6 group-hover:bg-gray-800">
+      <div [ngClass]="['matches next-match']" class="px-6 py-12 group-hover:bg-gray-800 bg-gray-800 rounded-b-md ">
+        <h2 class="text-xl md:text-3xl text-white mb-6">#nextmatch</h2>
         <div class="flex items-center text-center justify-center">
           <div class="flex">
             <div class="text-white flex items-center justify-center space-x-4">
@@ -21,9 +22,9 @@
             </div>
           </div>
         </div>
-        <span class="inline-block rounded-md bg-blue-500 group-hover:bg-blue-600 text-sm text-white p-2">
-            Praat mee
-          </span>
+<!--        <span class="inline-block rounded-md bg-blue-500 group-hover:bg-blue-600 text-sm text-white p-2">-->
+<!--            Praat mee-->
+<!--          </span>-->
       </div>
     </a>
   </div>
