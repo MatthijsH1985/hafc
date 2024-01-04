@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import * as moment from 'moment/moment';
 import {Subscription} from 'rxjs';
 import {CountdownService} from './countdown.service';
@@ -8,7 +8,7 @@ import {CountdownService} from './countdown.service';
   selector: 'app-countdown'
 })
 
-export class CountdownComponent implements OnInit {
+export class CountdownComponent implements OnInit, OnDestroy {
 
   days: any;
   hours: any;
@@ -66,6 +66,10 @@ export class CountdownComponent implements OnInit {
       this.minutes = duration.minutes();
       this.seconds = duration.seconds();
     }, 1000);
+  }
+
+  ngOnDestroy() {
+    this.countdownSub.unsubscribe();
   }
 
 }
