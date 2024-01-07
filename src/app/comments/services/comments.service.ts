@@ -83,11 +83,14 @@ export class CommentsService {
 
   getLatestComments(post: any = undefined) {
     const randomQueryParam = `cache_bypass=1`;
+    const perPageParam = `per_page=5`
     let queryParam: string = randomQueryParam;
+    let perPage:string = perPageParam
     if (post) {
-      queryParam = `post=${post}&${randomQueryParam}`;
+      perPage = `per_page=8`
+      queryParam = `post=${post}&${randomQueryParam}&${perPage}`;
     }
-    return this.http.get<Config[]>(environment.apiUrl + '/comments?per_page=4&' + queryParam + '', this.httpOptions);
+    return this.http.get<Config[]>(environment.apiUrl + '/comments?&' + queryParam + '&' + perPage + '', this.httpOptions);
   }
 
   getLatestCommentsByUser(authorId: number) {

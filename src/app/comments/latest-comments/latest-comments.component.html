@@ -1,5 +1,5 @@
 <div *ngIf="latestComments?.length > 0" class="relative w-full z-20 rounded-md bg-white dark:bg-gray-900">
-  <a [routerLink]="['/', 'nieuws', comment.post, getSlug(comment.post_permalink, comment.post)]" (click)="onShowLoading()"  *ngFor="let comment of latestComments" class="group block py-2 border-b dark:border-gray-800 border-gray-200 mb-2">
+  <a (click)="onShowLoading(); navigateToFragment(comment.id)" [routerLink]="['/', 'nieuws', comment.post, getSlug(comment.post_permalink, comment.post)]" [fragment]="'comment-' + comment.id"  *ngFor="let comment of latestComments" class="group block py-2 border-b dark:border-gray-800 text-sm border-gray-200 mb-2">
     <h3 class="font-bold group-hover:text-blue-500 dark:text-white flex">
         <span>{{ comment.author_name }}</span>
         <span class="text-sm ml-auto date italic text-gray-400 dark:text-gray-500 dark_text-gray-300 font-normal">{{ calculateTimeDifference(validDateFormat(comment.date)) }}</span>
