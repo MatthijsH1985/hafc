@@ -81,9 +81,13 @@ export class CommentsService {
     return of([]);
   }
 
-  getLatestComments() {
+  getLatestComments(post: any = undefined) {
     const randomQueryParam = `cache_bypass=1`;
-    return this.http.get<Config[]>(environment.apiUrl + '/comments?per_page=4&' + randomQueryParam + '', this.httpOptions);
+    let queryParam: string = randomQueryParam;
+    if (post) {
+      queryParam = `post=${post}&${randomQueryParam}`;
+    }
+    return this.http.get<Config[]>(environment.apiUrl + '/comments?per_page=4&' + queryParam + '', this.httpOptions);
   }
 
   getLatestCommentsByUser(authorId: number) {
