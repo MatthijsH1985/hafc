@@ -32,6 +32,7 @@ export class CommentComponent implements OnInit {
     @Input() comments: any | undefined;
 
     ngOnInit() {
+
     }
 
     isReplyButtonVisible(): boolean {
@@ -70,7 +71,6 @@ export class CommentComponent implements OnInit {
       this.commentsService.rateComment(commentData).subscribe({
         next: (result: any) => {
           if (result) {
-            console.log(result.comment_id, result.likes, result.dislikes)
             this.updateLikesAndDislikes(result.comment_id, result.likes, result.dislikes);
           }
         },
@@ -103,5 +103,5 @@ export class CommentComponent implements OnInit {
         this.commentsService.sendCommentId(commentID);
     }
 
-  protected readonly faShare = faShare;
+    protected readonly faShare = faShare;
 }

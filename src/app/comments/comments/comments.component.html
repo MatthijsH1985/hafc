@@ -16,7 +16,11 @@
         </div>
       </ng-template>
       <div class="mx-4 my-8 flex items-center justify-center">
-        <button class="button button-blue" (click)="onLoadMoreComments()" *ngIf="comments?.length > 100">Meer reacties tonen</button>
+        <button class="text-blue-500 hover:underline hover:text-black dark:hover:text-white p-2 rounded-md"
+                (click)="loadMoreComments()"
+                [ngClass]="{'hidden': disableLoadMoreButton}">
+          Toon meer reacties
+        </button>
       </div>
     </div>
   </div>

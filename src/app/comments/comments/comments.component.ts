@@ -29,15 +29,21 @@ export class CommentsComponent implements OnChanges, OnDestroy, OnInit {
   noCommentsMessage = 'Er is (nog) niet gereageerd op dit artikel';
   loadingComments: boolean = true;
   noCommentsLoaded = true;
-  commentPage: number = 2;
+  commentPage: number = 1;
   newCommentCount: number = 0;
+  disableLoadMoreButton = false;
   hierarchicalComments: CommentNode[] = [];
   @Input() initialCommentCount: number = 0;
   @Input() post: any | undefined;
   @Input() onReloadComments: boolean = false;
   @Output() replyToComment: EventEmitter<number> = new EventEmitter<number>();
 
-  constructor(private route: ActivatedRoute, private commentsService: CommentsService, private toastService: ToastrService, private authService: AuthService, private changeDetectorRef: ChangeDetectorRef, @Inject(PLATFORM_ID) private platformId: object) {
+  constructor(private route: ActivatedRoute,
+              private commentsService: CommentsService,
+              private toastService: ToastrService,
+              private authService: AuthService,
+              private changeDetectorRef: ChangeDetectorRef,
+              @Inject(PLATFORM_ID) private platformId: object) {
     this.commentsService.newCommentAdded$.subscribe((newComment) => {
       this.comments.unshift(newComment);
     });
@@ -73,10 +79,23 @@ export class CommentsComponent implements OnChanges, OnDestroy, OnInit {
     this.hierarchicalComments = Array.from(commentMap.values()).filter(commentNode => !commentNode.comment.parent);
   }
 
-  loadNewComments() {
-    this.commentPage = 1;
-    this.getComments(1);
-    this.newCommentCount = 0;
+  loadMoreComments() {
+    this.commentPage++;
+    this.commentsService.getComments(this.post.id, this.commentPage)
+      .subscribe({
+        next: (newComments: any[]) => {
+          if (Array.isArray(newComments) && newComments.length > 0) {
+            this.comments = [...this.comments, ...newComments];
+            this.buildCommentHierarchy();
+            this.changeDetectorRef.detectChanges();
+          } else {
+            this.disableLoadMoreButton = true;
+          }
+        },
+        error: () => {
+          console.log('Er is een error opgetreden');
+        }
+      });
   }
 
   ngOnChanges(changes: SimpleChanges) {
