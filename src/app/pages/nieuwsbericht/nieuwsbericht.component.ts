@@ -101,6 +101,27 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy, AfterViewInit 
     this.commentsService.setCommentModalVisibility(false);
   }
 
+  navigateToCmment(fragment: any) {
+    setTimeout(() => {
+      this.scrollToElement('comment-' + fragment);
+    }, 200)
+
+  }
+
+  private scrollToElement(fragment: string): void {
+    const element = document.getElementById(fragment);
+    if (element) {
+      const offset = 120; // Pas dit aan naar de gewenste offsetwaarde
+      const elementRect = element.getBoundingClientRect().top + window.pageYOffset;
+      const offsetPosition = elementRect - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth',
+      });
+    }
+  }
+
   onOpenCommentModal() {
     this.commentsService.setCommentModalVisibility(true);
   }

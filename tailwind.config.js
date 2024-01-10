@@ -10,6 +10,7 @@ module.exports = {
       black: '#000',
       red: {
         200: '#fecaca',
+        500: '#E10036',
         800: '#991b1b'
       },
       orange: {
