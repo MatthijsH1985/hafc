@@ -1,8 +1,9 @@
 <div class="flex flex-col">
   <div class="container xl:w-[1200px] ml-auto mr-auto">
     <div class="relative container h-[450px] xl:h-[550px] md:h-[550px] align-center">
-      <a class="absolute z-30 block bg-black text-white right-0 top-0" [routerLink]="['page', 31238, 'word-sponsor-op-hafc']">
-        Wij zoeken sponsoren
+      <a class="absolute p-3 z-30 block bg-red-500 text-white right-0 top-0" [routerLink]="['page', 31238, 'word-sponsor-op-hafc']">
+        <h2 class="text-xl font-bold">Help HAFC</h2>
+        <p>Word sponsor</p>
       </a>
       <img [src]="post?.better_featured_image.source_url" class=" rounded-tl-md rounded-tr-md rounded-br-md object-cover object-center xl:h-[550px] md:h-[550px] m-h-[550px] w-full h-full" />
       <span *ngIf="post?.better_featured_image.caption; else noCaption" class="absolute right-2 bottom-2 z-20 text-sm text-white">Foto: {{ post?.better_featured_image.caption }}</span>
