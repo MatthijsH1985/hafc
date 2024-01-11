@@ -91,12 +91,6 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy, AfterViewInit 
     this.metaService.updateMetaTag(title, metaUrl, description, image);
   }
 
-  addComment(comment: any) {
-    this.toast.success('Reactie is geplaatst', 'Succes');
-    this.reloadComments = true;
-    this.onModalClose();
-  }
-
   onModalClose() {
     this.commentsService.setCommentModalVisibility(false);
   }

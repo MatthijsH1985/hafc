@@ -83,5 +83,3 @@
 </div>
 
 <button class="fixed hover:cursor-pointer w-[200px] left-[50%] -ml-[100px] hover:bg-gray-900 p-4 bg-blue-500 text-white text-xl z-20 left-0 bottom-0" *ngIf="buttonVisible" (click)="onOpenCommentModal()">Reageer <fa-icon class="ml-4" [icon]="faComment"></fa-icon></button>
-
-<app-modal-comment (commentSuccesful)="addComment($event)" (closeModal)="onModalClose()" [modalStatus]="modalCommentsOpen" [postId]="postId"></app-modal-comment>

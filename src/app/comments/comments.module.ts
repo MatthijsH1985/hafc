@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {CommentsService} from "./services/comments.service";
-import {ModalCommentComponent} from "./modal-comment/modal-comment.component";
 import {CommentsComponent} from "./comments/comments.component";
 import {CoreModule} from "../core/core.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -14,7 +13,6 @@ import { CommentTreeComponent } from './comment-tree/comment-tree.component';
 
 @NgModule({
   declarations: [
-    ModalCommentComponent,
     CommentsComponent,
     ReportCommentComponent,
     LatestCommentsComponent,
@@ -30,7 +28,6 @@ import { CommentTreeComponent } from './comment-tree/comment-tree.component';
   ],
     exports: [
         CommentsComponent,
-        ModalCommentComponent,
         LatestCommentsComponent
     ],
   providers: [

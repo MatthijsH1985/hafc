@@ -13,8 +13,10 @@ import {Subscription} from "rxjs";
 import {CommentsService} from "../services/comments.service";
 import {AuthService} from "../../services/auth/auth-service";
 import {ToastrService} from "ngx-toastr";
-import {ActivatedRoute, Route} from '@angular/router';
+import {ActivatedRoute, Route, Router} from '@angular/router';
 import {CommentNode} from '../model/comment-node.model';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {faPaperPlane} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-comments',
@@ -32,21 +34,109 @@ export class CommentsComponent implements OnChanges, OnDestroy, OnInit {
   commentPage: number = 1;
   newCommentCount: number = 0;
   disableLoadMoreButton = false;
+  errorMessage = '';
   hierarchicalComments: CommentNode[] = [];
+  replyToCommentId: number | undefined;
+  reloadComments = false;
   @Input() initialCommentCount: number = 0;
   @Input() post: any | undefined;
   @Input() onReloadComments: boolean = false;
   @Output() replyToComment: EventEmitter<number> = new EventEmitter<number>();
-
+  commentForm: FormGroup;
   constructor(private route: ActivatedRoute,
               private commentsService: CommentsService,
-              private toastService: ToastrService,
+              private router: Router,
               private authService: AuthService,
+              private toast: ToastrService,
               private changeDetectorRef: ChangeDetectorRef,
               @Inject(PLATFORM_ID) private platformId: object) {
     this.commentsService.newCommentAdded$.subscribe((newComment) => {
       this.comments.unshift(newComment);
     });
+    this.commentForm = new FormGroup({
+      name: new FormControl('', Validators.required),
+      email: new FormControl('', Validators.email),
+      comment: new FormControl('', Validators.required)
+    });
+    this.commentsService.commentId$.subscribe((commentId) => {
+      this.replyToCommentId = commentId;
+    });
+  }
+
+  postComment(commentData: any) {
+    this.commentsService.postComment(commentData).subscribe({
+      next: result => {
+        if (result) {
+          this.onCommentSuccesfull(result);
+          this.commentsService.addNewComment(result);
+        }
+      },
+      error: error => {
+        this.errorMessage = error.error.message;
+        this.loading = false;
+      }
+    });
+  }
+
+  onPostComment(form: FormGroup, commentParentId?: number): void {
+    let commentData: any;
+    if (this.isLoggedIn()) {
+      const userId = this.authService.getUserInfo().subscribe({
+        next: (response: any) => {
+          commentData = {
+            post: this.post.id,
+            author_name: this.authService.getUserName(),
+            author_email: this.authService.getUserEmail(),
+            content: form.value.comment,
+            author: response.id
+          };
+          if (this.replyToCommentId !== undefined) {
+            commentData.parent = this.replyToCommentId;
+          }
+          this.postComment(JSON.stringify(commentData));
+        },
+        error: (error: any) => {
+          console.log(error);
+        }
+      });
+    } else {
+      commentData = {
+        post: this.post.id,
+        author_name: form.value.name,
+        author_email: form.value.email,
+        content: form.value.comment,
+      };
+      if (this.replyToCommentId !== undefined) {
+        commentData.parent = this.replyToCommentId;
+      }
+      this.postComment(JSON.stringify(commentData));
+    }
+  }
+
+  getUserName() {
+    return this.authService.getUserName()
+  }
+
+  logOut() {
+    this.authService.logOut();
+    this.router.navigateByUrl('');
+  }
+
+  isLoggedIn(): boolean {
+    if (this.authService.isAuthenticated()) {
+      return true
+    } else {
+      return false
+    }
+  }
+
+  onCommentSuccesfull(comment: any) {
+    this.toast.success('Reactie is geplaatst', 'Succes');
+    this.commentForm = new FormGroup({
+      comment: new FormControl('', Validators.required)
+    });
+    this.reloadComments = true;
+    this.changeDetectorRef.detectChanges();
   }
 
   ngOnInit() {
@@ -99,7 +189,8 @@ export class CommentsComponent implements OnChanges, OnDestroy, OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['onReloadComments'] && !changes['onReloadComments'].firstChange) {
+    console.log('changes');
+    if (changes['reloadComments'] && !changes['reloadComments'].firstChange) {
       this.getComments(this.commentPage);
       this.buildCommentHierarchy();
     }
@@ -133,4 +224,5 @@ export class CommentsComponent implements OnChanges, OnDestroy, OnInit {
     this.commentsCountSub?.unsubscribe();
   }
 
+  protected readonly faPaperPlane = faPaperPlane;
 }
