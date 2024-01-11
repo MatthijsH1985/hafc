@@ -1,7 +1,7 @@
 <div class="comments-section flex flex-col bg-white dark:bg-gray-900 rounded-md p-4 pl-16">
   <div class="my-8 mx-4 flex items-center">
     <h3 class="text-black dark:text-white mb-2 md:text-3xl font-bold">Discussieer mee</h3>
-    <span class="ml-4 p-2 rounded-md bg-gray-900 text-white dark:bg-white dark:text-gray-900 text-md text-sm">{{ post?.comments_count }} reacties</span>
+    <span class="ml-4 p-2 rounded-md bg-gray-900 text-white dark:bg-white dark:text-gray-900 text-md text-sm">{{ post?.comments_count | commentsString }}</span>
   </div>
   <div class="flex md:flex-row flex-col-reverse container">
     <div class="flex-1">
