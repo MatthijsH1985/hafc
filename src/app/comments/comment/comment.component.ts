@@ -115,7 +115,7 @@ export class CommentComponent implements OnInit {
     private scrollToElement(fragment: string): void {
       const element = document.getElementById(fragment);
       if (element) {
-        const offset = 120; // Pas dit aan naar de gewenste offsetwaarde
+        const offset = 250; // Pas dit aan naar de gewenste offsetwaarde
         const elementRect = element.getBoundingClientRect().top + window.pageYOffset;
         const offsetPosition = elementRect - offset;
 
