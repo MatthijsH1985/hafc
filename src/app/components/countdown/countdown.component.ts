@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Inject, NgZone, OnDestroy, OnInit, PLATFORM_ID} from '@angular/core';
 import * as moment from 'moment/moment';
 import {Subscription} from 'rxjs';
 import {CountdownService} from './countdown.service';
@@ -20,8 +20,8 @@ export class CountdownComponent implements OnInit, OnDestroy {
   homepageId = 23186;
   pageData: any;
 
-  constructor(private countdownService: CountdownService) {
-
+  constructor(private countdownService: CountdownService,
+              private zone: NgZone) {
   }
   ngOnInit() {
     this.countdownSub = this.countdownService.getCountdown(this.homepageId).subscribe({
@@ -57,14 +57,16 @@ export class CountdownComponent implements OnInit, OnDestroy {
 
   countDown(targetDate: any) {
     const formattedTargetDate = moment(targetDate);
-    setInterval(() => {
-      const diff = formattedTargetDate.diff(moment());
-      const duration = moment.duration(diff);
-      this.days = Math.floor(duration.asDays());
-      this.hours = duration.hours();
-      this.minutes = duration.minutes();
-      this.seconds = duration.seconds();
-    }, 1000);
+    this.zone.runOutsideAngular(() => {
+      setInterval(() => {
+        const diff = formattedTargetDate.diff(moment());
+        const duration = moment.duration(diff);
+        this.days = Math.floor(duration.asDays());
+        this.hours = duration.hours();
+        this.minutes = duration.minutes();
+        this.seconds = duration.seconds();
+      }, 1000);
+    });
   }
 
   ngOnDestroy() {
