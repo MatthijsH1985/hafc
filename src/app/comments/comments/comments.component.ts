@@ -36,7 +36,7 @@ export class CommentsComponent implements OnChanges, OnDestroy, OnInit {
   disableLoadMoreButton = false;
   errorMessage = '';
   hierarchicalComments: CommentNode[] = [];
-  replyToCommentId: number | undefined;
+  replyToCommentId: number = 0;
   reloadComments = false;
   replyToCommentVisibility = false;
   @Input() initialCommentCount: number = 0;
@@ -66,6 +66,15 @@ export class CommentsComponent implements OnChanges, OnDestroy, OnInit {
     this.commentsService.commentId$.subscribe((commentId) => {
       this.replyToCommentId = commentId;
     });
+  }
+
+  getCommentAuthorName(id: number) {
+    const comment = this.comments.find((comment: any) => comment.id === id);
+    if (comment) {
+      return comment.author_name;
+    } else {
+      return 'Author not found';
+    }
   }
 
   postComment(commentData: any) {

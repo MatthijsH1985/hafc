@@ -5,14 +5,14 @@
 <!--    <a href="https://policies.google.com/terms" class="dark:text-white">Terms of Service</a> apply.-->
 <!--  </p>-->
 <!--</div>-->
-<div class="comments-section flex flex-col bg-white dark:bg-gray-900 rounded-md p-4 pl-16">
+<div class="comments-section flex flex-col bg-white dark:bg-gray-900 rounded-md">
   <div class="my-8 mx-4 flex items-center">
     <h3 class="text-black dark:text-white mb-2 md:text-3xl font-bold">Discussieer mee</h3>
     <span class="ml-4 p-2 rounded-md bg-gray-900 text-white dark:bg-white dark:text-gray-900 text-md text-sm">{{ post?.comments_count }}</span>
   </div>
   <div class="flex md:flex-row flex-col-reverse container">
     <div class="flex-1">
-      <form [formGroup]="commentForm" (ngSubmit)="onPostComment(commentForm)" id="comment-form">
+      <form [formGroup]="commentForm" (ngSubmit)="onPostComment(commentForm)" id="comment-form" class="m-4">
         <div *ngIf="!isLoggedIn(); else loggedIn">
           <div class="mb-4">
             <input placeholder="Jouw naam" class="bg-gray-100 max-w-[300px] dark:bg-gray-700 dark:text-white" formControlName="name" id="name" type="text" />
@@ -22,10 +22,11 @@
           </div>
         </div>
         <ng-template #loggedIn>
-          <p class="text-base pl-4 mb-8 dark:text-white">
+          <p class="text-base mb-8 dark:text-white pl-4">
             Reageer als {{ getUserName() }} Ben jij dit niet? <button (click)="logOut()" class="underline dark:text-white">Meld je dan af.</button>
           </p>
         </ng-template>
+        <h4 class="font-bold text-xl mb-4 italic pl-4" *ngIf="replyToCommentId !== 0">Reageer op {{ getCommentAuthorName(replyToCommentId) }}</h4>
         <div class="mb-4 relative">
           <textarea class="bg-gray-100 dark:bg-gray-700 dark:text-white" formControlName="comment" id="comment" placeholder="Voer hier je bericht in"></textarea>
           <div class="flex items-center justify-end absolute bottom-4 right-3">
@@ -36,22 +37,24 @@
         </div>
       </form>
       <p *ngIf="errorMessage" class="bg-red-200 text-red-800 p-4 rounded-md mx-8">{{ errorMessage }}</p>
-      <app-comment-tree
-        *ngIf="comments?.length > 0 else noComments"
-        [commentNodes]="hierarchicalComments"
-        [isAuthenticated]="isAuthenticated()"
-      ></app-comment-tree>
-      <ng-template #noComments>
-        <div class="p-4 md:w-[600px] bg-blue-100 rounded-md md:mr-4">
-          <p class="dark:text-white dark:bg-black">Er is nog niet gereageerd op dit artikel</p>
+      <div class="p-4 pl-16">
+        <app-comment-tree
+          *ngIf="comments?.length > 0 else noComments"
+          [commentNodes]="hierarchicalComments"
+          [isAuthenticated]="isAuthenticated()"
+        ></app-comment-tree>
+        <ng-template #noComments>
+          <div class="p-4 md:w-[600px] bg-blue-100 rounded-md md:mr-4">
+            <p class="dark:text-white dark:bg-black">Er is nog niet gereageerd op dit artikel</p>
+          </div>
+        </ng-template>
+        <div class="mx-4 my-8 flex items-center justify-center">
+          <button class="text-blue-500 hover:underline hover:text-black dark:hover:text-white p-2 rounded-md"
+                  (click)="loadMoreComments()"
+                  [ngClass]="{'hidden': disableLoadMoreButton}">
+            Toon meer reacties
+          </button>
         </div>
-      </ng-template>
-      <div class="mx-4 my-8 flex items-center justify-center">
-        <button class="text-blue-500 hover:underline hover:text-black dark:hover:text-white p-2 rounded-md"
-                (click)="loadMoreComments()"
-                [ngClass]="{'hidden': disableLoadMoreButton}">
-          Toon meer reacties
-        </button>
       </div>
     </div>
   </div>
