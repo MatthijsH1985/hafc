@@ -38,6 +38,7 @@ export class CommentsComponent implements OnChanges, OnDestroy, OnInit {
   hierarchicalComments: CommentNode[] = [];
   replyToCommentId: number | undefined;
   reloadComments = false;
+  replyToCommentVisibility = false;
   @Input() initialCommentCount: number = 0;
   @Input() post: any | undefined;
   @Input() onReloadComments: boolean = false;
@@ -52,7 +53,11 @@ export class CommentsComponent implements OnChanges, OnDestroy, OnInit {
               @Inject(PLATFORM_ID) private platformId: object) {
     this.commentsService.newCommentAdded$.subscribe((newComment) => {
       this.comments.unshift(newComment);
+      this.buildCommentHierarchy();
     });
+    this.commentsService.replyVisible$.subscribe((visibility) => {
+      this.replyToCommentVisibility = visibility;
+    })
     this.commentForm = new FormGroup({
       name: new FormControl('', Validators.required),
       email: new FormControl('', Validators.email),
@@ -106,7 +111,7 @@ export class CommentsComponent implements OnChanges, OnDestroy, OnInit {
         author_email: form.value.email,
         content: form.value.comment,
       };
-      if (this.replyToCommentId !== undefined) {
+      if (this.replyToCommentVisibility !== undefined) {
         commentData.parent = this.replyToCommentId;
       }
       this.postComment(JSON.stringify(commentData));
@@ -135,7 +140,7 @@ export class CommentsComponent implements OnChanges, OnDestroy, OnInit {
     this.commentForm = new FormGroup({
       comment: new FormControl('', Validators.required)
     });
-    this.reloadComments = true;
+    this.reloadComments = !this.reloadComments;
     this.changeDetectorRef.detectChanges();
   }
 
@@ -189,7 +194,6 @@ export class CommentsComponent implements OnChanges, OnDestroy, OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log('changes');
     if (changes['reloadComments'] && !changes['reloadComments'].firstChange) {
       this.getComments(this.commentPage);
       this.buildCommentHierarchy();

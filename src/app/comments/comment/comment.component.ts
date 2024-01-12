@@ -7,6 +7,7 @@ import {ToastrService} from 'ngx-toastr';
 
 import * as moment from 'moment';
 import 'moment/locale/nl';
+import {ViewportScroller} from '@angular/common';
 
 @Component({
   selector: 'app-comment',
@@ -18,7 +19,8 @@ export class CommentComponent implements OnInit {
     constructor(private commentsService: CommentsService,
                 private authService: AuthService,
                 private toastService: ToastrService,
-                private cdr: ChangeDetectorRef
+                private cdr: ChangeDetectorRef,
+                private viewportScroller: ViewportScroller
     ) {
     }
     private authSub = new Subscription();
@@ -98,10 +100,32 @@ export class CommentComponent implements OnInit {
       return rating === 1 ? 1 : -1;
     }
 
-    onReplyToComment(commentID: number = 0) {
-        this.commentsService.setCommentModalVisibility(true);
-        this.commentsService.sendCommentId(commentID);
+    onReplyToComment(commentID: number = 0, authorName: string = '') {
+      this.commentsService.setReplyToCommentModalVisibility(true);
+      this.commentsService.sendCommentId(commentID);
+      this.navigateToCmmentForm('comment-form');
+    }
+
+    navigateToCmmentForm(fragment: any) {
+      setTimeout(() => {
+        this.scrollToElement(fragment);
+      }, 100)
+    }
+
+    private scrollToElement(fragment: string): void {
+      const element = document.getElementById(fragment);
+      if (element) {
+        const offset = 120; // Pas dit aan naar de gewenste offsetwaarde
+        const elementRect = element.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementRect - offset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'auto',
+        });
+      }
     }
 
     protected readonly faShare = faShare;
+
 }

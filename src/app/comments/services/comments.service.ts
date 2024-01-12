@@ -33,13 +33,13 @@ export class CommentsService {
   private commentModalSubject = new BehaviorSubject<boolean>(false);
   private commentIdSubject = new BehaviorSubject<number>(0);
   public commentId$ = this.commentIdSubject.asObservable();
-  public modalVisible$ = this.commentModalSubject.asObservable()
+  public replyVisible$ = this.commentModalSubject.asObservable()
 
   sendCommentId(commentId: number) {
     this.commentIdSubject.next(commentId);
   }
 
-  setCommentModalVisibility(visibiliy = false) {
+  setReplyToCommentModalVisibility(visibiliy = false) {
     this.commentModalSubject.next(visibiliy)
   }
 

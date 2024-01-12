@@ -50,9 +50,7 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy, AfterViewInit 
     private loadingIndicatorService: LoadingIndicatorService,
     @Inject(PLATFORM_ID) private platformId: object
   ) {
-    this.commentsService.modalVisible$.subscribe((visibility) => {
-      this.modalCommentsOpen = visibility;
-    })
+
   }
 
   ngOnInit() {
@@ -74,25 +72,12 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy, AfterViewInit 
     this.buttonVisible = scrollHeight > 1000 ? true : false;
   }
 
-  onReplyToComment(commentId: number) {
-    this.currentReplyToCommentId = commentId;
-    this.onOpenCommentModal();
-  }
-
-  toComments():void {
-    this.viewportScroller.scrollToAnchor('comments');
-  }
-
   updateMetaTags(post: any) {
     const title = post.yoast_head_json.title;
     const metaUrl = post.yoast_head_json.og_url.replace('backend', 'www');
     const description = post.yoast_head_json.og_description;
     const image = post.better_featured_image.source_url;
     this.metaService.updateMetaTag(title, metaUrl, description, image);
-  }
-
-  onModalClose() {
-    this.commentsService.setCommentModalVisibility(false);
   }
 
   navigateToCmment(fragment: any) {
@@ -116,14 +101,9 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy, AfterViewInit 
     }
   }
 
-  onOpenCommentModal() {
-    this.commentsService.setCommentModalVisibility(true);
-  }
-
   onAddNewComment() {
     this.currentReplyToCommentId = 0;
     this.reloadComments = false;
-    this.onOpenCommentModal();
   }
 
   ngOnDestroy() {

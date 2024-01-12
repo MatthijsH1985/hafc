@@ -8,23 +8,17 @@
 <div class="comments-section flex flex-col bg-white dark:bg-gray-900 rounded-md p-4 pl-16">
   <div class="my-8 mx-4 flex items-center">
     <h3 class="text-black dark:text-white mb-2 md:text-3xl font-bold">Discussieer mee</h3>
-    <span class="ml-4 p-2 rounded-md bg-gray-900 text-white dark:bg-white dark:text-gray-900 text-md text-sm">{{ post?.comments_count | commentsString }}</span>
+    <span class="ml-4 p-2 rounded-md bg-gray-900 text-white dark:bg-white dark:text-gray-900 text-md text-sm">{{ post?.comments_count }}</span>
   </div>
   <div class="flex md:flex-row flex-col-reverse container">
     <div class="flex-1">
-      <form [formGroup]="commentForm" (ngSubmit)="onPostComment(commentForm)">
+      <form [formGroup]="commentForm" (ngSubmit)="onPostComment(commentForm)" id="comment-form">
         <div *ngIf="!isLoggedIn(); else loggedIn">
           <div class="mb-4">
-            <!--          <label for="name">-->
-            <!--            Je naam-->
-            <!--          </label>-->
             <input placeholder="Jouw naam" class="bg-gray-100 max-w-[300px] dark:bg-gray-700 dark:text-white" formControlName="name" id="name" type="text" />
           </div>
           <div class="mb-4">
-            <!--          <label for="email">-->
-            <!--            Je e-mailadres-->
-            <!--          </label>-->
-            <input class="bg-gray-100 dark:bg-gray-700 max-w-[300px] dark:text-white w-2/3" placeholder="Jouw e-mail" formControlName="email" id="email" type="email" />
+            <input class="bg-gray-100 dark:bg-gray-700 max-w-[300px] dark:text-white w-2/3 focus:border-black focus:border" placeholder="Jouw e-mail" formControlName="email" id="email" type="email" />
           </div>
         </div>
         <ng-template #loggedIn>
@@ -33,9 +27,6 @@
           </p>
         </ng-template>
         <div class="mb-4 relative">
-          <!--        <label for="comment">-->
-          <!--          Je bericht-->
-          <!--        </label>-->
           <textarea class="bg-gray-100 dark:bg-gray-700 dark:text-white" formControlName="comment" id="comment" placeholder="Voer hier je bericht in"></textarea>
           <div class="flex items-center justify-end absolute bottom-4 right-3">
             <button type="submit" class="button button-blue rounded-full">
