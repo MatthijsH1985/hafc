@@ -16,12 +16,11 @@ export class AppComponent implements OnInit {
 
   public loading: boolean = false;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: any, private loadingIndicatorService: LoadingIndicatorService, private translationService: TranslateService ){}
+  constructor(@Inject(PLATFORM_ID) private platformId: any, private loadingIndicatorService: LoadingIndicatorService ){}
 
   static isBrowser = new BehaviorSubject<boolean>(false);
 
   ngOnInit() {
-    this.translationService.use('nl');
     this.loadingIndicatorService.loading$.subscribe((loading) => {
       this.loading = loading
     });

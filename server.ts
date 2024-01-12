@@ -33,6 +33,13 @@ export function app(): express.Express {
     });
   });
 
+  server.get('/ip', (req, res) => {
+    const ipAddress = req.ip || req.connection.remoteAddress;
+    res.json({
+      ip: ipAddress
+    });
+  });
+
   return server;
 }
 

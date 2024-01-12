@@ -17,6 +17,7 @@ import {ActivatedRoute, Route, Router} from '@angular/router';
 import {CommentNode} from '../model/comment-node.model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {faPaperPlane} from '@fortawesome/free-solid-svg-icons';
+import {IpService} from '../services/ip.service';
 
 @Component({
   selector: 'app-comments',
@@ -47,6 +48,7 @@ export class CommentsComponent implements OnChanges, OnDestroy, OnInit {
   constructor(private route: ActivatedRoute,
               private commentsService: CommentsService,
               private router: Router,
+              private ipService: IpService,
               private authService: AuthService,
               private toast: ToastrService,
               private changeDetectorRef: ChangeDetectorRef,
@@ -97,21 +99,34 @@ export class CommentsComponent implements OnChanges, OnDestroy, OnInit {
     if (this.isLoggedIn()) {
       const userId = this.authService.getUserInfo().subscribe({
         next: (response: any) => {
-          commentData = {
-            post: this.post.id,
-            author_name: this.authService.getUserName(),
-            author_email: this.authService.getUserEmail(),
-            content: form.value.comment,
-            author: response.id
-          };
-          if (this.replyToCommentId !== undefined) {
-            commentData.parent = this.replyToCommentId;
-          }
-          this.postComment(JSON.stringify(commentData));
+          // Gebruik de IpService om het IP-adres op te halen
+          this.ipService.getIpAddress().subscribe({
+            next: (ipResponse: any) => {
+              const ipAddress = ipResponse.ip;
+
+              commentData = {
+                post: this.post.id,
+                author_name: this.authService.getUserName(),
+                author_email: this.authService.getUserEmail(),
+                content: form.value.comment,
+                author: response.id,
+                ip_address: ipAddress,
+              };
+
+              if (this.replyToCommentId !== undefined) {
+                commentData.parent = this.replyToCommentId;
+              }
+
+              this.postComment(commentData);
+            },
+            error: (ipError: any) => {
+              console.log(ipError);
+            },
+          });
         },
         error: (error: any) => {
           console.log(error);
-        }
+        },
       });
     } else {
       commentData = {
@@ -155,6 +170,11 @@ export class CommentsComponent implements OnChanges, OnDestroy, OnInit {
 
   ngOnInit() {
     this.buildCommentHierarchy();
+    this.ipService.getIpAddress().subscribe({
+      next: (response) => {
+        console.log(response)
+      }
+    })
   }
 
   isAuthenticated() {

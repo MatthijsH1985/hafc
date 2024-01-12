@@ -50,10 +50,9 @@ export class HomepageComponent implements OnInit {
     this.titleService.setTitle('HAFC - Wij zijn Heracles!');
     this.viewportScroller.scrollToPosition([0, 0]);
     this.headlines = this.route.snapshot.data['headlines'].slice(0,1)[0];
-    if (this.headlines.comments_count === 0) {
-      this.reactiesString = 'reactie';
-    }
     this.posts = this.route.snapshot.data['posts'];
+    console.log(this.headlines);
+    console.log(this.posts)
     this.links = this.route.snapshot.data['links'];
     this.loading = false;
 

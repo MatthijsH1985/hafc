@@ -9,7 +9,7 @@ import { LatestCommentsComponent } from './latest-comments/latest-comments.compo
 import {AdsModule} from '../ads/ads.module';
 import { CommentComponent } from './comment/comment.component';
 import { CommentTreeComponent } from './comment-tree/comment-tree.component';
-
+import {IpService} from './services/ip.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +31,8 @@ import { CommentTreeComponent } from './comment-tree/comment-tree.component';
         LatestCommentsComponent
     ],
   providers: [
-    CommentsService
+    CommentsService,
+    IpService
   ]
 })
 export class CommentsModule { }

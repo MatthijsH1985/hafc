@@ -22,6 +22,7 @@ export class PostsService {
   }
 
   getHeadlines(page = 1, category = [3, 37]): Observable<Config[]> {
+    console.log('init resolvers posts')
     return this.http.get<Config[]>(environment.apiUrl + '/posts?page='+ page + '&per_page=1&categories=' + category + '', this.httpOptions);
   }
 
