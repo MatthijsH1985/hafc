@@ -54,19 +54,11 @@ export class CommentComponent implements OnInit {
 
     onRateComment(score: number, comment: any) {
       const validatedScore = this.validateRating(score);
-      this.authSub = this.authService.getUserInfo().subscribe({
-        next: (user: any) => {
-          const commentData = JSON.stringify( {
-            comment_id: comment.id,
-            author_id: user.id,
-            like_dislike: validatedScore
-          });
-          this.rateComment(commentData);
-        },
-        error: (err: any) => {
-          console.log(err)
-        }
-      })
+      const commentData = JSON.stringify( {
+        comment_id: comment.id,
+        like_dislike: validatedScore
+      });
+      this.rateComment(commentData)
     }
 
     rateComment(commentData: any) {
@@ -75,6 +67,8 @@ export class CommentComponent implements OnInit {
           if (result) {
             if (!result.error) {
               this.updateLikesAndDislikes(result.comment_id, result.likes, result.dislikes);
+            } else {
+              this.toastService.error('Je kan een reactie maar 1 keer liken of disliken');
             }
           }
         },
@@ -91,13 +85,9 @@ export class CommentComponent implements OnInit {
 
   updateLikesAndDislikes(commentId: number, likes: number, dislikes: number) {
     const comment = this.comment;
-    console.log(this.comment);
-    console.log(comment.likes)
     if (comment) {
       comment.likes = likes;
       comment.dislikes = dislikes;
-      console.log(comment.likes);
-      console.log(comment.dislikes);
       this.cdr.detectChanges();
     }
   }

@@ -67,11 +67,11 @@ export class CommentsService {
   }
 
   rateComment(commentData: any): Observable<Config[]> {
-    this.authService.isAuthenticated()
-    if (this.authService.isAuthenticated()) {
-      return this.http.post<Config[]>(environment.apiUrl + '/mumba/comment-like/', commentData, this.httpOptionsLoggedIn);
-    }
-    return of([]);
+    // if (this.authService.isAuthenticated()) {
+    //   // commentData.author_id = thi;
+    //  // return this.http.post<Config[]>(environment.apiUrl + '/mumba/comment-like/', commentData, this.httpOptionsLoggedIn);
+    // }
+    return this.http.post<Config[]>(environment.apiUrl + '/mumba/comment-like/', commentData, this.httpOptions);
   }
 
   reportComment(commentData: any) {
