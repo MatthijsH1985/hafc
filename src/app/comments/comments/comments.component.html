@@ -26,7 +26,7 @@
             Reageer als {{ getUserName() }} Ben jij dit niet? <button (click)="logOut()" class="underline dark:text-white">Meld je dan af.</button>
           </p>
         </ng-template>
-        <h4 class="font-bold text-xl mb-4 italic pl-4" *ngIf="replyToCommentId !== 0">Reageer op {{ getCommentAuthorName(replyToCommentId) }}</h4>
+        <h4 class="font-bold text-xl mb-4 italic pl-4 dark:text-white" *ngIf="replyToCommentId !== 0">Reageer op {{ getCommentAuthorName(replyToCommentId) }}</h4>
         <div class="mb-4 relative">
           <textarea class="bg-gray-100 dark:bg-gray-700 dark:text-white" formControlName="comment" id="comment" placeholder="Voer hier je bericht in"></textarea>
           <div class="flex items-center justify-end absolute bottom-4 right-3">

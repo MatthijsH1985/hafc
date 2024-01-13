@@ -12,7 +12,7 @@
       </div>
       <span class="text-sm ml-auto date italic text-gray-400 dark:text-gray-500 dark_text-gray-300">{{ calculateTimeDifference(validDateFormat(comment.date)) }}</span>
     </div>
-    <div [innerHTML]="comment.content.rendered" class="text-black dark:text-white comment-content px-2 pt-2"></div>
+    <div [innerHTML]="comment.content.rendered" class="break-words max-w-full overflow-hidden text-black dark:text-white comment-content px-2 pt-2"></div>
   </div>
   <div class="text-sm px-2 flex mb-6">
     <h4 class="dark:text-white flex items-center w-full">
