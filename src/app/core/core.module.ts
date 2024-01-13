@@ -31,6 +31,7 @@ import {AdsComponent} from '../ads/ads/ads.component';
 import {CountdownComponent} from '../components/countdown/countdown.component';
 import {CountdownService} from '../components/countdown/countdown.service';
 import {CommentsStringPipe} from './shared/comments-string.pipe';
+import {PositiveNegativePipe} from './shared/positive-negative.pipe';
 
 @NgModule({
     declarations: [
@@ -46,7 +47,8 @@ import {CommentsStringPipe} from './shared/comments-string.pipe';
         PreloaderComponent,
         CreditsComponent,
         CountdownComponent,
-        CommentsStringPipe
+        CommentsStringPipe,
+        PositiveNegativePipe
     ],
   imports: [
     CommonModule,
@@ -64,6 +66,7 @@ import {CommentsStringPipe} from './shared/comments-string.pipe';
         GenerateLogoUrlPipe,
         RoundNumberPipe,
         PositiveNumberPipe,
+        PositiveNegativePipe,
         TransformTeamDataPipe,
         CommentsStringPipe,
         FontAwesomeModule,

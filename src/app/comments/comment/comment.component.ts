@@ -8,6 +8,7 @@ import {ToastrService} from 'ngx-toastr';
 import * as moment from 'moment';
 import 'moment/locale/nl';
 import {ViewportScroller} from '@angular/common';
+import {comment} from 'postcss';
 
 @Component({
   selector: 'app-comment',
@@ -54,18 +55,21 @@ export class CommentComponent implements OnInit {
 
     onRateComment(score: number, comment: any) {
       const validatedScore = this.validateRating(score);
+      console.log(validatedScore)
       const commentData = JSON.stringify( {
         comment_id: comment.id,
         like_dislike: validatedScore
       });
-      this.rateComment(commentData)
+      this.rateComment(commentData, validatedScore)
     }
 
-    rateComment(commentData: any) {
+    rateComment(commentData: any, score: number) {
+      console.log(commentData);
       this.commentsService.rateComment(commentData).subscribe({
         next: (result: any) => {
           if (result) {
             if (!result.error) {
+              this.comment.likes_dislikes = this.comment.likes_dislikes + score;
               this.updateLikesAndDislikes(result.comment_id, result.likes, result.dislikes);
             } else {
               this.toastService.error('Je kan een reactie maar 1 keer liken of disliken');
@@ -86,6 +90,9 @@ export class CommentComponent implements OnInit {
   updateLikesAndDislikes(commentId: number, likes: number, dislikes: number) {
     const comment = this.comment;
     if (comment) {
+      console.log(comment.likes);
+      console.log(comment.dislikes);
+      console.log(comment.likes_dislikes);
       comment.likes = likes;
       comment.dislikes = dislikes;
       this.cdr.detectChanges();

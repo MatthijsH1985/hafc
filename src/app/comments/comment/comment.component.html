@@ -22,11 +22,10 @@
         </button>
       </div>
       <div class="ml-4">
-        <span class="text-green-800 ml-4 dark:text-white text-sm" *ngIf="comment?.likes > 0"><span>+ {{ comment.likes }}</span></span>
+        <span>{{ comment?.likes_dislikes | positiveNegative }}</span>
         <button class="text-sm like-dislike-button like-button" (click)="onRateComment(1, comment)">
           <fa-icon [icon]="faArrowUp" class="text-green-800 dark:text-white"></fa-icon>
         </button>
-        <span class="text-red-800 dark:text-white text-sm" *ngIf="comment?.dislikes > 0"><span>-  {{ comment.dislikes }}</span></span>
         <button class="text-sm like-dislike-button like-button" (click)="onRateComment(-1, comment)">
           <fa-icon [icon]="faArrowDown" class="text-red-800 dark:text-white"></fa-icon>
         </button>
