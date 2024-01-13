@@ -63,10 +63,10 @@
       </div>
       <div class="md:w-1/3 hidden md:block">
         <h3 class="p-4 pl-8 pr-12 text-xl mt-4 block dark:text-white relative border-b border-black dark:border-gray-300">
-          <span class="text-blue-500">Laatste</span> reacties op dit artikel
+          <span class="text-blue-500"><fa-icon [icon]="faTrophy"></fa-icon> Top</span>reacties
         </h3>
         <div class="md:p-8 rounded-md rounded-tl-none bg-white dark:bg-gray-900 p-8 mb-4">
-          <app-latest-comments (goToFragment)="navigateToCmment($event)" [post]="post"></app-latest-comments>
+          <app-top-comments (goToFragment)="navigateToCmment($event)" [post]="post"></app-top-comments>
         </div>
       </div>
     </div>

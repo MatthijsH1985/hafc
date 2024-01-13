@@ -81,6 +81,11 @@ export class CommentsService {
     return of([]);
   }
 
+  getPopularComments(postId: number) {
+    const url = `${environment.apiUrl}/comments/popular-comments?post_id=${postId}`;
+    return this.http.get<Config[]>(url, this.httpOptions);
+  }
+
   getLatestComments(post: any = undefined) {
     const randomQueryParam = `cache_bypass=1`;
     const perPageParam = `per_page=5`

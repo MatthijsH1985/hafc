@@ -154,6 +154,7 @@ export class CommentsComponent implements OnChanges, OnDestroy, OnInit {
   }
 
   ngOnInit() {
+    console.log(this.comments);
     this.buildCommentHierarchy();
   }
 

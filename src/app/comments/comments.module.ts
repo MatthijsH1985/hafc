@@ -9,6 +9,7 @@ import { LatestCommentsComponent } from './latest-comments/latest-comments.compo
 import {AdsModule} from '../ads/ads.module';
 import { CommentComponent } from './comment/comment.component';
 import { CommentTreeComponent } from './comment-tree/comment-tree.component';
+import {TopCommentsComponent} from './top-comments/top-comments.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { CommentTreeComponent } from './comment-tree/comment-tree.component';
     ReportCommentComponent,
     LatestCommentsComponent,
     CommentComponent,
-    CommentTreeComponent
+    CommentTreeComponent,
+    TopCommentsComponent
   ],
   imports: [
     CommonModule,
@@ -27,8 +29,9 @@ import { CommentTreeComponent } from './comment-tree/comment-tree.component';
     ReactiveFormsModule
   ],
     exports: [
-        CommentsComponent,
-        LatestCommentsComponent
+      CommentsComponent,
+      LatestCommentsComponent,
+      TopCommentsComponent
     ],
   providers: [
     CommentsService

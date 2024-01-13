@@ -64,7 +64,6 @@ export class CommentComponent implements OnInit {
     }
 
     rateComment(commentData: any, score: number) {
-      console.log(commentData);
       this.commentsService.rateComment(commentData).subscribe({
         next: (result: any) => {
           if (result) {

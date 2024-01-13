@@ -10,7 +10,7 @@ import {
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ViewportScroller } from '@angular/common';
-import { faComment, faArrowDown } from '@fortawesome/free-solid-svg-icons';
+import {faComment, faArrowDown, faTrophy} from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 import {MetaService} from "../../core/services/meta.service";
 import {LoadingIndicatorService} from "../../core/shared/loading-indicator/loading-indicator.service";
@@ -109,4 +109,6 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy, AfterViewInit 
   ngOnDestroy() {
     this.currentPostSub?.unsubscribe();
   }
+
+  protected readonly faTrophy = faTrophy;
 }
