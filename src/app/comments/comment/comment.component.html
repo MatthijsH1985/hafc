@@ -15,20 +15,27 @@
     <div [innerHTML]="comment.content.rendered" class="text-black dark:text-white comment-content px-2 pt-2"></div>
   </div>
   <div class="text-sm px-2 flex mb-6">
-    <h4 class="dark:text-white flex items-center w-full">
-      <div *ngIf="isReplyButtonVisible()">
-        <button class="text-blue-500 hover:underline hover:text-black dark:hover:text-white p-2 rounded-md" (click)="onReplyToComment(comment.id, comment.author_name)">
-          Reageer
-        </button>
-      </div>
+    <h4 class="dark:text-white flex items-center w-full flex">
       <div class="ml-4">
-        <span>{{ comment?.likes_dislikes | positiveNegative }}</span>
-        <button class="text-sm like-dislike-button like-button" (click)="onRateComment(1, comment)">
-          <fa-icon [icon]="faArrowUp" class="text-green-800 dark:text-white"></fa-icon>
-        </button>
-        <button class="text-sm like-dislike-button like-button" (click)="onRateComment(-1, comment)">
-          <fa-icon [icon]="faArrowDown" class="text-red-800 dark:text-white"></fa-icon>
-        </button>
+        <div *ngIf="isReplyButtonVisible()">
+          <button class="text-blue-500 hover:underline hover:text-black dark:hover:text-white p-2 rounded-md" (click)="onReplyToComment(comment.id, comment.author_name)">
+            Reageer
+          </button>
+        </div>
+        <div class="ml-4">
+
+        </div>
+      </div>
+      <div class="ml-auto mt-2 flex">
+        <div class="mr-4 pr-2 border-r border-gray-200 dark:border-gray-800">
+          <button class="text-sm like-dislike-button like-button mr-2" (click)="onRateComment(1, comment)">
+            <fa-icon [icon]="faArrowUp" class="text-green-800 dark:text-white"></fa-icon>
+          </button>
+          <button class="text-sm like-dislike-button like-button" (click)="onRateComment(-1, comment)">
+            <fa-icon [icon]="faArrowDown" class="text-red-800 dark:text-white"></fa-icon>
+          </button>
+        </div>
+        <div class="py-2">{{ comment?.likes_dislikes | positiveNegative }}</div>
       </div>
     </h4>
   </div>

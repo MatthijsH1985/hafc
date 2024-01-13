@@ -31,6 +31,7 @@ export class ProgrammaComponent implements OnInit{
   getFixtures() {
     this.fixturesService.getFixtures(this.teamId).subscribe( {
       next: (data: any) => {
+
         const { rounds } = data.data[0];
         this.teamFixtures =  rounds;
 
