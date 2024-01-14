@@ -1,4 +1,4 @@
-<div [ngClass]="{'border border-gray-80 dark:border-black border-dashed mb-4 rounded-md': isReply}">
+<div [ngClass]="{'border border-gray-80 dark:border-black border-dashed mb-4 rounded-md': isReply}" id="comment-form-{{ comment.id }}">
   <form [formGroup]="commentForm" (ngSubmit)="onPostComment(commentForm)" class="m-4">
     <div *ngIf="!isLoggedIn(); else loggedIn">
       <div class="mb-4">

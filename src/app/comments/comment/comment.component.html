@@ -18,12 +18,9 @@
     <h4 class="dark:text-white flex items-center w-full flex">
       <div class="ml-4">
         <div *ngIf="isReplyButtonVisible()">
-          <button class="text-blue-500 hover:underline hover:text-black dark:hover:text-white p-2 rounded-md" (click)="onReplyToComment(comment.id, comment.author_name)">
+          <button class="text-blue-500 hover:underline hover:text-black dark:hover:text-white p-2 rounded-md" (click)="onReplyToComment(comment.id)">
             Reageer
           </button>
-        </div>
-        <div class="ml-4">
-
         </div>
       </div>
       <div class="ml-auto mt-2 flex">

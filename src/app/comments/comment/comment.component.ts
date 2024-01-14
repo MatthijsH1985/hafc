@@ -100,13 +100,13 @@ export class CommentComponent implements OnInit {
       return rating === 1 ? 1 : -1;
     }
 
-    onReplyToComment(commentID: number = 0, authorName: string = '') {
+    onReplyToComment(commentID: number = 0) {
       this.commentFormOpen = true;
       this.commentsService.sendCommentId(commentID);
-      this.navigateToCmmentForm('comment-form');
+      this.navigateToCommentForm('comment-form-' + commentID);
     }
 
-    navigateToCmmentForm(fragment: any) {
+    navigateToCommentForm(fragment: any) {
       setTimeout(() => {
         this.scrollToElement(fragment);
       }, 100)
@@ -121,7 +121,7 @@ export class CommentComponent implements OnInit {
 
         window.scrollTo({
           top: offsetPosition,
-          behavior: 'auto',
+          behavior: 'smooth',
         });
       }
     }
