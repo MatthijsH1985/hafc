@@ -399,7 +399,7 @@ body::before {
   }
 }
 
-textarea, input[type=text] {
+textarea, input[type=text], input[type=email] {
   &.ng-touched.ng-invalid {
     @apply border border-red-500
   }
