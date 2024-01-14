@@ -398,3 +398,9 @@ body::before {
     bottom: auto;
   }
 }
+
+textarea, input[type=text] {
+  &.ng-touched.ng-invalid {
+    @apply border border-red-500
+  }
+}

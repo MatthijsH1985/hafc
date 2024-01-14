@@ -1,6 +1,6 @@
 <div [ngClass]="{'border border-gray-80 dark:border-black border-dashed mb-4 rounded-md': isReply}" id="comment-form-{{ comment.id }}">
   <form [formGroup]="commentForm" (ngSubmit)="onPostComment(commentForm)" class="m-4">
-    <div *ngIf="!isLoggedIn(); else loggedIn">
+    <div *ngIf="!isLoggedIn();">
       <div class="mb-4">
         <input placeholder="Jouw naam" class="bg-gray-100 max-w-[300px] dark:bg-gray-700 dark:text-white" formControlName="name" id="name" type="text" />
       </div>
@@ -8,8 +8,7 @@
         <input class="bg-gray-100 dark:bg-gray-700 max-w-[300px] dark:text-white w-2/3 focus:border-black focus:border" placeholder="Jouw e-mail" formControlName="email" id="email" type="email" />
       </div>
     </div>
-    <h4 class="font-bold text-xl mb-4 italic pl-4 dark:text-white" *ngIf="comment?.id !== 0 && isReply">Reageer op {{ this.comment.author_name }}</h4>
-    <div class="mb-4 relative">
+    <div class="mb-2 relative">
       <textarea class="bg-gray-100 dark:bg-gray-700 dark:text-white" formControlName="comment" id="comment" placeholder="Voer hier je bericht in"></textarea>
       <div class="flex items-center justify-end absolute bottom-4 right-3">
         <button type="submit" class="button button-blue rounded-full">
@@ -17,11 +16,17 @@
         </button>
       </div>
     </div>
-    <ng-template #loggedIn>
-      <p class="text-base mb-8 dark:text-white pl-4">
-        Je reageert als {{ getUserName() }} Ben jij dit niet? <button (click)="logOut()" class="underline dark:text-white">Meld je dan af.</button>
+    <p *ngIf="errorMessage !== ''" class="text-red-800 pl-4 mb-8">
+      {{ errorMessage }}
+    </p>
+    <div *ngIf="isLoggedIn" class="pl-4 my-8 dark:text-white text-sm">
+      <p>
+        Je reageert als {{ getUserName() }}.
       </p>
-    </ng-template>
+      <p>
+        Ben jij dit niet? <button (click)="logOut()" class="underline dark:text-white hover:text-black hover:underline text-blue-500">Meld je dan af.</button>
+      </p>
+    </div>
   </form>
   <p class="my-4 mx-8 recaptcha text-xs text-gray-400 dark:white">Deze site wordt beschermd door reCAPTCHA en <a href="https://policies.google.com/privacy" target="_blank">Google Privacybeleid</a>
     en <a href="https://policies.google.com/terms" target="_blank">Servicevoorwaarden</a> zijn van toepassing.</p>
