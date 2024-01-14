@@ -26,6 +26,7 @@ export class CommentComponent implements OnInit {
     }
     private authSub = new Subscription();
     private loading: boolean = true;
+    commentFormOpen = false;
     protected readonly faArrowDown = faArrowDown;
     protected readonly faCheck = faCheck;
     protected readonly faArrowUp = faArrowUp;
@@ -89,9 +90,6 @@ export class CommentComponent implements OnInit {
   updateLikesAndDislikes(commentId: number, likes: number, dislikes: number) {
     const comment = this.comment;
     if (comment) {
-      console.log(comment.likes);
-      console.log(comment.dislikes);
-      console.log(comment.likes_dislikes);
       comment.likes = likes;
       comment.dislikes = dislikes;
       this.cdr.detectChanges();
@@ -103,7 +101,7 @@ export class CommentComponent implements OnInit {
     }
 
     onReplyToComment(commentID: number = 0, authorName: string = '') {
-      this.commentsService.setReplyToCommentModalVisibility(true);
+      this.commentFormOpen = true;
       this.commentsService.sendCommentId(commentID);
       this.navigateToCmmentForm('comment-form');
     }

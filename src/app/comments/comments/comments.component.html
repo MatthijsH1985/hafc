@@ -12,30 +12,7 @@
   </div>
   <div class="flex md:flex-row flex-col-reverse container">
     <div class="flex-1">
-      <form [formGroup]="commentForm" (ngSubmit)="onPostComment(commentForm)" id="comment-form" class="m-4">
-        <div *ngIf="!isLoggedIn(); else loggedIn">
-          <div class="mb-4">
-            <input placeholder="Jouw naam" class="bg-gray-100 max-w-[300px] dark:bg-gray-700 dark:text-white" formControlName="name" id="name" type="text" />
-          </div>
-          <div class="mb-4">
-            <input class="bg-gray-100 dark:bg-gray-700 max-w-[300px] dark:text-white w-2/3 focus:border-black focus:border" placeholder="Jouw e-mail" formControlName="email" id="email" type="email" />
-          </div>
-        </div>
-        <ng-template #loggedIn>
-          <p class="text-base mb-8 dark:text-white pl-4">
-            Reageer als {{ getUserName() }} Ben jij dit niet? <button (click)="logOut()" class="underline dark:text-white">Meld je dan af.</button>
-          </p>
-        </ng-template>
-        <h4 class="font-bold text-xl mb-4 italic pl-4 dark:text-white" *ngIf="replyToCommentId !== 0">Reageer op {{ getCommentAuthorName(replyToCommentId) }}</h4>
-        <div class="mb-4 relative">
-          <textarea class="bg-gray-100 dark:bg-gray-700 dark:text-white" formControlName="comment" id="comment" placeholder="Voer hier je bericht in"></textarea>
-          <div class="flex items-center justify-end absolute bottom-4 right-3">
-            <button type="submit" class="button button-blue rounded-full">
-              <fa-icon [icon]="faPaperPlane"></fa-icon>
-            </button>
-          </div>
-        </div>
-      </form>
+      <app-comment-form [isReply]="false" (commentSuccesfullEmitter)="commentSuccesfull($event)"></app-comment-form>
       <p *ngIf="errorMessage" class="bg-red-200 text-red-800 p-4 rounded-md mx-8">{{ errorMessage }}</p>
       <div class="p-4 pl-16">
         <app-comment-tree

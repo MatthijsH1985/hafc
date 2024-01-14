@@ -10,6 +10,7 @@ import {AdsModule} from '../ads/ads.module';
 import { CommentComponent } from './comment/comment.component';
 import { CommentTreeComponent } from './comment-tree/comment-tree.component';
 import {TopCommentsComponent} from './top-comments/top-comments.component';
+import {CommentFormComponents} from './comment-form/comment-form.components';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {TopCommentsComponent} from './top-comments/top-comments.component';
     LatestCommentsComponent,
     CommentComponent,
     CommentTreeComponent,
-    TopCommentsComponent
+    TopCommentsComponent,
+    CommentFormComponents
   ],
   imports: [
     CommonModule,

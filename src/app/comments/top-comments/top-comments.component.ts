@@ -22,11 +22,9 @@ export class TopCommentsComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     if (this.post) {
-
       this.commentsService.getPopularComments(this.post.id).subscribe({
         next: (comments: any) => {
           this.topComments = comments;
-          console.log(this.topComments)
         },
         error: (error: any) => {
           console.log(error)
