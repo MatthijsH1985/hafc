@@ -3,6 +3,7 @@ import {LoadingIndicatorService} from "../../core/shared/loading-indicator/loadi
 import {CommentsService} from '../services/comments.service';
 import * as moment from 'moment/moment';
 import {ActivatedRoute, Router} from '@angular/router';
+import {faTrophy} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-top-comments',
@@ -15,9 +16,7 @@ export class TopCommentsComponent implements AfterViewInit {
   @Output() goToFragment = new EventEmitter();
 
   constructor(private loadingIndicatorService: LoadingIndicatorService,
-              private commentsService: CommentsService,
-              private router: Router,
-              private route: ActivatedRoute) {
+              private commentsService: CommentsService) {
   }
 
   ngAfterViewInit() {
@@ -48,5 +47,5 @@ export class TopCommentsComponent implements AfterViewInit {
     return comment.slice(0, 60) + '...';
   }
 
-  protected readonly top = top;
+  protected readonly faTrophy = faTrophy;
 }

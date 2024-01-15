@@ -1,10 +1,10 @@
 <div *ngIf="topComments?.length > 0" class="relative w-full z-20 rounded-md bg-white dark:bg-gray-900">
-  <div *ngFor="let comment of topComments" class="block py-2 border-b dark:border-gray-800 text-sm border-gray-200 mb-2">
+  <div *ngFor="let comment of topComments; let i = index;" class="block py-2 border-b dark:border-gray-800 text-sm border-gray-200 mb-2">
     <h3 class="font-bold dark:text-white flex mb-2">
+        <fa-icon [icon]="faTrophy" class="mr-2" [ngClass]="{'text-gold': i === 0, 'text-silver': i === 1, 'text-bronze': i === 2}"></fa-icon>
         <span>{{ comment.author }}</span>
         <span class="text-sm ml-auto date italic text-gray-400 dark:text-gray-500 dark_text-gray-300 font-normal">{{ calculateTimeDifference(validDateFormat(comment.date)) }}</span>
     </h3>
-    <div [innerHtml]="shortenComment(comment.content)" class="group-hover:text-blue-500 comment-shortened dark:text-white"></div>
-    <div class="dark:text-white block px-2">{{ comment.likes | positiveNegative }}</div>
+    <div [innerHtml]="comment.content" class="group-hover:text-blue-500 comment-shortened dark:text-white"></div>
   </div>
 </div>
