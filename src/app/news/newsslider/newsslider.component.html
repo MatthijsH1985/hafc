@@ -1,4 +1,8 @@
-<div *ngIf="posts.length !== 0" class="overflow-hidden">
+<div *ngIf="posts.length !== 0" class="overflow-hidden relative">
+  <a class="absolute p-3 z-30 block bg-red-500 text-white right-0 top-0" [routerLink]="['page', 31238, 'word-sponsor-op-hafc']">
+    <h2 class="text-xl font-bold">Help HAFC</h2>
+    <p>Word sponsor</p>
+  </a>
   <swiper-container fmSwiper [config]="config" init="false">
     <swiper-slide *ngFor="let post of posts">
       <a (click)="showLoading()" class="relative xl:w-[1200px] flex items-center flex-col justify-center w-full h-[500px]] md:h-[550px] group" [routerLink]="[post.categories[0] === 37 ? 'voorbeschouwing' : 'nieuws', post.id, post.slug]">
