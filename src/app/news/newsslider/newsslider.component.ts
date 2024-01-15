@@ -13,6 +13,8 @@ import {ActivatedRoute, RouterModule} from "@angular/router";
 import {SwiperDirective} from "../../core/shared/slider.directive";
 import {PostsService} from "../services/posts.service";
 import {LoadingIndicatorService} from "../../core/shared/loading-indicator/loading-indicator.service";
+import {faChevronLeft, faChevronRight} from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 
 @Component({
   selector: 'app-newsslider',
@@ -23,7 +25,8 @@ import {LoadingIndicatorService} from "../../core/shared/loading-indicator/loadi
   imports: [
     CommonModule,
     RouterModule,
-    SwiperDirective
+    SwiperDirective,
+    FontAwesomeModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
@@ -52,7 +55,11 @@ export class NewssliderComponent implements AfterViewInit {
         }
         return paginationHTML;
       },
-    }
+    },
+    navigation: {
+      nextEl: '.next',
+      prevEl: '.prev',
+    },
   }
   @ViewChild('swiper') swiper: ElementRef | undefined;
   posts: any = [];
@@ -89,4 +96,6 @@ export class NewssliderComponent implements AfterViewInit {
     return null;
   }
 
+  protected readonly faChevronLeft = faChevronLeft;
+  protected readonly faChevronRight = faChevronRight;
 }
