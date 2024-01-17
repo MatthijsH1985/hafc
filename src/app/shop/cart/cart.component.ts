@@ -61,8 +61,18 @@ export class CartComponent implements OnInit, OnDestroy {
     return [''].concat(urlParts);
   }
 
-  onUpdateCart(event: any) {
-    console.log(event);
+  onUpdateCart(event: any, cartItem: CartItem) {
+    const updatedQuantity = event.target.value;
+    const updatedCartItem = { ...cartItem, quantity: updatedQuantity };
+    this.cartService.updateCartItem(updatedCartItem).subscribe({
+      next: (response: any) => {
+        this.fetchCart();
+        this.cdr.detectChanges();
+      },
+      error: (error: any) => {
+        console.log(error)
+      }
+    })
   }
 
   clearCart() {
@@ -102,10 +112,12 @@ export class CartComponent implements OnInit, OnDestroy {
           const cartItemsArray: CartItem[] = Object.values(response);
           cartItemsArray.forEach((cartItem) => {
             const controlName = `quantity-${cartItem.item_key}`;
-            const quantityValue = cartItem.quantity;
+            const quantityControl = new FormControl(cartItem.quantity.value);
+            this.formData.addControl(controlName, quantityControl);
             this.cart.cartItems = cartItemsArray;
           });
         }
+        this.fetchCartTotals();
       },
       error: (error: any) => {
         console.log(error);
@@ -113,7 +125,7 @@ export class CartComponent implements OnInit, OnDestroy {
     });
   }
 
-  private getCartTotals() {
+  private fetchCartTotals() {
     this.cartService.getCartTotals().subscribe({
       next: (response: any) => {
         this.cart.cartTotals = response;
@@ -129,5 +141,4 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   protected readonly Object = Object;
-  protected readonly formatCurrency = formatCurrency;
 }

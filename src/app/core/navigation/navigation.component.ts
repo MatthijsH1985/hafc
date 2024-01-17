@@ -39,9 +39,6 @@ export class NavigationComponent implements OnInit, OnDestroy {
        console.log(error)
       }
     });
-    // this.cartService.cartContent$.subscribe(cartContent => {
-    //   this.cartQuantity = cartContent.quantity;
-    // });
   }
 
   isLoggedIn(): boolean {

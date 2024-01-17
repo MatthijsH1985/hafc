@@ -2,15 +2,15 @@
   <div class="container max-w-[1200px] relative z-10 ml-auto mr-auto">
     <div class="md:h-[550px] m-h-[450px] overflow-hidden relative min-h-[550px]">
       <div class="grid grid-cols-2">
-        <a *ngFor="let product of products" class="bg-white p-4 border-b border-b-black" [routerLink]="['product', product?.slug]">
-          <div class="">
-            <img [srcset]="product?.images[0].src" [alt]="product.name" />
+        <a *ngFor="let product of products" class="bg-white m-4 p-4 border-b border-b-black" [routerLink]="['product', product?.slug]">
+          <div class="flex items-center justify-center p-4 bg-white h-[250px]">
+            <img [srcset]="product?.images[0].src" [alt]="product.name" class="w-full border border-gray-200" />
           </div>
-          <div class="flex flex-col">
+          <div class="flex flex-col p-4">
             <h2 [innerHTML]="product?.name" class="mb-4"></h2>
             <div class="">
-              <h3 class="line-through text-xl text-black opacity-50">{{ product?.sale_price }}</h3>
-              <h3 class="text-blue-500 text-2xl">{{ product?.regular_price }}</h3>
+              <h3 class="line-through text-xl text-black opacity-50">{{ product?.sale_price | currency: 'EUR'}}</h3>
+              <h3 class="text-blue-500 text-2xl">{{ product?.regular_price | currency: 'EUR' }}</h3>
             </div>
           </div>
         </a>

@@ -77,13 +77,17 @@ export class CartService {
     return this.http.post<Config[]>(environment.shopUrlCustom + '/cart/add-item', cartData, httpOptions);
   }
 
-  updateCart(products: any): Observable<Config[]> {
+  updateCartItem(cartItem: any): Observable<Config[]> {
+    const cartItemKey = cartItem.item_key;
+    const updatedQuantity = cartItem.quantity;
+
     const httpOptions = {
       headers: this.getHeaders(),
       withCredentials: true
     };
-
-    return this.http.post<Config[]>(environment.shopUrlCustom + '/cart/items', products, httpOptions);
+    return this.http.post<Config[]>(environment.shopUrlCustom + `/cart/item/${cartItemKey}`, {
+      quantity: updatedQuantity
+    }, httpOptions);
   }
 
 }
