@@ -96,7 +96,6 @@ export class CartComponent implements OnInit, OnDestroy {
   private fetchCart(): void {
     this.cartService.getCart().subscribe({
       next: (response: any) => {
-        console.log(response);
         if (typeof response === 'string' && response.includes('No items in the cart.')) {
           this.cart.cartItems = [];
         } else {
@@ -104,7 +103,6 @@ export class CartComponent implements OnInit, OnDestroy {
           cartItemsArray.forEach((cartItem) => {
             const controlName = `quantity-${cartItem.item_key}`;
             const quantityValue = cartItem.quantity;
-            console.log(quantityValue)
             this.cart.cartItems = cartItemsArray;
           });
         }
