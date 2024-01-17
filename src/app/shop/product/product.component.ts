@@ -6,6 +6,7 @@ import {faChevronDown} from '@fortawesome/free-solid-svg-icons';
 import {CartService} from '../cart/services/cart.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {SessionService} from '../services/session';
+import {Toast, ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-product',
@@ -22,6 +23,7 @@ export class ProductComponent implements OnInit, OnDestroy {
     private productsService: ProductsService,
     private activeRoute: ActivatedRoute,
     private sessionService: SessionService,
+    private toast: ToastrService,
     private cartService: CartService) {
     this.productFormData = new FormGroup({
       product_id: new FormControl('', Validators.required),
@@ -58,25 +60,17 @@ export class ProductComponent implements OnInit, OnDestroy {
 
   onAddToCart(formData: FormGroup) {
     const cartData: string = JSON.stringify( {
-      product_id: formData.value.product_id,
-      quantity: formData.value.quantity
+      id: String(formData.value.product_id),
+      quantity: String(formData.value.quantity)
     });
-    this.addToCart(cartData)
-;  }
+    this.addToCart(cartData);
+  }
 
   addToCart(cartData: any) {
     this.cartSub =  this.cartService.addToCart(cartData).subscribe({
       next: (res: any) => {
-        const headers = res?.headers?.headers;
-        const updatedCartItem = res?.body;
-        const sessionHeader = headers.get('x-wc-session');
-        this.sessionService.checkIfSessionExists('x-wc-session').then((itemExists) => {
-          if (!itemExists) {
-            this.sessionService.setSession(sessionHeader);
-          }
-          this.cartService.updateCart(updatedCartItem);
-          localStorage.setItem('woo-next-cart', JSON.stringify(updatedCartItem));
-        });
+        const cartItem = res?.body;
+        this.toast.success('Succesvol toegevoegd');
       },
       error: (error: any) => {
         console.log(error);

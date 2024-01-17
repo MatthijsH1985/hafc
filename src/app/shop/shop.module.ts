@@ -10,13 +10,15 @@ import { ProductComponent } from './product/product.component';
 import { ProductsComponent } from './products/products.component';
 import {CartService} from './cart/services/cart.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
   declarations: [
     ShopHomepageComponent,
     CartComponent,
     ProductComponent,
-    ProductsComponent
+    ProductsComponent,
+    CheckoutComponent
   ],
   imports: [
     CommonModule,

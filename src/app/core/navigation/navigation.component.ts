@@ -31,27 +31,21 @@ export class NavigationComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.cartService.cartContent$.subscribe(cartContent => {
-      this.cartQuantity = cartContent.quantity;
+    this.cartService.getCartCount().subscribe({
+      next: (quantity: any) => {
+        this.cartQuantity = quantity;
+      },
+      error: (error: any) => {
+       console.log(error)
+      }
     });
+    // this.cartService.cartContent$.subscribe(cartContent => {
+    //   this.cartQuantity = cartContent.quantity;
+    // });
   }
 
   isLoggedIn(): boolean {
     return this.authService.isAuthenticated();
-  }
-
-  hasCartItem() {
-    // this.cartService.itemCountSubject.subscribe(count => {
-    //   this.itemCount = count;
-    // });
-    // this.sessionService.checkIfSessionExists('x-wc-session').then((itemExists) => {
-    //   if (itemExists) {
-    //     return true;
-    //   } else {
-    //     return false;
-    //   }
-    // });
-    return true
   }
 
   ngOnDestroy() {

@@ -14,16 +14,10 @@ export class CartService {
   private cartContentSubject = new BehaviorSubject<any>({ quantity: 0 });
   cartContent$ = this.cartContentSubject.asObservable();
 
-  getHeadersWithSession(): HttpHeaders {
+  getHeaders(): HttpHeaders {
     this.headers = new HttpHeaders({
-      'Content-Type': 'application/json;charset=UTF-8',
-      'X-Headless-CMS': 'true'
+      'Content-Type': 'application/json;charset=UTF-8'
     });
-    const session: any = this.sessionService.getCartSession();
-    if (session !== undefined || session !== '') {
-      this.headers = this.headers.set('x-wc-session', session);
-    }
-
     return this.headers;
   }
 
@@ -31,37 +25,65 @@ export class CartService {
 
   getCart(): Observable<Config[]> {
     const httpOptions = {
-      headers: this.getHeadersWithSession(),
+      headers: this.getHeaders(),
       withCredentials: true
     };
     return this.http.get<Config[]>(environment.shopUrlCustom + '/cart/items', httpOptions);
   }
 
-  updateCart(cartContent: any) {
-    this.cartContentSubject.next(cartContent);
+  clearCart(cartKey: any): Observable<Config[]> {
+    const httpOptions = {
+      headers: this.getHeaders(),
+      withCredentials: true
+    };
+    return this.http.post<Config[]>(environment.shopUrlCustom + `/cart/clear`, httpOptions);
   }
 
-  getCartQuantity() {
-    return 5;
+  removeItemFromCart(itemKey: any): Observable<Config[]> {
+    const httpOptions = {
+      headers: this.getHeaders(),
+      withCredentials: true
+    };
+    return this.http.delete<Config[]>(environment.shopUrlCustom + `/cart/item/${itemKey}`, httpOptions);
+  }
+
+  getCartCount(): Observable<Config[]> {
+    const httpOptions = {
+      headers: this.getHeaders(),
+      withCredentials: true
+    };
+    return this.http.get<Config[]>(environment.shopUrlCustom + '/cart/items/count', httpOptions);
+  }
+
+  getCartTotals(): Observable<Config[]> {
+    const httpOptions = {
+      headers: this.getHeaders(),
+      withCredentials: true
+    };
+    return this.http.get<Config[]>(environment.shopUrlCustom + '/cart/totals', httpOptions);
+  }
+
+  updateCartQuantity(cartContent: any) {
+    this.cartContentSubject.next(cartContent);
   }
 
   addToCart(cartData: string): Observable<Config[]> {
     const httpOptions = {
-      headers: this.getHeadersWithSession(),
+      headers: this.getHeaders(),
       observe: 'response',
       withCredentials: true
     };
     // @ts-ignore
-    return this.http.post<Config[]>(environment.shopUrlCustom + '/cart/items', cartData, httpOptions);
+    return this.http.post<Config[]>(environment.shopUrlCustom + '/cart/add-item', cartData, httpOptions);
   }
 
-  // updateCart(products: any): Observable<Config[]> {
-  //   const httpOptions = {
-  //     headers: this.getHeadersWithSession(),
-  //     withCredentials: true
-  //   };
-  //
-  //   return this.http.post<Config[]>(environment.shopUrlCustom + '/cart/items', products, httpOptions);
-  // }
+  updateCart(products: any): Observable<Config[]> {
+    const httpOptions = {
+      headers: this.getHeaders(),
+      withCredentials: true
+    };
+
+    return this.http.post<Config[]>(environment.shopUrlCustom + '/cart/items', products, httpOptions);
+  }
 
 }

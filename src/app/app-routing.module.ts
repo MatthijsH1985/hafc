@@ -38,6 +38,7 @@ import {ProductComponent} from './shop/product/product.component';
 import {CartComponent} from './shop/cart/cart.component';
 import {HeadlinesResolver} from './news/services/resolvers/headlines-resolver.service';
 import {CommentsResolverService} from './services/resolvers/comments-resolver.service';
+import {CheckoutComponent} from './shop/checkout/checkout.component';
 const routes: Routes = [
 
   {
@@ -187,6 +188,10 @@ const routes: Routes = [
       {
         path: 'winkelwagen',
         component: CartComponent
+      },
+      {
+        path: 'afrekenen',
+        component: CheckoutComponent
       }
     ]
   },
