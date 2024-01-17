@@ -4,11 +4,11 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://backend.hafc.nl/wp-json/wp/v2',
-  shopUrl: 'https://backend.hafc.nl/wp-json/wc/v3',
-  shopUrlCustom: 'https://backend.hafc.nl/wp-json/rae/v1',
-  loginUrl: 'https://backend.hafc.nl/wp-json/jwt-auth/v1/token',
-  userServiceUrl: 'https://backend.hafc.nl/wp-json/userservice',
+  apiUrl: 'https://hafc_site.test/wp-json/wp/v2',
+  shopUrl: 'https://hafc_site.test/wp-json/wc/v3',
+  shopUrlCustom: 'https://hafc_site.test/wp-json/cocart/v2',
+  loginUrl: 'https://hafc_site.test/wp-json/jwt-auth/v1/token',
+  userServiceUrl: 'https://hafc_site.test/wp-json/userservice',
   recaptcha: {
     siteKey: '6LdyyrcUAAAAAB81RMMORr90yBEMcYN_omdANSEe',
   },

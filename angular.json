@@ -79,7 +79,14 @@
               "browserTarget": "hafc:build:development"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development",
+          "options": {
+            "host": "hafc_site.test",
+            "port": 4208,
+            "sslKey": "/Users/matthijs/.config/valet/Certificates/hafc_site.test.key",
+            "sslCert": "/Users/matthijs/.config/valet/Certificates/hafc_site.test.crt",
+            "ssl": true
+          }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
