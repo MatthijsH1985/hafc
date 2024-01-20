@@ -4,32 +4,7 @@ import { Subscription } from 'rxjs';
 import { formatCurrency } from '@angular/common';
 import { FormControl, FormGroup } from '@angular/forms';
 import {CartService} from '../cart/services/cart.service';
-
-interface Cart {
-  cartItems: CartItem[];
-  cartTotals: {
-    subtotal_price: number;
-    total: string;
-    total_tax: number;
-    quantity: number;
-  };
-}
-
-interface CartItem {
-  item_key: string;
-  title: string;
-  featured_image: string;
-  permalink: string;
-  totals: {
-    total: string;
-    tax: string;
-    subtotal: number;
-    subtotal_tax: number;
-  };
-  quantity: {
-    value: number;
-  };
-}
+import {Cart, CartItem} from '../model/cart.model';
 
 @Component({
   selector: 'app-cart',
@@ -39,6 +14,7 @@ interface CartItem {
 export class CartComponent implements OnInit, OnDestroy {
   cartSub: Subscription = new Subscription();
   formData: FormGroup = new FormGroup({});
+  emptyString = '';
   public cart: Cart = {
     cartItems: [],
     cartTotals: {
@@ -107,6 +83,7 @@ export class CartComponent implements OnInit, OnDestroy {
     this.cartService.getCart().subscribe({
       next: (response: any) => {
         if (typeof response === 'string' && response.includes('No items in the cart.')) {
+          this.emptyString = 'Je winkelwagen is leeg';
           this.cart.cartItems = [];
         } else {
           const cartItemsArray: CartItem[] = Object.values(response);

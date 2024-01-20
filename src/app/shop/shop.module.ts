@@ -11,6 +11,7 @@ import { ProductsComponent } from './products/products.component';
 import {CartService} from './cart/services/cart.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { CheckoutComponent } from './checkout/checkout.component';
+import {ShippingService} from './cart/services/shipping.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,9 @@ import { CheckoutComponent } from './checkout/checkout.component';
 
   ],
   providers: [
-    ProductsService
+    ProductsService,
+    CartService,
+    ShippingService
   ]
 })
 export class ShopModule { }

@@ -28,8 +28,8 @@ export class AppComponent implements OnInit {
     this.loadingIndicatorService.loading$.subscribe((loading) => {
       this.loading = loading
     });
-    const hotjarVersion = 6;
-    Hotjar.init(this.hotjarId, hotjarVersion);
+    // const hotjarVersion = 6;
+    // Hotjar.init(this.hotjarId, hotjarVersion);
   }
 
 }

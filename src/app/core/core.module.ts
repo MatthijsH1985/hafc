@@ -81,7 +81,6 @@ import {PositiveNegativePipe} from './shared/positive-negative.pipe';
     SessionStorage,
     LocalStorage,
     MetaService,
-    CartService,
     CountdownService,
     MemoryStorage,
     {
