@@ -8,6 +8,10 @@
       <div class="relative xl:w-[1200px] flex items-center flex-col justify-center w-full h-[450px]] md:h-[550px] group">
         <div class="h-450px md:h-[550px] relative w-full">
           <img [src]="post?.better_featured_image.source_url" class=" object-cover object-center w-full h-[400px] md:h-[550px] object-cover transition-all w-full block" fill priority rel="preload" />
+          <span *ngIf="post?.better_featured_image.caption; else noCaption" class="absolute right-2 bottom-2 z-20 text-sm text-white">Foto: {{ post?.better_featured_image.caption }}</span>
+          <ng-template #noCaption>
+            <span class="absolute right-2 bottom-2 z-20 text-sm text-white">Foto: NESImages</span>
+          </ng-template>
         </div>
         <div class="bg-gradient-to-t from-black to-transparent w-full h-full z-10 absolute left-0 right-0 top-0 bottom-0"></div>
         <div class="slider-animation"></div>
