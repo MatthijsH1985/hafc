@@ -173,23 +173,23 @@ const routes: Routes = [
     path: 'page/:id/:title',
     component: SinglePageComponent
   },
-  {
-    path: 'shop',
-    children: [
-      {
-        path: '',
-        component: ShopHomepageComponent,
-      },
-      {
-        path: 'product/:slug',
-        component: ProductComponent
-      },
-      {
-        path: 'winkelwagen',
-        component: CartComponent
-      }
-    ]
-  },
+  // {
+  //   path: 'shop',
+  //   children: [
+  //     {
+  //       path: '',
+  //       component: ShopHomepageComponent,
+  //     },
+  //     {
+  //       path: 'product/:slug',
+  //       component: ProductComponent
+  //     },
+  //     {
+  //       path: 'winkelwagen',
+  //       component: CartComponent
+  //     }
+  //   ]
+  // },
   {
     component: NotFoundComponent,
     path: '**'
