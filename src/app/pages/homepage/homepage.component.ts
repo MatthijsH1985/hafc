@@ -59,17 +59,15 @@ export class HomepageComponent implements OnInit {
     this.links = this.route.snapshot.data['links'];
     this.loading = false;
 
-    if (!this.isAuthenticated()) {
-      console.log('not auth')
-      let donateTitle = 'Beste HAFC bezoeker';
-      let donateMessage = '<p>Kun jij een kleine bijdrage missen voor het komende jaar? HAFC wil jullie ook dit jaar weer voorzien van het laatste nieuws!</p> <a class="block mt-2 -ml-2 underline text-black p-2" href="https://hafcnl.backme.org/" target="_blank">Ja, ik steun HAFC met een eenmalige donatie</a>';
-      this.onShowDonateMessage(donateTitle, donateMessage);
-    } else {
-      console.log('authenticated')
-      let donateTitle = 'Beste ' + this.authService.getUserName();
-      let donateMessage = '<p>Kun jij een kleine bijdrage missen voor het komende jaar? HAFC wil jullie ook dit jaar weer voorzien van het laatste nieuws!</p> <a class="block mt-2 -ml-2 underline text-black p-2" href="https://hafcnl.backme.org/" target="_blank">Ja, ik steun HAFC met een eenmalige donatie</a>';
-      this.onShowDonateMessage(donateTitle, donateMessage);
-    }
+    // if (!this.isAuthenticated()) {
+    //   let donateTitle = 'Beste HAFC bezoeker';
+    //   let donateMessage = '<p>Kun jij een kleine bijdrage missen voor het komende jaar? HAFC wil jullie ook dit jaar weer voorzien van het laatste nieuws!</p> <a class="block mt-2 -ml-2 underline text-black p-2" href="https://hafcnl.backme.org/" target="_blank">Ja, ik steun HAFC met een eenmalige donatie</a>';
+    //   this.onShowDonateMessage(donateTitle, donateMessage);
+    // } else {
+    //   let donateTitle = 'Beste ' + this.authService.getUserName();
+    //   let donateMessage = '<p>Kun jij een kleine bijdrage missen voor het komende jaar? HAFC wil jullie ook dit jaar weer voorzien van het laatste nieuws!</p> <a class="block mt-2 -ml-2 underline text-black p-2" href="https://hafcnl.backme.org/" target="_blank">Ja, ik steun HAFC met een eenmalige donatie</a>';
+    //   this.onShowDonateMessage(donateTitle, donateMessage);
+    // }
 
     this.latestComments = this.route.snapshot.data['latestComments'];
     this.metaService.setMetaTag('https://www.hafc.nl', 'HAFC.nl is de grootste Heracles community voor en door supporters. Volg hier het laatste nieuws over Heracles en blijf op de hoogte', 'https://backend.hafc.nl/wp-content/uploads/2023/05/nac-heracles.jpg');
