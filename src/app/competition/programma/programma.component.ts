@@ -43,6 +43,20 @@ export class ProgrammaComponent implements OnInit{
         });
 
         if (upcomingFixtures.length > 0) {
+          upcomingFixtures.forEach((fixture: any) => {
+            fixture.fixtures[0].participants.sort((x: any, y: any) => {
+              const locationX = x.meta.location;
+              const locationY = y.meta.location;
+
+              if (locationX === 'home' && locationY === 'away') {
+                return -1;
+              } else if (locationX === 'away' && locationY === 'home') {
+                return 1;
+              }
+
+              return 0;
+            });
+          });
           upcomingFixtures.sort((a: any, b: any) => {
             const dateA = new Date(a.fixtures[0].starting_at);
             const dateB = new Date(b.fixtures[0].starting_at);
