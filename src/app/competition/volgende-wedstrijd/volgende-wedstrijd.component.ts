@@ -62,8 +62,8 @@ export class VolgendeWedstrijdComponent implements OnInit{
 
           this.nextMatch = upcomingFixtures[0].fixtures[0];
 
-          this.participantHome = this.generateUrlFriendlyString(this.nextMatch.participants[0].name);
-          this.participantAway = this.generateUrlFriendlyString(this.nextMatch.participants[1].name);
+          this.participantHome = this.generateUrlFriendlyString(this.nextMatch.participants[1].name);
+          this.participantAway = this.generateUrlFriendlyString(this.nextMatch.participants[0].name);
           this.url = this.participantHome + '-' + this.participantAway;
 
         }
