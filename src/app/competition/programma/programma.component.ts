@@ -66,7 +66,7 @@ export class ProgrammaComponent implements OnInit{
         }
       },
       error: (error: any) => {
-        console.error(error)
+        console.error(error);
       }
     });
   }

@@ -43,6 +43,7 @@ export class VolgendeWedstrijdComponent implements OnInit{
   getFixtures() {
     this.fixturesService.getFixtures(this.teamId).subscribe( {
       next: (data: any) => {
+
         const { rounds } = data.data[0];
         this.teamFixtures =  rounds;
 
@@ -54,22 +55,27 @@ export class VolgendeWedstrijdComponent implements OnInit{
         });
 
         if (upcomingFixtures.length > 0) {
+          upcomingFixtures.forEach((fixture: any) => {
+            fixture.fixtures[0].participants.sort((x: any, y: any) => {
+              const locationX = x.meta.location;
+              const locationY = y.meta.location;
+
+              if (locationX === 'home' && locationY === 'away') {
+                return -1;
+              } else if (locationX === 'away' && locationY === 'home') {
+                return 1;
+              }
+
+              return 0;
+            });
+          });
           upcomingFixtures.sort((a: any, b: any) => {
             const dateA = new Date(a.fixtures[0].starting_at);
             const dateB = new Date(b.fixtures[0].starting_at);
             return dateA.getTime() - dateB.getTime();
           });
-
           this.nextMatch = upcomingFixtures[0].fixtures[0];
-
-          this.participantHome = this.generateUrlFriendlyString(this.nextMatch.participants[1].name);
-          this.participantAway = this.generateUrlFriendlyString(this.nextMatch.participants[0].name);
-          this.url = this.participantHome + '-' + this.participantAway;
-
         }
-
-
-        this.loading = false;
       },
       error: (error: any) => {
         this.loading = false;
