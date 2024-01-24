@@ -75,7 +75,7 @@ export class ProductComponent implements OnInit, OnDestroy {
         this.cartService.updateCartQuantity(quantity)
       },
       error: (error: any) => {
-        console.log(error);
+        this.toast.error(error.error.code);
       }
     })
   }

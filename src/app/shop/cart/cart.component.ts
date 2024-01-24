@@ -54,18 +54,6 @@ export class CartComponent implements OnInit, OnDestroy {
     })
   }
 
-  clearCart() {
-    const cartKey = localStorage.getItem('cart_key')
-    this.cartService.clearCart(cartKey).subscribe({
-      next: (response: any) => {
-        console.log(response);
-      },
-      error: (error: any) => {
-        console.log(error);
-      },
-    })
-  }
-
   toNumber(amount: string) {
     return Number(amount);
   }

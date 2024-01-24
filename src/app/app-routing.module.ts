@@ -39,6 +39,7 @@ import {CartComponent} from './shop/cart/cart.component';
 import {HeadlinesResolver} from './news/services/resolvers/headlines-resolver.service';
 import {CommentsResolverService} from './services/resolvers/comments-resolver.service';
 import {CheckoutComponent} from './shop/checkout/checkout.component';
+import {ProductsComponent} from './shop/products/products.component';
 const routes: Routes = [
 
   {
@@ -184,6 +185,10 @@ const routes: Routes = [
       {
         path: 'product/:slug',
         component: ProductComponent
+      },
+      {
+        path: 'producten',
+        component: ProductsComponent
       },
       {
         path: 'winkelwagen',

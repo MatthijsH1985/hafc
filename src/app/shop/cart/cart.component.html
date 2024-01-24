@@ -6,7 +6,7 @@
     <div class="flex space-x-4 justify-start items-start mb-12">
       <div class="w-2/3 p-8 bg-white mr-8 sticky top-0 rounded-md">
         <h1 class="text-2xl mb-4">Winkelwagen</h1>
-        <p *ngIf="emptyString !== ''" class="p-2 bg-orange-200 text-orange-800 rounded-md">
+        <p *ngIf="emptyString !== ''" class="p-4 bg-orange-200 text-orange-800 rounded-md">
           {{ emptyString }}
         </p>
         <form [formGroup]="formData">
