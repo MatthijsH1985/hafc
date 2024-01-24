@@ -184,13 +184,11 @@ const routes: Routes = [
       },
       {
         path: 'producten',
-        component: ProductsComponent,
-        children: [
-          {
-            path: 'product/:slug',
-            component: ProductComponent
-          },
-        ]
+        component: ProductsComponent
+      },
+      {
+        path: 'product/:slug',
+        component: ProductComponent
       },
       {
         path: 'winkelwagen',

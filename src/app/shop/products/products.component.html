@@ -1,7 +1,7 @@
 
 <div class="-mt-[20px] bg-gray-100 p-8 w-[1200px] m-auto">
   <div class="grid grid-cols-3">
-    <a *ngFor="let product of products" class="bg-white m-4 p-4 border-b border-b-black" [routerLink]="['/', 'shop', 'producten', 'product', product?.slug]">
+    <a *ngFor="let product of products" class="bg-white m-4 p-4 border-b border-b-black" [routerLink]="['/', 'shop', 'product', product?.slug]">
       <div class="flex items-center justify-center p-4 bg-white h-[250px]">
         <img [srcset]="product?.images[0].src" [alt]="product.name" class="w-full border border-gray-200" />
       </div>
