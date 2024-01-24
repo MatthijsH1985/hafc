@@ -16,7 +16,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.productsSub = this.productsService.getProducts(1, 830).subscribe({
       next: (products: any) => {
         this.products = products;
-        this.noProductsMessage = 'Geen producten gevonden';
+        if (this.products.length < 1) {
+          this.noProductsMessage = 'Geen producten gevonden';
+        }
       },
       error: (error: any) => {
         console.log(error);
