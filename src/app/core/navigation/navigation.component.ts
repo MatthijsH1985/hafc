@@ -31,13 +31,8 @@ export class NavigationComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.cartService.getCartCount().subscribe({
-      next: (quantity: any) => {
-        this.cartQuantity = quantity;
-      },
-      error: (error: any) => {
-       console.log(error)
-      }
+    this.cartService.getCartQuantity().subscribe((quantity: number) => {
+      this.cartQuantity = quantity;
     });
   }
 

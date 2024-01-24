@@ -71,6 +71,8 @@ export class ProductComponent implements OnInit, OnDestroy {
       next: (res: any) => {
         const cartItem = res?.body;
         this.toast.success('Succesvol toegevoegd');
+        const quantity = res.body.item_count;
+        this.cartService.updateCartQuantity(quantity)
       },
       error: (error: any) => {
         console.log(error);

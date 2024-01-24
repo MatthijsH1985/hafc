@@ -43,6 +43,8 @@ export class CartComponent implements OnInit, OnDestroy {
     this.cartService.updateCartItem(updatedCartItem).subscribe({
       next: (response: any) => {
         this.fetchCart();
+        const quantity = response.item_count;
+        this.cartService.updateCartQuantity(quantity);
         this.cdr.detectChanges();
       },
       error: (error: any) => {

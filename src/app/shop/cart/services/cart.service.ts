@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Config} from "../../../model/config";
 import {ConfigService} from "../../../core/services/config.service";
@@ -11,8 +11,7 @@ import  _ from 'lodash';
 
 export class CartService {
   headers: HttpHeaders = new HttpHeaders();
-  private cartContentSubject = new BehaviorSubject<any>({ quantity: 0 });
-  cartContent$ = this.cartContentSubject.asObservable();
+  private cartQuantitySubject = new Subject<number>();
 
   getHeaders(): HttpHeaders {
     this.headers = new HttpHeaders({
@@ -21,7 +20,9 @@ export class CartService {
     return this.headers;
   }
 
-  constructor(private http: HttpClient, private sessionService: SessionService, private configService: ConfigService) {}
+  constructor(private http: HttpClient, private sessionService: SessionService, private configService: ConfigService) {
+    this.updateCartQuantityFromServer();
+  }
 
   getCart(): Observable<Config[]> {
     const httpOptions = {
@@ -63,8 +64,13 @@ export class CartService {
     return this.http.get<Config[]>(environment.shopUrlCustom + '/cart/totals', httpOptions);
   }
 
-  updateCartQuantity(cartContent: any) {
-    this.cartContentSubject.next(cartContent);
+  getCartQuantity(): Observable<number> {
+    return this.cartQuantitySubject.asObservable();
+  }
+
+  updateCartQuantity(quantity: number): void {
+    console.log(quantity);
+    this.cartQuantitySubject.next(quantity);
   }
 
   addToCart(cartData: string): Observable<Config[]> {
@@ -88,6 +94,17 @@ export class CartService {
     return this.http.post<Config[]>(environment.shopUrlCustom + `/cart/item/${cartItemKey}`, {
       quantity: updatedQuantity
     }, httpOptions);
+  }
+
+  private updateCartQuantityFromServer(): void {
+    this.getCartCount().subscribe({
+      next: (quantity: any) => {
+        this.updateCartQuantity(quantity);
+      },
+      error: (error) => {
+        console.log(error)
+    }
+    })
   }
 
 }

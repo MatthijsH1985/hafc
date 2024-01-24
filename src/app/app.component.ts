@@ -3,7 +3,6 @@ import {slideInAnimation} from "./core/shared/animations";
 import {LoadingIndicatorService} from "./core/shared/loading-indicator/loading-indicator.service";
 import {TranslateService} from "@ngx-translate/core";
 import {BehaviorSubject} from 'rxjs';
-import Hotjar from '@hotjar/browser';
 
 
 @Component({
@@ -28,8 +27,8 @@ export class AppComponent implements OnInit {
     this.loadingIndicatorService.loading$.subscribe((loading) => {
       this.loading = loading
     });
-    // const hotjarVersion = 6;
-    // Hotjar.init(this.hotjarId, hotjarVersion);
+  //   const hotjarVersion = 6;
+  //   Hotjar.init(this.hotjarId, hotjarVersion);
   }
 
 }
