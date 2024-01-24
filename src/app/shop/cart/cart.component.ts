@@ -5,6 +5,7 @@ import { formatCurrency } from '@angular/common';
 import { FormControl, FormGroup } from '@angular/forms';
 import {CartService} from '../cart/services/cart.service';
 import {Cart, CartItem} from '../model/cart.model';
+import {faTimes} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-cart',
@@ -72,8 +73,16 @@ export class CartComponent implements OnInit, OnDestroy {
   onRemoveFromCart(item: any) {
     this.cartService.removeItemFromCart(item).subscribe({
       next: (response: any) => {
-        this.fetchCart()
-        this.cdr.detectChanges()
+        console.log(response)
+        this.cartService.updateCartQuantity(response.items.length);
+        if (response.items.length > 0) {
+          this.fetchCart();
+          this.cdr.detectChanges()
+        } else {
+          this.emptyString = 'Je winkelwagen is leeg';
+          this.cart.cartItems = [];
+        }
+
       },
       error: (error: any) => {
         console.log(error);
@@ -120,4 +129,5 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   protected readonly Object = Object;
+  protected readonly faTimes = faTimes;
 }

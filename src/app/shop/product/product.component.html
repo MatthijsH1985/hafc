@@ -1,6 +1,6 @@
 <div class="flex flex-col min-h-screen">
   <div class="container max-w-[1200px] relative z-10 ml-auto mr-auto">
-    <div class="md:h-[550px] m-h-[450px] overflow-hidden relative min-h-[550px]">
+    <div class="m-h-[450px] overflow-hidden relative min-h-[550px]">
       <div class="grid grid-cols-2 bg-white" *ngIf="product">
         <div class="w-[500px] h-[500px] flex items-center justify-center p-4 bg-white">
           <img [srcset]="product?.images[0].src" [alt]="product.name" class="w-full border border-gray-200" />
@@ -10,13 +10,12 @@
           <div class="">
             <h3 class="line-through text-xl text-black opacity-50">{{ product?.sale_price | currency: 'EUR' }}</h3>
             <h3 class="text-blue-500 text-2xl">{{ product?.regular_price | currency: 'EUR' }}</h3>
-            <h3 class="flex">Omschrijving</h3>
-            <div [innerHTML]="product?.description"></div>
-            <div class="flex">
-              <form [formGroup]="productFormData" (ngSubmit)="onAddToCart(productFormData) ">
+            <div [innerHTML]="product?.description" class="product-content"></div>
+            <div class="flex mt-8 pt-8 border-t border-gray-200">
+              <form [formGroup]="productFormData" (ngSubmit)="onAddToCart(productFormData)">
                 <input type="hidden" formControlName="product_id" />
-                <input type="number" placeholder="Aantal" formControlName="quantity" />
-                <button type="submit" class="bg-blue-500 text-white p-2">
+                <input type="number"  placeholder="Aantal" formControlName="quantity" class="w-[50px] rounded-tl-md rounded-bl-md" />
+                <button type="submit" class="button button-blue rounded-tl-none rounded-bl-none rounded-tr-md rounded-br-md">
                   Bestel nu
                 </button>
               </form>

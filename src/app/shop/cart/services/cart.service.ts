@@ -69,7 +69,6 @@ export class CartService {
   }
 
   updateCartQuantity(quantity: number): void {
-    console.log(quantity);
     this.cartQuantitySubject.next(quantity);
   }
 
