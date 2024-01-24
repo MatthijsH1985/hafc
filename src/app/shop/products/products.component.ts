@@ -11,10 +11,12 @@ export class ProductsComponent implements OnInit, OnDestroy {
   constructor(private productsService: ProductsService) {}
   productsSub: Subscription = new Subscription();
   products: any = [];
+  noProductsMessage = '';
   ngOnInit() {
     this.productsSub = this.productsService.getProducts(1, 830).subscribe({
       next: (products: any) => {
         this.products = products;
+        this.noProductsMessage = 'Geen producten gevonden';
       },
       error: (error: any) => {
         console.log(error);
