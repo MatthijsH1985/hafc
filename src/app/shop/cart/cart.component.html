@@ -11,7 +11,7 @@
         </p>
         <form [formGroup]="formData">
           <div *ngFor="let cartItem of cart?.cartItems;" class="flex space-x-4 space-y-2 w-full border-b border-gray-300">
-            <a [routerLink]="convertLink(cartItem.permalink)" class="flex">
+            <a [routerLink]="convertLink(cartItem.permalink)" (click)="convertLink(cartItem.permalink)" class="flex">
               <div class="p-2 m-4">
                 <img [srcset]="cartItem?.featured_image" class="block border border-gray-300"/>
               </div>

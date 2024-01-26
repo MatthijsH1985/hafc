@@ -3,7 +3,7 @@
     <div class="m-h-[450px] overflow-hidden relative min-h-[550px]">
       <div class="grid grid-cols-2 bg-white" *ngIf="product">
         <div class="w-[500px] h-[500px] flex items-center justify-center p-4 bg-white">
-          <img [srcset]="product?.images[0].src" [alt]="product.name" class="w-full border border-gray-200" />
+          <img [srcset]="product?.images[0].src" [alt]="product.name" class="w-full border border-gray-200 rounded-md" />
         </div>
         <div class="bg-white p-8">
           <h1 class="text-black text-3xl" [innerHTML]="product?.name"></h1>
@@ -19,6 +19,21 @@
                   Bestel nu
                 </button>
               </form>
+            </div>
+            <div class="mt-4 p-4 border border-gray-200 rounded-md">
+              <h4 class="text-xl font-bold mb-4">Specificaties</h4>
+              <ul>
+                <li class="flex flex-col mb-4" *ngFor="let attribute of product?.attributes">
+                  <div class="flex flex-col">
+                    <div *ngIf="attribute.visible" class="flex">
+                      <span class="capitalize font-bold inline-block w-[220px]">{{ attribute.name }}</span>
+                      <span class="" *ngFor="let option of attribute.options">
+                        {{ option }}
+                      </span>
+                    </div>
+                  </div>
+                </li>
+              </ul>
             </div>
           </div>
         </div>

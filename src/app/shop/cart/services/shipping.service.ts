@@ -4,8 +4,6 @@ import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Config} from "../../../model/config";
 import {ConfigService} from "../../../core/services/config.service";
 import {environment} from '../../../../environments/environment';
-import {SessionService} from '../../services/session';
-import  _ from 'lodash';
 
 @Injectable()
 

@@ -47,6 +47,7 @@ export class ProductComponent implements OnInit, OnDestroy {
     this.productSub = this.productsService.getProduct(slug).subscribe({
       next: (product: any) => {
         this.product = product[0];
+        console.log(this.product);
         this.productFormData = new FormGroup({
           product_id: new FormControl(this.product.id, Validators.required),
           quantity: new FormControl('1', Validators.required),

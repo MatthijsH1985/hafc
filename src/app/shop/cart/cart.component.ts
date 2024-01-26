@@ -33,7 +33,7 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   convertLink(permalink: string) {
-    const parts = permalink.replace('https://hafc_site.test', 'shop/').split('/');
+    const parts = permalink.replace('https://backend.hafc.nl', 'shop/').split('/');
     const urlParts = parts.filter((deel) => deel.trim() !== '');
     return [''].concat(urlParts);
   }
