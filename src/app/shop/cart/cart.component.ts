@@ -61,7 +61,6 @@ export class CartComponent implements OnInit, OnDestroy {
   onRemoveFromCart(item: any) {
     this.cartService.removeItemFromCart(item).subscribe({
       next: (response: any) => {
-        console.log(response)
         this.cartService.updateCartQuantity(response.items.length);
         if (response.items.length > 0) {
           this.fetchCart();
@@ -70,7 +69,6 @@ export class CartComponent implements OnInit, OnDestroy {
           this.emptyString = 'Je winkelwagen is leeg';
           this.cart.cartItems = [];
         }
-
       },
       error: (error: any) => {
         console.log(error);

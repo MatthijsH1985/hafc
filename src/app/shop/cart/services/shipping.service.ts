@@ -9,8 +9,6 @@ import {environment} from '../../../../environments/environment';
 
 export class ShippingService {
   headers: HttpHeaders = new HttpHeaders();
-  private cartContentSubject = new BehaviorSubject<any>({ quantity: 0 });
-  cartContent$ = this.cartContentSubject.asObservable();
 
   getHeaders(): HttpHeaders {
     this.headers = new HttpHeaders({
