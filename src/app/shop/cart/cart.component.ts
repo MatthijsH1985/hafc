@@ -79,6 +79,7 @@ export class CartComponent implements OnInit, OnDestroy {
   private fetchCart(): void {
     this.cartService.getCart().subscribe({
       next: (response: any) => {
+        console.log(response)
         if (typeof response === 'string' && response.includes('No items in the cart.')) {
           this.emptyString = 'Je winkelwagen is leeg';
           this.cart.cartItems = [];
