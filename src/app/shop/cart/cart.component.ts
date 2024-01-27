@@ -29,7 +29,9 @@ export class CartComponent implements OnInit, OnDestroy {
   constructor(private cartService: CartService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
-    this.fetchCart();
+    setTimeout(() => {
+      this.fetchCart();
+    }, 200)
   }
 
   convertLink(permalink: string) {
