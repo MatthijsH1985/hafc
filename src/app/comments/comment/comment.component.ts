@@ -36,7 +36,6 @@ export class CommentComponent implements OnInit {
     @Input() comments: any | undefined;
 
     ngOnInit() {
-
     }
 
     isReplyButtonVisible(): boolean {
