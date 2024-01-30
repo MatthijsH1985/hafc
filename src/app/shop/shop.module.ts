@@ -13,7 +13,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { CheckoutComponent } from './checkout/checkout.component';
 import {ShippingService} from './services/shipping.service';
 import {OrdersServices} from './services/orders.services';
-import { ConfirmationComponent } from './checkout/confirmation/confirmation.component';
 
 @NgModule({
   declarations: [
@@ -21,8 +20,7 @@ import { ConfirmationComponent } from './checkout/confirmation/confirmation.comp
     CartComponent,
     ProductComponent,
     ProductsComponent,
-    CheckoutComponent,
-    ConfirmationComponent
+    CheckoutComponent
   ],
   imports: [
     CommonModule,
