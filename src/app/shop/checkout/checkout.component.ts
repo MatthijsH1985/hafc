@@ -3,6 +3,7 @@ import {CartService} from '../services/cart.service';
 import {Cart, CartItem} from '../model/cart.model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {OrdersServices} from '../services/orders.services';
+import {LoadingIndicatorService} from '../../core/shared/loading-indicator/loading-indicator.service';
 
 @Component({
   selector: 'app-checkout',
@@ -27,7 +28,9 @@ export class CheckoutComponent implements OnInit {
   };
   checkoutData: FormGroup = new FormGroup({});
 
-  constructor( private cartService: CartService, private ordersService: OrdersServices) {
+  constructor( private cartService: CartService,
+               private loadingIndicatorService:LoadingIndicatorService,
+               private ordersService: OrdersServices) {
     this.formData = new FormGroup({
       firstName: new FormControl('', Validators.required),
       lastName: new FormControl('', Validators.required),
@@ -154,9 +157,13 @@ export class CheckoutComponent implements OnInit {
   }
 
   private onPlaceOrder(orderData: any) {
+    this.loadingIndicatorService.setLoading(true);
     this.ordersService.addOrder(orderData).subscribe({
       next: (response: any) => {
-        console.log(response);
+        setTimeout(() => {
+          this.loadingIndicatorService.setLoading(false);
+          window.open(response.body.payment_url);
+        }, 1000)
       },
       error: (error: any) => {
         console.log(error);
