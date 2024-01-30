@@ -3,7 +3,7 @@ import {AuthService} from "../../services/auth/auth-service";
 import {MenuService} from "../../services/menu.service";
 import {faChevronDown, faBeer, faShoppingCart} from '@fortawesome/free-solid-svg-icons';
 import {SessionService} from '../../shop/services/session';
-import {CartService} from '../../shop/cart/services/cart.service';
+import {CartService} from '../../shop/services/cart.service';
 import {map, Subscription} from 'rxjs';
 import {isPlatformBrowser} from '@angular/common';
 

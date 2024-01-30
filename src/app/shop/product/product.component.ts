@@ -3,7 +3,7 @@ import {ProductsService} from '../services/products.service';
 import {Subscription} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
 import {faChevronDown} from '@fortawesome/free-solid-svg-icons';
-import {CartService} from '../cart/services/cart.service';
+import {CartService} from '../services/cart.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {SessionService} from '../services/session';
 import {Toast, ToastrService} from 'ngx-toastr';
@@ -76,6 +76,7 @@ export class ProductComponent implements OnInit, OnDestroy {
         this.cartService.updateCartQuantity(quantity)
       },
       error: (error: any) => {
+        console.log(error)
         this.toast.error(error.error.code);
       }
     })

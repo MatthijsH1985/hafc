@@ -1,11 +1,12 @@
 
 import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import { Subscription } from 'rxjs';
-import { formatCurrency } from '@angular/common';
 import { FormControl, FormGroup } from '@angular/forms';
-import {CartService} from '../cart/services/cart.service';
+import {CartService} from '../services/cart.service';
 import {Cart, CartItem} from '../model/cart.model';
 import {faTimes} from '@fortawesome/free-solid-svg-icons';
+import {ShippingService} from '../services/shipping.service';
+import {ShippingMethod} from '../model/shipping-method.model';
 
 @Component({
   selector: 'app-cart',
@@ -23,15 +24,34 @@ export class CartComponent implements OnInit, OnDestroy {
       total_tax: 0,
       total: '',
       quantity: 0,
-    },
+      shipping_total: 0,
+      shipping_tax: 0,
+    }
   };
 
-  constructor(private cartService: CartService, private cdr: ChangeDetectorRef) {}
+  shippingMethods: ShippingMethod[] = [];
+  shippingClasses: any;
+
+  constructor(private cartService: CartService, private shippingService: ShippingService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
-    setTimeout(() => {
-      this.fetchCart();
-    }, 200)
+    this.fetchCart();
+    this.fetchShippingClasses();
+  }
+
+  fixedNumber(price: any) {
+    return price.toFixed(1);
+  }
+
+  calcIncTax(price: any) {
+    return price.total + price.tax;
+  }
+
+  calculateShippingInclBtw(shippingExTax: any, shippingTax: any): string {
+    const shippingExTaxParsed = parseFloat(shippingExTax);
+    const shippingTaxParsed = parseFloat(shippingTax);
+    const shippingInBtw = shippingExTaxParsed + shippingTaxParsed;
+    return (shippingInBtw).toFixed(2);
   }
 
   convertLink(permalink: string) {
@@ -60,6 +80,17 @@ export class CartComponent implements OnInit, OnDestroy {
     return Number(amount);
   }
 
+  private fetchShippingClasses() {
+    this.shippingService.getShippingClasses().subscribe({
+      next: (response: any) => {
+        this.shippingClasses = response;
+      },
+      error: (error: any) => {
+        console.log(error);
+      }
+    });
+  }
+
   onRemoveFromCart(item: any) {
     this.cartService.removeItemFromCart(item).subscribe({
       next: (response: any) => {
@@ -81,7 +112,6 @@ export class CartComponent implements OnInit, OnDestroy {
   private fetchCart(): void {
     this.cartService.getCart().subscribe({
       next: (response: any) => {
-        console.log(response)
         if (typeof response === 'string' && response.includes('No items in the cart.')) {
           this.emptyString = 'Je winkelwagen is leeg';
           this.cart.cartItems = [];
@@ -93,6 +123,7 @@ export class CartComponent implements OnInit, OnDestroy {
             this.formData.addControl(controlName, quantityControl);
             this.cart.cartItems = cartItemsArray;
           });
+          console.log(response)
         }
         this.fetchCartTotals();
       },
@@ -106,6 +137,7 @@ export class CartComponent implements OnInit, OnDestroy {
     this.cartService.getCartTotals().subscribe({
       next: (response: any) => {
         this.cart.cartTotals = response;
+        console.log(this.cart.cartTotals)
       },
       error: (error: any) => {
         console.log(error);

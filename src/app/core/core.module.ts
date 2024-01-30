@@ -24,7 +24,7 @@ import {MetaService} from "./services/meta.service";
 import {AdsModule} from "../ads/ads.module";
 import {PositiveNumberPipe} from "./shared/positive-number/positive-number.pipe";
 import {PreloaderComponent} from "./shared/preloader/preloader.component";
-import {CartService} from '../shop/cart/services/cart.service';
+import {CartService} from '../shop/services/cart.service';
 import {SafePipe} from './shared/safe.pipe';
 import { CreditsComponent } from './footer/credits/credits.component';
 import {AdsComponent} from '../ads/ads/ads.component';

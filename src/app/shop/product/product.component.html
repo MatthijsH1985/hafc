@@ -8,8 +8,8 @@
         <div class="bg-white p-8">
           <h1 class="text-black text-3xl" [innerHTML]="product?.name"></h1>
           <div class="">
-            <h3 class="line-through text-xl text-black opacity-50">{{ product?.regular_price | currency: 'EUR' }}</h3>
-            <h3 class="text-blue-500 text-2xl">{{ product?.sale_price | currency: 'EUR' }}</h3>
+            <h3 class="text-xl text-blue-500 text-black" [ngClass]="{'line-trough opacity-50 text-gray-800': product?.sale_price}">{{ product?.regular_price * 1.21 | currency: 'EUR' }}</h3>
+            <h3 class="text-blue-500 text-2xl" *ngIf="product?.sale_price">{{ product?.sale_price | currency: 'EUR' }}</h3>
             <div [innerHTML]="product?.description" class="product-content"></div>
             <div class="flex mt-8 pt-8 border-t border-gray-200">
               <form [formGroup]="productFormData" (ngSubmit)="onAddToCart(productFormData)">

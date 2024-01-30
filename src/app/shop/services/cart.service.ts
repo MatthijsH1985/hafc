@@ -1,17 +1,21 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable, Subject} from 'rxjs';
+import {BehaviorSubject, forkJoin, map, Observable, of, Subject, switchMap, tap} from 'rxjs';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
-import {Config} from "../../../model/config";
-import {ConfigService} from "../../../core/services/config.service";
-import {environment} from '../../../../environments/environment';
-import {SessionService} from '../../services/session';
+import {Config} from "../../model/config";
+import {ConfigService} from "../../core/services/config.service";
+import {environment} from '../../../environments/environment';
+import {SessionService} from './session';
 import  _ from 'lodash';
+import {catchError} from 'rxjs/operators';
 
 @Injectable()
 
 export class CartService {
   headers: HttpHeaders = new HttpHeaders();
   private cartQuantitySubject = new Subject<number>();
+
+  private cartSubject = new BehaviorSubject<any[]>([]);
+  cart$: Observable<any[]> = this.cartSubject.asObservable();
 
   getHeaders(): HttpHeaders {
     this.headers = new HttpHeaders({
@@ -24,12 +28,53 @@ export class CartService {
     this.updateCartQuantityFromServer();
   }
 
-  getCart(): Observable<Config[]> {
+  getLineItems(): Observable<any[]> {
+    return this.cart$.pipe(
+      switchMap((cartItems) => {
+        const lineItems$ = cartItems.map((cartItem) => {
+          console.log(cartItem)
+          if (cartItem.product) {
+            // Als de productgegevens al in de winkelwagen zitten, gebruik deze direct
+            return of({
+              product_id: cartItem.product.id,
+              quantity: cartItem.quantity.value,
+              // Voeg andere relevante velden van productDetails toe indien nodig
+            });
+          } else {
+            // Doe iets als er geen productgegevens beschikbaar zijn (bijv. foutafhandeling)
+            return of(null);
+          }
+        });
+
+        return forkJoin(lineItems$).pipe(
+          map((lineItems: any) => lineItems.filter((item: any) => item !== null))
+        );
+      })
+    );
+  }
+  // getCart(): Observable<Config[]> {
+  //   const httpOptions = {
+  //     headers: this.getHeaders(),
+  //     withCredentials: true
+  //   };
+  //   return this.http.get<Config[]>(environment.shopUrlCustom + '/cart/items', httpOptions);
+  // }
+
+  getCart(): Observable<any[]> {
     const httpOptions = {
       headers: this.getHeaders(),
       withCredentials: true
     };
-    return this.http.get<Config[]>(environment.shopUrlCustom + '/cart/items', httpOptions);
+
+    return this.http.get<any[]>(environment.shopUrlCustom + '/cart/items', httpOptions).pipe(
+      tap(cartItems => {
+        this.cartSubject.next(cartItems);
+      }),
+      catchError(error => {
+        console.error('Error getting cart:', error);
+        return [];
+      })
+    );
   }
 
   clearCart(cartKey: any): Observable<Config[]> {

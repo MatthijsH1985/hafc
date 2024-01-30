@@ -5,10 +5,13 @@ export interface Cart {
     total: string;
     total_tax: number;
     quantity: number;
+    shipping_total: number;
+    shipping_tax: number;
   };
 }
 
 export interface CartItem {
+  id: number;
   item_key: string;
   title: string;
   featured_image: string;

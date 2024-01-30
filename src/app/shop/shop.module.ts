@@ -8,10 +8,12 @@ import { ShopHomepageComponent } from './shophomepage/shophomepage.component';
 import { CartComponent } from './cart/cart.component';
 import { ProductComponent } from './product/product.component';
 import { ProductsComponent } from './products/products.component';
-import {CartService} from './cart/services/cart.service';
+import {CartService} from './services/cart.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { CheckoutComponent } from './checkout/checkout.component';
-import {ShippingService} from './cart/services/shipping.service';
+import {ShippingService} from './services/shipping.service';
+import {OrdersServices} from './services/orders.services';
+import { ConfirmationComponent } from './checkout/confirmation/confirmation.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import {ShippingService} from './cart/services/shipping.service';
     CartComponent,
     ProductComponent,
     ProductsComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    ConfirmationComponent
   ],
   imports: [
     CommonModule,
@@ -35,7 +38,8 @@ import {ShippingService} from './cart/services/shipping.service';
   providers: [
     ProductsService,
     CartService,
-    ShippingService
+    ShippingService,
+    OrdersServices
   ]
 })
 export class ShopModule { }

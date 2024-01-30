@@ -2,69 +2,80 @@
 <div class="flex flex-col">
   <div class="w-[1200px] relative z-10 ml-auto mr-auto">
     <a [routerLink]="['/', 'shop', 'winkelwagen']" class="mb-4 inline-block">Terug naar winkelwagen</a>
-    <div class="flex space-x-4 mb-12">
-      <div class="w-2/3 p-8 bg-white mr-8">
-        <h1 class="text-2xl ml-4 mb-4">Afrekenen</h1>
-        <form>
-          <div class="flex space-x-2 mb-4">
-            <div class="flex flex-1 flex-col">
-              <label>Voornaam</label>
-              <input type="text" placeholder="Voer je voornaam in" />
+    <form [formGroup]="formData" (submit)="onProceedPayment(formData)">
+      <div class="flex space-x-4 mb-12">
+        <div class="w-2/3 p-8 bg-white mr-8">
+          <h1 class="text-2xl ml-4 mb-4">Afrekenen</h1>
+            <div class="flex space-x-2 mb-4">
+              <div class="flex flex-1 flex-col">
+                <label>Voornaam</label>
+                <input type="text" formControlName="firstName" placeholder="Voer je voornaam in" />
+              </div>
+              <div class="flex flex-1 flex-col">
+                <label>Achternaam</label>
+                <input type="text" formControlName="lastName" placeholder="Voer je achternaam in" />
+              </div>
             </div>
-            <div class="flex flex-1 flex-col">
-              <label>Achternaam</label>
-              <input type="text" placeholder="Voer je achternaam in" />
+            <div class="flex items-start space-x-2 mb-4">
+              <div class="flex flex-col w-[120px]">
+                <label>Postcode</label>
+                <input type="text" formControlName="zipCode" placeholder="XXXX-XX" class="w-8" />
+              </div>
+              <div class="flex flex-col w-[70px]">
+                <label>Huisnummer</label>
+                <input type="text" placeholder="XX" formControlName="houseNumber" class="w-[50px]" />
+              </div>
+            </div>
+          <div class="flex space-x-2">
+            <div class="w-[50%] mb-4">
+              <div class="flex flex-col">
+                <label>Adres</label>
+                <input type="text" formControlName="address_1" placeholder="Voer je adres in" />
+              </div>
+            </div>
+            <div class="w-[50%] mb-4">
+              <div class="flex flex-col">
+                <label>Woonplaats</label>
+                <input type="text" formControlName="city" placeholder="Voer je woonplaats in" />
+              </div>
             </div>
           </div>
-          <div class="w-[50%] mb-4">
-            <div class="flex flex-col">
-              <label>Adres</label>
-              <input type="text" placeholder="Voer je adres in" />
+          <div class="flex space-x-2">
+            <div class="w-[50%] mb-4">
+              <div class="flex flex-col">
+                <label>E-mail</label>
+                <input type="text" formControlName="email" placeholder="naam@provider.nl" />
+              </div>
             </div>
-          </div>
-          <div class="flex items-start space-x-2">
-            <div class="flex flex-col w-[120px]">
-              <label>Postcode</label>
-              <input type="text" placeholder="Postcode in" class="w-8" />
+            <div class="w-[50%] mb-4">
+              <div class="flex flex-col">
+                <label>E-mail</label>
+                <input type="text" formControlName="phone" placeholder="+316" />
+              </div>
             </div>
-            <div class="flex flex-col w-[70px]">
-              <label>Huisnummer</label>
-              <input type="text" placeholder="Huisnummer" class="w-[50px]" />
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="w-1/3">
-        <div class="bg-white p-8 mb-8">
-          <h3 class="text-2xl mb-4">Totaal</h3>
-          <div class="table-row">
-            <div class="table-cell"></div>
-            <div class="table-cell"></div>
-            <div class="table-cell">BTW {{ cart.cartTotals.total_tax | currency: 'EUR' }}</div>
-          </div>
-          <div class="table-row">
-            <div class="table-cell"></div>
-            <div class="table-cell"></div>
-            <div class="table-cell">Totaal {{ toNumber(cart.cartTotals.total) | currency: 'EUR' }}</div>
           </div>
         </div>
-        <div class="p-8 bg-white">
-          <h3 class="text-xl mb-4">Verzending</h3>
-          <ul class="flex flex-col space-y-2">
-            <li *ngFor="let shippingMethod of shippingMethods; let i = index;">
-              <label [for]="'shipping-method-' + i">
-                <input type="radio" name="shipping-method" [id]="'shipping-method-' + i" class="mr-2" />
-                {{ shippingMethod.title }}
-              </label>
-            </li>
-          </ul>
-          <div class="mt-4">
-            <a class="button button-blue">
-              Nu betalen
-            </a>
+        <div class="w-1/3">
+          <div class="bg-white p-8 mb-8">
+            <h3 class="text-2xl mb-4">Totaal</h3>
+            <div class="table-row">
+              <div class="table-cell"></div>
+              <div class="table-cell"></div>
+              <div class="table-cell">Verzending {{ calculateShippingInclBtw(cart.cartTotals.shipping_total, cart.cartTotals.shipping_tax) | currency: 'EUR' }}</div>
+            </div>
+            <div class="table-row">
+              <div class="table-cell"></div>
+              <div class="table-cell"></div>
+              <div class="table-cell">Totaal {{ fixedNumber(toNumber(cart.cartTotals.total)) | currency: 'EUR' }}</div>
+            </div>
+            <div class="mt-4">
+              <button type="submit" class="button button-blue" >
+                Nu betalen
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </form>
   </div>
 </div>
