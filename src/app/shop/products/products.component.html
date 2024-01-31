@@ -3,7 +3,7 @@
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
     <a *ngFor="let product of products" class="dark:bg-black bg-white dark: bg-black m-4 p-4 border-b hover:border-b-black" [routerLink]="['/', 'shop', 'product', product?.slug]">
       <div class="flex items-center justify-center p-4 bg-white dark:bg-black h-[250px]">
-        <img [srcset]="product?.images[0].src" [alt]="product.name" class="w-full border border-gray-200" />
+        <img [srcset]="product?.images[0].src" [alt]="product.name" class="w-[80%] block border border-gray-200" />
       </div>
       <div class="flex flex-col p-4">
         <h2 [innerHTML]="product?.name" class="mb-4 dark:text-white"></h2>
