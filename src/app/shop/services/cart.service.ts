@@ -25,33 +25,16 @@ export class CartService {
   }
 
   constructor(private http: HttpClient, private sessionService: SessionService, private configService: ConfigService) {
-    this.updateCartQuantityFromServer();
+    this.getCartCount().subscribe({
+      next: (quantity: any) => {
+        this.cartQuantitySubject.next(quantity);
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
   }
 
-  getLineItems(): Observable<any[]> {
-    return this.cart$.pipe(
-      switchMap((cartItems) => {
-        const lineItems$ = cartItems.map((cartItem) => {
-          console.log(cartItem)
-          if (cartItem.product) {
-            // Als de productgegevens al in de winkelwagen zitten, gebruik deze direct
-            return of({
-              product_id: cartItem.product.id,
-              quantity: cartItem.quantity.value,
-              // Voeg andere relevante velden van productDetails toe indien nodig
-            });
-          } else {
-            // Doe iets als er geen productgegevens beschikbaar zijn (bijv. foutafhandeling)
-            return of(null);
-          }
-        });
-
-        return forkJoin(lineItems$).pipe(
-          map((lineItems: any) => lineItems.filter((item: any) => item !== null))
-        );
-      })
-    );
-  }
   // getCart(): Observable<Config[]> {
   //   const httpOptions = {
   //     headers: this.getHeaders(),
@@ -138,17 +121,6 @@ export class CartService {
     return this.http.post<Config[]>(environment.shopUrlCustom + `/cart/item/${cartItemKey}`, {
       quantity: updatedQuantity
     }, httpOptions);
-  }
-
-  private updateCartQuantityFromServer(): void {
-    this.getCartCount().subscribe({
-      next: (quantity: any) => {
-        this.updateCartQuantity(quantity);
-      },
-      error: (error) => {
-        console.log(error)
-    }
-    })
   }
 
 }
