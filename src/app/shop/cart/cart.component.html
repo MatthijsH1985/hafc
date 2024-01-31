@@ -2,10 +2,10 @@
   <div class="w-auto relative z-10 ml-auto mr-auto">
     <h1 class=" mt-16 text-2xl mb-4 dark:text-white text-center">Winkelwagen</h1>
     <div class="mt-16 flex flex-col p-4 md:p-4 md:flex-row md:space-x-4 justify-start items-start mb-12">
-      <div class="w-full mt-4 md:mt-0 md:w-2/3 mb-8 md:mb-0 p-8 dark:bg-black bg-white mr-0 md:mr-8 sticky top-0 rounded-md">
-        <p *ngIf="emptyString !== ''" class="p-4 bg-orange-200 text-orange-800 rounded-md">
-          {{ emptyString }}
-        </p>
+      <p *ngIf="emptyString !== ''" class="p-4 bg-orange-200 text-orange-800 rounded-md">
+        {{ emptyString }}
+      </p>
+      <div *ngIf="emptyString ===''" class="w-full mt-4 md:mt-0 md:w-2/3 mb-8 md:mb-0 p-8 dark:bg-black bg-white mr-0 md:mr-8 sticky top-0 rounded-md">
         <form [formGroup]="formData">
           <div *ngFor="let cartItem of cart?.cartItems;" class="flex space-x-2 md:space-x-4 space-y-2 w-full border-b border-gray-300">
             <a [routerLink]="convertLink(cartItem.permalink)" (click)="convertLink(cartItem.permalink)" class="flex">
