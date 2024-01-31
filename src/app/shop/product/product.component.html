@@ -1,8 +1,8 @@
 <div class="flex flex-col min-h-screen">
   <div class="container max-w-[1200px] relative z-10 ml-auto mr-auto">
     <div class="m-h-[450px] overflow-hidden relative min-h-[550px]">
-      <div class="grid grid-cols-2 bg-white" *ngIf="product">
-        <div class="w-[500px] h-[500px] flex items-center justify-center p-4 bg-white">
+      <div class="grid md:grid-cols-2 bg-white" *ngIf="product">
+        <div class="h-[500px] flex items-center justify-center p-4 bg-white">
           <img [srcset]="product?.images[0].src" [alt]="product.name" class="w-full border border-gray-200 rounded-md" />
         </div>
         <div class="bg-white p-8">
