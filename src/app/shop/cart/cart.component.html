@@ -1,8 +1,8 @@
-<div class="flex flex-col">
+<div class="flex flex-col min-h-[100vh]">
   <div class="w-auto relative z-10 ml-auto mr-auto">
-    <div class="flex flex-col p-4 md:p-4 md:flex-row md:space-x-4 justify-start items-start mb-12">
-      <div class="w-full mt-4 md:w-2/3 mb-8 md:mb-0 p-8 dark:bg-black bg-white mr-0 md:mr-8 sticky top-0 rounded-md">
-        <h1 class="text-2xl mb-4 dark:text-white text-center md:text-left">Winkelwagen</h1>
+    <h1 class=" mt-16 text-2xl mb-4 dark:text-white text-center">Winkelwagen</h1>
+    <div class="mt-16 flex flex-col p-4 md:p-4 md:flex-row md:space-x-4 justify-start items-start mb-12">
+      <div class="w-full mt-4 md:mt-0 md:w-2/3 mb-8 md:mb-0 p-8 dark:bg-black bg-white mr-0 md:mr-8 sticky top-0 rounded-md">
         <p *ngIf="emptyString !== ''" class="p-4 bg-orange-200 text-orange-800 rounded-md">
           {{ emptyString }}
         </p>

@@ -7,6 +7,7 @@ import {Cart, CartItem} from '../model/cart.model';
 import {faTimes} from '@fortawesome/free-solid-svg-icons';
 import {ShippingService} from '../services/shipping.service';
 import {ShippingMethod} from '../model/shipping-method.model';
+import {LoadingIndicatorService} from '../../core/shared/loading-indicator/loading-indicator.service';
 
 @Component({
   selector: 'app-cart',
@@ -29,12 +30,23 @@ export class CartComponent implements OnInit, OnDestroy {
     }
   };
 
+  loading = false;
+
   shippingMethods: ShippingMethod[] = [];
   shippingClasses: any;
 
-  constructor(private cartService: CartService, private shippingService: ShippingService, private cdr: ChangeDetectorRef) {}
+  constructor(private cartService: CartService, public loadingIndicatorService: LoadingIndicatorService, private shippingService: ShippingService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
+    this.loadingIndicatorService.loading$.subscribe({
+      next: (isloading: any) => {
+        this.loading = isloading;
+      },
+      error: (error: any) => {
+        console.log(error)
+      }
+    })
+    this.loadingIndicatorService.setLoading(true);
     this.fetchCart();
     this.fetchShippingClasses();
   }
@@ -61,10 +73,12 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   onUpdateCart(event: any, cartItem: CartItem) {
+    this.loadingIndicatorService.setLoading(true);
     const updatedQuantity = event.target.value;
     const updatedCartItem = { ...cartItem, quantity: updatedQuantity };
     this.cartService.updateCartItem(updatedCartItem).subscribe({
       next: (response: any) => {
+        this.loadingIndicatorService.setLoading(false);
         this.fetchCart();
         const quantity = response.item_count;
         this.cartService.updateCartQuantity(quantity);
@@ -72,6 +86,7 @@ export class CartComponent implements OnInit, OnDestroy {
       },
       error: (error: any) => {
         console.log(error)
+        this.loadingIndicatorService.setLoading(false);
       }
     })
   }
@@ -81,19 +96,24 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   private fetchShippingClasses() {
+    this.loadingIndicatorService.setLoading(true);
     this.shippingService.getShippingClasses().subscribe({
       next: (response: any) => {
         this.shippingClasses = response;
+        this.loadingIndicatorService.setLoading(false);
       },
       error: (error: any) => {
         console.log(error);
+        this.loadingIndicatorService.setLoading(false);
       }
     });
   }
 
   onRemoveFromCart(item: any) {
+    this.loadingIndicatorService.setLoading(true);
     this.cartService.removeItemFromCart(item).subscribe({
       next: (response: any) => {
+        this.loadingIndicatorService.setLoading(false);
         this.cartService.updateCartQuantity(response.items.length);
         if (response.items.length > 0) {
           this.fetchCart();
@@ -105,11 +125,13 @@ export class CartComponent implements OnInit, OnDestroy {
       },
       error: (error: any) => {
         console.log(error);
+        this.loadingIndicatorService.setLoading(false);
       }
     });
   }
 
   private fetchCart(): void {
+    this.loadingIndicatorService.setLoading(true);
     this.cartService.getCart().subscribe({
       next: (response: any) => {
         if (typeof response === 'string' && response.includes('No items in the cart.')) {
@@ -123,24 +145,27 @@ export class CartComponent implements OnInit, OnDestroy {
             this.formData.addControl(controlName, quantityControl);
             this.cart.cartItems = cartItemsArray;
           });
-          console.log(response)
         }
+        this.loadingIndicatorService.setLoading(false);
         this.fetchCartTotals();
       },
       error: (error: any) => {
         console.log(error);
+        this.loadingIndicatorService.setLoading(false);
       }
     });
   }
 
   private fetchCartTotals() {
+    this.loadingIndicatorService.setLoading(true);
     this.cartService.getCartTotals().subscribe({
       next: (response: any) => {
         this.cart.cartTotals = response;
-        console.log(this.cart.cartTotals)
+        this.loadingIndicatorService.setLoading(false);
       },
       error: (error: any) => {
         console.log(error);
+        this.loadingIndicatorService.setLoading(false);
       }
     });
   }
