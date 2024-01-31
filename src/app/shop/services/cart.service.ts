@@ -25,16 +25,8 @@ export class CartService {
   }
 
   constructor(private http: HttpClient, private sessionService: SessionService, private configService: ConfigService) {
-    this.getCartCount().subscribe({
-      next: (quantity: any) => {
-        this.cartQuantitySubject.next(quantity);
-      },
-      error: (error) => {
-        console.log(error);
-      },
-    });
+    this.updateCartQuantityFromServer();
   }
-
   // getCart(): Observable<Config[]> {
   //   const httpOptions = {
   //     headers: this.getHeaders(),
@@ -121,6 +113,17 @@ export class CartService {
     return this.http.post<Config[]>(environment.shopUrlCustom + `/cart/item/${cartItemKey}`, {
       quantity: updatedQuantity
     }, httpOptions);
+  }
+
+  private updateCartQuantityFromServer(): void {
+    this.getCartCount().subscribe({
+      next: (quantity: any) => {
+        this.updateCartQuantity(quantity);
+      },
+      error: (error) => {
+        console.log(error)
+    }
+    })
   }
 
 }
