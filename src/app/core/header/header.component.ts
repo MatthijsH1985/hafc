@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {MenuService} from "../../services/menu.service";
-import {faStream, faBeer} from "@fortawesome/free-solid-svg-icons";
+import {faStream, faBeer, faTimes} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-header',
@@ -12,4 +12,6 @@ export class HeaderComponent {
   faBeer = faBeer;
   constructor(public menuService: MenuService) {
   }
+
+  protected readonly faTimes = faTimes;
 }

@@ -74,3 +74,6 @@
     </nav>
   </div>
 </div>
+<button class="fixed top-2 right-2 p-4 inline-block md:hidden text-white hover:text-blue-500" *ngIf="menuOpen" (click)="menuService.close()">
+  <fa-icon [icon]="faTimes"></fa-icon>
+</button>

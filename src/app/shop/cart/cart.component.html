@@ -1,23 +1,23 @@
 <div class="flex flex-col">
   <div class="w-auto relative z-10 ml-auto mr-auto">
     <div class="flex flex-col p-4 md:p-4 md:flex-row md:space-x-4 justify-start items-start mb-12">
-      <div class="w-full md:w-2/3 mb-8 md:mb-0 p-8 dark:bg-black bg-white mr-0 md:mr-8 sticky top-0 rounded-md">
-        <h1 class="text-2xl mb-4 dark:text-white">Winkelwagen</h1>
+      <div class="w-full mt-4 md:w-2/3 mb-8 md:mb-0 p-8 dark:bg-black bg-white mr-0 md:mr-8 sticky top-0 rounded-md">
+        <h1 class="text-2xl mb-4 dark:text-white text-center md:text-left">Winkelwagen</h1>
         <p *ngIf="emptyString !== ''" class="p-4 bg-orange-200 text-orange-800 rounded-md">
           {{ emptyString }}
         </p>
         <form [formGroup]="formData">
-          <div *ngFor="let cartItem of cart?.cartItems;" class="flex space-x-4 space-y-2 w-full border-b border-gray-300">
+          <div *ngFor="let cartItem of cart?.cartItems;" class="flex space-x-2 md:space-x-4 space-y-2 w-full border-b border-gray-300">
             <a [routerLink]="convertLink(cartItem.permalink)" (click)="convertLink(cartItem.permalink)" class="flex">
               <div class="p-2 m-4">
-                <img [srcset]="cartItem?.featured_image" class="block border border-gray-300"/>
+                <img [srcset]="cartItem?.featured_image" class="w-[60px] block border border-gray-300"/>
               </div>
               <div class="w-full p-4 dark:text-white">
-                <h2 class="text-xl">{{ cartItem?.title }}</h2>
-                <div class="">{{ fixedNumber(calcIncTax(cartItem?.totals)) | currency: 'EUR' }}</div>
+                <h2 class="text-md md:text-xl">{{ cartItem?.title }}</h2>
+                <div class="text-md md:text-xl">{{ fixedNumber(calcIncTax(cartItem?.totals)) | currency: 'EUR' }}</div>
               </div>
             </a>
-            <div class="flex">
+            <div class="flex flex-1">
               <div class="ml-auto p-4">
                 <input type="text" class="w-[50px]" (blur)="onUpdateCart($event, cartItem)" formControlName="{{'quantity-' + cartItem.item_key}}"  />
               </div>

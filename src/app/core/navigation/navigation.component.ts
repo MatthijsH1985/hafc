@@ -1,7 +1,7 @@
 import {Component, Inject, OnDestroy, OnInit, PLATFORM_ID} from '@angular/core';
 import {AuthService} from "../../services/auth/auth-service";
 import {MenuService} from "../../services/menu.service";
-import {faChevronDown, faBeer, faShoppingCart} from '@fortawesome/free-solid-svg-icons';
+import {faChevronDown, faBeer, faShoppingCart, faTimes} from '@fortawesome/free-solid-svg-icons';
 import {SessionService} from '../../shop/services/session';
 import {CartService} from '../../shop/services/cart.service';
 import {map, Subscription} from 'rxjs';
@@ -21,6 +21,7 @@ export class NavigationComponent implements OnInit, OnDestroy {
   cartSub: Subscription = new Subscription();
   addedProducts: any;
   cartQuantity = 0;
+  menuOpen = false;
 
   constructor(private authService: AuthService,
               private cartService: CartService,
@@ -34,6 +35,14 @@ export class NavigationComponent implements OnInit, OnDestroy {
     this.cartService.getCartQuantity().subscribe((quantity: number) => {
       this.cartQuantity = quantity;
     });
+    this.menuService.isOpen.subscribe({
+      next: (isOpen) => {
+        this.menuOpen = isOpen;
+      },
+      error: (error: any) => {
+        console.log(error);
+      }
+    })
   }
 
   isLoggedIn(): boolean {
@@ -45,4 +54,5 @@ export class NavigationComponent implements OnInit, OnDestroy {
   }
 
   protected readonly faShoppingCart = faShoppingCart;
+  protected readonly faTimes = faTimes;
 }

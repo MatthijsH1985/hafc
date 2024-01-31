@@ -18,6 +18,7 @@ export class ProductComponent implements OnInit, OnDestroy {
   cartSub: Subscription = new Subscription()
   productFormData: FormGroup = new FormGroup({});
   product: any;
+  cartQuantity = 0;
 
   constructor(
     private productsService: ProductsService,
@@ -40,7 +41,9 @@ export class ProductComponent implements OnInit, OnDestroy {
         console.log(error);
       }
     });
-
+    this.cartService.getCartQuantity().subscribe((quantity: number) => {
+      this.cartQuantity = quantity;
+    });
   }
 
   getProduct(slug: string) {
