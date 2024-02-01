@@ -37,7 +37,7 @@ export class AdsComponent implements OnInit{
               this.formattedAds.push(ads[i]);
             }
           }
-          this.randomizeAds(ads);
+          this.randomizeAds(this.formattedAds);
         },
         error: error => {
           console.error(error);
