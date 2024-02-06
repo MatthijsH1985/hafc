@@ -1,7 +1,8 @@
 <app-loading-indicator *ngIf="loading"></app-loading-indicator>
-<div class="flex flex-col min-h-screen animate-fade-up animate-once animate-ease-in-out animate-duration-200" *ngIf="!loading">
+
+<div class="flex flex-col" *ngIf="!loading">
   <div class="container max-w-[1200px] relative z-10 ml-auto mr-auto">
-    <div class="flex flex-wrap gap-4 h-[300px] md:h-[500px]">
+    <div class="md:h-[550px] m-h-[450px] overflow-hidden relative bg-gray-800 min-h-[550px] animate-fade-up animate-once animate-duration-300 animate-ease-linear animate-delay-100">
       <div class="md:h-[550px] m-h-[450px] overflow-hidden relative bg-black min-h-[550px]">
         <a class="relative xl:w-[1200px] h-[300px] flex items-center block xl:h-[600px] block bg-black group" [routerLink]="['../', 'nieuws', headline?.id, headline?.slug]">
           <img [alt]="headline?.title?.rendered" [src]="headline?.better_featured_image?.source_url" class="absolute object-cover object-center w-full h-[550px] object-cover transition-all w-full block opacity-60 group-hover:scale-105 group-hover:opacity-100" />
