@@ -3,6 +3,7 @@ import {Subscription} from "rxjs";
 import {Router} from "@angular/router";
 import {PostsService} from "../../news/services/posts.service";
 import {MetaService} from "../../core/services/meta.service";
+import {LoadingIndicatorService} from '../../core/shared/loading-indicator/loading-indicator.service';
 
 @Component({
   selector: 'app-specials',
@@ -15,7 +16,7 @@ export class SpecialsComponent implements OnInit {
   postPage = 1;
   loading = true;
   postsSub: Subscription | undefined;
-  constructor(private postsService: PostsService, private router: Router, private metaService: MetaService) {}
+  constructor(private postsService: PostsService, private loadingIndicatorService: LoadingIndicatorService, private router: Router, private metaService: MetaService) {}
 
   ngOnInit() {
     this.getPosts();
@@ -28,6 +29,10 @@ export class SpecialsComponent implements OnInit {
       return newDate.toISOString();
     }
     return null;
+  }
+
+  showLoading(): void {
+    this.loadingIndicatorService.setLoading(true);
   }
 
   getPosts(page = 1): void {
