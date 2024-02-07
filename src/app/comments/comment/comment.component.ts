@@ -8,7 +8,6 @@ import {ToastrService} from 'ngx-toastr';
 import * as moment from 'moment';
 import 'moment/locale/nl';
 import {ViewportScroller} from '@angular/common';
-import {comment} from 'postcss';
 
 @Component({
   selector: 'app-comment',
@@ -55,7 +54,6 @@ export class CommentComponent implements OnInit {
 
     onRateComment(score: number, comment: any) {
       const validatedScore = this.validateRating(score);
-      console.log(validatedScore)
       const commentData = JSON.stringify( {
         comment_id: comment.id,
         like_dislike: validatedScore
