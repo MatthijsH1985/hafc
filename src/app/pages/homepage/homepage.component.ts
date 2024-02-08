@@ -49,7 +49,7 @@ export class HomepageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.titleService.setTitle('HAFC - Wij zijn Heracles!');
+    this.titleService.setTitle('HAFC - Wij zijn Heracles');
     this.viewportScroller.scrollToPosition([0, 0]);
     this.headlines = this.route.snapshot.data['headlines'].slice(0,1)[0];
     if (this.headlines.comments_count === 0) {
@@ -70,8 +70,7 @@ export class HomepageComponent implements OnInit {
     // }
 
     this.latestComments = this.route.snapshot.data['latestComments'];
-    this.metaService.setMetaTag('https://www.hafc.nl', 'HAFC.nl is de grootste Heracles community voor en door supporters. Volg hier het laatste nieuws over Heracles en blijf op de hoogte', 'https://backend.hafc.nl/wp-content/uploads/2023/05/nac-heracles.jpg');
-    this.metaService.updateMetaTag('HAFC.nl - Wij zijn Heracles', 'https://www.hafc.nl', 'HAFC.nl is de grootste Heracles community voor en door supporters. Volg hier het laatste nieuws over Heracles en blijf op de hoogte');
+    this.metaService.setMetaTag('https://www.hafc.nl', 'HAFC.nl is de grootste Heracles community voor en door supporters. Volg hier het laatste nieuws en blijf op de hoogte', 'https://backend.hafc.nl/wp-content/uploads/2023/05/nac-heracles.jpg');
   }
 
   isAuthenticated() {
