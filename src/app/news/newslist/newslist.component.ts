@@ -71,6 +71,8 @@ export class NewslistComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnInit() {
     this.posts = this.route.snapshot.data['posts'];
+    console.log(this.posts);
+
   }
 
   getPosts(page: number): void {
@@ -99,6 +101,10 @@ export class NewslistComponent implements OnInit, OnDestroy, AfterViewInit {
 
   onLoadMorePosts() {
     this.getPosts(this.postPage);
+  }
+
+  isSpecial(post: any) {
+    return post.categories.includes(816)
   }
 
   validDateFormat(dateString: any) {
