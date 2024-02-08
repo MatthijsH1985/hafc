@@ -24,6 +24,7 @@ import {isPlatformBrowser} from '@angular/common';
 export class NewslistComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input('pagination') pagination: boolean = true;
   @Input('compact') compact: boolean = false;
+  @Input() showMoreNewsButton = true;
   posts: any = [];
   postsSub: Subscription | undefined;
   loading: boolean = true;
@@ -71,8 +72,6 @@ export class NewslistComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnInit() {
     this.posts = this.route.snapshot.data['posts'];
-    console.log(this.posts);
-
   }
 
   getPosts(page: number): void {
@@ -100,6 +99,7 @@ export class NewslistComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   onLoadMorePosts() {
+    this.postPage++;
     this.getPosts(this.postPage);
   }
 

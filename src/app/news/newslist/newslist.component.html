@@ -18,6 +18,9 @@
       </a>
     </li>
   </ul>
+  <div class="flex justify-center mt-8" *ngIf="showMoreNewsButton">
+    <button (click)="onLoadMorePosts()" class="button button-blue">Meer nieuws</button>
+  </div>
 <!--  <div class="flex justify-center my-8">-->
 <!--    <button (click)="onLoadMorePosts()" *ngIf="posts.length > 10" class="button rounded-md button-blue">Meer nieuws</button>-->
 <!--  </div>-->
