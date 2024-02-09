@@ -15,6 +15,7 @@ import {PostsService} from "../services/posts.service";
 import {LoadingIndicatorService} from "../../core/shared/loading-indicator/loading-indicator.service";
 import {faChevronLeft, faChevronRight} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {CoreModule} from '../../core/core.module';
 
 @Component({
   selector: 'app-newsslider',
@@ -22,12 +23,13 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
   styleUrls: ['./newsslider.component.scss'],
   standalone: true,
   encapsulation: ViewEncapsulation.None,
-  imports: [
-    CommonModule,
-    RouterModule,
-    SwiperDirective,
-    FontAwesomeModule
-  ],
+    imports: [
+        CommonModule,
+        RouterModule,
+        SwiperDirective,
+        FontAwesomeModule,
+        CoreModule
+    ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 

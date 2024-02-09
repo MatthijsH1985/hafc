@@ -72,6 +72,7 @@ export class NewslistComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnInit() {
     this.posts = this.route.snapshot.data['posts'];
+    console.log(this.posts);
   }
 
   getPosts(page: number): void {
