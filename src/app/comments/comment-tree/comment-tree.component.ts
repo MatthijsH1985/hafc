@@ -17,7 +17,7 @@ export class CommentTreeComponent {
   }
 
   isMaxLevelReached(): boolean {
-    return this.commentLevel >= 2;
+    return this.commentLevel >= 1;
   }
 
   protected readonly faShare = faShare;
