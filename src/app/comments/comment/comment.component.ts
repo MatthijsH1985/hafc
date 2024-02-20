@@ -38,7 +38,7 @@ export class CommentComponent implements OnInit {
     }
 
     isReplyButtonVisible(): boolean {
-      return this.commentLevel < 3;
+      return this.commentLevel < 2;
     }
 
     firstCharacters(authorName: string) {
