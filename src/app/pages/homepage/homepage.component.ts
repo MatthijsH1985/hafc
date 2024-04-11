@@ -1,4 +1,4 @@
-import {Component, Inject, Injector, OnInit, PLATFORM_ID} from '@angular/core';
+import {Component, Inject, OnInit, PLATFORM_ID} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {Title} from "@angular/platform-browser";
 import {isPlatformBrowser, ViewportScroller} from "@angular/common";
@@ -28,7 +28,6 @@ export class HomepageComponent implements OnInit {
               private viewportScroller: ViewportScroller,
               private metaService: MetaService,
               private toastr:ToastrService,
-              private injector: Injector,
               private authService: AuthService,
               private loadingIndicatorService: LoadingIndicatorService,
               private route: ActivatedRoute,

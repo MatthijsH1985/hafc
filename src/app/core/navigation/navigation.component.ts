@@ -5,7 +5,6 @@ import {faChevronDown, faBeer, faShoppingCart, faTimes} from '@fortawesome/free-
 import {SessionService} from '../../shop/services/session';
 import {CartService} from '../../shop/services/cart.service';
 import {map, Subscription} from 'rxjs';
-import {isPlatformBrowser} from '@angular/common';
 
 @Component({
   selector: 'app-navigation',

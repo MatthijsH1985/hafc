@@ -2,9 +2,6 @@
 @import "/node_modules/swiper/swiper";
 @import "/node_modules/swiper/modules/effect-creative/effect-creative";
 
-swiper-slide {
-
-}
 .custom-pagination {
   @apply flex justify-center md:justify-start md:pl-20 items-center md:items-start absolute left-0 bottom-[72px] z-50
 }
