@@ -104,7 +104,7 @@ export class CommentsService {
   }
 
   getComments(post:any, page = 1, order = 'desc'): Observable<Config[]> {
-    return this.http.get<Config[]>(environment.apiUrl + '/comments?post='+ post + '&per_page=50&page='+ page + '&order='+ order + '', this.httpOptions);
+    return this.http.get<Config[]>(environment.apiUrl + '/comments?post='+ post + '&per_page=100&page='+ page + '&order='+ order + '', this.httpOptions);
   }
 
   getCommentsCount(post:any): Observable<Config[]> {
