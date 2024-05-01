@@ -1,6 +1,6 @@
 <div class="relative">
   <fa-icon [icon]="faShare" *ngIf="commentLevel > 1" class="absolute text-black dark:text-white -left-[30px] top-[1rem] text-xm rotate-180 -scale-x-[1]"></fa-icon>
-  <div class="absolute -left-[44px] bottom-[2.5rem] w-[30px] h-[30px] flex items-center justify-center text-white text-xs"
+  <div class="absolute -left-[44px] bottom-[2.5rem] w-[30px] h-[30px] flex items-center justify-center text-white rounded-full text-xs"
        [ngClass]="{'outline bg-black outline-black outline-offset-2 dark:outline-white': comment.author !== 0, 'bg-blue-500': comment.author === 0}"
   >
     {{ firstCharacters(comment.author_name) }}
