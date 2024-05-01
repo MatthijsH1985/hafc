@@ -1,4 +1,4 @@
-<div *ngIf="latestComments?.length > 0" class="relative w-full z-20 rounded-md bg-white dark:bg-gray-900">
+<div *ngIf="latestComments?.length > 0" class="relative w-full z-20  bg-white dark:bg-gray-900">
   <a (click)="onShowLoading(); navigateToFragment(comment.id)" [routerLink]="['/', 'nieuws', comment.post, getSlug(comment.post_permalink, comment.post)]" [fragment]="'comment-' + comment.id"  *ngFor="let comment of latestComments" class="group block py-2 border-b dark:border-gray-800 text-sm border-gray-200 mb-2">
     <h3 class="font-bold group-hover:text-blue-500 dark:text-white flex">
         <span>{{ comment.author_name }}</span>

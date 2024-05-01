@@ -1,4 +1,4 @@
-<div [ngClass]="{'border border-gray-80 dark:border-black border-dashed mb-4 rounded-md': isReply}" id="comment-form-{{ comment.id }}">
+<div [ngClass]="{'border border-gray-80 dark:border-black border-dashed mb-4 ': isReply}" id="comment-form-{{ comment.id }}">
   <form [formGroup]="commentForm" (ngSubmit)="onPostComment(commentForm)" class="m-4">
     <div *ngIf="!isLoggedIn();">
       <div class="mb-4">
@@ -11,7 +11,7 @@
     <div class="mb-2 relative">
       <textarea class="bg-gray-100 dark:bg-gray-700 dark:text-white" formControlName="comment" id="comment" placeholder="Voer hier je bericht in"></textarea>
       <div class="flex items-center justify-end absolute bottom-4 right-3">
-        <button type="submit" class="button button-blue rounded-full w-[50px] h-[50px] flex items-center justify-center">
+        <button type="submit" class="button button-blue w-[50px] h-[50px] flex items-center justify-center">
           <fa-icon [icon]="faPaperPlane"></fa-icon>
         </button>
       </div>

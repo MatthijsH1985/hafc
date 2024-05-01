@@ -1,7 +1,7 @@
 <form [formGroup]="userFormData" (ngSubmit)="onSubmitCreateUserForm(userFormData)" *ngIf="!submitted">
   <div class="mb-4">
     <label for="user_name">Gebruikersnaam</label>
-    <input type="text" class="border border-gray-800 rounded-md w-full " class="dark:text-white" formControlName="user_name" placeholder="Kies een gebruikersnaam" id="user_name" />
+    <input type="text" class="border border-gray-800  w-full " class="dark:text-white" formControlName="user_name" placeholder="Kies een gebruikersnaam" id="user_name" />
   </div>
   <div class="mb-4">
     <label for="user_nickname">Weergave naam</label>
@@ -36,7 +36,7 @@
   </div>
 </form>
 
-<div *ngIf="errorMessage" class="mt-4 p-2 bg-red-200 text-red-800 rounded-md">
+<div *ngIf="errorMessage" class="mt-4 p-2 bg-red-200 text-red-800 ">
   {{ errorMessage }}
 </div>
 

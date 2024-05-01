@@ -1,10 +1,10 @@
 
 <div *ngIf="showPlayerOfTheWeek">
   <a [routerLink]="['club', 'selectie', playerOfTheWeek?.ID, playerOfTheWeek?.slug]" class="group flex md:flex-col">
-    <div class="pl-4 pt-4 pr-4 rounded-t-md bg-white dark:bg-black">
+    <div class="pl-4 pt-4 pr-4 bg-white dark:bg-black">
       <img class="block w-[200px] md:w-full" [src]="playerOfTheWeek?.image" alt="{{ playerOfTheWeek?.playerName  }}" />
     </div>
-    <div class="rounded-b-md bg-white dark:bg-gray-900 flex-1 p-4 flex flex-col justify-end">
+    <div class="bg-white dark:bg-gray-900 flex-1 p-4 flex flex-col justify-end">
       <h4 class="block mb-2 text-black text-xl dark:text-white">Player of the week</h4>
       <h5 class="text-blue-500 text-2xl">{{ playerOfTheWeek?.playerName }}</h5>
     </div>
@@ -12,7 +12,7 @@
 </div>
 <div class="" *ngIf="!showPlayerOfTheWeek">
   <div class="group flex md:flex-col">
-    <div class="pl-4 pb-4 pt-4 pr-4 rounded-t-md">
+    <div class="pl-4 pb-4 pt-4 pr-4">
       <h3 class="text-xl dark:text-white italic">Geen speler van de week gekozen</h3>
     </div>
   </div>

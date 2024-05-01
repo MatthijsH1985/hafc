@@ -1,6 +1,6 @@
-<div class="grid gap-4" [ngClass]="{'grid-cols-2' : layout === 'square', '': layout === 'horizontal'}">
+<div class="grid gap-4" [ngClass]="{'grid-cols-2' : layout === 'square', 'grid-cols-6': layout === 'horizontal'}">
   <a *ngFor="let ad of randomizedAds" [href]="ad.acf.link" [target]="ad.acf.target" class="">
-    <img [src]="ad.acf.banner.url" class="block m-auto rounded-md" />
+    <img [src]="ad.acf.banner.url" class="block m-auto" />
   </a>
 </div>
 <div class="mt-8 w-full">

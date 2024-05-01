@@ -64,6 +64,10 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy, AfterViewInit 
     this.hideLoading();
   }
 
+  toggleCommentsWindow() {
+    console.log()
+  }
+
   hideLoading(): void {
     this.loadingIndicatorService.setLoading(false);
   }

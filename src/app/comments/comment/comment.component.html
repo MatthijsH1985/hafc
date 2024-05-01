@@ -1,11 +1,11 @@
 <div class="relative">
   <fa-icon [icon]="faShare" *ngIf="commentLevel > 1" class="absolute text-black dark:text-white -left-[30px] top-[1rem] text-xm rotate-180 -scale-x-[1]"></fa-icon>
-  <div class="absolute -left-[44px] bottom-[2.5rem] rounded-full w-[30px] h-[30px] flex items-center justify-center text-white text-xs"
+  <div class="absolute -left-[44px] bottom-[2.5rem] w-[30px] h-[30px] flex items-center justify-center text-white text-xs"
        [ngClass]="{'outline bg-black outline-black outline-offset-2 dark:outline-white': comment.author !== 0, 'bg-blue-500': comment.author === 0}"
   >
     {{ firstCharacters(comment.author_name) }}
   </div>
-  <div class="bg-gray-100 dark:bg-gray-1000 rounded-md p-2">
+  <div class="bg-gray-100 dark:bg-gray-1000  p-2">
     <div class="flex w-full">
       <div class="author-name text-sm px-2 text-white relative flex">
         <h3 class="text-black dark:text-white relative w-full flex" [ngClass]="{'font-bold text-blue-500': comment.author !== 0}"><strong class="mr-1">{{ comment.author_name }}</strong>zegt</h3>
@@ -18,7 +18,7 @@
     <h4 class="dark:text-white flex items-center w-full flex">
       <div class="ml-4">
         <div *ngIf="isReplyButtonVisible()">
-          <button class="text-blue-500 hover:underline hover:text-black dark:hover:text-white p-2 rounded-md" (click)="onReplyToComment(comment.id)">
+          <button class="text-blue-500 hover:underline hover:text-black dark:hover:text-white p-2 " (click)="onReplyToComment(comment.id)">
             Reageer
           </button>
         </div>

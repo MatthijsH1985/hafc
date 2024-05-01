@@ -1,12 +1,12 @@
 <div class="mb-16">
   <ul [ngClass]="{'xl:grid-cols-4': !compact, 'xl:grid-cols-2': compact}" class="grid grid-cols-2 gap-4">
     <li *ngFor="let post of posts" class="group newsitem-container opacity-0">
-      <a (click)="showLoading()" class="flex" [routerLink]="'/nieuws/' + post?.id + '/' + post?.slug" class="flex flex-col rounded-md bg-white dark:bg-gray-900 h-full overflow-hidden">
+      <a (click)="showLoading()" class="flex" [routerLink]="'/nieuws/' + post?.id + '/' + post?.slug" class="flex flex-col  bg-white dark:bg-gray-900 h-full overflow-hidden">
         <div class="absolute p-2 z-30 block tex-xs bg-red-500 text-white right-0 top-0" *ngIf="isSpecial(post)">
           <p>Special</p>
         </div>
         <div class="md:p-4 overflow-hidden">
-          <img class="object-cover rounded-md block group-hover:scale-105 transition-all object-top w-full h-[120px] md:h-[220px]" [src]="post?.better_featured_image.source_url" [alt]="post?.title?.rendered" />
+          <img class="object-cover  block group-hover:scale-105 transition-all object-top w-full h-[120px] md:h-[220px]" [src]="post?.better_featured_image.source_url" [alt]="post?.title?.rendered" />
         </div>
         <div class="flex flex-col flex-1">
           <h3 class="p-2 md:p-4 text-base dark:text-white md:text-xl" [innerHTML]="post?.title.rendered"></h3>
@@ -22,6 +22,6 @@
     <button (click)="onLoadMorePosts()" class="button button-blue">Meer nieuws</button>
   </div>
 <!--  <div class="flex justify-center my-8">-->
-<!--    <button (click)="onLoadMorePosts()" *ngIf="posts.length > 10" class="button rounded-md button-blue">Meer nieuws</button>-->
+<!--    <button (click)="onLoadMorePosts()" *ngIf="posts.length > 10" class="button  button-blue">Meer nieuws</button>-->
 <!--  </div>-->
 </div>

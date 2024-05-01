@@ -3,7 +3,7 @@
     <div class="m-h-[450px] overflow-hidden relative min-h-[550px]">
       <div class="grid md:grid-cols-2 bg-white dark:bg-black" *ngIf="product">
         <div class="flex items-center justify-center p-4 bg-white dark:bg-black">
-          <img [srcset]="product?.images[0].src" [alt]="product.name" class="w-full border border-gray-200 rounded-md" />
+          <img [srcset]="product?.images[0].src" [alt]="product.name" class="w-full border border-gray-200 " />
         </div>
         <div class="bg-white dark:bg-black p-8 dark:text-white">
           <h1 class="text-3xl" [innerHTML]="product?.name"></h1>
@@ -14,8 +14,8 @@
             <div class="flex mt-8 pt-8 border-t border-gray-200">
               <form [formGroup]="productFormData" (ngSubmit)="onAddToCart(productFormData)">
                 <input type="hidden" formControlName="product_id" />
-                <input type="number"  placeholder="Aantal" formControlName="quantity" class="w-[50px] rounded-tl-md rounded-bl-md" />
-                <button type="submit" class="button button-blue rounded-tl-none rounded-bl-none rounded-tr-md rounded-br-md">
+                <input type="number"  placeholder="Aantal" formControlName="quantity" class="w-[50px]" />
+                <button type="submit" class="button button-blue">
                   Bestel nu
                 </button>
               </form>
@@ -23,7 +23,7 @@
             <div class="fixed md:relative mt-4 bottom-0 left-0 w-full text-center p-2 z-10 bg-orange-200 text-orange-800" *ngIf="cartQuantity > 0">
               <a [routerLink]="['/', 'shop', 'winkelwagen']">Door naar de winkelwagen ({{ cartQuantity }})</a>
             </div>
-            <div class="mt-4 p-4 border border-gray-200 rounded-md">
+            <div class="mt-4 p-4 border border-gray-200 ">
               <h4 class="text-xl font-bold mb-4">Specificaties</h4>
               <ul>
                 <li class="flex flex-col mb-4" *ngFor="let attribute of product?.attributes">
