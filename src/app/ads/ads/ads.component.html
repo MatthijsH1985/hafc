@@ -1,10 +1,10 @@
-<div class="grid gap-4" [ngClass]="{'grid-cols-3 md:grid-cols-2' : layout === 'square', 'grid-cols-6': layout === 'horizontal'}">
+<div class="grid gap-4 p-4" [ngClass]="{'grid-cols-3 md:grid-cols-2' : layout === 'square', 'grid-cols-6': layout === 'horizontal'}">
   <a *ngFor="let ad of randomizedAds" [href]="ad.acf.link" [target]="ad.acf.target" class="">
     <img [src]="ad.acf.banner.url" class="block m-auto w-full" />
   </a>
 </div>
-<div class="mt-8 w-full">
-  <a [routerLink]="['/', 'page', 31238, 'word-sponsor-op-hafc']" class="text-blue-500 hover:text-black dark:hover:text-white p-4 text-xl block hover:text-xl transition-all">
+<div class="mt-8 w-full border-t border-gray-300 dark:border-black">
+  <a [routerLink]="['/', 'page', 31238, 'word-sponsor-op-hafc']" class="text-blue-500 hover:text-black dark:hover:text-white p-4 text-base block transition-all">
     Help HAFC en word ook sponsor! <fa-icon [icon]="arrowRight"></fa-icon>
   </a>
 </div>
