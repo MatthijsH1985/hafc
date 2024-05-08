@@ -201,6 +201,10 @@ const routes: Routes = [
     ]
   },
   {
+    path: 'feed',
+    component: NotFoundComponent
+  },
+  {
     component: NotFoundComponent,
     path: '**'
   }
