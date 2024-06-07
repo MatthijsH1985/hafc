@@ -1,12 +1,13 @@
 <div class="flex flex-col min-h-screen relative z-20 animate-fade-up animate-once animate-ease-in-out animate-duration-200">
   <div class="container xl:w-[1200px] ml-auto mr-auto md:min-h-auto">
     <div class="relative container xl:h-[250px] md:h-[300px] align-center">
-      <img src="assets/amaliaplein.jpg" class="h-[250px] md:h-[300px] w-full object-cover" />
+      <img src="assets/amaliaplein.jpg" class="h-[250px] md:h-[250px] w-full object-cover" />
     </div>
   </div>
-  <div class="container xl:w-[1200px] flex ml-auto mr-auto md:min-h-auto relative z-10">
-    <div class="w-1/2">
-      <div class="p-16">
+  <div class="container xl:w-[1200px] flex flex-col md:flex-row ml-auto mr-auto md:min-h-auto relative z-10">
+    <div class="md:flex-1 w-full">
+      <h1 class="text-2xl p-8">Help ons en houd HAFC in de lucht</h1>
+      <div class="p-8">
         <form [formGroup]="donationForm" (ngSubmit)="startMolliePayment(donationForm)">
           <div class="mb-4">
             <label for="amount" class="text-xl">Bedrag:</label>
@@ -19,9 +20,8 @@
         <p class="mt-4 text-sm">Omdat HAFC geen officiële partij zal het geld overgemaakt worden naar Mumba Web Solutions. Mumba Web Solutions draagt zorg voor het onderhoud van HAFC.</p>
       </div>
     </div>
-    <div class="md:w-1/2 -mt-[60px]">
-      <div class="px-16 bg-white py-8 px-4" >
-        <h1 class="text-2xl mb-4">Help ons en houd HAFC in de lucht</h1>
+    <div class="md:flex-1 w-full md:-mt-[60px]">
+      <div class="px-8 bg-white py-8 px-4" >
         <p class="mb-4">We zijn ontzettend druk met HAFC en om alles in de lucht te houden en door te ontwikkelen, kost een bak geld. Normaal zouden we het niet snel vragen, maar nu zijn we toch genoodzaakt om een kleine bijdrage te vragen.</p>
         <p class="mb-4">Ook het komende jaar wilen wij julie voorzien van:</p>
         <ul class="mb-4 list-disc">
