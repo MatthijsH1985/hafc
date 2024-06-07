@@ -58,11 +58,11 @@ export class HomepageComponent implements OnInit {
     this.loading = false;
 
     if (!this.isAuthenticated()) {
-      let donateTitle = 'Beste HAFC bezoeker';
+      let donateTitle = 'BELANGRIJKE MEDEDELING!';
       let donateMessage = '<p>Kun jij een kleine bijdrage missen voor het komende jaar? HAFC wil jullie ook dit jaar weer voorzien van het laatste nieuws!</p> <a class="block mt-2 -ml-2 underline text-black p-2" href="https://www.hafc.nl/doneer" target="_blank">Ja, ik steun HAFC met een eenmalige donatie</a>';
       this.onShowDonateMessage(donateTitle, donateMessage);
     } else {
-      let donateTitle = 'Beste ' + this.authService.getUserName();
+      let donateTitle = 'BELANGRIJKE MEDEDELING VOOR ' + this.authService.getUserName();
       let donateMessage = '<p>Kun jij een kleine bijdrage missen voor het komende jaar? HAFC wil jullie ook dit jaar weer voorzien van het laatste nieuws!</p> <a class="block mt-2 -ml-2 underline text-black p-2" href="https://www.hafc.nl/doneer" target="_blank">Ja, ik steun HAFC met een eenmalige donatie</a>';
       this.onShowDonateMessage(donateTitle, donateMessage);
     }
