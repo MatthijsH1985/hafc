@@ -10,7 +10,7 @@ import * as compression from 'compression';
 import { AppServerModule } from './src/main.server';
 
 const { createMollieClient } = require('@mollie/api-client');
-const mollieClient = createMollieClient({ apiKey: 'test_E8azAjRBsrTA96MSR4f7r6SrdEcagz' });
+const mollieClient = createMollieClient({ apiKey: 'live_nWauMaxegtgfAeJn2uK4azkFaB6Vrq' });
 
 export function app(): express.Express {
   const mollieTestApiKey = 'test_E8azAjRBsrTA96MSR4f7r6SrdEcagz';
