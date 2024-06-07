@@ -41,6 +41,7 @@ import {CommentsResolverService} from './services/resolvers/comments-resolver.se
 import {CheckoutComponent} from './shop/checkout/checkout.component';
 import {ProductsComponent} from './shop/products/products.component';
 import {DonateComponent} from './pages/donate/donate.component';
+import {ThankYouComponent} from './pages/donate/thank-you/thank-you.component';
 const routes: Routes = [
 
   {
@@ -59,7 +60,11 @@ const routes: Routes = [
   },
   {
     component: DonateComponent,
-    path: 'doneer'
+    path: 'doneer',
+  },
+  {
+    component: ThankYouComponent,
+    path: 'doneer/dank-je-wel',
   },
   {
     component: NieuwsberichtComponent,
