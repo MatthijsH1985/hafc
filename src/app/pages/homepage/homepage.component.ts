@@ -22,7 +22,6 @@ export class HomepageComponent implements OnInit {
   links: Link[] = [];
   reactiesString = 'reacties';
   headlines: any;
-  dnoationBarHidden = false;
   constructor(
               private titleService: Title,
               private playersService: PlayersService,
@@ -72,10 +71,6 @@ export class HomepageComponent implements OnInit {
     this.metaService.setMetaTag('https://www.hafc.nl', 'HAFC.nl is de grootste Heracles community voor en door supporters. Volg hier het laatste nieuws en blijf op de hoogte', 'https://backend.hafc.nl/wp-content/uploads/2023/05/nac-heracles.jpg');
   }
 
-  hideDonationBar() {
-    this.dnoationBarHidden = true
-  }
-
   isAuthenticated() {
     return this.authService.isAuthenticated();
   }
@@ -89,6 +84,14 @@ export class HomepageComponent implements OnInit {
           timeOut: 10000,
           closeButton:true
         })
+    }
+  }
+
+  showDonationPage() :boolean {
+    if (localStorage.getItem('hideDonate') === 'true') {
+      return false;
+    } else {
+      return true;
     }
   }
 

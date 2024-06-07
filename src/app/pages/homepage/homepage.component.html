@@ -1,51 +1,49 @@
-
-<div class="flex flex-col" *ngIf="!loading">
-  <div class="container max-w-[1200px] relative z-10 ml-auto mr-auto">
-    <div class="px-8 pt-14 md:pt-4 pb-8" *ngIf="!dnoationBarHidden">
-      <h1 class="text-2xl md:text-white">Help ons en houd HAFC in de lucht</h1>
-      <h2 class="text-blue-500 text-2xl">elke euro helpt!</h2>
-      <a [routerLink]="['/', 'doneer']" class="button button-blue mt-4 inline-block">Tuurlijk doneer ik!</a>
-      <a (click)="hideDonationBar()" class="button button-black mt-4 inline-block ml-4 hover:cursor-pointer">Nee, liever niet</a>
-    </div>
-    <div class="md:h-[550px] m-h-[450px] overflow-hidden relative bg-gray-800 min-h-[550px] animate-fade-up animate-once animate-duration-300 animate-ease-linear animate-delay-100">
-      <ng-container *ngIf="isBrowser">
-        <ng-container *ngComponentOutlet="newssliderComponent"></ng-container>
-      </ng-container>
-    </div>
-    <div class="flex md:flex-row flex-col-reverse animate-fade-up animate-once animate-duration-300 animate-ease-linear animate-delay-1000">
-      <div class="w-full md:w-2/3 ">
-        <div class="md:ml-0 px-4 md:mr-4 md:px-0 md:mt-4">
-          <app-newslist [showMoreNewsButton]="false" [compact]="true" [pagination]="false"></app-newslist>
-        </div>
+<div *ngIf="showDonationPage(); else homepage">
+  <app-donate></app-donate>
+</div>
+<ng-template #homepage>
+  <div class="flex flex-col" *ngIf="!loading">
+    <div class="container max-w-[1200px] relative z-10 ml-auto mr-auto">
+      <div class="md:h-[550px] m-h-[450px] overflow-hidden relative bg-gray-800 min-h-[550px] animate-fade-up animate-once animate-duration-300 animate-ease-linear animate-delay-100">
+        <ng-container *ngIf="isBrowser">
+          <ng-container *ngComponentOutlet="newssliderComponent"></ng-container>
+        </ng-container>
       </div>
-      <div class="w-full md:p-0 md:w-1/3">
-        <div class="md:p-0 pb-4">
-          <div class="-mt-[80px] md:-mt-[112px] md:mx-0 mx-4 max-w-full relative m-auto z-10 text-center">
-            <div class=" overflow-hidden">
-              <app-countdown></app-countdown>
-              <app-volgende-wedstrijd></app-volgende-wedstrijd>
+      <div class="flex md:flex-row flex-col-reverse animate-fade-up animate-once animate-duration-300 animate-ease-linear animate-delay-1000">
+        <div class="w-full md:w-2/3 ">
+          <div class="md:ml-0 px-4 md:mr-4 md:px-0 md:mt-4">
+            <app-newslist [showMoreNewsButton]="false" [compact]="true" [pagination]="false"></app-newslist>
+          </div>
+        </div>
+        <div class="w-full md:p-0 md:w-1/3">
+          <div class="md:p-0 pb-4">
+            <div class="-mt-[80px] md:-mt-[112px] md:mx-0 mx-4 max-w-full relative m-auto z-10 text-center">
+              <div class=" overflow-hidden">
+                <app-countdown></app-countdown>
+                <app-volgende-wedstrijd></app-volgende-wedstrijd>
+              </div>
+            </div>
+          </div>
+          <div class="gap-4 mb-4 dark:bg-gray-900 mt-4 bg-white">
+            <h3 class="p-4 pl-8 bg-white pr-12 text-xl mt-4 block dark:text-white relative border-b border-gray-300 dark:border-black dark:bg-black">
+              Onze sponsoren
+            </h3>
+            <app-ads [layout]="'square'"></app-ads>
+          </div>
+          <h3 class="p-4 pl-8 bg-white pr-12 text-xl mt-4 block dark:text-white relative border-b border-gray-300 dark:border-black dark:bg-black">
+            Stand Eredivisie
+          </h3>
+          <div class="md:p-4 bg-white dark:bg-gray-900 p-4 mb-4 ">
+            <app-stand [compact]="true"></app-stand>
+            <div class="flex">
+              <a routerLink="club/competitie/stand" class="block m-4 text-blue-500 dark:text-white hover:underline" title="Bekijk de gehele stand">Bekijk gehele stand</a>
             </div>
           </div>
         </div>
-        <div class="gap-4 mb-4 dark:bg-gray-900 mt-4 bg-white">
-          <h3 class="p-4 pl-8 bg-white pr-12 text-xl mt-4 block dark:text-white relative border-b border-gray-300 dark:border-black dark:bg-black">
-            Onze sponsoren
-          </h3>
-          <app-ads [layout]="'square'"></app-ads>
-        </div>
-        <h3 class="p-4 pl-8 bg-white pr-12 text-xl mt-4 block dark:text-white relative border-b border-gray-300 dark:border-black dark:bg-black">
-          Stand Eredivisie
-        </h3>
-        <div class="md:p-4 bg-white dark:bg-gray-900 p-4 mb-4 ">
-          <app-stand [compact]="true"></app-stand>
-          <div class="flex">
-            <a routerLink="club/competitie/stand" class="block m-4 text-blue-500 dark:text-white hover:underline" title="Bekijk de gehele stand">Bekijk gehele stand</a>
-          </div>
-        </div>
       </div>
     </div>
+    <div class="mt-auto">
+      <app-footer [links]="links"></app-footer>
+    </div>
   </div>
-  <div class="mt-auto">
-    <app-footer [links]="links"></app-footer>
-  </div>
-</div>
+</ng-template>

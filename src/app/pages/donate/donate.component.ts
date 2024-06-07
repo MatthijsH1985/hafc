@@ -14,7 +14,7 @@ export class DonateComponent implements OnInit, OnDestroy {
   name: string = '';
   email: string = '';
   amount: number = 5;
-  amounts: number[] = [5, 10, 15, 20, 25, 40, 50, 75, 100, 250];
+  amounts: number[] = [5, 10, 15, 20, 25, 40, 50, 75, 100];
   donationForm: FormGroup;
   donateSub = new Subscription();
 
@@ -43,11 +43,18 @@ export class DonateComponent implements OnInit, OnDestroy {
       this.donateSub = this.donateService.addDonation(donateForm).subscribe({
         next: (result: any) => {
           window.location.href = result.checkoutUrl;
+          this.hideDonationBar();
         },
         error: error => {
           console.log(error);
         }
       });
+    }
+  }
+
+  hideDonationBar() {
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('hideDonate', 'true')
     }
   }
 }
