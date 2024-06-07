@@ -6,7 +6,10 @@
   </div>
   <div class="container xl:w-[1200px] flex flex-col md:flex-row ml-auto mr-auto md:min-h-auto relative z-10">
     <div class="md:flex-1 w-full">
-      <h1 class="text-2xl p-8">Help ons en houd HAFC in de lucht</h1>
+      <div class="p-8">
+        <h1 class="text-3xl">Help ons en houd HAFC in de lucht</h1>
+        <h2 class="text-blue-500 text-2xl">De nood is heel hoog!</h2>
+      </div>
       <div class="p-8">
         <form [formGroup]="donationForm" (ngSubmit)="startMolliePayment(donationForm)">
           <div class="mb-4">
