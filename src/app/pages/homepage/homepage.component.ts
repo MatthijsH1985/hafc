@@ -87,19 +87,23 @@ export class HomepageComponent implements OnInit {
     }
   }
 
-  showDonationNotification() :boolean {
-    if (localStorage.getItem('donationNotification') === 'hide') {
-      return true;
-    } else {
-      return false;
+  showDonationNotification(): any {
+    if (isPlatformBrowser(this.platformId)) {
+      if (localStorage.getItem('donationNotification') === 'hide') {
+        return true;
+      } else {
+        return false;
+      }
     }
   }
 
-  showDonationPage() :boolean {
-    if (localStorage.getItem('donationPage') === 'hide') {
-      return false;
-    } else {
-      return true;
+  showDonationPage():any {
+    if (isPlatformBrowser(this.platformId)) {
+      if (localStorage.getItem('donationPage') === 'hide') {
+        return false;
+      } else {
+        return true;
+      }
     }
   }
 
