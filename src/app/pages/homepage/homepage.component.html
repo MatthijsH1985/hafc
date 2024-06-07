@@ -1,6 +1,12 @@
 
 <div class="flex flex-col" *ngIf="!loading">
   <div class="container max-w-[1200px] relative z-10 ml-auto mr-auto">
+    <div class="px-8 pt-14 md:pt-4 pb-8" *ngIf="!dnoationBarHidden">
+      <h1 class="text-2xl md:text-white">Help ons en houd HAFC in de lucht</h1>
+      <h2 class="text-blue-500 text-2xl">elke euro helpt!</h2>
+      <a [routerLink]="['/', 'doneer']" class="button button-blue mt-4 inline-block">Tuurlijk doneer ik!</a>
+      <a (click)="hideDonationBar()" class="button button-black mt-4 inline-block ml-4 hover:cursor-pointer">Nee, liever niet</a>
+    </div>
     <div class="md:h-[550px] m-h-[450px] overflow-hidden relative bg-gray-800 min-h-[550px] animate-fade-up animate-once animate-duration-300 animate-ease-linear animate-delay-100">
       <ng-container *ngIf="isBrowser">
         <ng-container *ngComponentOutlet="newssliderComponent"></ng-container>

@@ -22,6 +22,7 @@ export class HomepageComponent implements OnInit {
   links: Link[] = [];
   reactiesString = 'reacties';
   headlines: any;
+  dnoationBarHidden = false;
   constructor(
               private titleService: Title,
               private playersService: PlayersService,
@@ -60,15 +61,19 @@ export class HomepageComponent implements OnInit {
     if (!this.isAuthenticated()) {
       let donateTitle = 'BELANGRIJKE MEDEDELING!';
       let donateMessage = '<p>Kun jij een kleine bijdrage missen voor het komende jaar? HAFC wil jullie ook dit jaar weer voorzien van het laatste nieuws!</p> <a class="block mt-2 -ml-2 underline text-black p-2" href="https://www.hafc.nl/doneer" target="_blank">Ja, ik steun HAFC met een eenmalige donatie</a>';
-      this.onShowDonateMessage(donateTitle, donateMessage);
+      // this.onShowDonateMessage(donateTitle, donateMessage);
     } else {
       let donateTitle = 'BELANGRIJKE MEDEDELING VOOR ' + this.authService.getUserName();
       let donateMessage = '<p>Kun jij een kleine bijdrage missen voor het komende jaar? HAFC wil jullie ook dit jaar weer voorzien van het laatste nieuws!</p> <a class="block mt-2 -ml-2 underline text-black p-2" href="https://www.hafc.nl/doneer" target="_blank">Ja, ik steun HAFC met een eenmalige donatie</a>';
-      this.onShowDonateMessage(donateTitle, donateMessage);
+      // this.onShowDonateMessage(donateTitle, donateMessage);
     }
 
     this.latestComments = this.route.snapshot.data['latestComments'];
     this.metaService.setMetaTag('https://www.hafc.nl', 'HAFC.nl is de grootste Heracles community voor en door supporters. Volg hier het laatste nieuws en blijf op de hoogte', 'https://backend.hafc.nl/wp-content/uploads/2023/05/nac-heracles.jpg');
+  }
+
+  hideDonationBar() {
+    this.dnoationBarHidden = true
   }
 
   isAuthenticated() {
