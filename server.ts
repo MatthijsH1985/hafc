@@ -8,7 +8,9 @@ import { join } from 'path';
 import * as compression from 'compression';
 
 import { AppServerModule } from './src/main.server';
-import axios from 'axios';
+
+const { createMollieClient } = require('@mollie/api-client');
+const mollieClient = createMollieClient({ apiKey: 'test_E8azAjRBsrTA96MSR4f7r6SrdEcagz' });
 
 export function app(): express.Express {
   const mollieTestApiKey = 'test_E8azAjRBsrTA96MSR4f7r6SrdEcagz';
@@ -32,27 +34,33 @@ export function app(): express.Express {
   }));
 
   server.post('/donate', async (req, res) => {
-    const { amount, description = 'Donatie', redirectUrl } = req.body;
-    try {
-      const response = await axios.post('https://api.mollie.com/v2/payments', {
-        amount: {
-          currency: 'EUR',
-          value: amount.toFixed(2)
-        },
-        description: description,
-        redirectUrl: redirectUrl,
-        webhookUrl: 'https://webhook.example.com'
-      }, {
-        headers: {
-          'Authorization': `Bearer ${mollieTestApiKey}`,
-          'Content-Type': 'application/json'
-        }
-      });
+    const amountValue = req.body.amount as string | number;
+    const currency = 'EUR'; // Je zou de valuta kunnen hardcoderen of vanuit een andere bron kunnen verkrijgen
 
-      res.json(response.data);
-    } catch (error: any) {
-      console.log(error)
-      res.status(500).json({ error: error.message });
+    if (typeof amountValue === 'string' || typeof amountValue === 'number') {
+      const rawValue = parseFloat(amountValue as string);
+      if (!isNaN(rawValue)) {
+        const formattedAmount = rawValue.toFixed(2);
+        const description = req.body.description;
+        try {
+          const payment = await mollieClient.payments.create({
+            amount: {
+              currency,
+              value: formattedAmount
+            },
+            description,
+            redirectUrl: 'https://www.hafc.nl/doneer/dank-je-wel'
+          });
+          const checkoutUrl = payment.getCheckoutUrl();
+          res.json({ checkoutUrl });
+        } catch (error: any) {
+          res.status(500).json({ error: error.message });
+        }
+      } else {
+        res.status(400).json({ error: 'Invalid amount value' });
+      }
+    } else {
+      res.status(400).json({ error: 'Invalid amount format' });
     }
   });
 
@@ -60,7 +68,6 @@ export function app(): express.Express {
     res.render(indexHtml, {
       req
     });
-    console.log('hi')
   });
 
   return server;

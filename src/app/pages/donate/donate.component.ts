@@ -1,7 +1,8 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit, PLATFORM_ID} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {DonateService} from '../../services/donate.service';
 import {Subscription} from 'rxjs';
+import {isPlatformBrowser} from '@angular/common';
 
 @Component({
   selector: 'app-donate',
@@ -13,14 +14,13 @@ export class DonateComponent implements OnInit, OnDestroy {
   name: string = '';
   email: string = '';
   amount: number = 5;
-  amounts: number[] = [5, 10, 20, 50, 100];
+  amounts: number[] = [5, 10, 15, 20, 25, 40, 50, 75, 100, 250];
   donationForm: FormGroup;
   donateSub = new Subscription();
 
-  constructor(private donateService: DonateService) {
+  constructor(private donateService: DonateService, @Inject('isBrowser') @Inject(PLATFORM_ID) private platformId: Object,) {
     this.donationForm = new FormGroup({
-      name: new FormControl('Matthijs', [Validators.required]),
-      email: new FormControl('', [Validators.required, Validators.email]),
+      description: new FormControl('Nieuwe donatie', [Validators.required]),
       amount: new FormControl(this.amount, [Validators.required])
     });
   }
@@ -35,19 +35,19 @@ export class DonateComponent implements OnInit, OnDestroy {
 
   startMolliePayment(donationForm: FormGroup) {
     const donateForm = JSON.stringify({
-        name: donationForm.value.name,
-        email: donationForm.value.email,
+        description: donationForm.value.description,
         amount: donationForm.value.amount
       }
     );
-    console.log('On Donate:' + donateForm);
-    this.donateSub = this.donateService.addDonation(donateForm).subscribe({
-      next: result => {
-        console.log(result);
-      },
-      error: error => {
-        console.log(error);
-      }
-    });
+    if (isPlatformBrowser(this.platformId)) {
+      this.donateSub = this.donateService.addDonation(donateForm).subscribe({
+        next: (result: any) => {
+          window.location.href = result.checkoutUrl;
+        },
+        error: error => {
+          console.log(error);
+        }
+      });
+    }
   }
 }
