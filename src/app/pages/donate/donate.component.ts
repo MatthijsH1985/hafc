@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {DonateService} from '../../services/donate.service';
 import {Subscription} from 'rxjs';
 import {isPlatformBrowser} from '@angular/common';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-donate',
@@ -18,7 +19,7 @@ export class DonateComponent implements OnInit, OnDestroy {
   donationForm: FormGroup;
   donateSub = new Subscription();
 
-  constructor(private donateService: DonateService, @Inject('isBrowser') @Inject(PLATFORM_ID) private platformId: Object,) {
+  constructor(private donateService: DonateService, private router: Router, @Inject('isBrowser') @Inject(PLATFORM_ID) private platformId: Object,) {
     this.donationForm = new FormGroup({
       description: new FormControl('Nieuwe donatie', [Validators.required]),
       amount: new FormControl(this.amount, [Validators.required])
@@ -34,6 +35,8 @@ export class DonateComponent implements OnInit, OnDestroy {
   }
 
   startMolliePayment(donationForm: FormGroup) {
+    this.hideDonationNotification();
+    this.hideDonationBar();
     const donateForm = JSON.stringify({
         description: donationForm.value.description,
         amount: donationForm.value.amount
@@ -43,7 +46,6 @@ export class DonateComponent implements OnInit, OnDestroy {
       this.donateSub = this.donateService.addDonation(donateForm).subscribe({
         next: (result: any) => {
           window.location.href = result.checkoutUrl;
-          this.hideDonationBar();
         },
         error: error => {
           console.log(error);
@@ -52,9 +54,16 @@ export class DonateComponent implements OnInit, OnDestroy {
     }
   }
 
+  hideDonationNotification() {
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('donationNotification', 'hide')
+    }
+  }
+
   hideDonationBar() {
     if (isPlatformBrowser(this.platformId)) {
-      localStorage.setItem('hideDonate', 'true')
+      localStorage.setItem('donationPage', 'hide');
+      this.router.navigateByUrl('/');
     }
   }
 }

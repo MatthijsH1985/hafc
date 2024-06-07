@@ -87,8 +87,16 @@ export class HomepageComponent implements OnInit {
     }
   }
 
+  showDonationNotification() :boolean {
+    if (localStorage.getItem('donationNotification') === 'hide') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   showDonationPage() :boolean {
-    if (localStorage.getItem('hideDonate') === 'true') {
+    if (localStorage.getItem('donationPage') === 'hide') {
       return false;
     } else {
       return true;
