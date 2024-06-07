@@ -56,6 +56,7 @@ import {ShopModule} from './shop/shop.module';
 import {SsrCookieService} from 'ngx-cookie-service-ssr';
 import {SessionService} from './shop/services/session';
 import {AdsModule} from './ads/ads.module';
+import {DonateComponent} from './pages/donate/donate.component';
 
 register()
 registerLocaleData(localeNl);
@@ -89,6 +90,7 @@ registerLocaleData(localeNl);
     SetNewPasswordComponent,
     NotFoundComponent,
     SinglePageComponent,
+    DonateComponent
   ],
   exports: [
     HomepageComponent,

@@ -1,0 +1,34 @@
+<div class="flex flex-col min-h-screen relative z-20 animate-fade-up animate-once animate-ease-in-out animate-duration-200">
+  <div class="container xl:w-[1200px] ml-auto mr-auto md:min-h-auto">
+    <div class="relative container xl:h-[250px] md:h-[300px] align-center">
+      <img src="assets/amaliaplein.jpg" class="h-[250px] md:h-[300px] w-full object-cover" />
+    </div>
+  </div>
+  <div class="container max-w-[1200px] relative z-10 ml-auto mr-auto">
+    <div class="xl:h-[650px] md:h-[500px] w-1/2 -mt-[60px]">
+      <div class="px-16 bg-white py-8 px-4" >
+        <h1 class="text-2xl mb-4">Geef gul en houd HAFC in de lucht</h1>
+        <form [formGroup]="donationForm" (ngSubmit)="startMolliePayment(donationForm)">
+          <div class="mb-4">
+            <label for="name">Naam:</label>
+            <input type="text" id="name" formControlName="name" class="border border-gray-200 bg-white p-2 rounded-md">
+          </div>
+          <div class="mb-4">
+            <label for="email">E-mailadres:</label>
+            <input type="email" id="email" formControlName="email" class="border border-gray-200 bg-white p-2 rounded-md">
+          </div>
+          <div class="mb-4">
+            <label for="amount">Bedrag:</label>
+            <select id="amount" formControlName="amount" class="border border-gray-200 bg-white p-2 rounded-md">
+              <option *ngFor="let amount of amounts" value="{{amount}}">{{amount}} euro</option>
+            </select>
+          </div>
+          <button type="submit" class="button button-blue">Doneer</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="mt-auto">
+    <app-footer></app-footer>
+  </div>
+</div>

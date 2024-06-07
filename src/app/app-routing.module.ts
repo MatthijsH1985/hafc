@@ -40,6 +40,7 @@ import {HeadlinesResolver} from './news/services/resolvers/headlines-resolver.se
 import {CommentsResolverService} from './services/resolvers/comments-resolver.service';
 import {CheckoutComponent} from './shop/checkout/checkout.component';
 import {ProductsComponent} from './shop/products/products.component';
+import {DonateComponent} from './pages/donate/donate.component';
 const routes: Routes = [
 
   {
@@ -55,6 +56,10 @@ const routes: Routes = [
   {
     component: SpecialsComponent,
     path: 'specials'
+  },
+  {
+    component: DonateComponent,
+    path: 'doneer'
   },
   {
     component: NieuwsberichtComponent,
