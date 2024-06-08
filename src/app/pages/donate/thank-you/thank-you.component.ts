@@ -19,13 +19,13 @@ export class ThankYouComponent implements OnInit{
 
   hideDonationNotification() {
     if (isPlatformBrowser(this.platformId)) {
-      localStorage.setItem('donationNotification', 'hide')
+      localStorage.setItem('donationNotification', 'hidden')
     }
   }
 
   hideDonationBar() {
     if (isPlatformBrowser(this.platformId)) {
-      localStorage.setItem('donationPage', 'hide');
+      localStorage.setItem('donationPage', 'hidden');
     }
   }
 }
