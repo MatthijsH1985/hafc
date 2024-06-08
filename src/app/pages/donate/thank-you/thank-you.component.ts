@@ -26,7 +26,6 @@ export class ThankYouComponent implements OnInit{
   hideDonationBar() {
     if (isPlatformBrowser(this.platformId)) {
       localStorage.setItem('donationPage', 'hide');
-      this.router.navigateByUrl('/');
     }
   }
 }
