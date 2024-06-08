@@ -4,14 +4,18 @@
       <img src="assets/amaliaplein.jpg" class="h-[250px] md:h-[300px] w-full object-cover" />
     </div>
   </div>
-  <div class="m-auto w-1/2">
-    <div class="relative container flex justify-center xl:h-[250px] md:h-[300px] align-center">
-      <div class="px-16 bg-white py-8 px-4" >
-        <p>
-          <a [routerLink]="['/']">
-            Terug naar de homepage
-          </a>
-        </p>
+  <div class="flex flex-col md:flex-row">
+    <div class="m-auto md:w-1/2 bg-white w-full">
+      <div class="relative container flex flex-col justify-center xl:h-[250px] md:h-[300px] text-center align-center">
+        <img src="assets/giphy.webp" class="md:w-[400px] w-[300px] h-auto m-auto" />
+        <div class="bg-white py-8 px-4" >
+          <h1 class="text-3xl">Dank je wel!</h1>
+          <p class="mt-4">
+            <a [routerLink]="['/']">
+              Terug naar de homepage
+            </a>
+          </p>
+        </div>
       </div>
     </div>
   </div>
