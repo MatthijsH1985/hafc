@@ -19,7 +19,7 @@ export class DonateComponent implements OnInit, OnDestroy {
   donationForm: FormGroup;
   donateSub = new Subscription();
 
-  constructor(private donateService: DonateService, private router: Router, @Inject('isBrowser') @Inject(PLATFORM_ID) private platformId: Object,) {
+  constructor(private donateService: DonateService, private router: Router, @Inject('isBrowser') @Inject(PLATFORM_ID) private platformId: Object) {
     this.donationForm = new FormGroup({
       description: new FormControl('Nieuwe donatie', [Validators.required]),
       amount: new FormControl(this.amount, [Validators.required])
@@ -35,8 +35,8 @@ export class DonateComponent implements OnInit, OnDestroy {
   }
 
   startMolliePayment(donationForm: FormGroup) {
-    this.hideDonationNotification();
-    this.hideDonationBar();
+    // this.hideDonationNotification();
+    // this.hideDonationBar();
     const donateForm = JSON.stringify({
         description: donationForm.value.description,
         amount: donationForm.value.amount
