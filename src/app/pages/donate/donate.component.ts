@@ -56,13 +56,13 @@ export class DonateComponent implements OnInit, OnDestroy {
 
   hideDonationNotification() {
     if (isPlatformBrowser(this.platformId)) {
-      localStorage.setItem('donationNotification', 'hide')
+      localStorage.setItem('donationNotification', 'hidden')
     }
   }
 
   hideDonationBar() {
     if (isPlatformBrowser(this.platformId)) {
-      localStorage.setItem('donationPage', 'hide');
+      localStorage.setItem('donationPage', 'hidden');
       this.router.navigateByUrl('/');
     }
   }

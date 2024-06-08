@@ -89,7 +89,7 @@ export class HomepageComponent implements OnInit {
 
   showDonationNotification(): any {
     if (isPlatformBrowser(this.platformId)) {
-      if (localStorage.getItem('donationNotification') === 'hide') {
+      if (localStorage.getItem('donationNotification') === 'hidden') {
         return true;
       } else {
         return false;
@@ -99,7 +99,7 @@ export class HomepageComponent implements OnInit {
 
   showDonationPage():any {
     if (isPlatformBrowser(this.platformId)) {
-      if (localStorage.getItem('donationPage') === 'hide') {
+      if (localStorage.getItem('donationPage') === 'hidden') {
         return false;
       } else {
         return true;
