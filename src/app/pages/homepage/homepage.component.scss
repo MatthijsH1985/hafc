@@ -32,16 +32,6 @@ input {
 }
 
 .donation-bar {
-  animation: growBar 2s forwards;
-  animation-delay: 1s;
+  //transition: all 3s ease-out;
   width: 0;
-}
-
-@keyframes growBar {
-  from {
-    width: 0%;
-  }
-  to {
-    width: 74%;
-  }
 }
