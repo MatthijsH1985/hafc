@@ -10,13 +10,12 @@
 <!--        <a [routerLink]="['/', 'doneer']" class="button button-blue mt-4 inline-block">Tuurlijk doneer ik!</a>-->
 <!--      </div>-->
       <div class="bg-black p-4 flex flex-col items-center justify-center" *ngIf="!showDonationNotification()">
-        <strong class="mb-2 text-white">Donatiedoel: € 1000,-</strong>
-        <div class="bg-white w-full h-[10px]">
-          <div class="bg-yellow-800 h-full w-[86%]"></div>
+        <strong class="mb-2 text-white">Voortgang donaties</strong>
+        <div class="bg-gray-700 w-full items-center">
+          <div class="bg-yellow-800 h-full w-[74%] p-1 text-right text-white text-xs">74%</div>
         </div>
         <a class="button button-blue mt-4" [routerLink]="['/', 'doneer']">Tuurlijk doneer ik!</a>
       </div>
-
       <div class="md:h-[550px] m-h-[450px] overflow-hidden relative bg-gray-800 min-h-[550px] animate-fade-up animate-once animate-duration-300 animate-ease-linear animate-delay-100">
         <ng-container *ngIf="isBrowser">
           <ng-container *ngComponentOutlet="newssliderComponent"></ng-container>
