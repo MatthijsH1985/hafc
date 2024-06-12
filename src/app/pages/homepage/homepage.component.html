@@ -9,12 +9,12 @@
 <!--        <h2 class="text-blue-500 text-2xl">elke euro helpt!</h2>-->
 <!--        <a [routerLink]="['/', 'doneer']" class="button button-blue mt-4 inline-block">Tuurlijk doneer ik!</a>-->
 <!--      </div>-->
-      <div class="bg-black p-4 md:py-4 md:px-0 flex flex-col items-center justify-center animate-fade animate-delay-1000" *ngIf="!showDonationNotification()">
+      <div class="bg-black p-4 md:py-4 md:px-0 flex flex-col items-center justify-center animate-fade animate-delay-1000">
         <strong class="mb-2 text-white mt-12 md:mt-0 ">Voortgang donaties</strong>
         <div class="bg-gray-700 w-full items-center">
           <div class="bg-yellow-800 h-full p-1 text-right text-white text-xs donation-bar">74%</div>
         </div>
-        <a class="button button-blue mt-4" [routerLink]="['/', 'doneer']">Tuurlijk doneer ik!</a>
+        <a class="button button-blue mt-4" [routerLink]="['/', 'doneer']">Doneren</a>
       </div>
       <div class="md:h-[550px] m-h-[450px] overflow-hidden relative bg-gray-800 min-h-[550px] animate-fade-up animate-once animate-duration-300 animate-ease-linear animate-delay-100">
         <ng-container *ngIf="isBrowser">
