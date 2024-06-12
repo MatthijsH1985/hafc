@@ -30,3 +30,18 @@ input {
   width: 300px;
   background-color: white;
 }
+
+.donation-bar {
+  animation: growBar 2s forwards;
+  animation-delay: 1s;
+  width: 0;
+}
+
+@keyframes growBar {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 74%;
+  }
+}
