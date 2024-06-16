@@ -31,19 +31,19 @@ export class NavigationComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.cartService.getCartQuantity().subscribe((quantity: number) => {
-      this.cartQuantity = quantity;
-    });
+    // this.cartService.getCartQuantity().subscribe((quantity: number) => {
+    //   this.cartQuantity = quantity;
+    // });
 
     // Abonneer je op veranderingen van de winkelwagenkwantiteit
-    this.cartService.getCartCount().subscribe({
-      next: (quantity: any) => {
-        this.cartQuantity = quantity;
-      },
-      error: (error: any) => {
-        console.log(error)
-      }
-    });
+    // this.cartService.getCartCount().subscribe({
+    //   next: (quantity: any) => {
+    //     this.cartQuantity = quantity;
+    //   },
+    //   error: (error: any) => {
+    //     console.log(error)
+    //   }
+    // });
     this.menuService.isOpen.subscribe({
       next: (isOpen) => {
         this.menuOpen = isOpen;
@@ -59,7 +59,7 @@ export class NavigationComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.cartSub.unsubscribe();
+    // this.cartSub.unsubscribe();
   }
 
   protected readonly faShoppingCart = faShoppingCart;
