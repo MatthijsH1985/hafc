@@ -10,7 +10,8 @@
 <!--        <a [routerLink]="['/', 'doneer']" class="button button-blue mt-4 inline-block">Tuurlijk doneer ik!</a>-->
 <!--      </div>-->
       <div class="bg-black p-4 md:py-4 md:px-0 flex flex-col items-center justify-center animate-fade animate-delay-1000">
-        <strong class="mb-2 text-white mt-12 md:mt-0 ">Voortgang donaties</strong>
+        <p class="text-white animate-infinite animate-pulse">Voortgang donaties.</p>
+        <strong class="mb-2 text-white mt-12 md:mt-0 uppercase animate-wiggle animate-infinite text-xl">We zijn er bijna!</strong>
         <div class="bg-gray-700 w-full items-center text-white text-center">
           <div class="bg-yellow-800 donation-bar" [style.width.%]="currentWidth">{{ currentPercentage }}%</div>
         </div>
