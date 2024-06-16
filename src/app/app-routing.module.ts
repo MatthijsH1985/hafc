@@ -19,7 +19,6 @@ import {PasswordResetComponent} from "./pages/account/password-reset/password-re
 import {SetNewPasswordComponent} from "./pages/account/set-new-password/set-new-password.component";
 import {UserConfigEditableComponent} from "./pages/account/user-config-editable/user-config-editable.component";
 import {NotFoundComponent} from "./pages/not-found/not-found.component";
-import {SinglePageComponent} from "./pages/single-page/single-page.component";
 import {MatchResolver} from "./services/resolvers/match-resolver.service";
 import {PostResolver} from "./news/services/resolvers/post-resolver.service";
 import {MatchpreviewComponent} from "./competition/matchpreview/matchpreview.component";
@@ -33,17 +32,11 @@ import {PostsResolver} from "./news/services/resolvers/posts-resolver.service";
 import {VerifyAccountComponent} from "./pages/account/verify-account/verify-account.component";
 import {LinksResolver} from "./core/services/resolvers/links.resolver";
 import {LatestCommentsResolver} from "./comments/services/resolvers/latest-comments.resolver";
-import {ShopHomepageComponent} from './shop/shophomepage/shophomepage.component';
-import {ProductComponent} from './shop/product/product.component';
-import {CartComponent} from './shop/cart/cart.component';
 import {HeadlinesResolver} from './news/services/resolvers/headlines-resolver.service';
 import {CommentsResolverService} from './services/resolvers/comments-resolver.service';
-import {CheckoutComponent} from './shop/checkout/checkout.component';
-import {ProductsComponent} from './shop/products/products.component';
 import {DonateComponent} from './pages/donate/donate.component';
 import {ThankYouComponent} from './pages/donate/thank-you/thank-you.component';
 const routes: Routes = [
-
   {
     component: HomepageComponent,
     path: '',
@@ -178,35 +171,6 @@ const routes: Routes = [
       {
         path: 'mijn-reacties',
         component: UserCommentsComponent
-      }
-    ]
-  },
-  {
-    path: 'page/:id/:title',
-    component: SinglePageComponent
-  },
-  {
-    path: 'shop',
-    children: [
-      {
-        path: '',
-        component: ShopHomepageComponent,
-      },
-      {
-        path: 'producten',
-        component: ProductsComponent
-      },
-      {
-        path: 'product/:slug',
-        component: ProductComponent
-      },
-      {
-        path: 'winkelwagen',
-        component: CartComponent
-      },
-      {
-        path: 'afrekenen',
-        component: CheckoutComponent
       }
     ]
   },

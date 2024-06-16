@@ -2,8 +2,8 @@ import {Component, Inject, OnDestroy, OnInit, PLATFORM_ID} from '@angular/core';
 import {AuthService} from "../../services/auth/auth-service";
 import {MenuService} from "../../services/menu.service";
 import {faChevronDown, faBeer, faShoppingCart, faTimes} from '@fortawesome/free-solid-svg-icons';
-import {SessionService} from '../../shop/services/session';
-import {CartService} from '../../shop/services/cart.service';
+// import {SessionService} from '../../shop/services/session';
+// import {CartService} from '../../shop/services/cart.service';
 import {map, Subscription} from 'rxjs';
 
 @Component({
@@ -17,14 +17,12 @@ export class NavigationComponent implements OnInit, OnDestroy {
   faChevronDown = faChevronDown;
   itemCount: any;
   cartContent: any;
-  cartSub: Subscription = new Subscription();
+  // cartSub: Subscription = new Subscription();
   addedProducts: any;
   cartQuantity = 0;
   menuOpen = false;
 
   constructor(private authService: AuthService,
-              private cartService: CartService,
-              private sessionService: SessionService,
               public menuService: MenuService
   ) {
 

@@ -52,7 +52,6 @@ import {TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import {TranslationService} from "./services/translation.service";
 import {TRANSLATIONS} from "./services/translations";
 import {of} from "rxjs";
-import {ShopModule} from './shop/shop.module';
 import {SsrCookieService} from 'ngx-cookie-service-ssr';
 import {SessionService} from './shop/services/session';
 import {AdsModule} from './ads/ads.module';
@@ -125,7 +124,6 @@ registerLocaleData(localeNl);
     CoreModule,
     CommentsModule,
     RecaptchaModule,
-    ShopModule,
     AdsModule
   ],
   providers: [{
