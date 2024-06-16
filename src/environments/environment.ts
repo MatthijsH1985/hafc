@@ -8,8 +8,8 @@ export const environment = {
   siteUrl: 'https://hafc_site.test:4208',
   apiUrl: 'https://hafc_site.test/wp-json/wp/v2',
   backendEndpoint: 'https://hafc_site.test:4208',
-  shopUrl: 'https://hafc_site.test/wp-json/wc/v3',
-  shopUrlCustom: 'https://hafc_site.test/wp-json/cocart/v2',
+  // shopUrl: 'https://hafc_site.test/wp-json/wc/v3',
+  // shopUrlCustom: 'https://hafc_site.test/wp-json/cocart/v2',
   loginUrl: 'https://hafc_site.test/wp-json/jwt-auth/v1/token',
   userServiceUrl: 'https://hafc_site.test/wp-json/userservice',
   recaptcha: {

@@ -35,7 +35,7 @@ import {OrdersServices} from './services/orders.services';
   ],
   providers: [
     ProductsService,
-    CartService,
+    // CartService,
     ShippingService,
     OrdersServices
   ]
