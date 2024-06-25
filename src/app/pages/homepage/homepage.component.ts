@@ -21,7 +21,7 @@ export class HomepageComponent implements OnInit {
   links: Link[] = [];
   reactiesString = 'reacties';
   headlines: any;
-  targetWidth = 96; // The target percentage width
+  targetWidth = 97; // The target percentage width
   totalDuration = 2000; // Total duration of the animation and counting in milliseconds
   animationDuration = 2000; // Duration of the animation in milliseconds
   countingInterval = 10; // Interval for counting in milliseconds
