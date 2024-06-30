@@ -36,6 +36,7 @@ import {HeadlinesResolver} from './news/services/resolvers/headlines-resolver.se
 import {CommentsResolverService} from './services/resolvers/comments-resolver.service';
 import {DonateComponent} from './pages/donate/donate.component';
 import {ThankYouComponent} from './pages/donate/thank-you/thank-you.component';
+import {SinglePageComponent} from './pages/single-page/single-page.component';
 const routes: Routes = [
   {
     component: HomepageComponent,
@@ -67,6 +68,10 @@ const routes: Routes = [
       links: LinksResolver,
       comments: CommentsResolverService
     }
+  },
+  {
+    component: SinglePageComponent,
+    path: 'page/:id/:title'
   },
   {
     component: TeamComponent,
