@@ -13,7 +13,7 @@ import {ActivatedRoute, RouterModule} from "@angular/router";
 import {SwiperDirective} from "../../core/shared/slider.directive";
 import {PostsService} from "../services/posts.service";
 import {LoadingIndicatorService} from "../../core/shared/loading-indicator/loading-indicator.service";
-import {faChevronLeft, faChevronRight} from '@fortawesome/free-solid-svg-icons';
+import {faChevronLeft, faChevronRight, faLongArrowRight} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {CoreModule} from '../../core/core.module';
 
@@ -100,4 +100,5 @@ export class NewssliderComponent implements AfterViewInit {
 
   protected readonly faChevronLeft = faChevronLeft;
   protected readonly faChevronRight = faChevronRight;
+  protected readonly faLongArrowRight = faLongArrowRight;
 }
