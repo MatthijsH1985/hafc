@@ -348,20 +348,6 @@ app-nieuwsbericht {
   @apply p-4 md:mr-4 bg-white dark:bg-gray-800
 }
 
-body::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 0;
-  overflow: hidden;
-  background-color: black; /* Je kunt de achtergrondkleur aanpassen zoals nodig */
-  animation: bodyEffectAnimation .5s ease-out 0.5s forwards; /* tijdsduur, timingfunctie en vertraging toegevoegd */
-  animation-delay: 1s;
-  z-index: -1; /* Zorg ervoor dat het pseudo-element onder de pagina-inhoud ligt */
-}
-
 .single-page {
   h3 {
     @apply text-2xl mb-4
@@ -424,4 +410,14 @@ textarea, input[type=text], input[type=email] {
     @apply mb-4
   }
   @apply mt-4 pt-4 border-t border-gray-200
+}
+
+.background-skew {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 40%, 0% 100%);
+  background-color: #000;
+  height: 60%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 0;
 }
