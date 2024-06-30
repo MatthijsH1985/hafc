@@ -22,7 +22,7 @@
           <ng-container *ngComponentOutlet="newssliderComponent"></ng-container>
         </ng-container>
       </div>
-      <div class="flex md:flex-row flex-col-reverse animate-fade-up animate-once animate-duration-300 animate-ease-linear animate-delay-1000">
+      <div class="flex md:flex-row flex-col-reverse relative z-30 animate-fade-up animate-once animate-duration-300 animate-ease-linear animate-delay-1000">
         <div class="w-full md:w-2/3 ">
           <div class="md:ml-0 px-4 md:mr-4 md:px-0 md:mt-4">
             <app-newslist [showMoreNewsButton]="false" [compact]="true" [pagination]="false"></app-newslist>
