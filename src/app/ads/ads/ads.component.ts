@@ -3,7 +3,7 @@ import {AdsService} from "../services/ads.service";
 import {Subscription} from "rxjs";
 import {Platform} from "@angular/cdk/platform";
 import * as _ from "lodash";
-import * as moment from 'moment';
+import moment from 'moment';
 
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 

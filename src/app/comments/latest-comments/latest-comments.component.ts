@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {LoadingIndicatorService} from "../../core/shared/loading-indicator/loading-indicator.service";
 import {CommentsService} from '../services/comments.service';
-import * as moment from 'moment/moment';
+import moment from 'moment/moment';
 import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({

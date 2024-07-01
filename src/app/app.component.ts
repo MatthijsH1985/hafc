@@ -4,7 +4,6 @@ import {LoadingIndicatorService} from "./core/shared/loading-indicator/loading-i
 import {TranslateService} from "@ngx-translate/core";
 import {BehaviorSubject} from 'rxjs';
 
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -12,6 +11,7 @@ import {BehaviorSubject} from 'rxjs';
   animations: [
     slideInAnimation
   ],
+  standalone: true
 })
 export class AppComponent implements OnInit {
 

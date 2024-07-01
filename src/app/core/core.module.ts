@@ -9,25 +9,15 @@ import {LoadingIndicatorComponent} from "./shared/loading-indicator/loading-indi
 import {GenerateLogoUrlPipe} from "./shared/generate-logo-url/generate-logo-url.pipe";
 import {RoundNumberPipe} from "./shared/round-number/round-number.pipe";
 import {TransformTeamDataPipe} from "./shared/transform-team-data/transform-team-data.pipe";
-import {
-  RECAPTCHA_V3_SITE_KEY,
-  RecaptchaFormsModule,
-  RecaptchaModule,
-  RecaptchaV3Module
-} from 'ng-recaptcha';
-import {environment} from "../../environments/environment";
 import {ConfigService} from "./services/config.service";
 import {SessionStorage} from "./services/session-storage";
 import {MemoryStorage} from "./services/memory-storage";
 import {LocalStorage} from "./services/local-storage";
 import {MetaService} from "./services/meta.service";
-import {AdsModule} from "../ads/ads.module";
 import {PositiveNumberPipe} from "./shared/positive-number/positive-number.pipe";
 import {PreloaderComponent} from "./shared/preloader/preloader.component";
-import {CartService} from '../shop/services/cart.service';
 import {SafePipe} from './shared/safe.pipe';
 import { CreditsComponent } from './footer/credits/credits.component';
-import {AdsComponent} from '../ads/ads/ads.component';
 import {CountdownComponent} from '../components/countdown/countdown.component';
 import {CountdownService} from '../components/countdown/countdown.service';
 import {CommentsStringPipe} from './shared/comments-string.pipe';
@@ -53,10 +43,7 @@ import {PositiveNegativePipe} from './shared/positive-negative.pipe';
   imports: [
     CommonModule,
     RouterModule,
-    FontAwesomeModule,
-    RecaptchaModule,
-    RecaptchaFormsModule,
-    RecaptchaV3Module
+    FontAwesomeModule
   ],
     exports: [
         HeaderComponent,
@@ -82,11 +69,7 @@ import {PositiveNegativePipe} from './shared/positive-negative.pipe';
     LocalStorage,
     MetaService,
     CountdownService,
-    MemoryStorage,
-    {
-      provide: RECAPTCHA_V3_SITE_KEY,
-      useValue: environment.recaptcha.siteKey
-    },
+    MemoryStorage
   ]
 })
 export class CoreModule { }

@@ -2,7 +2,6 @@ import {Component, KeyValueDiffers, OnInit} from '@angular/core';
 import {UserService} from "../../../services/user.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {environment} from "../../../../environments/environment";
-import {ReCaptchaV3Service} from "ng-recaptcha";
 import {Router} from "@angular/router";
 import {ViewportScroller} from "@angular/common";
 
@@ -12,7 +11,7 @@ import {ViewportScroller} from "@angular/common";
   styleUrls: ['./password-reset.component.scss']
 })
 export class PasswordResetComponent implements OnInit {
-constructor(private userService: UserService, private viewportScroller: ViewportScroller,  private router: Router, private recaptchaV3Service: ReCaptchaV3Service,) {
+constructor(private userService: UserService, private viewportScroller: ViewportScroller,  private router: Router) {
   this.token = undefined;
 }
 
@@ -34,29 +33,29 @@ constructor(private userService: UserService, private viewportScroller: Viewport
   }
 
   onSubmitForm() {
-    this.recaptchaV3Service.execute('myAction').subscribe(
-      (token) => {
-        this.executeRecaptchaV3();
-        const email = this.userData.get('email')?.value;
-        this.onSendResetlink(email);
-      },
-      (error) => {
-        console.log(`Recaptcha v3 error:`, error);
-      }
-    );
+    // this.recaptchaV3Service.execute('myAction').subscribe(
+    //   (token) => {
+    //     this.executeRecaptchaV3();
+    //     const email = this.userData.get('email')?.value;
+    //     this.onSendResetlink(email);
+    //   },
+    //   (error) => {
+    //     console.log(`Recaptcha v3 error:`, error);
+    //   }
+    // );
   }
 
   public executeRecaptchaV3() {
-    this.log.push(`Recaptcha v3 execution requested...`);
-    this.recaptchaV3Service.execute('myAction').subscribe(
-      (token) => {
-        this.addTokenLog('Recaptcha v3 token', token);
-      },
-      (error) => {
-        this.log.push(`Recaptcha v3 error: see console`);
-        console.log(`Recaptcha v3 error:`, error);
-      }
-    );
+    // this.log.push(`Recaptcha v3 execution requested...`);
+    // this.recaptchaV3Service.execute('myAction').subscribe(
+    //   (token) => {
+    //     this.addTokenLog('Recaptcha v3 token', token);
+    //   },
+    //   (error) => {
+    //     this.log.push(`Recaptcha v3 error: see console`);
+    //     console.log(`Recaptcha v3 error:`, error);
+    //   }
+    // );
   }
 
   public formatToken(token: string | null) {

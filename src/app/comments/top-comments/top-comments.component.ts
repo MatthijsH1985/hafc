@@ -1,8 +1,7 @@
 import {AfterViewInit, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {LoadingIndicatorService} from "../../core/shared/loading-indicator/loading-indicator.service";
 import {CommentsService} from '../services/comments.service';
-import * as moment from 'moment/moment';
-import {ActivatedRoute, Router} from '@angular/router';
+import moment from 'moment/moment';
 import {faTrophy} from '@fortawesome/free-solid-svg-icons';
 
 @Component({

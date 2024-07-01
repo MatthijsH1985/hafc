@@ -1,5 +1,5 @@
 import {Component, Inject, NgZone, OnDestroy, OnInit, PLATFORM_ID} from '@angular/core';
-import * as moment from 'moment/moment';
+import moment from 'moment/moment';
 import {Subscription} from 'rxjs';
 import {CountdownService} from './countdown.service';
 

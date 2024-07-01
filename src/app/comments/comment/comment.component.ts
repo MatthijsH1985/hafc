@@ -5,7 +5,7 @@ import {AuthService} from '../../services/auth/auth-service';
 import {Subscription} from 'rxjs';
 import {ToastrService} from 'ngx-toastr';
 
-import * as moment from 'moment';
+import moment from 'moment';
 import 'moment/locale/nl';
 import {ViewportScroller} from '@angular/common';
 

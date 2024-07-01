@@ -2,7 +2,7 @@ import {CUSTOM_ELEMENTS_SCHEMA, LOCALE_ID, NgModule} from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {HttpClientModule} from "@angular/common/http";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 import {TeamComponent} from "./pages/team/team.component";
 import {PlayersService} from "./services/players.service";
 import {TeamService} from "./services/team.service";
@@ -45,7 +45,6 @@ import {NewsModule} from "./news/news.module";
 import {CoreModule} from "./core/core.module";
 import {CompetitionModule} from "./competition/competition.module";
 import {CommentsModule} from "./comments/comments.module";
-import {RecaptchaModule} from "ng-recaptcha";
 import {VerifyAccountComponent} from "./pages/account/verify-account/verify-account.component";
 import {TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import {TranslationService} from "./services/translation.service";
@@ -60,84 +59,82 @@ register()
 registerLocaleData(localeNl);
 
 // @ts-ignore
-@NgModule({
-  bootstrap: [AppComponent],
-  declarations: [
-    AppComponent,
-    TeamComponent,
-    SpelerComponent,
-    SelectieComponent,
-    PlayerOfTheWeekComponent,
-    HomepageComponent,
-    NieuwsberichtComponent,
-    NieuwsarchiefComponent,
-    AccountComponent,
-    RegistrationFormComponent,
-    AccountDetailsComponent,
-    LoginFormComponent,
-    LogoutComponent,
-    LoginComponent,
-    UserCommentsComponent,
-    UserConfigComponent,
-    UserConfigEditableComponent,
-    RegisterComponent,
-    VerifyAccountComponent,
-    SpecialsComponent,
-    TeamstatsComponent,
-    PasswordResetComponent,
-    SetNewPasswordComponent,
-    NotFoundComponent,
-    SinglePageComponent,
-    DonateComponent,
-    ThankYouComponent
-  ],
-  exports: [
-    HomepageComponent,
-    CommentsModule,
-  ],
-  imports: [
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useValue: {
-          getTranslation: () => {
-            return of(TRANSLATIONS);
-          }
-        }
-      }
-    }),
-    CommonModule,
-    AppRoutingModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    ToastrModule.forRoot({
-      preventDuplicates: true
-    }),
-    ReactiveFormsModule,
-    FormsModule,
-    FontAwesomeModule,
-    CompetitionModule,
-    NewsModule,
-    CoreModule,
-    CommentsModule,
-    RecaptchaModule,
-    AdsModule
-  ],
-  providers: [{
-    provide: LOCALE_ID,
-    useValue: 'nl',
-  },
-    PlayersService,
-    TeamService,
-    TranslationService,
-    AdsService,
-    UserService,
-    SessionService,
-    MenuService,
-    JwtHelperService, {
-      provide: JWT_OPTIONS,
-      useValue: JWT_OPTIONS
-    }],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+@NgModule({ bootstrap: [AppComponent],
+    declarations: [
+        AppComponent,
+        TeamComponent,
+        SpelerComponent,
+        SelectieComponent,
+        PlayerOfTheWeekComponent,
+        HomepageComponent,
+        NieuwsberichtComponent,
+        NieuwsarchiefComponent,
+        AccountComponent,
+        RegistrationFormComponent,
+        AccountDetailsComponent,
+        LoginFormComponent,
+        LogoutComponent,
+        LoginComponent,
+        UserCommentsComponent,
+        UserConfigComponent,
+        UserConfigEditableComponent,
+        RegisterComponent,
+        VerifyAccountComponent,
+        SpecialsComponent,
+        TeamstatsComponent,
+        PasswordResetComponent,
+        SetNewPasswordComponent,
+        NotFoundComponent,
+        SinglePageComponent,
+        DonateComponent,
+        ThankYouComponent
+    ],
+    exports: [
+        HomepageComponent,
+        CommentsModule,
+    ],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA], imports: [TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useValue: {
+                    getTranslation: () => {
+                        return of(TRANSLATIONS);
+                    }
+                }
+            }
+        }),
+        CommonModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        ToastrModule.forRoot({
+            preventDuplicates: true
+        }),
+        ReactiveFormsModule,
+        FormsModule,
+        FontAwesomeModule,
+        CompetitionModule,
+        NewsModule,
+        CoreModule,
+        CommentsModule,
+        AdsModule
+      ],
+        providers: [{
+            provide: LOCALE_ID,
+            useValue: 'nl',
+        },
+        PlayersService,
+        TeamService,
+        TranslationService,
+        AdsService,
+        UserService,
+        SessionService,
+        MenuService,
+        JwtHelperService, {
+            provide: JWT_OPTIONS,
+            useValue: JWT_OPTIONS
+        },
+          provideHttpClient(
+            withInterceptorsFromDi())
+        ]
 })
 export class AppModule { }

@@ -38,23 +38,11 @@ export class SetNewPasswordComponent implements OnInit {
   onResetPassword(payload: string) {
     this.userService.setUserPassword(payload).subscribe({
       next: (result: any) => {
-        // console.log(result);
         this.feedbackMessage = result.message;
       },
       error: error => {
         console.error(error);
       }
     });
-  }
-
-  onValidateCode(payload: string) {
-    this.userService.validateCode(payload).subscribe({
-      next: (result: any) => {
-        // console.log(result)
-      },
-      error: (err) => {
-        console.error(err);
-      }
-    })
   }
 }

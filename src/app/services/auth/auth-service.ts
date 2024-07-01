@@ -1,5 +1,5 @@
 import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Observable, tap} from 'rxjs';
 import { environment } from '../../../environments/environment';
 import {JwtHelperService} from "@auth0/angular-jwt";

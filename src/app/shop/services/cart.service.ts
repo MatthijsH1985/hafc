@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, forkJoin, map, Observable, of, Subject, switchMap, tap} from 'rxjs';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import {Config} from "../../model/config";
 import {ConfigService} from "../../core/services/config.service";
 import {environment} from '../../../environments/environment';
