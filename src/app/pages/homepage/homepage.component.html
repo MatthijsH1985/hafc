@@ -1,6 +1,4 @@
-<div *ngIf="showDonationPage(); else homepage">
-  <app-donate></app-donate>
-</div>
+
 <ng-template #homepage>
   <div class="flex flex-col" *ngIf="!loading">
     <div class="container max-w-[1200px] relative z-10 ml-auto mr-auto">
@@ -60,3 +58,8 @@
     </div>
   </div>
 </ng-template>
+
+<div class="fixed left-0 top-0 h-full w-full">
+
+</div>
+<div class="bg-gray-800 w-[80vw] h-full fixed"></div>
