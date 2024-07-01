@@ -3,30 +3,24 @@
     <div class="md:flex-1 w-full bg-white">
       <div class="p-8">
         <h1 class="text-2xl">Help ons en houd HAFC in de lucht</h1>
-        <h2 class="text-blue-500 text-xl">De nood is heel hoog!</h2>
+        <h2 class="text-blue-500 text-xl mb-8">De nood is heel hoog!</h2>
+        <div class="mb-8 pb-8 border-b border-gray-200">
+          <form [formGroup]="donationForm" (ngSubmit)="startMolliePayment(donationForm)">
+            <div class="mb-4">
+              <label for="amount" class="text-xl">Bedrag:</label>
+              <select id="amount" formControlName="amount" class="border border-gray-200 bg-white p-2 text-base">
+                <option *ngFor="let amount of amounts" value="{{amount}}">{{amount}} euro</option>
+              </select>
+              <button type="submit" class="button button-blue ml-4">Doneren</button>
+            </div>
+
+<!--            <button (click)="hideDonationBar()" type="button" class="button button-white text-blue-500 mt-4 md:mt-0 inline-block hover:cursor-pointer md:ml-4">Nee, (nu) niet. Ga door naar HAFC.nl</button>-->
+          </form>
+          <p class="mt-4 text-sm">Omdat HAFC geen officiële partij is, zal het geld overgemaakt worden naar Mumba Web Solutions. Mumba Web Solutions draagt zorg voor het onderhoud van HAFC en neemt verder alle kosten voor zijn rekening.</p>
+        </div>
         <p class="mb-4">We zijn ontzettend druk met HAFC. Om alles in de lucht te houden en om de site door te ontwikkelen zijn we maandelijks een hoop geld kwijt. Normaal zouden we het niet snel vragen, maar nu zijn we toch genoodzaakt om een kleine bijdrage te vragen, zodat HAFC ook het komende seizoen weer volop kan draaien.</p>
         <p class="mb-4 font-bold">Ook het komende jaar wilen wij jullie voorzien van:</p>
-        <ul class="mb-4 list-disc">
-          <li class="ml-4">Interviews met (oud)spelers en trainers</li>
-          <li class="ml-4">Het laatste transfernieuws</li>
-          <li class="ml-4">Bij genoeg budget de terugkeer van de Android en iPhone app</li>
-          <li class="ml-4">De mogelijkheid om ten alle tijde met elkaar te discussiëren op dit platform</li>
-        </ul>
-        <p class="mb-4"><strong>Kortom: WIJ HEBBEN JE HULP HARD NODIG!</strong></p>
-        <p>Heb jij een bedrijf en wil jij een banner op de meest bezochte website van Heracles Almelo? Stuur dan een mailtje naar <strong>sponsor@hafc.nl</strong> voor meer informatie</p>
-      </div>
-      <div class="p-8">
-        <form [formGroup]="donationForm" (ngSubmit)="startMolliePayment(donationForm)">
-          <div class="mb-4">
-            <label for="amount" class="text-xl">Bedrag:</label>
-            <select id="amount" formControlName="amount" class="border border-gray-200 bg-white p-2 rounded-md text-xl">
-              <option *ngFor="let amount of amounts" value="{{amount}}">{{amount}} euro</option>
-            </select>
-          </div>
-          <button type="submit" class="button button-blue">Klik hier om te doneren</button>
-          <button (click)="hideDonationBar()" type="button" class="button button-white mt-4 md:mt-0 inline-block hover:cursor-pointer ml-4">Nee, (nu) niet. Ga door naar HAFC.nl</button>
-        </form>
-        <p class="mt-4 text-sm">Omdat HAFC geen officiële partij is, zal het geld overgemaakt worden naar Mumba Web Solutions. Mumba Web Solutions draagt zorg voor het onderhoud van HAFC en neemt verder alle kosten voor zijn rekening.</p>
+        <p class="mb-4">Interviews met (oud)spelers en trainers, het laatste nieuws, de android en iOS app</p>
       </div>
     </div>
   </div>
