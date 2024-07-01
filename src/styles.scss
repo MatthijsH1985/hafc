@@ -376,6 +376,9 @@ app-nieuwsbericht {
   &.white-animation {
     animation-delay:2s;
     background: #FFF;
+    height: 100%;
+    left: 0;
+    top: 0;
   }
 }
 
@@ -391,14 +394,12 @@ app-nieuwsbericht {
 @keyframes headerHeightAnimate {
   from {
     width: 100%;
-    height: 550px;
     right: 0;
     bottom: 0;
   }
   to {
     width: 0;
     right: 0;
-    top: -550px;
     bottom: auto;
   }
 }
@@ -418,12 +419,7 @@ textarea, input[type=text], input[type=email] {
 
 .background-skew {
   clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 0% 100%);
-  background-color: #000;
-  height: 70%;
-  width: 100%;
-  position: absolute;
-  top: 0;
-  z-index: 0;
+  @apply bg-black h-[40%] md:h-[70%] w-full absolute top-0 z-0
 }
 
 .news-container {
