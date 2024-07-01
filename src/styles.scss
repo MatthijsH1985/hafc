@@ -421,3 +421,12 @@ textarea, input[type=text], input[type=email] {
   top: 0;
   z-index: 0;
 }
+
+.news-container {
+  ul {
+    li {
+      @apply list-item ml-4
+    }
+    @apply list-disc
+  }
+}
