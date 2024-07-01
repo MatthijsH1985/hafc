@@ -1,73 +1,48 @@
 
 import 'zone.js/node';
 
-import { ngExpressEngine } from '@nguniversal/express-engine';
+import { APP_BASE_HREF } from '@angular/common';
+import { CommonEngine } from '@angular/ssr';
 import * as express from 'express';
-import { existsSync } from 'fs';
-import { join } from 'path';
-import * as compression from 'compression';
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
+import bootstrap from './src/main.server';
 
-import { AppServerModule } from './src/main.server';
-
-const { createMollieClient } = require('@mollie/api-client');
-const mollieClient = createMollieClient({ apiKey: 'live_nWauMaxegtgfAeJn2uK4azkFaB6Vrq' });
-
+// The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
-  const mollieTestApiKey = 'test_E8azAjRBsrTA96MSR4f7r6SrdEcagz';
-  const mollieLiveApiKey = 'live_nWauMaxegtgfAeJn2uK4azkFaB6Vrq';
   const server = express();
-  server.use(compression());
   const distFolder = join(process.cwd(), 'dist/hafc/browser');
-  const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
+  const indexHtml = existsSync(join(distFolder, 'index.original.html'))
+    ? join(distFolder, 'index.original.html')
+    : join(distFolder, 'index.html');
 
-  server.engine('html', ngExpressEngine({
-    bootstrap: AppServerModule,
-  }));
-
-  server.use(express.json());
+  const commonEngine = new CommonEngine();
 
   server.set('view engine', 'html');
   server.set('views', distFolder);
 
+  // Example Express Rest API endpoints
+  // server.get('/api/**', (req, res) => { });
+  // Serve static files from /browser
   server.get('*.*', express.static(distFolder, {
     maxAge: '1y'
   }));
 
-  server.post('/donate', async (req, res) => {
-    const amountValue = req.body.amount as string | number;
-    const currency = 'EUR'; // Je zou de valuta kunnen hardcoderen of vanuit een andere bron kunnen verkrijgen
+  // All regular routes use the Angular engine
+  server.get('*', (req, res, next) => {
+    const { protocol, originalUrl, baseUrl, headers } = req;
 
-    if (typeof amountValue === 'string' || typeof amountValue === 'number') {
-      const rawValue = parseFloat(amountValue as string);
-      if (!isNaN(rawValue)) {
-        const formattedAmount = rawValue.toFixed(2);
-        const description = req.body.description;
-        try {
-          const payment = await mollieClient.payments.create({
-            amount: {
-              currency,
-              value: formattedAmount
-            },
-            description,
-            redirectUrl: 'https://www.hafc.nl/doneer/dank-je-wel'
-          });
-          const checkoutUrl = payment.getCheckoutUrl();
-          res.json({ checkoutUrl });
-        } catch (error: any) {
-          res.status(500).json({ error: error.message });
-        }
-      } else {
-        res.status(400).json({ error: 'Invalid amount value' });
-      }
-    } else {
-      res.status(400).json({ error: 'Invalid amount format' });
-    }
-  });
-
-  server.get('*', (req, res) => {
-    res.render(indexHtml, {
-      req
-    });
+    commonEngine
+      .render({
+        bootstrap,
+        documentFilePath: indexHtml,
+        url: `${protocol}://${headers.host}${originalUrl}`,
+        publicPath: distFolder,
+        providers: [
+          { provide: APP_BASE_HREF, useValue: baseUrl },],
+      })
+      .then((html) => res.send(html))
+      .catch((err) => next(err));
   });
 
   return server;
@@ -93,4 +68,4 @@ if (moduleFilename === __filename || moduleFilename.includes('iisnode')) {
   run();
 }
 
-export * from './src/main.server';
+export default bootstrap;

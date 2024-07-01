@@ -41,7 +41,6 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {UserConfigEditableComponent} from "./pages/account/user-config-editable/user-config-editable.component";
 import {NotFoundComponent} from "./pages/not-found/not-found.component";
 import {SinglePageComponent} from "./pages/single-page/single-page.component";
-import {TransferHttpCacheModule} from "@nguniversal/common";
 import {NewsModule} from "./news/news.module";
 import {CoreModule} from "./core/core.module";
 import {CompetitionModule} from "./competition/competition.module";
@@ -52,7 +51,6 @@ import {TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import {TranslationService} from "./services/translation.service";
 import {TRANSLATIONS} from "./services/translations";
 import {of} from "rxjs";
-import {SsrCookieService} from 'ngx-cookie-service-ssr';
 import {SessionService} from './shop/services/session';
 import {AdsModule} from './ads/ads.module';
 import {DonateComponent} from './pages/donate/donate.component';
@@ -119,7 +117,6 @@ registerLocaleData(localeNl);
     FormsModule,
     FontAwesomeModule,
     CompetitionModule,
-    TransferHttpCacheModule,
     NewsModule,
     CoreModule,
     CommentsModule,
@@ -130,7 +127,6 @@ registerLocaleData(localeNl);
     provide: LOCALE_ID,
     useValue: 'nl',
   },
-    SsrCookieService,
     PlayersService,
     TeamService,
     TranslationService,
