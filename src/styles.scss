@@ -425,7 +425,7 @@ textarea, input[type=text], input[type=email] {
 .news-container {
   ul {
     li {
-      @apply list-item ml-4
+      @apply list-item ml-4 leading-8
     }
     @apply list-disc
   }
