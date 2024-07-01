@@ -373,6 +373,10 @@ app-nieuwsbericht {
   height: 550px;
   overflow: hidden;
   z-index: 21;
+  &.white-animation {
+    animation-delay:2s;
+    background: #FFF;
+  }
 }
 
 @keyframes bodyEffectAnimation {
@@ -413,9 +417,9 @@ textarea, input[type=text], input[type=email] {
 }
 
 .background-skew {
-  clip-path: polygon(0% 0%, 100% 0%, 100% 40%, 0% 100%);
+  clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 0% 100%);
   background-color: #000;
-  height: 60%;
+  height: 70%;
   width: 100%;
   position: absolute;
   top: 0;

@@ -1,18 +1,21 @@
 <div *ngIf="!showWarning;" class=" w-full mt-8 md:mt-0 md:w-auto top-2 md:right-2 p-4 z-20 text-center border-b border-gray-300 text-black dark:text-white flex flex-col bg-white dark:bg-black">
   <h2 class="text-xl md:text-3xl mb-2">{{ pageData?.acf?.titel }}</h2>
-  <div class="flex justify-center items-center w-full md:w-auto">
-    <div class="justify-between flex flex-col mr-4">
-      <strong class="block text-xl md:text-3xl bg-white dark:bg-black  p-2 mt-2">{{ days }} <span class="text-xl font-normal">d.</span></strong>
+  <div class="relative h-[180px] p-4">
+    <div class="flex justify-center items-center w-full md:w-auto">
+      <div class="justify-between flex flex-col mr-4">
+        <strong class="block text-xl md:text-3xl bg-white dark:bg-black  p-2 mt-2">{{ days }} <span class="text-xl font-normal">d.</span></strong>
+      </div>
+      <div class="justify-between flex flex-col mr-4 text-black dark:text-white">
+        <strong class="block text-xl md:text-3xl bg-white dark:bg-black  p-2 mt-2">{{ hours }} <span class="text-xl font-normal">u.</span></strong>
+      </div>
+      <div class="justify-between flex flex-col mr-4">
+        <strong class="block text-xl md:text-3xl bg-white dark:bg-black  p-2 mt-2">{{ minutes }} <span class="text-xl font-normal">m.</span></strong>
+      </div>
+      <div class="justify-between flex flex-col">
+        <strong class="block text-xl md:text-3xl bg-white dark:bg-black  p-2 mt-2">{{ seconds }} <span class="text-xl font-normal">s.</span></strong>
+      </div>
     </div>
-    <div class="justify-between flex flex-col mr-4 text-black dark:text-white">
-      <strong class="block text-xl md:text-3xl bg-white dark:bg-black  p-2 mt-2">{{ hours }} <span class="text-xl font-normal">u.</span></strong>
-    </div>
-    <div class="justify-between flex flex-col mr-4">
-      <strong class="block text-xl md:text-3xl bg-white dark:bg-black  p-2 mt-2">{{ minutes }} <span class="text-xl font-normal">m.</span></strong>
-    </div>
-    <div class="justify-between flex flex-col">
-      <strong class="block text-xl md:text-3xl bg-white dark:bg-black  p-2 mt-2">{{ seconds }} <span class="text-xl font-normal">s.</span></strong>
-    </div>
+    <a class="inline-block mt-4 mb-4 button button-blue self-center" [routerLink]="pageData?.acf?.link_naar_pagina">Praat mee</a>
+    <div class="slider-animation white-animation"></div>
   </div>
-  <a class="inline-block mt-4 mb-4 button button-blue self-center" [routerLink]="pageData?.acf?.link_naar_pagina">Praat mee</a>
 </div>
