@@ -21,7 +21,11 @@ import {CountdownComponent} from '../components/countdown/countdown.component';
 import {CountdownService} from '../components/countdown/countdown.service';
 import {CommentsStringPipe} from './shared/comments-string.pipe';
 import {PositiveNegativePipe} from './shared/positive-negative.pipe';
-
+import {HttpClient} from '@angular/common/http';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 @NgModule({
     declarations: [
         HeaderComponent,
