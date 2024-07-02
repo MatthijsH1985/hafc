@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:hafc": "node dist/befo/server/server.mjs"
+    "serve:ssr:hafc": "node dist/hafc/server/server.mjs"
   },
   "private": true,
   "dependencies": {
