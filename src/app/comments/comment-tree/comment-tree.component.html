@@ -2,7 +2,6 @@
   <ul>
     <li *ngFor="let node of commentNodes;" class="" [id]="'comment-' + node.comment.id">
       <app-comment
-        [isAuthenticated]="isAuthenticated"
         [comment]="node.comment"
         [commentLevel]="commentLevel + 1"
       ></app-comment>
@@ -10,7 +9,6 @@
         <app-comment-tree
           *ngIf="node.children.length > 0"
           [commentNodes]="node.children"
-          [isAuthenticated]="isAuthenticated"
           [commentLevel]="commentLevel + 1"
         ></app-comment-tree>
       </ng-container>

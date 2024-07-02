@@ -1,15 +1,22 @@
 import {Component, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
-import {Router} from "@angular/router";
+import {Router, RouterModule} from "@angular/router";
 import {PostsService} from "../../news/services/posts.service";
 import {MetaService} from "../../core/services/meta.service";
 import {LoadingIndicatorService} from '../../core/shared/loading-indicator/loading-indicator.service';
+import {CoreModule} from '../../core/core.module';
+import {LoadingIndicatorComponent} from '../../core/shared/loading-indicator/loading-indicator.component';
 
 @Component({
   selector: 'app-specials',
   templateUrl: './specials.component.html',
   styleUrls: ['./specials.component.scss'],
-  standalone: true
+  standalone: true,
+  imports: [
+    RouterModule,
+    CoreModule,
+    LoadingIndicatorComponent
+  ]
 })
 export class SpecialsComponent implements OnInit {
   posts: any = [];

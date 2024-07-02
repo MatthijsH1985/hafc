@@ -1,11 +1,15 @@
 import {Component, Inject, OnInit, PLATFORM_ID} from '@angular/core';
 import {isPlatformBrowser} from '@angular/common';
-import {Router} from '@angular/router';
+import {Router, RouterModule} from '@angular/router';
 
 @Component({
   selector: 'app-thank-you',
   templateUrl: './thank-you.component.html',
-  styleUrls: ['./thank-you.component.scss']
+  styleUrls: ['./thank-you.component.scss'],
+  standalone: true,
+  imports: [
+    RouterModule
+  ]
 })
 export class ThankYouComponent implements OnInit{
 

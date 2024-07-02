@@ -3,11 +3,18 @@ import {LoadingIndicatorService} from "../../core/shared/loading-indicator/loadi
 import {CommentsService} from '../services/comments.service';
 import moment from 'moment/moment';
 import {faTrophy} from '@fortawesome/free-solid-svg-icons';
+import {CommonModule} from '@angular/common';
+import {CoreModule} from '../../core/core.module';
 
 @Component({
   selector: 'app-top-comments',
   templateUrl: './top-comments.component.html',
-  styleUrls: ['./top-comments.component.scss']
+  styleUrls: ['./top-comments.component.scss'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    CoreModule
+  ]
 })
 export class TopCommentsComponent implements AfterViewInit {
   @Input('comments') topComments: any | undefined;

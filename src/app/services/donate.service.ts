@@ -3,7 +3,6 @@ import { Observable} from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Config} from '../model/config';
 import {environment} from "../../environments/environment";
-import {AuthService} from "./auth/auth-service";
 import {ConfigService} from "../core/services/config.service";
 
 @Injectable()
@@ -15,7 +14,7 @@ export class DonateService {
     })
   };
 
-  constructor(private http: HttpClient, private configService: ConfigService, private authService: AuthService) {
+  constructor(private http: HttpClient, private configService: ConfigService) {
   }
 
   addDonation(user: any): Observable<Config[]> {

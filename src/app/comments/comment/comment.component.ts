@@ -1,35 +1,41 @@
 import {ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
 import {faArrowDown, faArrowUp, faCheck, faShare} from '@fortawesome/free-solid-svg-icons';
 import {CommentsService} from '../services/comments.service';
-import {AuthService} from '../../services/auth/auth-service';
-import {Subscription} from 'rxjs';
 import {ToastrService} from 'ngx-toastr';
 
 import moment from 'moment';
 import 'moment/locale/nl';
-import {ViewportScroller} from '@angular/common';
+import {CommonModule, ViewportScroller} from '@angular/common';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {CommentFormComponent} from '../comment-form/comment-form.components';
+import {CoreModule} from '../../core/core.module';
 
 @Component({
   selector: 'app-comment',
   templateUrl: './comment.component.html',
-  styleUrls: ['./comment.component.scss']
+  styleUrls: ['./comment.component.scss'],
+  standalone: true,
+  imports: [
+    FontAwesomeModule,
+    CommonModule,
+    CommentFormComponent,
+    CoreModule
+  ]
 })
+
 export class CommentComponent implements OnInit {
 
     constructor(private commentsService: CommentsService,
-                private authService: AuthService,
                 private toastService: ToastrService,
                 private cdr: ChangeDetectorRef,
                 private viewportScroller: ViewportScroller
     ) {
     }
-    private authSub = new Subscription();
     private loading: boolean = true;
     commentFormOpen = false;
     protected readonly faArrowDown = faArrowDown;
     protected readonly faCheck = faCheck;
     protected readonly faArrowUp = faArrowUp;
-    @Input() isAuthenticated = false;
     @Input() comment: any = [];
     @Input() commentLevel: number = 0;
     @Input() comments: any | undefined;

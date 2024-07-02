@@ -11,13 +11,15 @@ import {
 } from '@angular/core';
 import {Subscription} from "rxjs";
 import {CommentsService} from "../services/comments.service";
-import {AuthService} from "../../services/auth/auth-service";
 import {ToastrService} from "ngx-toastr";
 import {ActivatedRoute, Route, Router} from '@angular/router';
 import {CommentNode} from '../model/comment-node.model';
 import {faPaperPlane} from '@fortawesome/free-solid-svg-icons';
-import {CommentsModule} from '../comments.module';
+
 import {CommonModule} from '@angular/common';
+import {CommentComponent} from '../comment/comment.component';
+import {CommentFormComponent} from '../comment-form/comment-form.components';
+import {CommentTreeComponent} from '../comment-tree/comment-tree.component';
 
 @Component({
   selector: 'app-comments',
@@ -25,8 +27,10 @@ import {CommonModule} from '@angular/common';
   styleUrls: ['./comments.component.scss'],
   standalone: true,
   imports: [
-    CommentsModule,
-    CommonModule
+    CommonModule,
+    CommentComponent,
+    CommentFormComponent,
+    CommentTreeComponent
   ]
 })
 export class CommentsComponent implements OnChanges, OnDestroy, OnInit {
@@ -52,7 +56,6 @@ export class CommentsComponent implements OnChanges, OnDestroy, OnInit {
   constructor(private route: ActivatedRoute,
               private commentsService: CommentsService,
               private router: Router,
-              private authService: AuthService,
               private toast: ToastrService,
               private changeDetectorRef: ChangeDetectorRef,
               @Inject(PLATFORM_ID) private platformId: object) {
@@ -71,10 +74,6 @@ export class CommentsComponent implements OnChanges, OnDestroy, OnInit {
 
   ngOnInit() {
     this.buildCommentHierarchy();
-  }
-
-  isAuthenticated() {
-    return this.authService.isAuthenticated()
   }
 
   buildCommentHierarchy() {
@@ -159,4 +158,3 @@ export class CommentsComponent implements OnChanges, OnDestroy, OnInit {
 
   protected readonly faPaperPlane = faPaperPlane;
 }
-

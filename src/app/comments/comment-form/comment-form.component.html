@@ -1,12 +1,10 @@
 <div [ngClass]="{'border border-gray-80 dark:border-black border-dashed mb-4 ': isReply}" id="comment-form-{{ comment.id }}">
   <form [formGroup]="commentForm" (ngSubmit)="onPostComment(commentForm)" class="m-4">
-    <div *ngIf="!isLoggedIn();">
-      <div class="mb-4">
-        <input placeholder="Jouw naam" class="bg-gray-100 max-w-[300px] dark:bg-gray-700 dark:text-white" formControlName="name" id="name" type="text" />
-      </div>
-      <div class="mb-4">
-        <input class="bg-gray-100 dark:bg-gray-700 max-w-[300px] dark:text-white w-2/3 focus:border-black focus:border" placeholder="Jouw e-mail" formControlName="email" id="email" type="email" />
-      </div>
+    <div class="mb-4">
+      <input placeholder="Jouw naam" class="bg-gray-100 max-w-[300px] dark:bg-gray-700 dark:text-white" formControlName="name" id="name" type="text" />
+    </div>
+    <div class="mb-4">
+      <input class="bg-gray-100 dark:bg-gray-700 max-w-[300px] dark:text-white w-2/3 focus:border-black focus:border" placeholder="Jouw e-mail" formControlName="email" id="email" type="email" />
     </div>
     <div class="mb-2 relative flex items-end">
       <textarea class="flex-1 bg-gray-100 dark:bg-gray-700 dark:text-white" formControlName="comment" id="comment" placeholder="Voer hier je bericht in"></textarea>
@@ -16,18 +14,9 @@
         </button>
       </div>
     </div>
-
     <p *ngIf="errorMessage !== ''" class="text-red-800 pl-4 mb-8">
       {{ errorMessage }}
     </p>
-    <div *ngIf="isLoggedIn" class="pl-4 my-8 dark:text-white text-sm">
-      <p>
-        Je reageert als {{ getUserName() }}.
-      </p>
-      <p>
-        Ben jij dit niet? <button (click)="logOut()" class="underline dark:text-white hover:text-black hover:underline text-blue-500">Meld je dan af.</button>
-      </p>
-    </div>
   </form>
   <p class="my-4 mx-8 recaptcha text-xs text-gray-400 dark:white">Deze site wordt beschermd door reCAPTCHA en <a href="https://policies.google.com/privacy" target="_blank">Google Privacybeleid</a>
     en <a href="https://policies.google.com/terms" target="_blank">Servicevoorwaarden</a> zijn van toepassing.</p>

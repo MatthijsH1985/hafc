@@ -1,11 +1,10 @@
-import { NgModule } from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RouterModule} from "@angular/router"
 import {HeaderComponent} from "./header/header.component";
 import {FooterComponent} from "./footer/footer.component";
 import {NavigationComponent} from "./navigation/navigation.component";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
-import {LoadingIndicatorComponent} from "./shared/loading-indicator/loading-indicator.component";
 import {GenerateLogoUrlPipe} from "./shared/generate-logo-url/generate-logo-url.pipe";
 import {RoundNumberPipe} from "./shared/round-number/round-number.pipe";
 import {TransformTeamDataPipe} from "./shared/transform-team-data/transform-team-data.pipe";
@@ -22,7 +21,6 @@ import {CountdownComponent} from '../components/countdown/countdown.component';
 import {CountdownService} from '../components/countdown/countdown.service';
 import {CommentsStringPipe} from './shared/comments-string.pipe';
 import {PositiveNegativePipe} from './shared/positive-negative.pipe';
-import {BrowserModule} from '@angular/platform-browser';
 
 @NgModule({
     declarations: [
@@ -42,7 +40,6 @@ import {BrowserModule} from '@angular/platform-browser';
     ],
   imports: [
     CommonModule,
-    BrowserModule,
     RouterModule,
     FontAwesomeModule
   ],
@@ -59,6 +56,7 @@ import {BrowserModule} from '@angular/platform-browser';
     CommentsStringPipe,
     FontAwesomeModule,
     PreloaderComponent,
+    CommonModule,
     RouterModule,
     CreditsComponent,
     CountdownComponent
@@ -69,8 +67,8 @@ import {BrowserModule} from '@angular/platform-browser';
     LocalStorage,
     MetaService,
     CountdownService,
-    MemoryStorage
+    MemoryStorage,
+
   ]
 })
 export class CoreModule { }
-

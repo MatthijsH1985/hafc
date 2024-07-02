@@ -3,11 +3,15 @@ import {Router} from "@angular/router";
 import * as moment from 'moment';
 import {PostsService} from "../../news/services/posts.service";
 import {FixturesService} from "../services/fixtures.service";
+import {CoreModule} from '../../core/core.module';
 
 @Component({
   selector: 'app-volgende-wedstrijd',
   templateUrl: './volgende-wedstrijd.component.html',
   styleUrls: ['./volgende-wedstrijd.component.scss'],
+  imports: [
+    CoreModule
+  ],
   standalone: true
 })
 export class VolgendeWedstrijdComponent implements OnInit{

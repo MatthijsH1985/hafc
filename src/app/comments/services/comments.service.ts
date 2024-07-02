@@ -1,8 +1,6 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable, of, Subject} from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import {ConfigService} from "../../core/services/config.service";
-import {AuthService} from "../../services/auth/auth-service";
 import {Config} from "../../model/config";
 import {environment} from "../../../environments/environment";
 
@@ -10,7 +8,6 @@ import {environment} from "../../../environments/environment";
 
 export class CommentsService {
 
-  token: any = this.authService.getToken();
   private lastFetchTime: number = 0;
 
   httpOptions = {
@@ -18,14 +15,8 @@ export class CommentsService {
       'Content-Type': 'application/json;charset=UTF-8'
     })
   };
-  httpOptionsLoggedIn = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json;charset=UTF-8',
-      'Authorization': `Bearer ${this.token}`
-    })
-  };
-  constructor(private http: HttpClient,
-              private authService: AuthService) {
+
+  constructor(private http: HttpClient) {
   }
 
   private newCommentAddedSubject: Subject<any> = new Subject<any>();
@@ -52,17 +43,6 @@ export class CommentsService {
   }
 
   postComment(comment: any): Observable<Config[]> {
-    if (this.authService.isAuthenticated()) {
-      const token = this.authService.getToken();
-
-      const httpOptionsLoggedIn = {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json;charset=UTF-8',
-          'Authorization': `Bearer ${token}`
-        })
-      };
-      return this.http.post<Config[]>(environment.apiUrl + '/comments', comment, httpOptionsLoggedIn);
-    }
     return this.http.post<Config[]>(environment.apiUrl + '/comments', comment, this.httpOptions);
   }
 
@@ -72,13 +52,6 @@ export class CommentsService {
     //  // return this.http.post<Config[]>(environment.apiUrl + '/mumba/comment-like/', commentData, this.httpOptionsLoggedIn);
     // }
     return this.http.post<Config[]>(environment.apiUrl + '/mumba/comment-like/', commentData, this.httpOptions);
-  }
-
-  reportComment(commentData: any) {
-    if (this.authService.isAuthenticated()) {
-      return this.http.post<Config[]>(environment.apiUrl + '/mumba/report-comment', commentData, this.httpOptions);
-    }
-    return of([]);
   }
 
   getPopularComments(postId: number) {
@@ -96,11 +69,6 @@ export class CommentsService {
       queryParam = `post=${post}&${randomQueryParam}&${perPage}`;
     }
     return this.http.get<Config[]>(environment.apiUrl + '/comments?&' + queryParam + '&' + perPage + '', this.httpOptions);
-  }
-
-  getLatestCommentsByUser(authorId: number) {
-    const randomQueryParam = `cache_bypass=1`;
-    return this.http.get<Config[]>(environment.apiUrl + '/comments?per_page=10&order=desc&' + randomQueryParam + '&author=' + authorId , this.httpOptionsLoggedIn);
   }
 
   getComments(post:any, page = 1, order = 'desc'): Observable<Config[]> {

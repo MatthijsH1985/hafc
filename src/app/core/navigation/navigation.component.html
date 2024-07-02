@@ -55,33 +55,6 @@
       </ul>
     </nav>
   </div>
-  <div class="flex-1 text-right uppercase text-white menu-right">
-    <nav class="hidden lg:block right-menu">
-      <ul class="flex space-x-2 uppercase text-white justify-end">
-<!--        <li>-->
-<!--          <a class="button button-black flex" (click)="menuService.close()" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['shop']">-->
-<!--            Shop-->
-<!--          </a>-->
-<!--        </li>-->
-<!--        <li>-->
-<!--          <a class="button button-black flex" (click)="menuService.close()" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['shop', 'winkelwagen']">-->
-<!--            <fa-icon [icon]="faShoppingCart" class="mr-2"></fa-icon>  {{ cartQuantity }}-->
-<!--          </a>-->
-<!--        </li>-->
-        <li *ngIf="!isLoggedIn()">
-          <a class="button  button-black flex" (click)="menuService.close()" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"[routerLink]="['account', 'login']">Mijn HAFC</a>
-        </li>
-        <li *ngIf="isLoggedIn()">
-          <a class="button  button-black flex" (click)="menuService.close()" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['account', 'details', 'mijn-gegevens']">
-            Mijn HAFC
-          </a>
-        </li>
-        <li *ngIf="isLoggedIn()">
-          <a class="button button-black flex" (click)="menuService.close()" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['account', 'logout']" title="Uitloggen">Uitloggen</a>
-        </li>
-      </ul>
-    </nav>
-  </div>
 </div>
 <button class="fixed top-2 right-2 p-4 inline-block md:hidden text-white hover:text-blue-500" *ngIf="menuOpen" (click)="menuService.close()">
   <fa-icon [icon]="faTimes"></fa-icon>

@@ -1,11 +1,17 @@
 import {Component, OnInit} from '@angular/core';
 import {PlayersService} from "../../../services/players.service";
+import {RouterModule} from '@angular/router';
+import {CoreModule} from '../../../core/core.module';
 
 @Component({
   selector: 'app-selectie',
   templateUrl: './selectie.component.html',
   styleUrls: ['./selectie.component.scss'],
-  standalone: true
+  standalone: true,
+  imports: [
+    RouterModule,
+    CoreModule
+  ]
 })
 export class SelectieComponent implements OnInit{
   team = {

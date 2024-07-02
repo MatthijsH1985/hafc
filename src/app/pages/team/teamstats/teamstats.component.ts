@@ -2,11 +2,15 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Subscription} from "rxjs";
 import {TeamService} from "../../../services/team.service";
+import {CoreModule} from '../../../core/core.module';
 
 @Component({
   templateUrl: 'teamstats.page.html',
   selector: 'app-teamstats',
   styleUrls: ['teamstats.page.scss'],
+  imports: [
+    CoreModule
+  ],
   standalone: true
 })
 

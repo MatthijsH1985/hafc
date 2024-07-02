@@ -3,11 +3,17 @@ import {catchError, of, Subscription} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {PostsService} from "../../news/services/posts.service";
+import {NewsModule} from '../../news/news.module';
+import {CoreModule} from '../../core/core.module';
 
 @Component({
   selector: 'app-nieuwsarchief',
   templateUrl: './nieuwsarchief.component.html',
   styleUrls: ['./nieuwsarchief.component.scss'],
+  imports: [
+    NewsModule,
+    CoreModule
+  ],
   standalone: true
 })
 export class NieuwsarchiefComponent implements OnInit{

@@ -2,11 +2,17 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Title} from "@angular/platform-browser";
 import {PostsService} from "../../news/services/posts.service";
+import {LoadingIndicatorComponent} from '../../core/shared/loading-indicator/loading-indicator.component';
+import {CoreModule} from '../../core/core.module';
 
 @Component({
   selector: 'app-single-page',
   templateUrl: './single-page.component.html',
   styleUrls: ['./single-page.component.scss'],
+  imports: [
+    LoadingIndicatorComponent,
+    CoreModule
+  ],
   standalone: true
 })
 export class SinglePageComponent implements OnInit{

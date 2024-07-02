@@ -1,15 +1,21 @@
 import {Component, Inject, OnDestroy, OnInit, PLATFORM_ID} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {DonateService} from '../../services/donate.service';
 import {Subscription} from 'rxjs';
-import {isPlatformBrowser} from '@angular/common';
+import {CommonModule, isPlatformBrowser} from '@angular/common';
 import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-donate',
   templateUrl: './donate.component.html',
   providers: [DonateService],
-  styleUrls: ['./donate.component.scss']
+  styleUrls: ['./donate.component.scss'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule
+  ]
 })
 export class DonateComponent implements OnInit, OnDestroy {
   name: string = '';

@@ -3,11 +3,16 @@ import {LoadingIndicatorService} from "../../core/shared/loading-indicator/loadi
 import {CommentsService} from '../services/comments.service';
 import moment from 'moment/moment';
 import {ActivatedRoute, Router} from '@angular/router';
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-latest-comments',
   templateUrl: './latest-comments.component.html',
-  styleUrls: ['./latest-comments.component.scss']
+  styleUrls: ['./latest-comments.component.scss'],
+  standalone: true,
+  imports: [
+    CommonModule
+  ],
 })
 export class LatestCommentsComponent implements AfterViewInit {
   @Input('comments') latestComments: any | undefined;

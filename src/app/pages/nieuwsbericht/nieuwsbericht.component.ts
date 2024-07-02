@@ -8,19 +8,31 @@ import {
   PLATFORM_ID,
 } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ViewportScroller } from '@angular/common';
+import {ActivatedRoute, Router, RouterModule} from '@angular/router';
+import {DatePipe, ViewportScroller} from '@angular/common';
 import {faComment, faArrowDown, faTrophy, faLongArrowRight} from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 import {MetaService} from "../../core/services/meta.service";
 import {LoadingIndicatorService} from "../../core/shared/loading-indicator/loading-indicator.service";
 import {CommentsService} from '../../comments/services/comments.service';
+import {CoreModule} from '../../core/core.module';
+import {AdsComponent} from '../../ads/ads/ads.component';
+import {CommentsComponent} from '../../comments/comments/comments.component';
+import {TopCommentsComponent} from '../../comments/top-comments/top-comments.component';
 
 @Component({
   selector: 'app-nieuwsbericht',
   templateUrl: './nieuwsbericht.component.html',
   styleUrls: ['./nieuwsbericht.component.scss'],
-  standalone: true
+  standalone: true,
+  imports: [
+    RouterModule,
+    DatePipe,
+    CoreModule,
+    AdsComponent,
+    CommentsComponent,
+    TopCommentsComponent
+  ]
 })
 export class NieuwsberichtComponent implements OnInit, OnDestroy, AfterViewInit {
   currentPostSub: Subscription | undefined;

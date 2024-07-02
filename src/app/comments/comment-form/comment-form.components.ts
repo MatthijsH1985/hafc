@@ -1,16 +1,24 @@
 import {ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {faPaperPlane} from '@fortawesome/free-solid-svg-icons';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {CommentsService} from '../services/comments.service';
-import {AuthService} from '../../services/auth/auth-service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
+import {CommonModule} from '@angular/common';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 
 @Component({
   templateUrl: 'comment-form.component.html',
-  selector: 'app-comment-form'
+  selector: 'app-comment-form',
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    FontAwesomeModule
+  ]
 })
-export class CommentFormComponents implements OnInit {
+export class CommentFormComponent implements OnInit {
   commentForm: FormGroup;
   post: any = [];
   @Input() isReply: boolean = false;
@@ -19,7 +27,6 @@ export class CommentFormComponents implements OnInit {
   loading = false;
   errorMessage: string = '';
   constructor(private commentsService: CommentsService,
-              private authService: AuthService,
               private route: ActivatedRoute,
               private toast: ToastrService,
               private changeDetectorRef: ChangeDetectorRef,
@@ -35,22 +42,6 @@ export class CommentFormComponents implements OnInit {
     this.post = this.route.snapshot.data['post'];
   }
 
-  getUserName() {
-    return this.authService.getUserName()
-  }
-
-  logOut() {
-    this.authService.logOut();
-    this.router.navigateByUrl('');
-  }
-
-  isLoggedIn(): boolean {
-    if (this.authService.isAuthenticated()) {
-      return true
-    } else {
-      return false
-    }
-  }
 
   onCommentSuccesfull(comment: any) {
     this.commentSuccesfullEmitter.emit(true);
@@ -77,37 +68,16 @@ export class CommentFormComponents implements OnInit {
 
   onPostComment(form: FormGroup, commentParentId?: number): void {
     let commentData: any;
-    if (this.isLoggedIn()) {
-      const userId = this.authService.getUserInfo().subscribe({
-        next: (response: any) => {
-          commentData = {
-            post: this.post.id,
-            author_name: this.authService.getUserName(),
-            author_email: this.authService.getUserEmail(),
-            content: form.value.comment,
-            author: response.id
-          };
-          if (this.comment.id !== undefined) {
-            commentData.parent = this.comment.id;
-          }
-          this.postComment(JSON.stringify(commentData));
-        },
-        error: (error: any) => {
-          console.log(error);
-        }
-      });
-    } else {
-      commentData = {
-        post: this.post.id,
-        author_name: form.value.name,
-        author_email: form.value.email,
-        content: form.value.comment,
-      };
-      if (this.comment.id !== undefined) {
-        commentData.parent = this.comment.id;
-      }
-      this.postComment(JSON.stringify(commentData));
+    commentData = {
+      post: this.post.id,
+      author_name: form.value.name,
+      author_email: form.value.email,
+      content: form.value.comment,
+    };
+    if (this.comment.id !== undefined) {
+      commentData.parent = this.comment.id;
     }
+    this.postComment(JSON.stringify(commentData));
   }
 
   protected readonly faPaperPlane = faPaperPlane;

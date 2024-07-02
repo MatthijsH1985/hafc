@@ -1,6 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {PlayersService} from "../../../services/players.service";
 import {Subscription} from "rxjs";
+import {CommonModule} from '@angular/common';
 interface PlayerOfTheWeek {
   ID: number;
   playerName: string;
@@ -11,7 +12,10 @@ interface PlayerOfTheWeek {
   selector: 'app-player-of-the-week',
   templateUrl: './player-of-the-week.component.html',
   styleUrls: ['./player-of-the-week.component.scss'],
-  standalone: true
+  standalone: true,
+  imports: [
+    CommonModule
+  ]
 })
 export class PlayerOfTheWeekComponent implements OnInit, OnDestroy{
   playerOfTheWeek: PlayerOfTheWeek | undefined;

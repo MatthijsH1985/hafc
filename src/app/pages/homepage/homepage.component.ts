@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, Inject, OnInit, PLATFORM_ID} from '@angular/core';
+import {ChangeDetectorRef, Component, Inject, LOCALE_ID, OnInit, PLATFORM_ID} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {Title} from "@angular/platform-browser";
 import {isPlatformBrowser, ViewportScroller} from "@angular/common";
@@ -6,13 +6,23 @@ import {NewssliderComponent} from "../../news/newsslider/newsslider.component";
 import {MetaService} from "../../core/services/meta.service";
 import {LoadingIndicatorService} from "../../core/shared/loading-indicator/loading-indicator.service";
 import {Link} from "../../core/model/link.interface";
-import {ToastrService} from "ngx-toastr";
-import {AuthService} from '../../services/auth/auth-service';
+import {AdsComponent} from '../../ads/ads/ads.component';
+import {VolgendeWedstrijdComponent} from '../../competition/volgende-wedstrijd/volgende-wedstrijd.component';
+import {CoreModule} from '../../core/core.module';
+import {NewsModule} from '../../news/news.module';
+import {StandComponent} from '../../competition/stand/stand.component';
 
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.scss'],
+  imports: [
+    AdsComponent,
+    VolgendeWedstrijdComponent,
+    CoreModule,
+    NewsModule,
+    StandComponent,
+  ],
   standalone: true
 })
 export class HomepageComponent implements OnInit {
@@ -33,8 +43,6 @@ export class HomepageComponent implements OnInit {
               private viewportScroller: ViewportScroller,
               private metaService: MetaService,
               private cdr: ChangeDetectorRef,
-              private toastr:ToastrService,
-              private authService: AuthService,
               private loadingIndicatorService: LoadingIndicatorService,
               private route: ActivatedRoute,
               @Inject('isBrowser') @Inject(PLATFORM_ID) private platformId: Object) {
@@ -63,35 +71,10 @@ export class HomepageComponent implements OnInit {
     this.links = this.route.snapshot.data['links'];
     this.loading = false;
 
-    if (!this.isAuthenticated()) {
-      let donateTitle = 'BELANGRIJKE MEDEDELING!';
-      let donateMessage = '<p>Kun jij een kleine bijdrage missen voor het komende jaar? HAFC wil jullie ook dit jaar weer voorzien van het laatste nieuws!</p> <a class="block mt-2 -ml-2 underline text-black p-2" href="https://www.hafc.nl/doneer" target="_blank">Ja, ik steun HAFC met een eenmalige donatie</a>';
-      // this.onShowDonateMessage(donateTitle, donateMessage);
-    } else {
-      let donateTitle = 'BELANGRIJKE MEDEDELING VOOR ' + this.authService.getUserName();
-      let donateMessage = '<p>Kun jij een kleine bijdrage missen voor het komende jaar? HAFC wil jullie ook dit jaar weer voorzien van het laatste nieuws!</p> <a class="block mt-2 -ml-2 underline text-black p-2" href="https://www.hafc.nl/doneer" target="_blank">Ja, ik steun HAFC met een eenmalige donatie</a>';
-      // this.onShowDonateMessage(donateTitle, donateMessage);
-    }
     this.animateProgressBar();
     this.startCounting();
     this.latestComments = this.route.snapshot.data['latestComments'];
     this.metaService.setMetaTag('https://www.hafc.nl', 'HAFC.nl is de grootste Heracles community voor en door supporters. Volg hier het laatste nieuws en blijf op de hoogte', 'https://backend.hafc.nl/wp-content/uploads/2023/05/nac-heracles.jpg');
-  }
-
-  isAuthenticated() {
-    return this.authService.isAuthenticated();
-  }
-
-  onShowDonateMessage(donateTitle: string, donateMessage: string) {
-    if (isPlatformBrowser(this.platformId)) {
-      this.toastr.error(
-        donateMessage,
-        donateTitle, {
-          enableHtml: true,
-          timeOut: 10000,
-          closeButton:true
-        })
-    }
   }
 
   animateProgressBar(): void {
@@ -145,26 +128,6 @@ export class HomepageComponent implements OnInit {
         };
         setTimeout(updateCount, this.countingInterval);
       }, 2000)
-    }
-  }
-
-  showDonationNotification(): any {
-    if (isPlatformBrowser(this.platformId)) {
-      if (localStorage.getItem('donationNotification') === 'hidden' || localStorage.getItem('donationNotification') === 'hide') {
-        return true;
-      } else {
-        return false;
-      }
-    }
-  }
-
-  showDonationPage():any {
-    if (isPlatformBrowser(this.platformId)) {
-      if (localStorage.getItem('donationPage') === 'hidden' || localStorage.getItem('donationPage') === 'hide') {
-        return false;
-      } else {
-        return true;
-      }
     }
   }
 
