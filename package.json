@@ -4,12 +4,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build-dev": "ng build",
+    "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve": "serve -s dist/hafc -l 3000",
-    "vercel-build": "npm run build:ssr",
-    "serve:ssr:hafc": "node dist/hafc/server/server.mjs"
+    "serve:ssr:befo": "node dist/befo/server/server.mjs"
   },
   "private": true,
   "dependencies": {
