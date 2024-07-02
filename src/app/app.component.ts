@@ -12,7 +12,8 @@ import {MenuService} from './services/menu.service';
 import {CoreModule} from './core/core.module';
 import {registerLocaleData} from '@angular/common';
 import localeNl from '@angular/common/locales/nl';
-import {provideToastr} from 'ngx-toastr';
+import {ActivatedRoute} from '@angular/router';
+import {MetaService} from './core/services/meta.service';
 registerLocaleData(localeNl, 'nl');
 
 @Component({
@@ -32,6 +33,7 @@ registerLocaleData(localeNl, 'nl');
     TeamService,
     AdsService,
     UserService,
+    MetaService,
     MenuService,
     {
       provide: LOCALE_ID,
@@ -45,7 +47,9 @@ export class AppComponent implements OnInit {
   public loading: boolean = false;
   public hotjarId = 3829238;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: any, private loadingIndicatorService: LoadingIndicatorService ){}
+  constructor(@Inject(PLATFORM_ID) private platformId: any,
+              private metaService: MetaService,
+              private route: ActivatedRoute, private loadingIndicatorService: LoadingIndicatorService ){}
 
   static isBrowser = new BehaviorSubject<boolean>(false);
 
@@ -54,6 +58,5 @@ export class AppComponent implements OnInit {
       this.loading = loading
     });
   }
-
 }
 
