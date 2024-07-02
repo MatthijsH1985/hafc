@@ -39,15 +39,12 @@ import {TopCommentsComponent} from '../../comments/top-comments/top-comments.com
 })
 export class NieuwsberichtComponent implements OnInit, OnDestroy, AfterViewInit {
   currentPostSub: Subscription | undefined;
-  postId: any = this.route.snapshot.paramMap.get('id');
   post: any;
   name: string = '';
   loading: boolean = true;
-  modalCommentsOpen: boolean = false;
   categoryName: any;
   reloadComments: boolean = false;
   buttonVisible: boolean = false;
-  faComment = faComment;
   currentReplyToCommentId: number | undefined;
   @Input('links') links: any;
 
@@ -66,11 +63,11 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy, AfterViewInit 
     private loadingIndicatorService: LoadingIndicatorService,
     @Inject(PLATFORM_ID) private platformId: object
   ) {
-
+    this.post = this.route.snapshot.data['post'];
+    this.metaService.updateMetaTag(this.post);
   }
 
   ngOnInit() {
-    this.post = this.route.snapshot.data['post'];
     this.links = this.route.snapshot.data['links'];
     this.route.data.subscribe((data: any) => {
       this.metaService.updateMetaTag(data.post);
