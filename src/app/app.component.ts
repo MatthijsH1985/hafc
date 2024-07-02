@@ -12,6 +12,7 @@ import {MenuService} from './services/menu.service';
 import {CoreModule} from './core/core.module';
 import {registerLocaleData} from '@angular/common';
 import localeNl from '@angular/common/locales/nl';
+import {provideToastr} from 'ngx-toastr';
 registerLocaleData(localeNl, 'nl');
 
 @Component({

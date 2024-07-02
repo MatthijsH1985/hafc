@@ -11,6 +11,7 @@ import {VolgendeWedstrijdComponent} from '../../competition/volgende-wedstrijd/v
 import {CoreModule} from '../../core/core.module';
 import {NewsModule} from '../../news/news.module';
 import {StandComponent} from '../../competition/stand/stand.component';
+import {ToastrModule} from 'ngx-toastr';
 
 @Component({
   selector: 'app-homepage',
@@ -21,7 +22,7 @@ import {StandComponent} from '../../competition/stand/stand.component';
     VolgendeWedstrijdComponent,
     CoreModule,
     NewsModule,
-    StandComponent,
+    StandComponent
   ],
   standalone: true
 })

@@ -11,12 +11,14 @@ import {AdsService} from './ads/services/ads.service';
 import {CommentsService} from './comments/services/comments.service';
 import {FixturesService} from './competition/services/fixtures.service';
 import {StandingsService} from './competition/services/standings.service';
+import {provideToastr} from 'ngx-toastr';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideHttpClient(),
     provideClientHydration(),
+    provideToastr(),
     CoreModule,
     PostsService,
     ConfigService,

@@ -43,16 +43,17 @@ export class CountdownComponent implements OnInit, OnDestroy {
   }
 
   parsePermalinkToArray(permalink: string): string[] {
+    console.log(permalink);
     const regex = /https:\/\/backend\.hafc\.nl\/nieuws\/(\d+)\/(.+)/;
-    const match = permalink.match(regex);
-
-    if (match && match.length === 3) {
-      const nummer = match[1];
-      const titel = match[2].replace(/-/g, ' ').replace(/\//g, '').trim(); // Verwijder spaties aan het begin en einde
-      return ['nieuws', nummer, titel];
-    } else {
-      return [];
+    if (permalink.length > 0) {
+      const match = permalink.match(regex);
+      if (match && match.length === 3) {
+        const nummer = match[1];
+        const titel = match[2].replace(/-/g, ' ').replace(/\//g, '').trim(); // Verwijder spaties aan het begin en einde
+        return ['nieuws', nummer, titel];
+      }
     }
+    return [];
   }
 
   countDown(targetDate: any) {

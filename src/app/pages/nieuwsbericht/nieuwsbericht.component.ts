@@ -32,6 +32,9 @@ import {TopCommentsComponent} from '../../comments/top-comments/top-comments.com
     AdsComponent,
     CommentsComponent,
     TopCommentsComponent
+  ],
+  providers: [
+
   ]
 })
 export class NieuwsberichtComponent implements OnInit, OnDestroy, AfterViewInit {

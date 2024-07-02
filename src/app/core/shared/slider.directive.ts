@@ -3,7 +3,7 @@ import {AfterViewInit, Directive, ElementRef, Input} from "@angular/core";
 
 @Directive({
   selector: '[fmSwiper]',
-  standalone: true,
+  standalone: true
 })
 export class SwiperDirective implements AfterViewInit {
 
@@ -18,8 +18,6 @@ export class SwiperDirective implements AfterViewInit {
 
   ngAfterViewInit() {
     Object.assign(this.el.nativeElement, this.config);
-
-    // @ts-ignore
-    this.el.nativeElement.initialize();
+    // this.el.nativeElement.initialize();
   }
 }
