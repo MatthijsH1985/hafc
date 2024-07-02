@@ -7,7 +7,8 @@ import {FixturesService} from "../services/fixtures.service";
 @Component({
   selector: 'app-volgende-wedstrijd',
   templateUrl: './volgende-wedstrijd.component.html',
-  styleUrls: ['./volgende-wedstrijd.component.scss']
+  styleUrls: ['./volgende-wedstrijd.component.scss'],
+  standalone: true
 })
 export class VolgendeWedstrijdComponent implements OnInit{
 

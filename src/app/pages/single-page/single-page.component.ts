@@ -6,7 +6,8 @@ import {PostsService} from "../../news/services/posts.service";
 @Component({
   selector: 'app-single-page',
   templateUrl: './single-page.component.html',
-  styleUrls: ['./single-page.component.scss']
+  styleUrls: ['./single-page.component.scss'],
+  standalone: true
 })
 export class SinglePageComponent implements OnInit{
 

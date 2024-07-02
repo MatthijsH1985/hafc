@@ -6,7 +6,8 @@ import {TeamService} from "../../../services/team.service";
 @Component({
   templateUrl: 'teamstats.page.html',
   selector: 'app-teamstats',
-  styleUrls: ['teamstats.page.scss']
+  styleUrls: ['teamstats.page.scss'],
+  standalone: true
 })
 
 export class TeamstatsComponent implements OnInit, OnDestroy {
@@ -40,6 +41,6 @@ export class TeamstatsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.teamStatsSub.unsubscribe();
+    this.teamStatsSub.unsubscribe()
   }
 }

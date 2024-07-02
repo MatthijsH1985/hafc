@@ -8,7 +8,8 @@ import {TranslationService} from "../../../services/translation.service";
 @Component({
   selector: 'app-speler',
   templateUrl: './speler.component.html',
-  styleUrls: ['./speler.component.scss']
+  styleUrls: ['./speler.component.scss'],
+  standalone: true
 })
 export class SpelerComponent implements OnInit, OnDestroy {
   playerId: any = this.activatedRoute.snapshot.paramMap.get('id');

@@ -22,6 +22,7 @@ import {CountdownComponent} from '../components/countdown/countdown.component';
 import {CountdownService} from '../components/countdown/countdown.service';
 import {CommentsStringPipe} from './shared/comments-string.pipe';
 import {PositiveNegativePipe} from './shared/positive-negative.pipe';
+import {BrowserModule} from '@angular/platform-browser';
 
 @NgModule({
     declarations: [
@@ -33,7 +34,6 @@ import {PositiveNegativePipe} from './shared/positive-negative.pipe';
         SafePipe,
         PositiveNumberPipe,
         TransformTeamDataPipe,
-        LoadingIndicatorComponent,
         PreloaderComponent,
         CreditsComponent,
         CountdownComponent,
@@ -42,27 +42,27 @@ import {PositiveNegativePipe} from './shared/positive-negative.pipe';
     ],
   imports: [
     CommonModule,
+    BrowserModule,
     RouterModule,
     FontAwesomeModule
   ],
-    exports: [
-        HeaderComponent,
-        FooterComponent,
-        NavigationComponent,
-        SafePipe,
-        GenerateLogoUrlPipe,
-        RoundNumberPipe,
-        PositiveNumberPipe,
-        PositiveNegativePipe,
-        TransformTeamDataPipe,
-        CommentsStringPipe,
-        FontAwesomeModule,
-        PreloaderComponent,
-        LoadingIndicatorComponent,
-        RouterModule,
-        CreditsComponent,
-        CountdownComponent
-    ],
+  exports: [
+    HeaderComponent,
+    FooterComponent,
+    NavigationComponent,
+    SafePipe,
+    GenerateLogoUrlPipe,
+    RoundNumberPipe,
+    PositiveNumberPipe,
+    PositiveNegativePipe,
+    TransformTeamDataPipe,
+    CommentsStringPipe,
+    FontAwesomeModule,
+    PreloaderComponent,
+    RouterModule,
+    CreditsComponent,
+    CountdownComponent
+  ],
   providers: [
     ConfigService,
     SessionStorage,
@@ -73,3 +73,4 @@ import {PositiveNegativePipe} from './shared/positive-negative.pipe';
   ]
 })
 export class CoreModule { }
+

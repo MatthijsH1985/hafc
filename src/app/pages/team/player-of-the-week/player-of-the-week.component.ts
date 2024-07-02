@@ -10,7 +10,8 @@ interface PlayerOfTheWeek {
 @Component({
   selector: 'app-player-of-the-week',
   templateUrl: './player-of-the-week.component.html',
-  styleUrls: ['./player-of-the-week.component.scss']
+  styleUrls: ['./player-of-the-week.component.scss'],
+  standalone: true
 })
 export class PlayerOfTheWeekComponent implements OnInit, OnDestroy{
   playerOfTheWeek: PlayerOfTheWeek | undefined;

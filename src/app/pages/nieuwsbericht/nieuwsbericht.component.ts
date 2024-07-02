@@ -19,7 +19,8 @@ import {CommentsService} from '../../comments/services/comments.service';
 @Component({
   selector: 'app-nieuwsbericht',
   templateUrl: './nieuwsbericht.component.html',
-  styleUrls: ['./nieuwsbericht.component.scss']
+  styleUrls: ['./nieuwsbericht.component.scss'],
+  standalone: true
 })
 export class NieuwsberichtComponent implements OnInit, OnDestroy, AfterViewInit {
   currentPostSub: Subscription | undefined;

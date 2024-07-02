@@ -1,15 +1,21 @@
 import {Component, OnInit} from '@angular/core';
 import {NavigationEnd, Router} from "@angular/router";
 import * as moment from "moment/moment";
-import {ViewportScroller} from "@angular/common";
+import {CommonModule, ViewportScroller} from "@angular/common";
 import {Title} from "@angular/platform-browser";
 import {FixturesService} from "../services/fixtures.service";
 import {MetaService} from "../../core/services/meta.service";
+import {CoreModule} from '../../core/core.module';
 
 @Component({
   selector: 'app-results',
   templateUrl: './results.component.html',
-  styleUrls: ['./results.component.scss']
+  styleUrls: ['./results.component.scss'],
+  standalone: true,
+  imports: [
+    CoreModule,
+    CommonModule
+  ]
 })
 export class ResultsComponent implements OnInit {
   loading: boolean = true;
@@ -18,9 +24,7 @@ export class ResultsComponent implements OnInit {
   homeTeamTotalScore: any;
   awayTeamTotalScore: any;
 
-  constructor(private fixturesService: FixturesService, private metaService: MetaService, private title: Title, private titleService: Title, private viewportScroller: ViewportScroller, private router: Router) {
-
-  }
+  constructor(private fixturesService: FixturesService, private metaService: MetaService, private title: Title, private titleService: Title, private viewportScroller: ViewportScroller, private router: Router) {}
 
   ngOnInit() {
     this.viewportScroller.scrollToPosition([0,0]);

@@ -1,14 +1,20 @@
 import {Component, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
-import {ViewportScroller} from "@angular/common";
+import {CommonModule, ViewportScroller} from "@angular/common";
 import {faLongArrowLeft, faLongArrowRight} from "@fortawesome/free-solid-svg-icons";
 import {FixturesService} from "../services/fixtures.service";
+import {CoreModule} from '../../core/core.module';
 
 @Component({
   selector: 'app-matchreport',
   templateUrl: './matchreport.component.html',
-  styleUrls: ['./matchreport.component.scss']
+  styleUrls: ['./matchreport.component.scss'],
+  standalone: true,
+  imports: [
+    CoreModule,
+    CommonModule
+  ]
 })
 export class MatchreportComponent implements OnInit {
   loading = true;

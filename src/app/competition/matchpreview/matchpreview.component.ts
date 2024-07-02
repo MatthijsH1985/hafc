@@ -1,19 +1,27 @@
 import {Component, HostListener, Inject, OnDestroy, OnInit, PLATFORM_ID} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {Title} from "@angular/platform-browser";
+import {ActivatedRoute} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
-import {ViewportScroller} from "@angular/common";
+import {CommonModule, ViewportScroller} from "@angular/common";
 import { faComment, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import * as moment from "moment/moment";
 import {ConfigService} from "../../core/services/config.service";
-import {PostsService} from "../../news/services/posts.service";
 import {FixturesService} from "../services/fixtures.service";
 import {MetaService} from "../../core/services/meta.service";
 import {LoadingIndicatorService} from "../../core/shared/loading-indicator/loading-indicator.service";
+import {CoreModule} from '../../core/core.module';
+import {AdsComponent} from '../../ads/ads/ads.component';
+import {CommentsComponent} from '../../comments/comments/comments.component';
 
 @Component({
   selector: 'app-matchpreview',
-  templateUrl: './matchpreview.component.html'
+  templateUrl: './matchpreview.component.html',
+  standalone: true,
+  imports: [
+    CoreModule,
+    CommonModule,
+    AdsComponent,
+    CommentsComponent
+  ]
 })
 export class MatchpreviewComponent implements OnInit {
   postId: any = this.route.snapshot.paramMap.get('id');

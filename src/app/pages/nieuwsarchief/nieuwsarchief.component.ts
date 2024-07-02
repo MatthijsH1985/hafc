@@ -7,7 +7,8 @@ import {PostsService} from "../../news/services/posts.service";
 @Component({
   selector: 'app-nieuwsarchief',
   templateUrl: './nieuwsarchief.component.html',
-  styleUrls: ['./nieuwsarchief.component.scss']
+  styleUrls: ['./nieuwsarchief.component.scss'],
+  standalone: true
 })
 export class NieuwsarchiefComponent implements OnInit{
   posts: any = [];

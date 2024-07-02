@@ -1,15 +1,21 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import * as moment from 'moment';
-import {ViewportScroller} from "@angular/common";
+import {CommonModule, ViewportScroller} from "@angular/common";
 import {Title} from "@angular/platform-browser";
 import {FixturesService} from "../services/fixtures.service";
 import {MetaService} from "../../core/services/meta.service";
+import {CoreModule} from '../../core/core.module';
 
 @Component({
   selector: 'app-programma',
   templateUrl: './programma.component.html',
-  styleUrls: ['./programma.component.scss']
+  styleUrls: ['./programma.component.scss'],
+  standalone: true,
+  imports: [
+    CoreModule,
+    CommonModule
+  ]
 })
 export class ProgrammaComponent implements OnInit{
 

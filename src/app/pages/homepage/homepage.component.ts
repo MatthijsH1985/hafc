@@ -12,7 +12,8 @@ import {AuthService} from '../../services/auth/auth-service';
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
-  styleUrls: ['./homepage.component.scss']
+  styleUrls: ['./homepage.component.scss'],
+  standalone: true
 })
 export class HomepageComponent implements OnInit {
   posts: any = [];

@@ -15,13 +15,19 @@ import {AuthService} from "../../services/auth/auth-service";
 import {ToastrService} from "ngx-toastr";
 import {ActivatedRoute, Route, Router} from '@angular/router';
 import {CommentNode} from '../model/comment-node.model';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {faPaperPlane} from '@fortawesome/free-solid-svg-icons';
+import {CommentsModule} from '../comments.module';
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-comments',
   templateUrl: './comments.component.html',
-  styleUrls: ['./comments.component.scss']
+  styleUrls: ['./comments.component.scss'],
+  standalone: true,
+  imports: [
+    CommentsModule,
+    CommonModule
+  ]
 })
 export class CommentsComponent implements OnChanges, OnDestroy, OnInit {
   commentsSub: Subscription | undefined;
@@ -153,3 +159,4 @@ export class CommentsComponent implements OnChanges, OnDestroy, OnInit {
 
   protected readonly faPaperPlane = faPaperPlane;
 }
+

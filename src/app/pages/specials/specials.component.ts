@@ -8,7 +8,8 @@ import {LoadingIndicatorService} from '../../core/shared/loading-indicator/loadi
 @Component({
   selector: 'app-specials',
   templateUrl: './specials.component.html',
-  styleUrls: ['./specials.component.scss']
+  styleUrls: ['./specials.component.scss'],
+  standalone: true
 })
 export class SpecialsComponent implements OnInit {
   posts: any = [];

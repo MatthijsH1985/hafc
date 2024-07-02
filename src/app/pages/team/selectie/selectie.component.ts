@@ -4,7 +4,8 @@ import {PlayersService} from "../../../services/players.service";
 @Component({
   selector: 'app-selectie',
   templateUrl: './selectie.component.html',
-  styleUrls: ['./selectie.component.scss']
+  styleUrls: ['./selectie.component.scss'],
+  standalone: true
 })
 export class SelectieComponent implements OnInit{
   team = {

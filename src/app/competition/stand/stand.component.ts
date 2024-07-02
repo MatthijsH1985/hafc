@@ -1,15 +1,21 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
-import {ViewportScroller} from "@angular/common";
+import {CommonModule, ViewportScroller} from "@angular/common";
 import {Router} from "@angular/router";
 import {Title} from "@angular/platform-browser";
 import {StandingsService} from "../services/standings.service";
 import {MetaService} from "../../core/services/meta.service";
+import {CoreModule} from '../../core/core.module';
 
 @Component({
   selector: 'app-stand',
   templateUrl: './stand.component.html',
-  styleUrls: ['./stand.component.scss']
+  styleUrls: ['./stand.component.scss'],
+  standalone: true,
+  imports: [
+    CoreModule,
+    CommonModule
+  ]
 })
 export class StandComponent implements OnInit, OnDestroy {
   currentSeasonId = 19727;

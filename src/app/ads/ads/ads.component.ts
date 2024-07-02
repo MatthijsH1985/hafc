@@ -6,11 +6,18 @@ import * as _ from "lodash";
 import moment from 'moment';
 
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import {CoreModule} from '../../core/core.module';
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-ads',
   templateUrl: './ads.component.html',
-  styleUrls: ['./ads.component.scss']
+  styleUrls: ['./ads.component.scss'],
+  imports: [
+    CoreModule,
+    CommonModule
+  ],
+  standalone: true
 })
 export class AdsComponent implements OnInit{
 
