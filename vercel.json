@@ -6,7 +6,7 @@
     "api/index.js": {
       "includeFiles": [
         "dist/hafc/browser/**",
-        "dist/server/**"
+        "dist/hafc/server/**"
       ]
     }
   }
