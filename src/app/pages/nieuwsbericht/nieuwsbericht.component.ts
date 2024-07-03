@@ -10,7 +10,7 @@ import {
 import { Subscription } from 'rxjs';
 import {ActivatedRoute, Router, RouterModule} from '@angular/router';
 import {DatePipe, ViewportScroller} from '@angular/common';
-import {faComment, faArrowDown, faTrophy, faLongArrowRight} from '@fortawesome/free-solid-svg-icons';
+import {faTrophy, faLongArrowRight} from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 import {MetaService} from "../../core/services/meta.service";
 import {LoadingIndicatorService} from "../../core/shared/loading-indicator/loading-indicator.service";
