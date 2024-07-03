@@ -64,7 +64,6 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy, AfterViewInit 
     @Inject(PLATFORM_ID) private platformId: object
   ) {
     this.post = this.route.snapshot.data['post'];
-    console.log(this.post.yoast_head_json.title);
     this.metaService.updateMetaTag(this.post);
   }
 
