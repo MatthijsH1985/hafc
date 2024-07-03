@@ -7,10 +7,10 @@ import {MetaService} from "../../core/services/meta.service";
 import {LoadingIndicatorService} from "../../core/shared/loading-indicator/loading-indicator.service";
 import {Link} from "../../core/model/link.interface";
 import {AdsComponent} from '../../ads/ads/ads.component';
-import {VolgendeWedstrijdComponent} from '../../competition/volgende-wedstrijd/volgende-wedstrijd.component';
+import {VolgendeWedstrijdComponent} from '../competition/volgende-wedstrijd/volgende-wedstrijd.component';
 import {CoreModule} from '../../core/core.module';
 import {NewsModule} from '../../news/news.module';
-import {StandComponent} from '../../competition/stand/stand.component';
+import {StandComponent} from '../competition/stand/stand.component';
 import {ToastrModule} from 'ngx-toastr';
 
 @Component({

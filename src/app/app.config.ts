@@ -9,8 +9,8 @@ import {PostsService} from './news/services/posts.service';
 import {ConfigService} from './core/services/config.service';
 import {AdsService} from './ads/services/ads.service';
 import {CommentsService} from './comments/services/comments.service';
-import {FixturesService} from './competition/services/fixtures.service';
-import {StandingsService} from './competition/services/standings.service';
+import {FixturesService} from './pages/competition/services/fixtures.service';
+import {StandingsService} from './pages/competition/services/standings.service';
 import {provideToastr} from 'ngx-toastr';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 

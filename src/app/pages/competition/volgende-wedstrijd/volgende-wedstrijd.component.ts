@@ -1,37 +1,48 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import * as moment from 'moment';
-import {CommonModule, ViewportScroller} from "@angular/common";
-import {Title} from "@angular/platform-browser";
+import {PostsService} from "../../../news/services/posts.service";
 import {FixturesService} from "../services/fixtures.service";
-import {MetaService} from "../../core/services/meta.service";
-import {CoreModule} from '../../core/core.module';
+import {CoreModule} from '../../../core/core.module';
 
 @Component({
-  selector: 'app-programma',
-  templateUrl: './programma.component.html',
-  styleUrls: ['./programma.component.scss'],
-  standalone: true,
+  selector: 'app-volgende-wedstrijd',
+  templateUrl: './volgende-wedstrijd.component.html',
+  styleUrls: ['./volgende-wedstrijd.component.scss'],
   imports: [
-    CoreModule,
-    CommonModule
-  ]
+    CoreModule
+  ],
+  standalone: true
 })
-export class ProgrammaComponent implements OnInit{
+export class VolgendeWedstrijdComponent implements OnInit{
 
-  teamId = 1403;
-  teamFixtures: any = [];
   nextMatch: any = [];
+  nextMatchPost: any;
+  teamId = 1403;
+  teamFixtures: any;
   loading: boolean = true;
+  participantHome: string = '';
+  participantAway: string = '';
+  url: string = '';
 
-  constructor(private router: Router, private fixturesService: FixturesService, private title: Title, private metaService: MetaService, private viewportScroller: ViewportScroller) {
+  constructor(private fixturesService: FixturesService, private postsService: PostsService, private router: Router) {
+
   }
 
   ngOnInit() {
-    this.viewportScroller.scrollToPosition([0,0]);
     this.getFixtures();
-    this.title.setTitle('Programma - HAFC.nl')
-    this.metaService.updateMetaTag('Wedstrijdprogramma - HAFC.nl', this.router.url, 'Het wedstrijdprogramma van Heracles in de Eredivisie');
+    this.getPreviewMatch()
+  }
+
+  getPreviewMatch() {
+    this.postsService.getPosts(1, [37]).subscribe({
+      next: (data: any) => {
+        this.nextMatchPost = data[0];
+      },
+      error: (error: any) => {
+        console.log(error);
+      }
+    })
   }
 
   getFixtures() {
@@ -68,26 +79,26 @@ export class ProgrammaComponent implements OnInit{
             const dateB = new Date(b.fixtures[0].starting_at);
             return dateA.getTime() - dateB.getTime();
           });
-          this.teamFixtures = upcomingFixtures;
+          this.nextMatch = upcomingFixtures[0].fixtures[0];
         }
       },
       error: (error: any) => {
-        console.error(error);
+        this.loading = false;
       }
     });
   }
 
-  getFirstParticipant(rounds: any[]): any {
-    const firstRound = rounds[0];
-    const firstFixture = firstRound?.fixtures[0];
-    const firstParticipant = firstFixture?.participants[0];
-
-    return firstParticipant;
+  generateUrlFriendlyString(str: string): string {
+    return str.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
   }
 
   validDateFormat(dateString: Date): any {
     if(dateString) {
       return moment.utc(dateString);
     }
+  }
+
+  onOpenMatch(matchId: number) {
+    this.router.navigateByUrl('wedstrijden/' + matchId);
   }
 }

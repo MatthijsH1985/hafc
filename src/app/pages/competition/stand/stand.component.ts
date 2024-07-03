@@ -4,8 +4,8 @@ import {CommonModule, ViewportScroller} from "@angular/common";
 import {Router} from "@angular/router";
 import {Title} from "@angular/platform-browser";
 import {StandingsService} from "../services/standings.service";
-import {MetaService} from "../../core/services/meta.service";
-import {CoreModule} from '../../core/core.module';
+import {MetaService} from "../../../core/services/meta.service";
+import {CoreModule} from '../../../core/core.module';
 
 @Component({
   selector: 'app-stand',

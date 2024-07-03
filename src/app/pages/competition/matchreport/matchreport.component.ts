@@ -4,7 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {CommonModule, ViewportScroller} from "@angular/common";
 import {faLongArrowLeft, faLongArrowRight} from "@fortawesome/free-solid-svg-icons";
 import {FixturesService} from "../services/fixtures.service";
-import {CoreModule} from '../../core/core.module';
+import {CoreModule} from '../../../core/core.module';
 
 @Component({
   selector: 'app-matchreport',

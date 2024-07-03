@@ -1,48 +1,37 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import * as moment from 'moment';
-import {PostsService} from "../../news/services/posts.service";
+import {CommonModule, ViewportScroller} from "@angular/common";
+import {Title} from "@angular/platform-browser";
 import {FixturesService} from "../services/fixtures.service";
-import {CoreModule} from '../../core/core.module';
+import {MetaService} from "../../../core/services/meta.service";
+import {CoreModule} from '../../../core/core.module';
 
 @Component({
-  selector: 'app-volgende-wedstrijd',
-  templateUrl: './volgende-wedstrijd.component.html',
-  styleUrls: ['./volgende-wedstrijd.component.scss'],
+  selector: 'app-programma',
+  templateUrl: './programma.component.html',
+  styleUrls: ['./programma.component.scss'],
+  standalone: true,
   imports: [
-    CoreModule
-  ],
-  standalone: true
+    CoreModule,
+    CommonModule
+  ]
 })
-export class VolgendeWedstrijdComponent implements OnInit{
+export class ProgrammaComponent implements OnInit{
 
-  nextMatch: any = [];
-  nextMatchPost: any;
   teamId = 1403;
-  teamFixtures: any;
+  teamFixtures: any = [];
+  nextMatch: any = [];
   loading: boolean = true;
-  participantHome: string = '';
-  participantAway: string = '';
-  url: string = '';
 
-  constructor(private fixturesService: FixturesService, private postsService: PostsService, private router: Router) {
-
+  constructor(private router: Router, private fixturesService: FixturesService, private title: Title, private metaService: MetaService, private viewportScroller: ViewportScroller) {
   }
 
   ngOnInit() {
+    this.viewportScroller.scrollToPosition([0,0]);
     this.getFixtures();
-    this.getPreviewMatch()
-  }
-
-  getPreviewMatch() {
-    this.postsService.getPosts(1, [37]).subscribe({
-      next: (data: any) => {
-        this.nextMatchPost = data[0];
-      },
-      error: (error: any) => {
-        console.log(error);
-      }
-    })
+    this.title.setTitle('Programma - HAFC.nl')
+    this.metaService.updateMetaTag('Wedstrijdprogramma - HAFC.nl', this.router.url, 'Het wedstrijdprogramma van Heracles in de Eredivisie');
   }
 
   getFixtures() {
@@ -79,26 +68,26 @@ export class VolgendeWedstrijdComponent implements OnInit{
             const dateB = new Date(b.fixtures[0].starting_at);
             return dateA.getTime() - dateB.getTime();
           });
-          this.nextMatch = upcomingFixtures[0].fixtures[0];
+          this.teamFixtures = upcomingFixtures;
         }
       },
       error: (error: any) => {
-        this.loading = false;
+        console.error(error);
       }
     });
   }
 
-  generateUrlFriendlyString(str: string): string {
-    return str.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+  getFirstParticipant(rounds: any[]): any {
+    const firstRound = rounds[0];
+    const firstFixture = firstRound?.fixtures[0];
+    const firstParticipant = firstFixture?.participants[0];
+
+    return firstParticipant;
   }
 
   validDateFormat(dateString: Date): any {
     if(dateString) {
       return moment.utc(dateString);
     }
-  }
-
-  onOpenMatch(matchId: number) {
-    this.router.navigateByUrl('wedstrijden/' + matchId);
   }
 }

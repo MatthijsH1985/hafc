@@ -4,8 +4,8 @@ import * as moment from "moment/moment";
 import {CommonModule, ViewportScroller} from "@angular/common";
 import {Title} from "@angular/platform-browser";
 import {FixturesService} from "../services/fixtures.service";
-import {MetaService} from "../../core/services/meta.service";
-import {CoreModule} from '../../core/core.module';
+import {MetaService} from "../../../core/services/meta.service";
+import {CoreModule} from '../../../core/core.module';
 
 @Component({
   selector: 'app-results',
