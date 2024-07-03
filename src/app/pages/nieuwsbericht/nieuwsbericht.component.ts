@@ -68,9 +68,15 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy, AfterViewInit 
   }
 
   ngOnInit() {
+    const title = 'Testtitel';
+    const metaUrl = 'https://';
+    const description = 'Dit is een beschrijving';
+    const image = 'Dit is een image';
+    this.metaService.updateMetaTag(title, metaUrl, description, image);
+    // this.metaService.updateMetaTag()
     this.links = this.route.snapshot.data['links'];
     this.route.data.subscribe((data: any) => {
-      this.metaService.updateMetaTag(data.post);
+      // this.metaService.updateMetaTag(data.post);
     });
     this.updateMetaTags(this.post);
     this.viewportScroller.scrollToPosition([0,0]);
