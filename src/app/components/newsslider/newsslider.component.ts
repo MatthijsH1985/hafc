@@ -11,7 +11,7 @@ import Swiper, {
 import {CommonModule, isPlatformBrowser} from "@angular/common";
 import {ActivatedRoute, RouterModule} from "@angular/router";
 import {SwiperDirective} from "../../core/shared/slider.directive";
-import {PostsService} from "../services/posts.service";
+import {PostsService} from "../../news/services/posts.service";
 import {LoadingIndicatorService} from "../../core/shared/loading-indicator/loading-indicator.service";
 import {faChevronLeft, faChevronRight, faLongArrowRight} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';

@@ -2,7 +2,7 @@ import {ChangeDetectorRef, Component, Inject, LOCALE_ID, OnInit, PLATFORM_ID} fr
 import {ActivatedRoute} from "@angular/router";
 import {Title} from "@angular/platform-browser";
 import {isPlatformBrowser, ViewportScroller} from "@angular/common";
-import {NewssliderComponent} from "../../news/newsslider/newsslider.component";
+import {NewssliderComponent} from "../../components/newsslider/newsslider.component";
 import {MetaService} from "../../core/services/meta.service";
 import {LoadingIndicatorService} from "../../core/shared/loading-indicator/loading-indicator.service";
 import {Link} from "../../core/model/link.interface";

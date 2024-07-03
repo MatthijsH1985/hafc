@@ -11,7 +11,7 @@ import {
   SimpleChanges
 } from '@angular/core';
 import {Subscription} from "rxjs";
-import {PostsService} from "../services/posts.service";
+import {PostsService} from "../../news/services/posts.service";
 import {LoadingIndicatorService} from "../../core/shared/loading-indicator/loading-indicator.service";
 import {ActivatedRoute} from "@angular/router";
 import {isPlatformBrowser} from '@angular/common';
