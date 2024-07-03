@@ -64,21 +64,16 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy, AfterViewInit 
     @Inject(PLATFORM_ID) private platformId: object
   ) {
     this.post = this.route.snapshot.data['post'];
-    // this.metaService.updateMetaTag(this.post);
+    console.log(this.post.yoast_head_json.title);
+    this.metaService.updateMetaTag(this.post);
   }
 
   ngOnInit() {
-    const title = 'Testtitel';
-    const metaUrl = 'https://';
-    const description = 'Dit is een beschrijving';
-    const image = 'Dit is een image';
-    this.metaService.updateMetaTag(title, metaUrl, description, image);
-    // this.metaService.updateMetaTag()
     this.links = this.route.snapshot.data['links'];
     this.route.data.subscribe((data: any) => {
-      // this.metaService.updateMetaTag(data.post);
+      this.metaService.updateMetaTag(data.post);
     });
-   // this.updateMetaTags(this.post);
+    this.updateMetaTags(this.post);
     this.viewportScroller.scrollToPosition([0,0]);
   }
 
