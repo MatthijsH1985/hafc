@@ -63,7 +63,7 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy, AfterViewInit 
     private loadingIndicatorService: LoadingIndicatorService,
     @Inject(PLATFORM_ID) private platformId: object
   ) {
-    // this.post = this.route.snapshot.data['post'];
+    this.post = this.route.snapshot.data['post'];
     // this.metaService.updateMetaTag(this.post);
   }
 
