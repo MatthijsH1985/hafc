@@ -1,4 +1,2 @@
-const server = require('../dist/hafc/server/main');
-
-module.exports = server.app();
-
+export default import('../dist/hafc/server/server.mjs')
+  .then(module => module.app());
