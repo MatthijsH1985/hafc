@@ -56,9 +56,7 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy, AfterViewInit 
 
   constructor(
     private route: ActivatedRoute,
-    private toast: ToastrService,
     private viewportScroller: ViewportScroller,
-    private commentsService: CommentsService,
     private metaService: MetaService,
     private loadingIndicatorService: LoadingIndicatorService,
     @Inject(PLATFORM_ID) private platformId: object

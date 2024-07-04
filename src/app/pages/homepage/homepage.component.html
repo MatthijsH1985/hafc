@@ -5,6 +5,7 @@
         <ng-container *ngComponentOutlet="newssliderComponent"></ng-container>
       </ng-container>
     </div>
+
     <div class="flex md:flex-row flex-col-reverse relative z-30 animate-fade-up animate-once animate-duration-300 animate-ease-linear animate-delay-1000">
       <div class="w-full md:w-2/3 ">
         <div class="md:ml-0 px-4 md:mr-4 md:px-0 md:mt-4">
@@ -30,6 +31,7 @@
           Stand Eredivisie
         </h3>
         <div class="md:p-4 bg-white dark:bg-gray-900 p-4 mb-4 ">
+          <p-button label="Submit" />
           <app-stand [compact]="true"></app-stand>
           <div class="flex">
             <a routerLink="club/competitie/stand" class="block m-4 text-blue-500 dark:text-white hover:underline" title="Bekijk de gehele stand">Bekijk gehele stand</a>

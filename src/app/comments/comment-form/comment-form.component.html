@@ -5,6 +5,15 @@
     </div>
     <div class="mb-4">
       <input class="bg-gray-100 dark:bg-gray-700 max-w-[300px] dark:text-white w-2/3 focus:border-black focus:border" placeholder="Jouw e-mail" formControlName="email" id="email" type="email" />
+      <p-iconField iconPosition="left">
+        <p-inputIcon styleClass="pi pi-search" />
+        <input type="text" pInputText placeholder="Search" />
+      </p-iconField>
+      <p-iconField iconPosition="right">
+        <p-inputIcon styleClass="pi pi-spinner pi-spin" />
+        <input type="text" pInputText />
+      </p-iconField>
+      <p-colorPicker />
     </div>
     <div class="mb-2 relative flex items-end">
       <textarea class="flex-1 bg-gray-100 dark:bg-gray-700 dark:text-white" formControlName="comment" id="comment" placeholder="Voer hier je bericht in"></textarea>

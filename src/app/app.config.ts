@@ -20,7 +20,6 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideClientHydration(),
     provideToastr(),
-    CoreModule,
     PostsService,
     ConfigService,
     AdsService,

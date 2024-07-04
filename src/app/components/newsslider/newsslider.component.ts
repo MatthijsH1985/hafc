@@ -24,7 +24,6 @@ import {CoreModule} from '../../core/core.module';
   standalone: true,
   encapsulation: ViewEncapsulation.None,
     imports: [
-        CommonModule,
         RouterModule,
         SwiperDirective,
         FontAwesomeModule,

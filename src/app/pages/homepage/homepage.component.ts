@@ -12,6 +12,7 @@ import {CoreModule} from '../../core/core.module';
 import {NewsModule} from '../../news/news.module';
 import {StandComponent} from '../competition/stand/stand.component';
 import {ToastrModule} from 'ngx-toastr';
+import {Button} from 'primeng/button';
 
 @Component({
   selector: 'app-homepage',
@@ -22,7 +23,8 @@ import {ToastrModule} from 'ngx-toastr';
     VolgendeWedstrijdComponent,
     CoreModule,
     NewsModule,
-    StandComponent
+    StandComponent,
+    Button
   ],
   standalone: true
 })

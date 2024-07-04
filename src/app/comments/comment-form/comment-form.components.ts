@@ -4,18 +4,24 @@ import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} fr
 import {CommentsService} from '../services/comments.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
-import {CommonModule} from '@angular/common';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {IconFieldModule} from 'primeng/iconfield';
+import {InputIconModule} from 'primeng/inputicon';
+import {ColorPickerModule} from 'primeng/colorpicker';
+import {CommonModule} from '@angular/common';
 
 @Component({
   templateUrl: 'comment-form.component.html',
   selector: 'app-comment-form',
   standalone: true,
   imports: [
-    CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    IconFieldModule,
+    InputIconModule,
+    ColorPickerModule,
+    CommonModule
   ]
 })
 export class CommentFormComponent implements OnInit {
