@@ -7,8 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:hafc": "node dist/hafc/server/server.mjs",
-    "vercel-build": "ng build"
+    "serve:ssr:hafc": "node dist/hafc/server/server.mjs"
   },
   "private": true,
   "dependencies": {
