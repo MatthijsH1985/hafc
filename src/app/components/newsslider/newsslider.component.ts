@@ -11,11 +11,12 @@ import Swiper, {
 import {CommonModule, isPlatformBrowser} from "@angular/common";
 import {ActivatedRoute, RouterModule} from "@angular/router";
 import {SwiperDirective} from "../../core/shared/slider.directive";
-import {PostsService} from "../../news/services/posts.service";
 import {LoadingIndicatorService} from "../../core/shared/loading-indicator/loading-indicator.service";
 import {faChevronLeft, faChevronRight, faLongArrowRight} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {CoreModule} from '../../core/core.module';
+import { register } from 'swiper/element/bundle';
+register();
 
 @Component({
   selector: 'app-newsslider',
@@ -23,12 +24,13 @@ import {CoreModule} from '../../core/core.module';
   styleUrls: ['./newsslider.component.scss'],
   standalone: true,
   encapsulation: ViewEncapsulation.None,
-    imports: [
-        RouterModule,
-        SwiperDirective,
-        FontAwesomeModule,
-        CoreModule
-    ],
+  imports: [
+    CommonModule,
+    RouterModule,
+    SwiperDirective,
+    FontAwesomeModule,
+    CoreModule
+  ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 
@@ -62,7 +64,7 @@ export class NewssliderComponent implements AfterViewInit {
       prevEl: '.prev',
     },
   }
-  @ViewChild('swiper') swiper!: ElementRef;
+  @ViewChild('swiper') swiper: ElementRef | undefined;
   posts: any = [];
   public activeSlideIndex: number = 0;
 
@@ -80,7 +82,6 @@ export class NewssliderComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    console.log(this.swiper)
     if (isPlatformBrowser(this.platformId) && this.swiper?.nativeElement) {
       new Swiper(this.swiper.nativeElement, this.config);
       if (this.isBrowser) {

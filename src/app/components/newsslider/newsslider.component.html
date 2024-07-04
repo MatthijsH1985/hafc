@@ -4,7 +4,7 @@
     <a [routerLink]="['doneer']" title="Doneer" class="text-base flex group py-2 transition transition-all">Doneer <fa-icon [icon]="faLongArrowRight" class="transition-all group-hover:ml-8 ml-4"></fa-icon></a>
     <a [routerLink]="['page', 31238, 'word-sponsor-op-hafc']" title="Word sponsor" class="text-base py-2 transition-all flex group">Word sponsor <fa-icon [icon]="faLongArrowRight" class="transition-all ml-4 group-hover:ml-8"></fa-icon></a>
   </a>
-  <swiper-container fmSwiper [config]="config" init="false" #swiper>
+  <swiper-container fmSwiper [config]="config" init="false">
     <swiper-slide *ngFor="let post of posts">
       <a (click)="showLoading()" class="relative xl:w-[1200px] flex items-center flex-col justify-center w-full h-[500px]] md:h-[550px] group" [routerLink]="[post.categories[0] === 37 ? 'voorbeschouwing' : 'nieuws', post.id, post.slug]">
         <div class="h-450px relative w-full">
