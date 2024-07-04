@@ -19,6 +19,7 @@ export class CountdownComponent implements OnInit, OnDestroy {
   warning = 'Er is geen evenement';
   homepageId = 23186;
   pageData: any;
+  commentPanelOpen = false;
 
   constructor(private countdownService: CountdownService,
               private zone: NgZone) {
@@ -40,6 +41,14 @@ export class CountdownComponent implements OnInit, OnDestroy {
         console.log(error);
       }
     })
+  }
+
+  openComments() {
+    this.commentPanelOpen = true;
+  }
+
+  closeComments() {
+    this.commentPanelOpen = false;
   }
 
   parsePermalinkToArray(permalink: string): string[] {

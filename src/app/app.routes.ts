@@ -24,6 +24,7 @@ import {MatchpreviewComponent} from './pages/competition/matchpreview/matchprevi
 import {MatchResolver} from './services/resolvers/match-resolver.service';
 import {NieuwsarchiefComponent} from './pages/nieuwsarchief/nieuwsarchief.component';
 import {NotFoundComponent} from './pages/not-found/not-found.component';
+import {TestComponent} from './pages/test/test.component';
 
 export const routes: Routes = [
   {
@@ -39,6 +40,10 @@ export const routes: Routes = [
   {
     component: SpecialsComponent,
     path: 'specials'
+  },
+  {
+    component: TestComponent,
+    path: 'test'
   },
   {
     component: DonateComponent,

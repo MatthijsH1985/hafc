@@ -9,6 +9,8 @@ import {registerLocaleData} from '@angular/common';
 import localeNl from '@angular/common/locales/nl';
 import {PrimeNGConfig} from 'primeng/api';
 import {InputGroupModule} from 'primeng/inputgroup';
+import {Button} from 'primeng/button';
+import {SidebarModule} from 'primeng/sidebar';
 registerLocaleData(localeNl, 'nl');
 
 @Component({
@@ -19,11 +21,13 @@ registerLocaleData(localeNl, 'nl');
     slideInAnimation
   ],
   standalone: true,
-  imports: [
-    CoreModule,
-    LoadingIndicatorComponent,
-    InputGroupModule
-  ],
+    imports: [
+        CoreModule,
+        LoadingIndicatorComponent,
+        InputGroupModule,
+        Button,
+        SidebarModule
+    ],
   providers: [
     {
       provide: LOCALE_ID,
@@ -35,7 +39,7 @@ registerLocaleData(localeNl, 'nl');
 export class AppComponent implements OnInit {
 
   public loading: boolean = false;
-  public hotjarId = 3829238;
+  commentPanelOpen = false;
 
   constructor(@Inject(PLATFORM_ID) private platformId: any,
               private primengConfig: PrimeNGConfig,

@@ -13,6 +13,7 @@ import {FixturesService} from './pages/competition/services/fixtures.service';
 import {StandingsService} from './pages/competition/services/standings.service';
 import {provideToastr} from 'ngx-toastr';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -20,6 +21,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideClientHydration(),
     provideToastr(),
+    provideAnimationsAsync(),
     PostsService,
     ConfigService,
     AdsService,

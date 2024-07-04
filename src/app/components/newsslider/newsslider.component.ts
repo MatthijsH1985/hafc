@@ -62,12 +62,11 @@ export class NewssliderComponent implements AfterViewInit {
       prevEl: '.prev',
     },
   }
-  @ViewChild('swiper') swiper: ElementRef | undefined;
+  @ViewChild('swiper') swiper!: ElementRef;
   posts: any = [];
   public activeSlideIndex: number = 0;
 
   constructor(
-    private postsService: PostsService,
     private loadingIndicatorService: LoadingIndicatorService,
     private route: ActivatedRoute,
     @Inject('isBrowser') @Inject(PLATFORM_ID) private platformId: Object,
@@ -81,6 +80,7 @@ export class NewssliderComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
+    console.log(this.swiper)
     if (isPlatformBrowser(this.platformId) && this.swiper?.nativeElement) {
       new Swiper(this.swiper.nativeElement, this.config);
       if (this.isBrowser) {
