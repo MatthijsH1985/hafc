@@ -13,9 +13,6 @@
         <strong class="block text-xl md:text-3xl bg-white dark:bg-black  p-2 mt-2">{{ minutes }} <span class="text-xl font-normal">m.</span></strong>
       </div>
     </div>
-    <p-button (click)="openComments()">
-      Praat mee
-    </p-button>
-<!--    <a class="inline-block mt-4 mb-4 button button-blue self-center" [routerLink]="pageData?.acf?.link_naar_pagina">Praat mee</a>-->
+    <a class="p-button p-button-warning mt-4" [routerLink]="pageData?.acf?.link_naar_pagina">Praat mee</a>
   </div>
 </div>

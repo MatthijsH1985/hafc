@@ -25,12 +25,8 @@
       </div>
       <div class="ml-auto mt-2 flex">
         <div class="mr-4 pr-2 border-r border-gray-200 dark:border-gray-800">
-          <button class="text-sm like-dislike-button like-button mr-2" (click)="onRateComment(1, comment)">
-            <fa-icon [icon]="faArrowUp" class="text-green-800 dark:text-white"></fa-icon>
-          </button>
-          <button class="text-sm like-dislike-button like-button" (click)="onRateComment(-1, comment)">
-            <fa-icon [icon]="faArrowDown" class="text-red-800 dark:text-white"></fa-icon>
-          </button>
+          <p-button [rounded]="true" [text]="true" icon="pi pi-arrow-up" severity="success" (click)="onRateComment(1, comment)"></p-button>
+          <p-button [rounded]="true" [text]="true" icon="pi pi-arrow-down" severity="danger" (click)="onRateComment(-1, comment)"></p-button>
         </div>
         <div class="py-2">{{ comment?.likes_dislikes | positiveNegative }}</div>
       </div>

@@ -1,5 +1,5 @@
 
-import {Component, Inject, LOCALE_ID, OnInit, PLATFORM_ID} from '@angular/core';
+import {ChangeDetectorRef, Component, Inject, LOCALE_ID, OnInit, PLATFORM_ID} from '@angular/core';
 import {slideInAnimation} from "./core/shared/animations";
 import {LoadingIndicatorService} from "./core/shared/loading-indicator/loading-indicator.service";
 import {BehaviorSubject} from 'rxjs';
@@ -8,9 +8,7 @@ import {CoreModule} from './core/core.module';
 import {registerLocaleData} from '@angular/common';
 import localeNl from '@angular/common/locales/nl';
 import {PrimeNGConfig} from 'primeng/api';
-import {InputGroupModule} from 'primeng/inputgroup';
 import {Button} from 'primeng/button';
-import {SidebarModule} from 'primeng/sidebar';
 registerLocaleData(localeNl, 'nl');
 
 @Component({
@@ -24,9 +22,7 @@ registerLocaleData(localeNl, 'nl');
     imports: [
         CoreModule,
         LoadingIndicatorComponent,
-        InputGroupModule,
-        Button,
-        SidebarModule
+        Button
     ],
   providers: [
     {
@@ -43,6 +39,7 @@ export class AppComponent implements OnInit {
 
   constructor(@Inject(PLATFORM_ID) private platformId: any,
               private primengConfig: PrimeNGConfig,
+              private cdr: ChangeDetectorRef,
               private loadingIndicatorService: LoadingIndicatorService ){}
 
   static isBrowser = new BehaviorSubject<boolean>(false);
@@ -50,6 +47,8 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.loadingIndicatorService.loading$.subscribe((loading) => {
       this.loading = loading
+      ;
+      this.cdr.detectChanges()
     });
     this.primengConfig.ripple = true;
   }

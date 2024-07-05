@@ -54,6 +54,14 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy, AfterViewInit 
     this.isButtonVisible(winScroll);
   }
 
+  validDateFormat(dateString: any) {
+    if(dateString) {
+      const newDate = new Date(dateString);
+      return newDate.toISOString();
+    }
+    return null;
+  }
+
   constructor(
     private route: ActivatedRoute,
     private viewportScroller: ViewportScroller,
@@ -61,6 +69,7 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy, AfterViewInit 
     private loadingIndicatorService: LoadingIndicatorService,
     @Inject(PLATFORM_ID) private platformId: object
   ) {
+    this.loadingIndicatorService.setLoading(true)
     this.post = this.route.snapshot.data['post'];
     this.metaService.updateMetaTag(this.post);
   }

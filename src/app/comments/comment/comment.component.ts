@@ -9,6 +9,7 @@ import {CommonModule, ViewportScroller} from '@angular/common';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {CommentFormComponent} from '../comment-form/comment-form.components';
 import {CoreModule} from '../../core/core.module';
+import {Button} from 'primeng/button';
 
 @Component({
   selector: 'app-comment',
@@ -19,7 +20,8 @@ import {CoreModule} from '../../core/core.module';
     FontAwesomeModule,
     CommonModule,
     CommentFormComponent,
-    CoreModule
+    CoreModule,
+    Button
   ]
 })
 

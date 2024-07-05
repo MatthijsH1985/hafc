@@ -1,5 +1,4 @@
-import {AfterViewInit, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {LoadingIndicatorService} from "../../core/shared/loading-indicator/loading-indicator.service";
+import {AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {CommentsService} from '../services/comments.service';
 import moment from 'moment/moment';
 import {faTrophy} from '@fortawesome/free-solid-svg-icons';
@@ -16,16 +15,16 @@ import {CoreModule} from '../../core/core.module';
     CoreModule
   ]
 })
-export class TopCommentsComponent implements AfterViewInit {
+export class TopCommentsComponent implements OnInit {
   @Input('comments') topComments: any | undefined;
   @Input('post') post: any | undefined;
   @Output() goToFragment = new EventEmitter();
 
-  constructor(private loadingIndicatorService: LoadingIndicatorService,
+  constructor(
               private commentsService: CommentsService) {
   }
 
-  ngAfterViewInit() {
+  ngOnInit() {
     if (this.post) {
       this.commentsService.getPopularComments(this.post.id).subscribe({
         next: (comments: any) => {
@@ -47,10 +46,6 @@ export class TopCommentsComponent implements AfterViewInit {
       return dateString.replace(/\s/, 'T');
     }
     return null;
-  }
-
-  shortenComment(comment: string) {
-    return comment.slice(0, 60) + '...';
   }
 
   protected readonly faTrophy = faTrophy;
