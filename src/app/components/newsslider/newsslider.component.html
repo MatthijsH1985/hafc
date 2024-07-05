@@ -1,8 +1,8 @@
 <div *ngIf="posts.length !== 0" class="overflow-hidden relative">
-  <a class="absolute p-3 z-30 block bg-red-500 text-white right-4 top-4 animate-thrice animate-shake flex flex-col my-2">
-    <h2 class="text-xl font-bold mb-4 w-[150px]">Help HAFC</h2>
-    <a [routerLink]="['doneer']" title="Doneer" class="text-base flex group py-2 transition transition-all">Doneer <fa-icon [icon]="faLongArrowRight" class="transition-all group-hover:ml-8 ml-4"></fa-icon></a>
-    <a [routerLink]="['page', 31238, 'word-sponsor-op-hafc']" title="Word sponsor" class="text-base py-2 transition-all flex group">Word sponsor <fa-icon [icon]="faLongArrowRight" class="transition-all ml-4 group-hover:ml-8"></fa-icon></a>
+  <a class="absolute p-3 z-30 flex flex-col bg-black rounded-bl-md right-0 top-0">
+    <h2 class="text-xl text-white font-bold mb-4 w-[150px]">Help HAFC</h2>
+    <a [routerLink]="['doneer']" title="Doneer" class="p-button p-button-danger mb-2">Doneer</a>
+    <a [routerLink]="['page', 31238, 'word-sponsor-op-hafc']" title="Word sponsor" class="p-button p-button-danger">Word sponsor</a>
   </a>
   <swiper-container fmSwiper [config]="config" init="false">
     <swiper-slide *ngFor="let post of posts">

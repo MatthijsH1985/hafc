@@ -28,7 +28,7 @@
           <p-button [rounded]="true" [text]="true" icon="pi pi-arrow-up" severity="success" (click)="onRateComment(1, comment)"></p-button>
           <p-button [rounded]="true" [text]="true" icon="pi pi-arrow-down" severity="danger" (click)="onRateComment(-1, comment)"></p-button>
         </div>
-        <div class="py-2">{{ comment?.likes_dislikes | positiveNegative }}</div>
+        <div class="py-2 flex justify-center items-center">{{ comment?.likes_dislikes | positiveNegative }}</div>
       </div>
     </h4>
   </div>
