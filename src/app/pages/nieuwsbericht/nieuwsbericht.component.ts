@@ -19,6 +19,9 @@ import {CoreModule} from '../../core/core.module';
 import {AdsComponent} from '../../ads/ads/ads.component';
 import {CommentsComponent} from '../../comments/comments/comments.component';
 import {TopCommentsComponent} from '../../comments/top-comments/top-comments.component';
+import {SidebarModule} from 'primeng/sidebar';
+import {Button} from 'primeng/button';
+import {Ripple} from 'primeng/ripple';
 
 @Component({
   selector: 'app-nieuwsbericht',
@@ -31,7 +34,10 @@ import {TopCommentsComponent} from '../../comments/top-comments/top-comments.com
     CoreModule,
     AdsComponent,
     CommentsComponent,
-    TopCommentsComponent
+    TopCommentsComponent,
+    SidebarModule,
+    Button,
+    Ripple
   ],
   providers: [
 
@@ -47,11 +53,20 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy, AfterViewInit 
   buttonVisible: boolean = false;
   currentReplyToCommentId: number | undefined;
   @Input('links') links: any;
+  commentsVisible = false;
 
   @HostListener('window:scroll', ['$event']) onScroll(event: any) {
     const winScroll = event.target.documentElement.scrollTop || event.currentTarget.scrollTop || document.body.scrollTop;
 
     this.isButtonVisible(winScroll);
+  }
+
+  showComments() {
+    this.commentsVisible = true;
+  }
+
+  hideComments() {
+    this.commentsVisible = false;
   }
 
   validDateFormat(dateString: any) {
