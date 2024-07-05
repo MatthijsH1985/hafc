@@ -11,20 +11,21 @@ import {NieuwsberichtComponent} from './pages/nieuwsbericht/nieuwsbericht.compon
 import {PostResolver} from './news/services/resolvers/post-resolver.service';
 import {CommentsResolverService} from './services/resolvers/comments-resolver.service';
 import {SinglePageComponent} from './pages/single-page/single-page.component';
-import {TeamComponent} from './pages/team/team.component';
+import {TeamComponent} from './pages/club/team/team.component';
 import {Competitioncomponent} from './pages/competition/competition/competitioncomponent';
 import {ProgrammaComponent} from './pages/competition/programma/programma.component';
 import {MatchreportComponent} from './pages/competition/matchreport/matchreport.component';
 import {StandComponent} from './pages/competition/stand/stand.component';
 import {ResultsComponent} from './pages/competition/results/results.component';
-import {TeamstatsComponent} from './pages/team/teamstats/teamstats.component';
-import {SelectieComponent} from './pages/team/selectie/selectie.component';
-import {SpelerComponent} from './pages/team/speler/speler.component';
+import {TeamstatsComponent} from './pages/club/team/teamstats/teamstats.component';
+import {SelectieComponent} from './pages/club/team/selectie/selectie.component';
+import {SpelerComponent} from './pages/club/team/speler/speler.component';
 import {MatchpreviewComponent} from './pages/competition/matchpreview/matchpreview.component';
 import {MatchResolver} from './services/resolvers/match-resolver.service';
 import {NieuwsarchiefComponent} from './pages/nieuwsarchief/nieuwsarchief.component';
 import {NotFoundComponent} from './pages/not-found/not-found.component';
 import {TestComponent} from './pages/test/test.component';
+import {ClubComponent} from './pages/club/club.component';
 
 export const routes: Routes = [
   {
@@ -67,48 +68,46 @@ export const routes: Routes = [
     path: 'page/:id/:title'
   },
   {
-    component: TeamComponent,
-    path: 'club',
+    component: ClubComponent,
+    path: 'club'
+  },
+  {
+    component: Competitioncomponent,
+    path: 'club/competitie',
     children: [
       {
-        component: Competitioncomponent,
-        path: 'competitie',
-        children: [
-          {
-            component: ProgrammaComponent,
-            path: 'wedstrijdprogramma'
-          },
-          {
-            component: MatchreportComponent,
-            path: 'wedstrijdprogramma/:matchId/report'
-          },
-          {
-            component: StandComponent,
-            path: 'stand'
-          },
-          {
-            component: ResultsComponent,
-            path: 'uitslagen'
-          },
-          {
-            component: MatchreportComponent,
-            path: 'uitslagen/:matchId'
-          },
-        ]
+        component: ProgrammaComponent,
+        path: 'wedstrijdprogramma'
       },
       {
-        component: TeamstatsComponent,
-        path: 'teamstats/:teamId'
+        component: MatchreportComponent,
+        path: 'wedstrijdprogramma/:matchId/report'
       },
       {
-        component: SelectieComponent,
-        path: 'selectie'
+        component: StandComponent,
+        path: 'stand'
       },
       {
-        component: SpelerComponent,
-        path: 'selectie/:id/:naam'
-      }
+        component: ResultsComponent,
+        path: 'uitslagen'
+      },
+      {
+        component: MatchreportComponent,
+        path: 'uitslagen/:matchId'
+      },
     ]
+  },
+  {
+    component: TeamstatsComponent,
+    path: 'club/teamstats/:teamId'
+  },
+  {
+    component: SelectieComponent,
+    path: 'club/selectie'
+  },
+  {
+    component: SpelerComponent,
+    path: 'club/selectie/:id/:naam'
   },
   {
     component: MatchpreviewComponent,

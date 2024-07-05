@@ -1,11 +1,11 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {PlayersService} from "../../../services/players.service";
+import {PlayersService} from "../../../../services/players.service";
 import {ActivatedRoute} from "@angular/router";
 import {Subscription} from "rxjs";
 import {DatePipe, ViewportScroller} from "@angular/common";
-import {TranslationService} from "../../../services/translation.service";
-import {LoadingIndicatorComponent} from '../../../core/shared/loading-indicator/loading-indicator.component';
-import {CoreModule} from '../../../core/core.module';
+import {TranslationService} from "../../../../services/translation.service";
+import {LoadingIndicatorComponent} from '../../../../core/shared/loading-indicator/loading-indicator.component';
+import {CoreModule} from '../../../../core/core.module';
 import {TranslateService} from '@ngx-translate/core';
 
 @Component({

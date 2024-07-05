@@ -14,6 +14,7 @@ import {StandingsService} from './pages/competition/services/standings.service';
 import {provideToastr} from 'ngx-toastr';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
+import {PlayersService} from './services/players.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -26,6 +27,7 @@ export const appConfig: ApplicationConfig = {
     ConfigService,
     AdsService,
     CommentsService,
+    PlayersService,
     FixturesService,
     StandingsService,
     importProvidersFrom(

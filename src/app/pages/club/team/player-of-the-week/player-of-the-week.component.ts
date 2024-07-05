@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {PlayersService} from "../../../services/players.service";
+import {PlayersService} from "../../../../services/players.service";
 import {Subscription} from "rxjs";
 import {CommonModule} from '@angular/common';
 interface PlayerOfTheWeek {

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {PlayersService} from "../../../services/players.service";
+import {PlayersService} from "../../../../services/players.service";
 import {RouterModule} from '@angular/router';
-import {CoreModule} from '../../../core/core.module';
+import {CoreModule} from '../../../../core/core.module';
 
 @Component({
   selector: 'app-selectie',
