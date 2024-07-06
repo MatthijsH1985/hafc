@@ -22,6 +22,7 @@ import {TopCommentsComponent} from '../../comments/top-comments/top-comments.com
 import {SidebarModule} from 'primeng/sidebar';
 import {Button} from 'primeng/button';
 import {Ripple} from 'primeng/ripple';
+import {BadgeModule} from 'primeng/badge';
 
 @Component({
   selector: 'app-nieuwsbericht',
@@ -37,7 +38,8 @@ import {Ripple} from 'primeng/ripple';
     TopCommentsComponent,
     SidebarModule,
     Button,
-    Ripple
+    Ripple,
+    BadgeModule
   ],
   providers: [
 
