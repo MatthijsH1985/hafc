@@ -24,9 +24,11 @@
             <div class="px-8 md:py-4 hidden md:flex">
               <a routerLink="/" class="inline-block hover:underline dark:text-white mr-2 max-w-full overflow-hidden whitespace-nowrap text-ellipsis">Home</a> &rsaquo; <a routerLink="/nieuws" class="inline-block hover:underline mx-2 max-w-full overflow-hidden whitespace-nowrap text-ellipsis">Nieuws</a> &rsaquo; <span [innerHTML]="post?.title.rendered" class="inline-block dark:text-white mx-2 max-w-full overflow-hidden whitespace-nowrap text-ellipsis"></span>
             </div>
-            <p-button severity="contrast" pRipple class="ml-auto" (click)="showComments()">
-              <span class="mr-6">Praat mee</span> <span class="mr-4" pBadge severity="warning" [value]="post?.comments_count"></span>
-            </p-button>
+            <div class="md:ml-auto w-full md:w-auto m-4 justify-end flex md:justify-start">
+              <p-button severity="contrast" pRipple class="" (click)="showComments()">
+                <span class="mr-6">Praat mee</span> <span class="mr-4" pBadge severity="warning" [value]="post?.comments_count"></span>
+              </p-button>
+            </div>
           </div>
           <div class="bg-white dark:bg-gray-900 mb-8 md:px-12 news-container">
             <div class="py-16 px-8">
@@ -76,7 +78,7 @@
   </div>
 </div>
 <app-footer [links]="links"></app-footer>
-<p-sidebar [(visible)]="commentsVisible" position="right" [style]="{'width': '90vw', 'display': 'block', 'overflow': 'scroll'}">
+<p-sidebar [(visible)]="commentsVisible" position="right" [style]="{'width': '95vw', 'display': 'block', 'overflow': 'scroll'}">
   <div *ngIf="post?.comment_status !== 'closed'; else commentsClosed" class="h-full overflow-auto">
     <div class="flex flex-col-reverse md:flex-row">
       <div class="p-4 md:p-0 md:pr-4 mr-0" id="comments">
