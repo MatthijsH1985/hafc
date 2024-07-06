@@ -16,9 +16,6 @@
       <div class="slider-animation"></div>
     </div>
   </div>
-  <div class="text-sm md:text-base rounded-md text-white p-4 font-bold text-base bg-black fixed z-50 w-[240px] h-[60px] left-[50%] -ml-[120px] bottom-4 flex justify-center items-center" *ngIf="post?.comment_status === 'open'" (click)="showComments()">
-    Praat mee <i class="ml-4 pi pi-comments text-2xl" pBadge severity="warning" [value]="post?.comments_count"></i>
-  </div>
   <div class="flex flex-col container max-w-[1200px] ml-auto mr-auto relative z-20 animate-fade-up animate-once animate-ease-in-out animate-duration-200 animate-delay-700">
     <div class="flex flex-col ml-auto mr-auto items-center">
       <div class="m-auto flex flex-col md:flex-row">
@@ -27,6 +24,9 @@
             <div class="px-8 md:py-4 hidden md:flex">
               <a routerLink="/" class="inline-block hover:underline dark:text-white mr-2 max-w-full overflow-hidden whitespace-nowrap text-ellipsis">Home</a> &rsaquo; <a routerLink="/nieuws" class="inline-block hover:underline mx-2 max-w-full overflow-hidden whitespace-nowrap text-ellipsis">Nieuws</a> &rsaquo; <span [innerHTML]="post?.title.rendered" class="inline-block dark:text-white mx-2 max-w-full overflow-hidden whitespace-nowrap text-ellipsis"></span>
             </div>
+            <p-button severity="contrast" pRipple class="ml-auto" (click)="showComments()">
+              <span class="mr-6">Praat mee</span> <span class="mr-4" pBadge severity="warning" [value]="post?.comments_count"></span>
+            </p-button>
           </div>
           <div class="bg-white dark:bg-gray-900 mb-8 md:px-12 news-container">
             <div class="py-16 px-8">
@@ -40,6 +40,11 @@
                 <iframe [src]="post.acf.spotify_link | safe" width="100%" height="390" seamless="true"></iframe>
               </div>
             </div>
+          </div>
+          <div class="my-4 flex w-full justify-center">
+            <p-button severity="contrast" pRipple (click)="showComments()">
+              <span class="mr-6">Praat mee</span> <span class="mr-4" pBadge severity="warning" [value]="post?.comments_count"></span>
+            </p-button>
           </div>
 <!--          <div class="bg-orange-200 text-orange-800 p-4 mb-8">-->
 <!--            <p class="mb-4">Vind jij HAFC leuk en kun jij een kleine bijdrage missen? Met een kleine donatie help je HAFC 2024 door!</p>-->

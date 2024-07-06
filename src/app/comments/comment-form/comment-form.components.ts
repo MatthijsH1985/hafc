@@ -10,6 +10,7 @@ import {InputIconModule} from 'primeng/inputicon';
 import {ColorPickerModule} from 'primeng/colorpicker';
 import {CommonModule} from '@angular/common';
 import {Button} from 'primeng/button';
+import {Ripple} from 'primeng/ripple';
 
 @Component({
   templateUrl: 'comment-form.component.html',
@@ -23,7 +24,8 @@ import {Button} from 'primeng/button';
     InputIconModule,
     ColorPickerModule,
     CommonModule,
-    Button
+    Button,
+    Ripple
   ]
 })
 export class CommentFormComponent implements OnInit {
