@@ -1,9 +1,4 @@
 <div *ngIf="posts.length !== 0" class="overflow-hidden relative">
-  <a class="absolute p-3 z-30 flex flex-col bg-black rounded-bl-md right-0 top-0">
-    <h2 class="text-xl text-white font-bold mb-4 w-[150px]">Help HAFC</h2>
-    <a [routerLink]="['doneer']" title="Doneer" class="p-button p-button-danger mb-2">Doneer</a>
-    <a [routerLink]="['page', 31238, 'word-sponsor-op-hafc']" title="Word sponsor" class="p-button p-button-danger">Word sponsor</a>
-  </a>
   <swiper-container fmSwiper [config]="config" init="false">
     <swiper-slide *ngFor="let post of posts">
       <a (click)="showLoading()" class="relative xl:w-[1200px] flex items-center flex-col justify-center w-full h-[500px]] md:h-[550px] group" [routerLink]="[post.categories[0] === 37 ? 'voorbeschouwing' : 'nieuws', post.id, post.slug]">

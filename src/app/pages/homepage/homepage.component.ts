@@ -13,6 +13,9 @@ import {NewsModule} from '../../news/news.module';
 import {StandComponent} from '../competition/stand/stand.component';
 import {ToastrModule} from 'ngx-toastr';
 import {Button} from 'primeng/button';
+import {CommentsComponent} from '../../comments/comments/comments.component';
+import {SidebarModule} from 'primeng/sidebar';
+import {DonateComponent} from '../donate/donate.component';
 
 @Component({
   selector: 'app-homepage',
@@ -24,7 +27,10 @@ import {Button} from 'primeng/button';
     CoreModule,
     NewsModule,
     StandComponent,
-    Button
+    Button,
+    CommentsComponent,
+    SidebarModule,
+    DonateComponent
   ],
   standalone: true
 })
@@ -35,6 +41,7 @@ export class HomepageComponent implements OnInit {
   links: Link[] = [];
   reactiesString = 'reacties';
   headlines: any;
+  showDonationComponent = false;
   targetWidth = 99; // The target percentage width
   totalDuration = 2000; // Total duration of the animation and counting in milliseconds
   animationDuration = 2000; // Duration of the animation in milliseconds
@@ -57,6 +64,10 @@ export class HomepageComponent implements OnInit {
 
   showLoading(): void {
     this.loadingIndicatorService.setLoading(true);
+  }
+
+  toggleDonationComponent(): void {
+    this.showDonationComponent = !this.showDonationComponent;
   }
 
   get newssliderComponent() {
