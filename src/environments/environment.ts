@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-  key: 'ck_658450e189f6295559481678772f4a9a22e9f164:cs_9ffe9bd52cfc4de9766951e3ca57886856ac1460',
+  key: '',
   siteUrl: 'https://www.hafc.nl',
-  apiUrl: 'https://hafc_site.test/wp-json/wp/v2',
+  apiUrl: 'https://backend.hafc.nl/wp-json/wp/v2',
   backendEndpoint: 'https://hafc_site.test:4208',
   // shopUrl: 'https://hafc_site.test/wp-json/wc/v3',
   // shopUrlCustom: 'https://hafc_site.test/wp-json/cocart/v2',

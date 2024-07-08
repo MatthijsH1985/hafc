@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  key: 'ck_42bfce6f7023aefda6fdfb791424a911605f1217:cs_6bf2ce3713f644aad9a6e458e928508a25fbe2fb',
+  key: '',
   siteUrl: 'https:/backend.hafc.nl',
   apiUrl: 'https://backend.hafc.nl/wp-json/wp/v2',
   backendEndpoint: 'https://www.hafc.nl',
