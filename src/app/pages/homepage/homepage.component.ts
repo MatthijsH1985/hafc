@@ -56,6 +56,7 @@ export class HomepageComponent implements OnInit {
               private loadingIndicatorService: LoadingIndicatorService,
               private route: ActivatedRoute,
               @Inject('isBrowser') @Inject(PLATFORM_ID) private platformId: Object) {
+    this.metaService.updateMetaTag('HAFC - Wij zijn Heracles', 'https://www.hafc.nl', 'HAFC.nl is de grootste Heracles community voor en door supporters. Volg hier het laatste nieuws en blijf op de hoogte', 'https://backend.hafc.nl/wp-content/uploads/2023/05/nac-heracles.jpg');
   }
 
   get isBrowser() {
@@ -88,7 +89,7 @@ export class HomepageComponent implements OnInit {
     this.animateProgressBar();
     this.startCounting();
     this.latestComments = this.route.snapshot.data['latestComments'];
-    this.metaService.setMetaTag('https://www.hafc.nl', 'HAFC.nl is de grootste Heracles community voor en door supporters. Volg hier het laatste nieuws en blijf op de hoogte', 'https://backend.hafc.nl/wp-content/uploads/2023/05/nac-heracles.jpg');
+
   }
 
   animateProgressBar(): void {
