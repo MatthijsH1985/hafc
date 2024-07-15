@@ -8,7 +8,7 @@
             <h1 [innerHTML]="post?.title?.rendered" class="text-white font-bold md:text-3xl text-3xl md:leading-normal leading-normal p-4"></h1>
             <span class="inline md:ml-4 text-white mb-4">{{ validDateFormat(post?.date)  | date: 'd MMMM' }}</span>
             <div class="text-sm md:text-base text-white md:pl-4" *ngIf="post?.comment_status === 'open'">
-              <span class="p-badge p-badge-contrast ml-2">Bekijk reacties</span>
+              <span class="p-badge p-badge-contrast">Bekijk reacties</span>
             </div>
           </div>
         </div>
