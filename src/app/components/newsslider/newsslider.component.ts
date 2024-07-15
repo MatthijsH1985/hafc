@@ -75,6 +75,7 @@ export class NewssliderComponent implements AfterViewInit {
     @Inject('isBrowser') private isBrowser: boolean
   ) {
     this.posts = this.route.snapshot.data['posts'].slice(0,3);
+    console.log(this.posts)
   }
 
   showLoading(): void {
@@ -100,5 +101,4 @@ export class NewssliderComponent implements AfterViewInit {
 
   protected readonly faChevronLeft = faChevronLeft;
   protected readonly faChevronRight = faChevronRight;
-  protected readonly faLongArrowRight = faLongArrowRight;
 }

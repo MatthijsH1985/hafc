@@ -11,7 +11,8 @@ export class PostsService {
 
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json;charset=UTF-8'
+      'Content-Type': 'application/json;charset=UTF-8',
+      'Cache-Control': 'no-cache'
     })
   };
 
