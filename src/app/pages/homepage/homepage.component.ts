@@ -104,7 +104,7 @@ export class HomepageComponent implements OnInit {
           const progress = step / animationSteps;
           this.currentWidth = progress * this.targetWidth;
 
-          this.cdr.detectChanges(); // Manually trigger change detection
+          this.cdr.detectChanges();
 
           if (step < animationSteps) {
             setTimeout(updateProgress, interval);
