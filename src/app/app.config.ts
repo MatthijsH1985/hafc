@@ -19,10 +19,7 @@ import {PlayersService} from './services/players.service';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
-    provideHttpClient(
-      withFetch()
-    ),
-    provideClientHydration(),
+    provideHttpClient(),
     provideToastr(),
     provideAnimationsAsync(),
     PostsService,
