@@ -2,23 +2,10 @@
   <div class="container xl:w-[1200px] md:mt-8 max-h-[480px] overflow-hidden ml-auto mr-auto relative z-10">
     <img src="../../../../assets/blijdschap.jpg" class="block m-auto w-full max-h-[480px] object-cover object-bottom" />
   </div>
-<!--  <div class="relative z-20 xl:w-[1160px] md:mx-auto mb-8">-->
-<!--    <ul class="flex space-x-4 pt-8 pl-4 pr-4 pb-8 text-base md:text-xl justify-center dark:text-white tabs">-->
-<!--      <li>-->
-<!--        <a [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/', 'club', 'competitie', 'wedstrijdprogramma']" routerLinkActive="active">Programma</a>-->
-<!--      </li>-->
-<!--      <li>-->
-<!--        <a [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/', 'club', 'competitie', 'uitslagen']" routerLinkActive="active">Uitslagen</a>-->
-<!--      </li>-->
-<!--      <li>-->
-<!--        <a [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/', 'club', 'competitie', 'stand']" routerLinkActive="active">Stand</a>-->
-<!--      </li>-->
-<!--    </ul>-->
-<!--  </div>-->
   <div class="relative z-20 xl:w-[1160px] md:mx-auto mb-8 text-center">
-    <p-tabMenu [model]="items">
+    <p-tabMenu [model]="items" [activeItem]="activeItem">
       <ng-template pTemplate="item" let-item>
-        <a pRipple class="flex align-items-center gap-2 p-menuitem-link">
+        <a pRipple class="flex align-items-center gap-2 p-menuitem-link" [routerLink]="item.link">
           <span class="font-bold">
               {{ item.label }}
           </span>
@@ -26,10 +13,12 @@
       </ng-template>
     </p-tabMenu>
   <div>
-  <div class="xl:w-[1160px] w-full md:w-[768px] mx-auto">
+  <div class="xl:w-[1160px] w-full md:w-[768px] mx-auto bg-white">
     <router-outlet></router-outlet>
   </div>
   <div class="mt-auto">
     <app-footer></app-footer>
+  </div>
+</div>
   </div>
 </div>

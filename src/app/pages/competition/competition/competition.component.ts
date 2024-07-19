@@ -13,25 +13,25 @@ import {MenuItem} from 'primeng/api';
     TabMenuModule
   ]
 })
-export class CompetitionComponent implements OnInit {
+export class CompetitionComponent {
   items: MenuItem[] | undefined;
-  ngOnInit() {
+  activeItem: MenuItem | undefined;
+  constructor() {
     this.items = [
       {
-        label: 'Wedstrijdprogramma',
-        icon: 'pi pi-home',
-        link: ['/', 'club', 'competitie', 'wedstrijdprogramma']
-      },
-      {
         label: 'Uitslagen',
-        icon: 'pi pi-chart-line',
         link: ['/', 'club', 'competitie', 'uitslagen']
       },
       {
+        label: 'Wedstrijdprogramma',
+        link: ['/', 'club', 'competitie', 'wedstrijdprogramma']
+      },
+      {
         label: 'Stand',
-        icon: 'pi pi-list',
         link: ['/', 'club', 'competitie', 'stand']
       }
     ];
+
+    this.activeItem = this.items[1];
   }
 }
