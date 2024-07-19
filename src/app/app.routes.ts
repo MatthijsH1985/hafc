@@ -12,7 +12,7 @@ import {PostResolver} from './news/services/resolvers/post-resolver.service';
 import {CommentsResolverService} from './services/resolvers/comments-resolver.service';
 import {SinglePageComponent} from './pages/single-page/single-page.component';
 import {TeamComponent} from './pages/club/team/team.component';
-import {Competitioncomponent} from './pages/competition/competition/competitioncomponent';
+import {CompetitionComponent} from './pages/competition/competition/competition.component';
 import {ProgrammaComponent} from './pages/competition/programma/programma.component';
 import {MatchreportComponent} from './pages/competition/matchreport/matchreport.component';
 import {StandComponent} from './pages/competition/stand/stand.component';
@@ -72,7 +72,7 @@ export const routes: Routes = [
     path: 'club'
   },
   {
-    component: Competitioncomponent,
+    component: CompetitionComponent,
     path: 'club/competitie',
     children: [
       {
