@@ -83,7 +83,6 @@ export class HomepageComponent implements OnInit {
       this.reactiesString = 'reactie';
     }
     this.posts = this.route.snapshot.data['posts'];
-    console.log(this.posts);
     this.links = this.route.snapshot.data['links'];
     this.loading = false;
 
@@ -110,7 +109,6 @@ export class HomepageComponent implements OnInit {
           if (step < animationSteps) {
             setTimeout(updateProgress, interval);
           } else {
-            // Ensure the final state is exactly the target
             this.currentWidth = this.targetWidth;
             this.cdr.detectChanges(); // Final change detection
           }
