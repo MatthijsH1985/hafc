@@ -3,7 +3,7 @@ import {provideRouter} from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
-import {HttpClient, provideHttpClient} from '@angular/common/http';
+import {HttpClient, provideHttpClient, withFetch} from '@angular/common/http';
 import {CoreModule, createTranslateLoader} from './core/core.module';
 import {PostsService} from './news/services/posts.service';
 import {ConfigService} from './core/services/config.service';
@@ -19,7 +19,9 @@ import {PlayersService} from './services/players.service';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
-    provideHttpClient(),
+    provideHttpClient(
+      withFetch()
+    ),
     provideClientHydration(),
     provideToastr(),
     provideAnimationsAsync(),
