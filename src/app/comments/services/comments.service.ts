@@ -54,6 +54,10 @@ export class CommentsService {
     return this.http.post<Config[]>(environment.apiUrl + '/mumba/comment-like/', commentData, this.httpOptions);
   }
 
+  getTransferTopicComments(post:any, page = 1, order = 'desc'): Observable<Config[]> {
+    return this.http.get<Config[]>(environment.apiUrl + '/comments?post='+ post + '&per_page=40&page='+ page + '&order='+ order + '', this.httpOptions);
+  }
+
   getPopularComments(postId: number) {
     const url = `${environment.apiUrl}/comments/popular-comments?post_id=${postId}`;
     return this.http.get<Config[]>(url, this.httpOptions);

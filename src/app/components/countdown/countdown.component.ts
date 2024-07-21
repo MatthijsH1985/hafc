@@ -1,4 +1,4 @@
-import {Component, Inject, NgZone, OnDestroy, OnInit, PLATFORM_ID} from '@angular/core';
+import {Component, EventEmitter, Inject, NgZone, OnDestroy, OnInit, Output, PLATFORM_ID} from '@angular/core';
 import moment from 'moment/moment';
 import {Subscription} from 'rxjs';
 import {CountdownService} from './countdown.service';
@@ -18,8 +18,11 @@ export class CountdownComponent implements OnInit, OnDestroy {
   showWarning = false;
   warning = 'Er is geen evenement';
   homepageId = 23186;
-  pageData: any;
+  commentsSidebarVisible = false;
+  post: any;
   commentPanelOpen = false;
+  reloadComments = false;
+  @Output() onShowCommentsSidebar = new EventEmitter<any>();
 
   constructor(private countdownService: CountdownService,
               private zone: NgZone) {
@@ -28,11 +31,12 @@ export class CountdownComponent implements OnInit, OnDestroy {
     this.countdownSub = this.countdownService.getCountdown(this.homepageId).subscribe({
       next: (response: any) => {
         if (response.acf.countdown_weergeven) {
-          this.pageData = response;
-          const targetDate = this.pageData.acf.datum;
+          this.post = response;
+          const targetDate = this.post.acf.datum;
           this.countDown(targetDate);
           this.showWarning = false;
-          this.pageData.acf.link_naar_pagina = this.parsePermalinkToArray(this.pageData.acf.link_naar_pagina);
+          console.log(this.post)
+          this.post.acf.link_naar_pagina = this.parsePermalinkToArray(this.post.acf.link_naar_pagina);
         } else {
           this.showWarning = true;
         }
@@ -41,6 +45,13 @@ export class CountdownComponent implements OnInit, OnDestroy {
         console.log(error);
       }
     })
+  }
+
+  toggleCommentSidebar(): void {
+    this.onShowCommentsSidebar.emit({
+      visible: true,
+      post: this.post
+    });
   }
 
   openComments() {
@@ -52,7 +63,6 @@ export class CountdownComponent implements OnInit, OnDestroy {
   }
 
   parsePermalinkToArray(permalink: string): string[] {
-    console.log(permalink);
     const regex = /https:\/\/backend\.hafc\.nl\/nieuws\/(\d+)\/(.+)/;
     if (permalink.length > 0) {
       const match = permalink.match(regex);

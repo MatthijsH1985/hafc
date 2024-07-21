@@ -42,12 +42,10 @@ export class CommentsComponent implements OnChanges, OnDestroy, OnInit {
   loadingComments: boolean = true;
   noCommentsLoaded = true;
   commentPage: number = 1;
-  newCommentCount: number = 0;
   disableLoadMoreButton = false;
   errorMessage = '';
   hierarchicalComments: CommentNode[] = [];
   replyToCommentId: number = 0;
-  reloadComments = false;
   replyToCommentVisibility = false;
   @Input() initialCommentCount: number = 0;
   @Input() post: any | undefined;
@@ -55,8 +53,6 @@ export class CommentsComponent implements OnChanges, OnDestroy, OnInit {
   @Output() replyToComment: EventEmitter<number> = new EventEmitter<number>();
   constructor(private route: ActivatedRoute,
               private commentsService: CommentsService,
-              private router: Router,
-              private toast: ToastrService,
               private changeDetectorRef: ChangeDetectorRef,
               @Inject(PLATFORM_ID) private platformId: object) {
     this.commentsService.newCommentAdded$.subscribe((newComment) => {
@@ -73,7 +69,9 @@ export class CommentsComponent implements OnChanges, OnDestroy, OnInit {
   }
 
   ngOnInit() {
-    this.buildCommentHierarchy();
+    if (!this.post.acf.link_naar_pagina) {
+      this.buildCommentHierarchy();
+    }
   }
 
   buildCommentHierarchy() {
@@ -122,18 +120,29 @@ export class CommentsComponent implements OnChanges, OnDestroy, OnInit {
       this.getComments(this.commentPage);
       this.buildCommentHierarchy();
     }
+    if (changes['post']) {
+      this.getComments(this.commentPage);
+    }
   }
 
   getComments(page: number) {
-    this.commentsSub = this.commentsService.getComments(this.post.id, this.commentPage).subscribe({
+    let postId = this.post.id;
+    if (this.post.acf.link_naar_pagina) {
+      postId = this.post.acf.link_naar_pagina[1];
+    }
+    this.commentsSub = this.commentsService.getComments(postId, this.commentPage).subscribe({
       next: comments => {
-        for (let i = 0; i < comments.length; i++) {
-          this.comments.push(comments[i]);
+        if (!this.comments) {
+          this.comments = comments;
+          this.buildCommentHierarchy()
+        } else {
+          for (let i = 0; i < comments.length; i++) {
+            this.comments.push(comments[i]);
+          }
         }
         this.loadingComments = false;
         this.noCommentsLoaded = false;
         this.commentPage++;
-
         this.changeDetectorRef.detectChanges();
       },
       error:error => {
@@ -145,10 +154,6 @@ export class CommentsComponent implements OnChanges, OnDestroy, OnInit {
 
   commentSuccesfull(event: any) {
     console.log(event);
-  }
-
-  onLoadMoreComments() {
-    this.getComments(this.commentPage);
   }
 
   ngOnDestroy() {

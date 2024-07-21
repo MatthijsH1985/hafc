@@ -1,6 +1,6 @@
 <div *ngIf="!showWarning;" class=" w-full relative mt-8 md:mt-0 md:w-auto top-2 p-4 z-20 text-center border-b border-gray-300 text-black dark:text-white flex flex-col bg-white dark:bg-black">
   <div class="slider-animation white-animation"></div>
-  <h2 class="text-xl md:text-3xl mb-2">{{ pageData?.acf?.titel }}</h2>
+  <h2 class="text-xl md:text-3xl mb-2">{{ post?.acf?.titel }}</h2>
   <div class="relative h-[180px] p-4">
     <div class="flex justify-center items-center w-full md:w-auto">
       <div class="justify-between flex flex-col mr-4">
@@ -13,6 +13,6 @@
         <strong class="block text-xl md:text-3xl bg-white dark:bg-black  p-2 mt-2">{{ minutes }} <span class="text-xl font-normal">m.</span></strong>
       </div>
     </div>
-    <a class="p-button p-button-danger mt-4" [routerLink]="pageData?.acf?.link_naar_pagina">Praat mee</a>
+    <a class="p-button p-button-danger mt-4" (click)="toggleCommentSidebar()">Lees de reacties</a>
   </div>
 </div>

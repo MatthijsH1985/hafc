@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, Inject, LOCALE_ID, OnInit, PLATFORM_ID} from '@angular/core';
+import {ChangeDetectorRef, Component, Inject, LOCALE_ID, OnInit, PLATFORM_ID, SimpleChanges} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {Title} from "@angular/platform-browser";
 import {isPlatformBrowser, ViewportScroller} from "@angular/common";
@@ -11,7 +11,6 @@ import {VolgendeWedstrijdComponent} from '../competition/volgende-wedstrijd/volg
 import {CoreModule} from '../../core/core.module';
 import {NewsModule} from '../../news/news.module';
 import {StandComponent} from '../competition/stand/stand.component';
-import {ToastrModule} from 'ngx-toastr';
 import {Button} from 'primeng/button';
 import {CommentsComponent} from '../../comments/comments/comments.component';
 import {SidebarModule} from 'primeng/sidebar';
@@ -48,6 +47,9 @@ export class HomepageComponent implements OnInit {
   countingInterval = 10; // Interval for counting in milliseconds
   currentWidth = 0;
   currentPercentage = 0;
+  reloadComments = false;
+  showCommentsSidebar: boolean = false;
+  transferPost: any;
   constructor(
               private titleService: Title,
               private viewportScroller: ViewportScroller,
@@ -61,14 +63,6 @@ export class HomepageComponent implements OnInit {
 
   get isBrowser() {
     return isPlatformBrowser(this.platformId);
-  }
-
-  showLoading(): void {
-    this.loadingIndicatorService.setLoading(true);
-  }
-
-  toggleDonationComponent(): void {
-    this.showDonationComponent = !this.showDonationComponent;
   }
 
   get newssliderComponent() {
@@ -90,6 +84,13 @@ export class HomepageComponent implements OnInit {
     this.startCounting();
     this.latestComments = this.route.snapshot.data['latestComments'];
 
+  }
+
+  handleShowCommentsSidebar(event: any): void {
+    this.showCommentsSidebar = event.visible;
+    this.transferPost = event.post;
+    this.reloadComments = true;
+    this.cdr.detectChanges();
   }
 
   animateProgressBar(): void {
@@ -143,6 +144,10 @@ export class HomepageComponent implements OnInit {
         setTimeout(updateCount, this.countingInterval);
       }, 2000)
     }
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+
   }
 
   validDateFormat(dateString: any) {

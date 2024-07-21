@@ -31,16 +31,16 @@ import {Ripple} from 'primeng/ripple';
 export class CommentFormComponent implements OnInit {
   commentForm: FormGroup;
   post: any = [];
+  postId: any;
   @Input() isReply: boolean = false;
   @Input() comment: any = [];
+  @Input() transferPost: any;
   @Output() commentSuccesfullEmitter = new EventEmitter();
   loading = false;
   errorMessage: string = '';
   constructor(private commentsService: CommentsService,
               private route: ActivatedRoute,
-              private toast: ToastrService,
-              private changeDetectorRef: ChangeDetectorRef,
-              private router: Router) {
+              private toast: ToastrService) {
     this.commentForm = new FormGroup({
       name: new FormControl('', Validators.required),
       email: new FormControl('', Validators.email),
@@ -50,8 +50,13 @@ export class CommentFormComponent implements OnInit {
 
   ngOnInit() {
     this.post = this.route.snapshot.data['post'];
+    if (this.route.snapshot.data['post']) {
+      this.post = this.route.snapshot.data['post'];
+      this.postId = this.post.id;
+    } else {
+      this.postId = this.transferPost.acf.link_naar_pagina[1];
+    }
   }
-
 
   onCommentSuccesfull(comment: any) {
     this.commentSuccesfullEmitter.emit(true);
@@ -79,11 +84,12 @@ export class CommentFormComponent implements OnInit {
   onPostComment(form: FormGroup, commentParentId?: number): void {
     let commentData: any;
     commentData = {
-      post: this.post.id,
+      post: this.postId,
       author_name: form.value.name,
       author_email: form.value.email,
       content: form.value.comment,
     };
+    console.log(commentData);
     if (this.comment.id !== undefined) {
       commentData.parent = this.comment.id;
     }
