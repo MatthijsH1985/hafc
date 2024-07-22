@@ -98,7 +98,11 @@ export class CommentsComponent implements OnChanges, OnDestroy, OnInit {
 
   loadMoreComments() {
     this.commentPage++;
-    this.commentsService.getComments(this.post.id, this.commentPage)
+    let postId = this.post.id;
+    if (this.post.acf.link_naar_pagina) {
+      postId = this.post.acf.link_naar_pagina[1];
+    }
+    this.commentsService.getComments(postId, this.commentPage)
       .subscribe({
         next: (newComments: any[]) => {
           if (Array.isArray(newComments) && newComments.length > 0) {
