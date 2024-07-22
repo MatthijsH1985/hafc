@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import {ActivatedRoute, Router, RouterModule} from '@angular/router';
-import {DatePipe, ViewportScroller} from '@angular/common';
+import {DatePipe, isPlatformBrowser, ViewportScroller} from '@angular/common';
 import {faTrophy, faLongArrowRight} from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 import {MetaService} from "../../core/services/meta.service";
@@ -67,8 +67,21 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy, AfterViewInit 
     this.commentsVisible = true;
   }
 
+  decodeUrl(url: string): any {
+    if (this.isBrowser) {
+      const txt = document.createElement('textarea');
+      txt.innerHTML = url;
+      return txt.value;
+    }
+  }
+
   hideComments() {
     this.commentsVisible = false;
+  }
+
+
+  get isBrowser() {
+    return isPlatformBrowser(this.platformId);
   }
 
   validDateFormat(dateString: any) {
@@ -83,8 +96,8 @@ export class NieuwsberichtComponent implements OnInit, OnDestroy, AfterViewInit 
     private route: ActivatedRoute,
     private viewportScroller: ViewportScroller,
     private metaService: MetaService,
+    @Inject('isBrowser') @Inject(PLATFORM_ID) private platformId: Object,
     private loadingIndicatorService: LoadingIndicatorService,
-    @Inject(PLATFORM_ID) private platformId: object
   ) {
     this.loadingIndicatorService.setLoading(true)
     this.post = this.route.snapshot.data['post'];

@@ -37,7 +37,7 @@
                 <a [href]="post?.acf.spotify_link" class="button button-blue no-underline" target="_blank">
                   Beluister op Spotify
                 </a>
-                <iframe [src]="post.acf.spotify_link | safe" frameborder="0" scrolling="no" class="mt-4 w-full"></iframe>
+                <iframe [src]="decodeUrl(post.acf.spotify_link) | safe" frameborder="0" scrolling="no" class="mt-4 w-full"></iframe>
               </div>
             </div>
           </div>
@@ -74,3 +74,6 @@
   </div>
 </div>
 <app-footer [links]="links"></app-footer>
+
+https://podcasters.spotify.com/pod/show/mzwb/embed/episodes/Vaderlijk-advies-na-Preussen&#45;&#45;S02E04-e2ma1m5
+https://podcasters.spotify.com/pod/show/mzwb/embed/episodes/Vaderlijk-advies-na-Preussen--S02E04-e2ma1m5
