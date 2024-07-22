@@ -15,6 +15,8 @@ import {Button} from 'primeng/button';
 import {CommentsComponent} from '../../comments/comments/comments.component';
 import {SidebarModule} from 'primeng/sidebar';
 import {DonateComponent} from '../donate/donate.component';
+import {PostsService} from '../../news/services/posts.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-homepage',
@@ -49,9 +51,13 @@ export class HomepageComponent implements OnInit {
   currentPercentage = 0;
   reloadComments = false;
   showCommentsSidebar: boolean = false;
+  transferPostSub: any = new Subscription();
+  homePost: any;
   transferPost: any;
+
   constructor(
               private titleService: Title,
+              private postService: PostsService,
               private viewportScroller: ViewportScroller,
               private metaService: MetaService,
               private cdr: ChangeDetectorRef,
@@ -86,9 +92,21 @@ export class HomepageComponent implements OnInit {
 
   }
 
+  getTransferPost(postID: any) {
+    this.transferPostSub = this.postService.getPost(postID).subscribe({
+      next: (post: any) => {
+        this.transferPost = post;
+      },
+      error: (err) => {
+        console.log(err)
+      }
+    })
+  }
+
   handleShowCommentsSidebar(event: any): void {
     this.showCommentsSidebar = event.visible;
-    this.transferPost = event.post;
+    this.homePost = event.post;
+    this.getTransferPost(event.post.acf.link_naar_pagina[1])
     this.reloadComments = true;
     this.cdr.detectChanges();
   }
@@ -144,10 +162,6 @@ export class HomepageComponent implements OnInit {
         setTimeout(updateCount, this.countingInterval);
       }, 2000)
     }
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-
   }
 
   validDateFormat(dateString: any) {
