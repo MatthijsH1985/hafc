@@ -35,7 +35,6 @@ export class CountdownComponent implements OnInit, OnDestroy {
           const targetDate = this.post.acf.datum;
           this.countDown(targetDate);
           this.showWarning = false;
-          console.log(this.post)
           this.post.acf.link_naar_pagina = this.parsePermalinkToArray(this.post.acf.link_naar_pagina);
         } else {
           this.showWarning = true;

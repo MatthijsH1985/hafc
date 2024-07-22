@@ -89,7 +89,6 @@ export class CommentFormComponent implements OnInit {
       author_email: form.value.email,
       content: form.value.comment,
     };
-    console.log(commentData);
     if (this.comment.id !== undefined) {
       commentData.parent = this.comment.id;
     }
