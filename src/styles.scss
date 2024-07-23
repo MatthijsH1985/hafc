@@ -384,11 +384,8 @@ app-nieuwsbericht {
   overflow: hidden;
   z-index: 21;
   &.white-animation {
-    animation-delay:2s;
-    background: #FFF;
-    height: 100%;
-    left: 0;
-    top: 0;
+    animation-delay: 2s;
+    @apply bg-white h-full left-0 top-0 dark:bg-black;
   }
 }
 
@@ -442,5 +439,5 @@ textarea, input[type=text], input[type=email] {
 }
 
 .schema-faq-question {
-  @apply text-black
+  @apply text-black dark:text-white
 }

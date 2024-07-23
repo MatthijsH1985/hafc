@@ -1,4 +1,4 @@
-<div class=" m-auto xl:w-[1200px] relative container flex justify-center items-center main-menu" [ngClass]="{'menu-open': (menuService.isOpen | async)}">
+<div class=" m-auto relative flex flex-1 justify-start items-center main-menu" [ngClass]="{'menu-open': (menuService.isOpen | async)}">
   <div class="flex-1 text-left">
     <nav class="hidden lg:block left-menu">
       <ul class="flex space-x-2 uppercase text-white menu-left">
@@ -13,7 +13,7 @@
         </li>
         <li class="has-sub-menu group " routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
           <a (click)="menuService.close()" [routerLink]="['/', 'club']" class="button button-black hidden md:flex items-center hover:hidden group-hover:hidden md:group-hover:flex">Club <fa-icon class="text-xs ml-2" [icon]="faChevronDown"></fa-icon></a>
-          <div class="sub-menu absolute md:hidden w-full left-0 pt-6 group-hover:flex">
+          <div class="sub-menu absolute md:hidden w-[500px] left-0 pt-6 group-hover:flex">
             <div class="bg-black md:bg-white md:dark:bg-black md:dark:text-white sub-menu-inner p-8 w-full h-[300px] md:flex">
               <div class="mt-4 md:p-4">
                 <h4 class="my-4 text-black md:dark:text-white font-bold">Eerste elftal</h4>

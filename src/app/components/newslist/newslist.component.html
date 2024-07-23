@@ -12,7 +12,7 @@
           <h3 class="p-2 md:p-4 text-base dark:text-white md:text-xl" [innerHTML]="post?.title.rendered"></h3>
           <div class="px-2 pb-2 md:px-4 md:pb-4 mt-auto">
             <div class="text-sm md:text-base dark:text-white">{{ validDateFormat(post.date)  | date: 'd MMMM' }}</div>
-            <div class="text-sm md:text-sm text-black" *ngIf="post?.comment_status === 'open'">{{ post?.comments_count | commentsString }}</div>
+            <div class="text-sm md:text-sm text-black dark:text-white" *ngIf="post?.comment_status === 'open'">{{ post?.comments_count | commentsString }}</div>
           </div>
         </div>
       </a>
