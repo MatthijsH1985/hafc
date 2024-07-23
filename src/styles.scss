@@ -428,7 +428,7 @@ textarea, input[type=text], input[type=email] {
 }
 
 .background-skew {
-  clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 0% 100%);
+  clip-path: polygon(0% 0%, 100% 0%, 100% 60%, 0% 60%);
   @apply bg-black h-[40%] md:h-[70%] w-full absolute top-0 z-0
 }
 
