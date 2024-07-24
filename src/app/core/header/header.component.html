@@ -1,13 +1,15 @@
+<div class="block sticky top-0 bg-black left-0 h-[50px] md:h-[100px] w-full z-40">
+  <header class="flex h-[50px] md:h-[100px] xl:w-[1300px] text-white px-4 xl:px-10 ml-auto mr-auto animate-fade-down animate-once animate-duration-300 animate-ease-linear animate-delay-200">
+    <button (click)="menuService.toggle()" class="mt-[5px] flex lg:hidden items-center">
+      <fa-icon [icon]="faStream" class="mr-2"></fa-icon> Menu
+    </button>
+    <a class="absolute left-[50%] ml-[-50px] w-[100px] z-20 h-[80px] block" [routerLink]="['/']">
+      <img src="../../../assets/logo_hafc.svg" class="top-2 h-auto m-4 block bg-white hover:scale-110 transition-all" title="HAFC" />
+    </a>
+    <app-navigation class="relative flex justify-start items-center main-menu"></app-navigation>
+    <a class="flex items-center justify-end md:mr-4 w-[90px] md:w-[180px] ml-auto text-sm" href="https://www.mumba.nl" target="_blank" title="Website nodig? Ga naar Mumba!">
+      <img src="assets/logo-1.svg" alt="Mumba" />
+    </a>
+  </header>
+</div>
 
-<header class="sticky top-0 bg-black xl:w-[1300px] h-[50px] flex md:h-[100px] z-40 text-white px-4 xl:px-10 ml-auto mr-auto animate-fade-down animate-once animate-duration-300 animate-ease-linear animate-delay-200">
-  <button (click)="menuService.toggle()" class="mt-[5px] flex lg:hidden items-center">
-    <fa-icon [icon]="faStream" class="mr-2"></fa-icon> Menu
-  </button>
-  <a class="absolute left-[50%] ml-[-50px] w-[100px] z-20 h-[80px] block" [routerLink]="['/']">
-    <img src="../../../assets/logo_hafc.svg" class="top-2 h-auto m-4 block bg-white hover:scale-110 transition-all" title="HAFC" />
-  </a>
-  <app-navigation class="relative flex justify-start items-center main-menu"></app-navigation>
-  <a class="flex items-center w-[90px] md:w-[180px] ml-auto text-sm" href="https://www.mumba.nl" target="_blank" title="Website nodig? Ga naar Mumba!">
-    <img src="assets/logo-1.svg" alt="Mumba" />
-  </a>
-</header>
