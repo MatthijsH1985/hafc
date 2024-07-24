@@ -25,6 +25,7 @@ import {HttpClient} from '@angular/common/http';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {Button} from 'primeng/button';
 import {SidebarModule} from 'primeng/sidebar';
+import {BadgeModule} from 'primeng/badge';
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -44,13 +45,14 @@ export function createTranslateLoader(http: HttpClient) {
         CommentsStringPipe,
         PositiveNegativePipe
     ],
-  imports: [
-    CommonModule,
-    RouterModule,
-    FontAwesomeModule,
-    Button,
-    SidebarModule
-  ],
+    imports: [
+        CommonModule,
+        RouterModule,
+        FontAwesomeModule,
+        Button,
+        SidebarModule,
+        BadgeModule
+    ],
   exports: [
     HeaderComponent,
     FooterComponent,
