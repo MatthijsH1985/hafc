@@ -442,8 +442,6 @@ textarea, input[type=text], input[type=email] {
   @apply text-black dark:text-white
 }
 
-.p-sidebar-content {
-  h3 {
+.wp-block-heading {
     @apply text-2xl font-bold
-  }
 }
