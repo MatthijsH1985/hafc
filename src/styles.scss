@@ -441,3 +441,9 @@ textarea, input[type=text], input[type=email] {
 .schema-faq-question {
   @apply text-black dark:text-white
 }
+
+.p-sidebar-content {
+  h3 {
+    @apply text-2xl font-bold
+  }
+}
